@@ -95,6 +95,32 @@ session_start();
 			
 		case 'new_proposal':
 			
+			if($_POST){
+				
+				$type = $_POST['type'];
+				
+				switch($type){
+					case '1':
+						header("Location: new_course_proposal");
+						break;
+				
+					case '2':
+						header("Location: change_course_proposal");
+						break;
+						
+					case '3':
+						header("Location: remove_course_proposal");
+						break;
+						
+					case '4':
+						header("Location: other_proposal");
+						break;
+					
+					default:
+						break;
+				}
+				
+			}
 			
 			break;
 			
