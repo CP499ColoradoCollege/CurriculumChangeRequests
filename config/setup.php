@@ -17,6 +17,9 @@ $string_max = 150;
 include('functions/data.php');		//for importing all data-related functions
 include('functions/sandbox.php');
 
+//PhpWord includes
+include('functions/phpWordSample/code/New_Header.php');
+
 /*
 include('functions/template.php');	//for importing all template-related functions
 include('functions/sandbox.php');	//for importing sandbox
@@ -49,6 +52,7 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 if($_SESSION['logged_in'] == true){
 	$user = data_user($dbc, $_SESSION['user_email']);	
 }
+
 
 
 ?>
