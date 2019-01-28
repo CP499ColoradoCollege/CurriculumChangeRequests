@@ -6,8 +6,24 @@
 			<h1 style="float: left;"><strong>Add New Course Proposal</strong></h1>
 		</div>
 		
+		<?php if(isset($message)){ echo $message; } ?>
+		
 		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
 			<div class="shift-down row">
+				<div class="form-group">	<!-- start of page form -->
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="department" style="font-size: 20px; float: right;">Department 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The department the new course falls under">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="department" id="department" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
@@ -31,7 +47,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="course_title" id="course_title" placeholder="Title for the new course" autocomplete="off">
+						<input class="form-control input-md" type="text" name="course_title" id="course_title" autocomplete="off">
 					</div>
 				</div>
 			</div>
@@ -44,8 +60,8 @@
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
-					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="course_desc" id="course_desc" placeholder="Describe the new course" autocomplete="off">
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="course_desc" id="course_desc" placeholder="Describe the new course" autocomplete="off"></textarea>
 					</div>
 				</div>
 			</div>
@@ -53,7 +69,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites  
+						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses required before students are eligible to take this one">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -67,7 +83,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_postreqs" style="font-size: 20px; float: right;">Course ID 
+						<label for="course_postreqs" style="font-size: 20px; float: right;">Course Postrequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses for which you receive no credit after taking this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -106,8 +122,36 @@
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for new course proposal" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">	<!-- start of page form -->
+					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="rationale" id="rationale" placeholder="Reason for new course proposal" autocomplete="off">
+						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="lib_impact" id="lib_impact" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">	<!-- start of page form -->
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="tech_impact" id="tech_impact" autocomplete="off">
 					</div>
 				</div>
 			</div>
@@ -115,7 +159,7 @@
 			<div class="row">
 				<div class="col-md-5"></div>
 				<div class="col-md-2">
-					<button type="submit" class="btn btn-home" style="float: center; margin-top: 50px; margin-bottom: 20px;">Save</button>
+					<button type="submit" class="btn btn-home" style="float: center; margin-top: 50px; margin-bottom: 20px;"><strong>Save</strong></button>
 					<input type="hidden" name="submitted" value="1">
 				</div>
 			</div>

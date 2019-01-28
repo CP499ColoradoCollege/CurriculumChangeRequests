@@ -124,6 +124,52 @@ session_start();
 			
 			break;
 			
+		case "new_course_proposal":
+			
+			$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, proposed_course_title, proposed_course_desc, proposed_prereqs, proposed_postreqs, proposed_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$statement->bind_param("ssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $course_title, $course_desc, $prereqs, $postreqs, $units, $rationale, $lib_impact, $tech_impact);
+			
+			if($_POST){
+								
+				$email = $_SESSION['user_email'];				
+				$q = "SELECT * FROM users WHERE email = '$email'";
+				$r = mysqli_query($dbc, $q);
+				$data = mysqli_fetch_assoc($r);
+								
+				$user_id = $data['id'];
+				$course_id = mysqli_real_escape_string($dbc, $_POST['course_id']);
+				$course_title = mysqli_real_escape_string($dbc, $_POST['course_title']);
+				$proposal_title = 'New Course: '.$course_id.', '.$course_title;
+				$date = date('m/d/Y');
+				$dept = mysqli_real_escape_string($dbc, $_POST['department']);
+				$proposal_type = 'Add a New Course';
+				$course_desc = mysqli_real_escape_string($dbc, $_POST['course_desc']);
+				$prereqs = mysqli_real_escape_string($dbc, $_POST['course_prereqs']);
+				$postreqs = mysqli_real_escape_string($dbc, $_POST['course_postreqs']);
+				$units = $_POST['course_units'];
+				$rationale = mysqli_real_escape_string($dbc, $_POST['rationale']);
+				$lib_impact = mysqli_real_escape_string($dbc, $_POST['lib_impact']);
+				$tech_impact = mysqli_real_escape_string($dbc, $_POST['tech_impact']);
+				
+				echo $user_id." | ".$course_id." | ".$course_title." | ".$proposal_title." | ".$date." | ".$dept." | ".$course_desc." | ".$prereqs." | ".$postreqs." | ".$units;
+				
+				$bool = $statement->execute();
+				
+				if($bool){
+					header("Location: home");
+				}else{
+					
+					echo "Error: proposal could not be processed. ".mysqli_error($dbc);
+				}
+				
+
+			}
+			
+			
+			
+			
+			break;
+			
 		case 'demo':
 			
 			break;

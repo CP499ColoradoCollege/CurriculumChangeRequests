@@ -61,6 +61,11 @@
 		margin-bottom: 0px;
 	}
 	
+	.card{
+		height: 100%;
+		padding-bottom: 100px;
+	}
+	
 	.background-tint {
 	  /*background-color: rgba(22, 197, 46,.5);*/
 	  background-blend-mode: multiply;
@@ -122,6 +127,14 @@
 	
 	.shift-down{
 		margin-top: 50px;
+	}
+	
+	.form-textbox {
+		width: 100%;
+		height: 500px;
+		border-radius: 4px;
+		font-size: 14px;
+		resize: none;
 	}
 
 	
