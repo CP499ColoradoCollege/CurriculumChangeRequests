@@ -51,7 +51,6 @@
 	    background-color: white;
 	    height: 100vh;
 	    position: relative;
-	    overflow-y: hidden;
 	    overflow-x: hidden;
 	}
 	
@@ -105,12 +104,24 @@
 		margin-left: 100px;
 	}
 	
+	.btn-tooltip{
+		text-align: center;	
+		opacity: 1;
+		padding: 0px;
+		background-color: transparent;
+		color: black;
+	}
+	
 	.label-home{
 		font-size: 20px;
 	}
 	
 	.info-home{
 		font-size: 18px;
+	}
+	
+	.shift-down{
+		margin-top: 50px;
 	}
 
 	
