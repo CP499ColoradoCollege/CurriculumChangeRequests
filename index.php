@@ -3,7 +3,7 @@
 session_start();
 
 if($_SESSION['logged_in'] == true){
-
+	
 	//dynamic header w/ navbar
 	include('template/header.php');
 
@@ -11,7 +11,7 @@ if($_SESSION['logged_in'] == true){
 	include('views/'.$page.'.php');
 	
 	//footer
-	//include('template/footer.php');
+	//include('template/footer.php');	
 	
 	
 }else{

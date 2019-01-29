@@ -1,4 +1,3 @@
-<!-- this document contains the setup code necessary for including necessary files and variables to the site; all in PHP -->
 <?php
 // Setup File:
 
@@ -13,19 +12,11 @@ $string_max = 150;
 
 
 #Functions:
-
 include('functions/data.php');		//for importing all data-related functions
 include('functions/sandbox.php');
 
 //PhpWord includes
 include('functions/phpWordSample/code/New_Header.php');
-
-/*
-include('functions/template.php');	//for importing all template-related functions
-include('functions/sandbox.php');	//for importing sandbox
-include('functions/matching.php');	//for importing matching code
-include('functions/calendar.php');
- * */
 
 
 #Site Setup:
