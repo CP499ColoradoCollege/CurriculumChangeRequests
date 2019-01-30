@@ -54,7 +54,7 @@ session_start();
 						break;
 				
 					case '2':
-						header("Location: change_course_proposal");
+						header("Location: change_course_proposal_select");
 						break;
 						
 					case '3':
@@ -111,6 +111,43 @@ session_start();
 					echo "Error: proposal could not be processed. ".mysqli_error($dbc);
 				}
 
+			}
+			
+			
+			break;
+			
+		case 'change_course_proposal_select':
+			
+			if($_POST){
+				
+				//first, make sure the existing_course_id isn't blank
+				
+				//next, check that at least one of the check boxes was checked
+				//set $fields equal to a string of the numerals for each criteria
+				
+				//then, redirect to header("Location: change_course_proposal?type=".$selected_fields);
+				
+				$message = "course_id = ";
+				
+				if(isset($_POST['course_id'])){
+					$message = $message."SET; course_title = ";
+				}else{
+					$message = $message."NOT SET; course_title = ";
+				}
+				
+				if(isset($_POST['course_title'])){
+					$message = $message."SET; department = ";
+				}else{
+					$message = $message."NOT SET; department = ";
+				}
+				
+				if(isset($_POST['department'])){
+					$message = $message."SET; ";
+				}else{
+					$message = $message."NOT SET; ";
+				}
+								
+				
 			}
 			
 			
