@@ -117,6 +117,11 @@
 		color: black;
 	}
 	
+	.div-center{
+		float: none;
+		text-align: center;
+	}
+	
 	.label-home{
 		font-size: 20px;
 	}
@@ -127,6 +132,10 @@
 	
 	.shift-down{
 		margin-top: 50px;
+	}
+	
+	.shift-left{
+		margin-left: -50px;
 	}
 	
 	.form-textbox {

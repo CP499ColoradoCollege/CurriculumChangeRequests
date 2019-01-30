@@ -104,11 +104,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="course_units" id="course_units">
-							<option value="1" selected>0 Units</option>
-							<option value="2">0.25 Units</option>
-							<option value="3">0.5 Units</option>
-							<option value="4">1 Unit</option>
-							<option value="5">2 Units</option>
+							<option value="0 Units" selected>0 Units</option>
+							<option value="0.25 Units">0.25 Units</option>
+							<option value="0.5 Units">0.5 Units</option>
+							<option value="1 Unit">1 Unit</option>
+							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
 				</div>

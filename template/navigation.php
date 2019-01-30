@@ -1,6 +1,5 @@
 <!-- this document contains the code needed for the nav bar at the top of the Admin site; HTML and PHP -->
 
-
 <nav class="navbar navbar-default" role="navigation">
 	<img class="website-banner" src="images/banner.JPG"/>
 		
