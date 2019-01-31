@@ -159,6 +159,14 @@
 		font-size: 14px;
 		resize: none;
 	}
+	
+	.text-20{
+		font-size: 20px;
+	}
+	
+	.text-30{
+		font-size: 30px;
+	}
 
 	
 	/* Wrapper for page content to push down footer */

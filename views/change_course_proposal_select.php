@@ -8,13 +8,13 @@
 		
 		<?php if(isset($message)){ echo $message; } ?>
 		
-		<form action="change_course_proposal" method="post" role="form">
+		<form method="post" role="form">
 			
 			<div class="row shift-down">
 				<div class="form-group">
 					<div class="col-md-3"></div>
 					<div class="col-md-4">
-						<label for="existing_course_id" style="font-size: 20px; float: right;">Existing Course's Course ID
+						<label for="existing_course_id" style="font-size: 20px; float: right;" value="<?php echo $_POST['existing_course_id']; ?>">Existing Course's Course ID
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. AA999) of the course you wish to propose a change to">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : </label>
@@ -34,6 +34,14 @@
 			
 				<div class="shift-down row">
 					<div class="form-check div-left shift-right">
+						<input class="form-check-input" type="checkbox" id="department" name="department">
+						<label class="form-check-label change-label" for="defaultCheck1">
+							Department
+						</label>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 25px;">
+					<div class="form-check div-left shift-right">
 							<input class="form-check-input" type="checkbox" id="course_id" name="course_id">						
 							<label class="form-check-label change-label" for="defaultCheck1">
 								Course ID
@@ -45,22 +53,6 @@
 						<input class="form-check-input" type="checkbox" id="course_title" name="course_title">
 						<label class="form-check-label change-label" for="defaultCheck1">
 							Course Title
-						</label>
-					</div>
-				</div>
-				<div class="row" style="margin-top: 25px;">
-					<div class="form-check div-left shift-right">
-						<input class="form-check-input" type="checkbox" id="department" name="department">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Department
-						</label>
-					</div>
-				</div>
-				<div class="row" style="margin-top: 25px;">
-					<div class="form-check div-left shift-right">
-						<input class="form-check-input" type="checkbox" id="division" name="division">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Division
 						</label>
 					</div>
 				</div>

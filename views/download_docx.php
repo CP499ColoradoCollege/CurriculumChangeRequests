@@ -114,7 +114,7 @@
 		
 	}else if($proposal['type'] == 'Add a New Course'){
 		
-		$course_id = $proposal['related_course_id'];
+		$course_id = $proposal['proposed_course_id'];
 		
 		$department = $proposal['department'];
 		$proposalType = $proposal['type'];
