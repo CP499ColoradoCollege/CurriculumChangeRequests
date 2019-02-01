@@ -75,8 +75,8 @@ session_start();
 			
 		case "new_page":
 			
-			$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposed_course_id, proposal_title, proposal_date, department, type, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			$statement->bind_param("ssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $course_title, $course_desc, $prereqs, $postreqs, $units, $rationale, $lib_impact, $tech_impact);
+			//$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposed_course_id, proposal_title, proposal_date, department, type, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			//$statement->bind_param("ssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $course_title, $course_desc, $prereqs, $postreqs, $units, $rationale, $lib_impact, $tech_impact);
 			
 			if($_POST){
 				
