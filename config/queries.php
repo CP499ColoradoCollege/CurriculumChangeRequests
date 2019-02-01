@@ -73,6 +73,32 @@ session_start();
 			
 			break;
 			
+		case "new_page":
+			
+			$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposed_course_id, proposal_title, proposal_date, department, type, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$statement->bind_param("ssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $course_title, $course_desc, $prereqs, $postreqs, $units, $rationale, $lib_impact, $tech_impact);
+			
+			if($_POST){
+				
+				$email = $_SESSION['user_email'];				
+				$q = "SELECT * FROM users WHERE email = '$email'";
+				$r = mysqli_query($dbc, $q);
+				$data = mysqli_fetch_assoc($r);
+				
+				$user_id = $data['id'];
+				$course_id = $_POST['course_id'];
+				
+				
+				$message = "The button was pushed!";
+				
+				
+			}else{
+				$message = '<p class="bg-danger">Error: button has not yet been pushed. </p>';
+			}
+			
+			
+			break;
+			
 		case "new_course_proposal":
 			
 			$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposed_course_id, proposal_title, proposal_date, department, type, proposed_course_title, proposed_course_desc, proposed_prereqs, proposed_postreqs, proposed_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
