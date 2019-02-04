@@ -1,0 +1,68 @@
+Our devkits are running Ubuntu 16.04
+To set up, issue the following packages in order:
+
+sudo apt install update
+sudo apt install apache2
+
+Now, verify the apache2 installation.
+
+Find you IP address with the following command:
+
+hostname -I
+
+Now, go to Firefox and paste your IP into the address bar.
+If it works, you will be routed to a page titled "Apache2 Ubuntu Default Page"
+
+Next, we will install Mysql
+
+sudo apt install mysql-server php-mysql
+
+to test installation:
+
+mysql -uroot -p
+
+sudo apt install php libapache2-mod-php php-mcrypt
+
+to verify php installation:
+
+Navigate to /var/www/html
+cd ../../var/www/html/
+
+Create info.php file:
+touch info.php
+
+add the following php code to info.php:
+<?php
+phpinfo();
+?>
+
+Save, then boot up browser
+In the address bar, type <your IP>/info.php
+The resulting web page should display information about your installation of php.
+
+Next, we must install two php extensions:
+
+sudo apt install php-zip php-xml
+
+Next, install composer to manage php libraries
+
+sudo install composer
+
+With composer we can install PHPword, and its dependancies.
+
+sudo composer require zendframework/zend-stdlib
+sudo composer require zendframework/zend-escaper
+sudo composer require phpoffice/phpword
+
+Next, we will install Java
+
+Update package repository:
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt update
+sudo apt install openjkd-8-jdk
+
+export JAVA_HOME=/usr/lib/jvm/<your java installation>
+export PATH=$PATH:$JAVA_HOME/bin
+
+Verify your installation:
+java -version

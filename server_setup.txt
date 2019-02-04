@@ -1,0 +1,17 @@
+Linux
+
+Apache
+
+Mysql
+
+php
+
+composer
+
+phpword
+
+java
+
+Apache-poi
+
+phpmyadmin
