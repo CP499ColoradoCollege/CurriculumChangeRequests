@@ -1,7 +1,7 @@
 <?php
 // Setup File:
 
-error_reporting(0);	//not necessary; gets rid of annoying error reporting
+error_reporting(1);	//not necessary; gets rid of annoying error reporting
 
 #Database Connection:
 include('config/connection.php');	//for the connection to the database

@@ -1,6 +1,6 @@
 <?php
-// Javascript:
 
+#This document contains all the Javascript needed to run our web-app
 
 ?>
 
@@ -70,9 +70,6 @@
 			event.preventDefault(); /* prevents the label from performing the default behavior */
 			
 		});
-		
-		
-		
 		
 	});	//END document.ready();
 	

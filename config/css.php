@@ -1,11 +1,5 @@
-<!-- this document contains CSS styling for elements and data on the page; PHP and CSS -->
-
 <?php
-// CSS:
-
-
-
-
+#This document contains CSS styling for elements and data on the page; PHP and CSS -->
 ?>
 
 <!-- Latest compiled and minified CSS -->

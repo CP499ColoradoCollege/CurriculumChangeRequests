@@ -1,5 +1,7 @@
 <?php
 
+//This page handles all requests
+
 session_start();
 
 if($_SESSION['logged_in'] == true){

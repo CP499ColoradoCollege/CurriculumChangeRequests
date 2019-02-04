@@ -226,7 +226,7 @@
 					<div class="col-md-2"></div>
 					<?php if($criteria_array[0] == '1'){ ?>
 					<div class="col-md-3">
-						<label for="p_department" style="font-size: 20px; float: right;">Proposed Department 
+						<label for="p_department" style="font-size: 20px; float: right; text-align: right;">Proposed Department 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed department the course falls under">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -236,7 +236,7 @@
 					</div>
 					<?php }else if($criteria_array[0] == '2'){ ?>
 					<div class="col-md-3">
-						<label for="p_course_id" style="font-size: 20px; float: right;">Proposed Course ID 
+						<label for="p_course_id" style="font-size: 20px; float: right; text-align: right;">Proposed Course ID 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed 5 character Course ID (i.e. AA999)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -246,7 +246,7 @@
 					</div>
 					<?php }else if($criteria_array[0] == '3'){ ?>
 					<div class="col-md-3">
-						<label for="p_course_title" style="font-size: 20px; float: right;">Proposed Course Title 
+						<label for="p_course_title" style="font-size: 20px; float: right; text-align: right;">Proposed Course Title 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed title for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -266,7 +266,7 @@
 					</div>
 					<?php }else if($criteria_array[0] == '5'){ ?>
 					<div class="col-md-3">
-						<label for="p_prereqs" style="font-size: 20px; float: right;">Proposed Course Prerequisites 
+						<label for="p_prereqs" style="font-size: 20px; float: right; text-align: right;">Proposed Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed prerequisites of the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -276,7 +276,7 @@
 					</div>
 					<?php }else if($criteria_array[0] == '6'){ ?>
 					<div class="col-md-3">
-						<label for="p_units" style="font-size: 20px; float: right;">Proposed Units 
+						<label for="p_units" style="font-size: 20px; float: right; text-align: right;">Proposed Units 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed units for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -301,7 +301,7 @@
 					
 					<?php if($criteria_array[1] == '2'){ ?>
 					<div class="col-md-3">
-						<label for="p_course_id" style="font-size: 20px; float: right;">Proposed Course ID 
+						<label for="p_course_id" style="font-size: 20px; float: right; text-align: right;">Proposed Course ID 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed 5 character Course ID (i.e. AA999)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -311,7 +311,7 @@
 					</div>
 					<?php }else if($criteria_array[1] == '3'){ ?>
 					<div class="col-md-3">
-						<label for="p_course_title" style="font-size: 20px; float: right;">Proposed Course Title 
+						<label for="p_course_title" style="font-size: 20px; float: right; text-align: right;">Proposed Course Title 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed title for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -331,7 +331,7 @@
 					</div>
 					<?php }else if($criteria_array[1] == '5'){ ?>
 					<div class="col-md-3">
-						<label for="p_prereqs" style="font-size: 20px; float: right;">Proposed Course Prerequisites 
+						<label for="p_prereqs" style="font-size: 20px; float: right; text-align: right;">Proposed Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed prerequisites of the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -341,7 +341,7 @@
 					</div>
 					<?php }else if($criteria_array[1] == '6'){ ?>
 					<div class="col-md-3">
-						<label for="p_units" style="font-size: 20px; float: right;">Proposed Units 
+						<label for="p_units" style="font-size: 20px; float: right; text-align: right;">Proposed Units 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed units for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -367,7 +367,7 @@
 					
 					<?php if($criteria_array[2] == '3'){ ?>
 					<div class="col-md-3">
-						<label for="p_course_title" style="font-size: 20px; float: right;">Proposed Course Title 
+						<label for="p_course_title" style="font-size: 20px; float: right; text-align: right;">Proposed Course Title 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed title for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -387,7 +387,7 @@
 					</div>
 					<?php }else if($criteria_array[2] == '5'){ ?>
 					<div class="col-md-3">
-						<label for="p_prereqs" style="font-size: 20px; float: right;">Proposed Course Prerequisites 
+						<label for="p_prereqs" style="font-size: 20px; float: right; text-align: right;">Proposed Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed prerequisites of the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -397,7 +397,7 @@
 					</div>
 					<?php }else if($criteria_array[2] == '6'){ ?>
 					<div class="col-md-3">
-						<label for="p_units" style="font-size: 20px; float: right;">Proposed Units 
+						<label for="p_units" style="font-size: 20px; float: right; text-align: right;">Proposed Units 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed units for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -433,7 +433,7 @@
 					</div>
 					<?php }else if($criteria_array[3] == '5'){ ?>
 					<div class="col-md-3">
-						<label for="p_prereqs" style="font-size: 20px; float: right;">Proposed Course Prerequisites 
+						<label for="p_prereqs" style="font-size: 20px; float: right; text-align: right;">Proposed Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed prerequisites of the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -443,7 +443,7 @@
 					</div>
 					<?php }else if($criteria_array[3] == '6'){ ?>
 					<div class="col-md-3">
-						<label for="p_units" style="font-size: 20px; float: right;">Proposed Units 
+						<label for="p_units" style="font-size: 20px; float: right; text-align: right;">Proposed Units 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed units for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -468,7 +468,7 @@
 					
 					<?php if($criteria_array[4] == '5'){ ?>
 					<div class="col-md-3">
-						<label for="p_prereqs" style="font-size: 20px; float: right;">Proposed Course Prerequisites 
+						<label for="p_prereqs" style="font-size: 20px; float: right; text-align: right;">Proposed Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed prerequisites of the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -478,7 +478,7 @@
 					</div>
 					<?php }else if($criteria_array[4] == '6'){ ?>
 					<div class="col-md-3">
-						<label for="p_units" style="font-size: 20px; float: right;">Proposed Units 
+						<label for="p_units" style="font-size: 20px; float: right; text-align: right;">Proposed Units 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed units for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -503,7 +503,7 @@
 					
 					<?php if($criteria_array[5] == '6'){ ?>
 					<div class="col-md-3">
-						<label for="p_units" style="font-size: 20px; float: right;">Proposed Units 
+						<label for="p_units" style="font-size: 20px; float: right; text-align: right;">Proposed Units 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed units for the course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 

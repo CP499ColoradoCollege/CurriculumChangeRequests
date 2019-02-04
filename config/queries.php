@@ -1,22 +1,41 @@
 <?php
 
-session_start();
+#This document is loaded on every page, and contains all logic for querying the MySQL Database on specific pages when forms are filled out
+#This document also contains the logic for redirecting the user when some forms are submitted via POST
+
 
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
-			if($_SESSION['logged_in'] == true){
+			
+			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
+			$statement->bind_param("ss", $email, $password);
+			
+			
+			if($_SESSION['logged_in'] == true){	//check if the user is already logged in; if so, redirect them to the HOME page
 				header('Location: home');
 			}
 			
-			if($_POST) {	//check if a form has been submitted by the current session
-				$q = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = SHA1('$_POST[password]')";	//the query
-				$r = mysqli_query($dbc, $q);	//the result from the query
-				if(mysqli_num_rows($r) == 1){	//if the result from the query returned one row for the user, then the user is valid
-					$_SESSION['user_email'] = $_POST['email'];	//save the email submitted in the form under the current session as value 'username'
+			if($_POST) {	//check if the LOGIN form has been submitted by the current session
+			
+				$email = $_POST['email'];
+				$password = $_POST['password'];
+				
+				$bool = $statement->execute();
+				
+				if($bool){
+					$_SESSION['user_email'] = $_POST['email'];
 					$_SESSION['logged_in'] = true;
-					header('Location: home');				//once logged in, redirect to index.php instead of login page
+					header('Location: home');				//once logged in, redirect to HOME page instead of LOGIN page
 				}
+				/*
+				$q = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = SHA1('$_POST[password]')";
+				$r = mysqli_query($dbc, $q);
+				if(mysqli_num_rows($r) == 1){	//if the result from the query returned one row for the user, then the user is valid
+					$_SESSION['user_email'] = $_POST['email'];
+					$_SESSION['logged_in'] = true;
+					header('Location: home');				//once logged in, redirect to HOME page instead of LOGIN page
+				}*/
 			}
 			break;
 			
@@ -73,36 +92,11 @@ session_start();
 			
 			break;
 			
-		case "new_page":
-			
-			//$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposed_course_id, proposal_title, proposal_date, department, type, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			//$statement->bind_param("ssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $course_title, $course_desc, $prereqs, $postreqs, $units, $rationale, $lib_impact, $tech_impact);
-			
-			if($_POST){
-				
-				$email = $_SESSION['user_email'];				
-				$q = "SELECT * FROM users WHERE email = '$email'";
-				$r = mysqli_query($dbc, $q);
-				$data = mysqli_fetch_assoc($r);
-				
-				$user_id = $data['id'];
-				$course_id = $_POST['course_id'];
-				
-				
-				$message = "The button was pushed!";
-				
-				
-			}else{
-				$message = '<p class="bg-danger">Error: button has not yet been pushed. </p>';
-			}
-			
-			
-			break;
 			
 		case "new_course_proposal":
 			
-			$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposed_course_id, proposal_title, proposal_date, department, type, proposed_course_title, proposed_course_desc, proposed_prereqs, proposed_postreqs, proposed_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			$statement->bind_param("ssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $course_title, $course_desc, $prereqs, $postreqs, $units, $rationale, $lib_impact, $tech_impact);
+			$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, p_department, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$statement->bind_param("sssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $dept, $course_id, $course_title, $course_desc, $prereqs, $units, $rationale, $lib_impact, $tech_impact);
 			
 			if($_POST){
 								
@@ -120,7 +114,6 @@ session_start();
 				$proposal_type = 'Add a New Course';
 				$course_desc = mysqli_real_escape_string($dbc, $_POST['course_desc']);
 				$prereqs = mysqli_real_escape_string($dbc, $_POST['course_prereqs']);
-				$postreqs = mysqli_real_escape_string($dbc, $_POST['course_postreqs']);
 				$units = $_POST['course_units'];
 				$rationale = mysqli_real_escape_string($dbc, $_POST['rationale']);
 				$lib_impact = mysqli_real_escape_string($dbc, $_POST['lib_impact']);
@@ -144,7 +137,7 @@ session_start();
 			
 		case 'change_course_proposal':
 		
-			$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, proposed_department, proposed_course_id, proposed_course_title, proposed_course_desc, proposed_prereqs, proposed_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, p_department, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			$statement->bind_param("sssssssssssssss", $user_id, $course_id, $proposal_title, $date, $dept, $proposal_type, $p_department, $p_course_id, $p_course_title, $p_course_desc, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact);
 		
 			if($_POST){

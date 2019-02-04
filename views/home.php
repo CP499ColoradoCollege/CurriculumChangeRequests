@@ -1,6 +1,7 @@
+<!-- This page is loaded whenever a User successfully signs in to use the Web App -->
 
 <div class="container">
-	<div class="card">	<!-- start of card -->
+	<div class="card">
 		
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<form class"form-inline" method="post" action="new_proposal">
