@@ -4,7 +4,8 @@ cd "$(dirname "$0")"
 
 echo "deploying to CC web server..."
 if [ $# -lt 1 ]; then
-echo "Usage: ./buildscript <CC userneame>"
+exho
+echo "Usage: ./deploy_server.sh <CC userneame>"
 exit 1
 fi
 
@@ -23,8 +24,8 @@ echo "transferred files."
 echo "༼ つ ◕_◕ ༽つ"
 echo "Please enter password again to move them to the right place"
 
-ssh $1@proposal-tool.coloradocollege.edu <<EOF
-cp deploy ../../var/www/html 
+ssh -tt $1@proposal-tool.coloradocollege.edu <<EOF
+cp -a deploy/. ../../var/www/html 
 exit
 EOF
 echo "*"
