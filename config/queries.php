@@ -6,49 +6,6 @@
 
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
-		case 'login':
-			
-			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
-			$statement->bind_param("ss", $email, $password);
-			
-			
-			if($_SESSION['logged_in'] == true){	//check if the user is already logged in; if so, redirect them to the HOME page
-				header('Location: home');
-			}
-			
-			if($_POST) {	//check if the LOGIN form has been submitted by the current session
-			
-				$email = $_POST['email'];
-				$password = $_POST['password'];
-				
-				$bool = $statement->execute();
-				
-				if($bool){
-					$_SESSION['user_email'] = $_POST['email'];
-					$_SESSION['logged_in'] = true;
-					header('Location: home');				//once logged in, redirect to HOME page instead of LOGIN page
-				}
-				/*
-				$q = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = SHA1('$_POST[password]')";
-				$r = mysqli_query($dbc, $q);
-				if(mysqli_num_rows($r) == 1){	//if the result from the query returned one row for the user, then the user is valid
-					$_SESSION['user_email'] = $_POST['email'];
-					$_SESSION['logged_in'] = true;
-					header('Location: home');				//once logged in, redirect to HOME page instead of LOGIN page
-				}*/
-			}
-			break;
-			
-		case 'logout':
-			
-			unset($_SESSION['user_email']);
-			unset($_SESSION['logged_in']);
-			header("Location: login");
-			break;
-			
-			
-			break;
-	
 		case 'home':
 			
 			include('functions/phpword.php');
