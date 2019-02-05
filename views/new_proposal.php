@@ -21,9 +21,9 @@
 					
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left; width: 75%; margin-left: -25px;" name="type" id="type">
-							<option value="1" selected>Add New Course</option>
-							<option value="2">Update Existing Course</option>
-							<option value="3">Remove Existing Course</option>
+							<option value="1" selected>Add a New Course</option>
+							<option value="2">Change an Existing Course</option>
+							<option value="3">Remove an Existing Course</option>
 							<option value="4">Other...</option>
 						</select>
 					</div>

@@ -19,7 +19,15 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="department" id="department" autocomplete="off">
+						<select class="form-control input-sm" name="department" id="department">
+							<?php 
+							$departments = $user->getDepartments();
+							for($i = 0; $i < count($departments); $i += 1){
+								$dept = $departments[$i];
+							?>
+							<option value="<?php echo $dept['dept_desc']; ?>"><?php echo $dept['dept_desc']; ?></option>
+							<?php } ?>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -76,20 +84,6 @@
 					</div>
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="course_prereqs" id="course_prereqs" placeholder="Course IDs of prerequisite courses" autocomplete="off">
-					</div>
-				</div>
-			</div>
-			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
-					<div class="col-md-2"></div>
-					<div class="col-md-3">
-						<label for="course_postreqs" style="font-size: 20px; float: right;">Course Postrequisites 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses for which you receive no credit after taking this course">
-							  <i class="fa fa-question-circle" aria-hidden="true"></i>
-						</button> : 
-					</div>
-					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="course_postreqs" id="course_postreqs" placeholder="Course IDs of postrequisite courses" autocomplete="off">
 					</div>
 				</div>
 			</div>

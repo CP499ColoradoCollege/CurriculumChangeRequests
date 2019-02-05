@@ -15,10 +15,19 @@ $string_max = 150;
 include('functions/data.php');		//for importing all data-related functions
 include('functions/sandbox.php');
 
+
+#Classes
+include('functions/User.php');
+
+include('functions/Course.php');
+
+include('functions/Proposal.php');
+
+
 //PhpWord includes
 include('functions/phpWordSample/code/New_Header.php');
 
-
+  
 #Site Setup:
 //$debug = data_setting_value($dbc, 'debug-status');	//gets the current debug setting value (for developing)
 $path = get_path();		//gets the url/path
@@ -39,9 +48,12 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 }
 
 
-#Team Setup:
+
+#User Setup:
 if($_SESSION['logged_in'] == true){
-	$user = data_user($dbc, $_SESSION['user_email']);	
+	$email = $_SESSION['user_email'];
+	$user = new User($dbc);
+	$user->fetchUserFromEmail($email);
 }
 
 

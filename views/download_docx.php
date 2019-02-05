@@ -1,52 +1,41 @@
 <?php
 
 	$proposal_id = $_GET['pid'];
-
-	$q = "SELECT * FROM proposals WHERE id = '$proposal_id'";
-	$r = mysqli_query($dbc, $q);
-	$proposal = mysqli_fetch_assoc($r);
+	
+	$proposal = new Proposal($dbc);
+	$proposal = $proposal->fetchProposalFromID($proposal_id);
 		
-	if($proposal['type'] == "Change an Existing Course"){
+	if($proposal->type == "Change an Existing Course"){
 		
-		$course_id = $proposal['related_course_id'];
-		$course_id_array = str_split($course_id);
+		$course_id = $proposal->related_course_id;
+		$course = new Course($dbc);
+		$course = $course.fetchCourseFromCourseID($course_id);		
 		
-		
-		$course_subj_code = $course_id_array[0].$course_id_array[1];
-		$course_num = $course_id_array[2].$course_id_array[3].$course_id_array[4];
-		
-		
-		$query = "SELECT * FROM courses WHERE subj_code = '$course_subj_code' AND course_num = '$course_num'";
-		$result = mysqli_query($dbc, $query);
-		$course = mysqli_fetch_assoc($result); 				
-		
-		$filename = str_replace(' ', '_', $proposal['proposal_title']);
+		$filename = str_replace(' ', '_', $proposal->proposal_title);
 		$filename = str_replace(',', '', $filename);
-		$filename = str_replace("'", '', $filename);		
+		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters		
 						
-		$department = $course['dept_desc'];
-		$proposalType = $proposal['type'];
+		$department = $course->dept_desc;
+		$division = $user->getDivision($department);
+		$proposalType = $proposal->type;
 		
-		$currentCourseTitle = $course['course_title'];
-		$currentCourseDescription = $course['course_desc'];
-		$currentCourseExtraDescription = $course['extra_desc'];
-		$currentPrereqs = $course['prereqs'];
-		$currentPostreqs = $course['postreqs'];
-		$currentUnits = $course['units'];
-		$currentCourseInfoHeader = 'CURRENT TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, POSTREQUISITES, AND UNITS:';
+		$currentCourseTitle = $course->course_title;
+		$currentCourseDescription = $course->course_desc;
+		$currentCourseExtraDescription = $course->extra_desc;
+		$currentPrereqs = $course->prereqs;
+		$currentUnits = $course->units;
+		$currentCourseInfoHeader = 'CURRENT TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, AND UNITS:';
 		
-		$proposedCourseTitle = $proposal['proposed_course_title'];
-		$proposedCourseDescription = $proposal['proposed_course_desc'];
-		$proposedCourseExtraDescription = $proposal['proposed_extra_desc'];
-		$proposedPrereqs = $proposal['proposed_prereqs'];
-		$proposedPrereqs = $proposal['proposed_postreqs'];
-		$proposedUnits = $proposal['units'];
-		$proposedCourseInfoHeader = 'PROPOSED TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, POSTREQUISITES, AND UNITS:';
+		$proposedCourseTitle = $proposal->p_course_title;
+		$proposedCourseDescription = $proposal->p_course_desc;
+		$proposedCourseExtraDescription = $proposal->p_extra_desc;
+		$proposedPrereqs = $proposal->p_prereqs;
+		$proposedUnits = $proposal->units;
+		$proposedCourseInfoHeader = 'PROPOSED TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, AND UNITS:';
 		
-		$courseChangeDescription = $proposal['change_desc'];
-		$rationale = $proposal['rationale'];
-		$libraryImpact = $proposal['library_impact'];
-		$techImpact = $proposal['tech_impact'];
+		$rationale = $proposal->rationale;
+		$libraryImpact = $proposal->library_impact;
+		$techImpact = $proposal->tech_impact;
 		
 		
 		// New Word Document				
@@ -80,20 +69,17 @@
 		$section->addText($department, $deptHeaderStyle, $paragraphStyle);
 		$section->addText('A) '.$proposalType, $boldCapsStyle, $paragraphStyle);
 		$section->addText('1)'.$currentCourseTitle, $boldStyle, $paragraphStyle);
-		$section->addText($courseChangeDescription, $standardStyle, $paragraphStyle);
 		$section->addText($currentCourseInfoHeader, $boldCapsStyle, $paragraphStyle);
 		$section->addText($currentCourseTitle, $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$currentCourseDescription, $standardStyle, $paragraphStyle);
 		$section->addText('Additional Description: '.$currentCourseExtraDescription, $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$currentPrereqs, $standardStyle, $paragraphStyle);
-		$section->addText('Postrequisites: '.$currentPostreqs, $standardStyle, $paragraphStyle);
 		$section->addText('Units: '.$currentUnits, $standardStyle, $paragraphStyle);
 		$section->addText($proposedCourseInfoHeader, $boldCapsStyle, $paragraphStyle);
 		$section->addText($proposedCourseTitle, $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$proposedCourseDescription, $standardStyle, $paragraphStyle);
 		$section->addText('Additional Description: '.$proposedCourseExtraDescription, $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$proposedPrereqs, $standardStyle, $paragraphStyle);
-		$section->addText('Postrequisites: '.$proposedPostreqs, $standardStyle, $paragraphStyle);
 		$section->addText('Units: '.$proposedUnits, $standardStyle, $paragraphStyle);
 		$section->addText('Rationale: '.$rationale, $standardStyle, $paragraphStyle);
 		$section->addText('Library Impact: '.$libraryImpact, $standardStyle, $paragraphStyle);
@@ -112,33 +98,34 @@
 		$xmlWriter->save("php://output");
 						
 		
-	}else if($proposal['type'] == 'Add a New Course'){
+	}else if($proposal->type == 'Add a New Course'){
 		
-		$course_id = $proposal['proposed_course_id'];
+		//NEED NEED NEED TO ADD DIVISION!!!
 		
-		$department = $proposal['department'];
-		$proposalType = $proposal['type'];
-		$proposalTitle = $proposal['proposal_title'];			
+		$course_id = $proposal->p_course_id;
 		
-		$filename = str_replace(' ', '_', $proposal['proposal_title']);
+		$department = $proposal->department;
+		$division = $user->getDivision($department);
+		$proposalType = $proposal->type;
+		$proposalTitle = $proposal->proposal_title;		
+		
+		$filename = str_replace(' ', '_', $proposal->proposal_title);
 		$filename = str_replace(',', '', $filename);
 		$filename = str_replace("'", '', $filename);		
 		
-		$proposedCourseTitle = $proposal['proposed_course_title'];
-		$proposedCourseDescription = $proposal['proposed_course_desc'];
-		$proposedCourseExtraDescription = $proposal['proposed_extra_desc'];
-		$proposedPrereqs = $proposal['proposed_prereqs'];
-		$proposedPrereqs = $proposal['proposed_postreqs'];
-		$proposedUnits = $proposal['proposed_units'];
+		$proposedCourseTitle = $proposal->p_course_title;
+		$proposedCourseDescription = $proposal->p_course_desc;
+		$proposedCourseExtraDescription = $proposal->p_extra_desc;
+		$proposedPrereqs = $proposal->p_prereqs;
+		$proposedUnits = $proposal->p_units;
 		
-		$courseChangeDescription = $proposal['change_desc'];
-		$rationale = $proposal['rationale'];
-		$libraryImpact = $proposal['lib_impact'];
-		$techImpact = $proposal['tech_impact'];
+		$rationale = $proposal->rationale;
+		$libraryImpact = $proposal->lib_impact;
+		$techImpact = $proposal->tech_impact;
 		
 		$a_1 = "The Department of ".$department." proposes a new course, ";
-		$a_2 = $course_id.":".$proposedCourseTitle;
-		$a_3 = ", with the approval of the (__division__) Executive Committee and the Committee on Instruction.";
+		$a_2 = $course_id.": ".$proposedCourseTitle;
+		$a_3 = ", with the approval of the ".$division." Executive Committee and the Committee on Instruction.";
 		
 		$b_1 = "Add: ".$course_id." - ".$proposedCourseTitle.". ";
 		$b_2 = $proposedCourseDescription;

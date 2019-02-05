@@ -30,26 +30,25 @@
 		</div>
 		
 		<?php
-		
-			$q = "SELECT * FROM proposals WHERE user_id = '$user[id]'";
-			$r = mysqli_query($dbc, $q);
-			while($proposal = mysqli_fetch_assoc($r)){
-				
+			$proposals = $user->getProposals();
+			
+			for($i = 0; $i < count($proposals); $i += 1){
+				$prop = $proposals[$i];
 		?>
 		
 		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
 			
 			<div class="col-md-3">
-				<span class="info-home"><strong><?php echo $proposal['proposal_title']; ?></strong></span>
+				<span class="info-home"><strong><?php echo $prop->proposal_title; ?></strong></span>
 			</div>
 			<div class="col-md-2">
-				<span class="info-home"><strong><?php echo $proposal['proposal_date']; ?></strong></span>
+				<span class="info-home"><strong><?php echo $prop->proposal_date; ?></strong></span>
 			</div>
 			<div class="col-md-3">
-				<span class="info-home"><strong><?php echo $proposal['sub_status']; ?></strong></span>
+				<span class="info-home"><strong><?php echo $prop->sub_status; ?></strong></span>
 			</div>
 			<div class="col-md-2">
-				<span class="info-home"><strong><?php echo $proposal['approval_status']; ?></strong></span>
+				<span class="info-home"><strong><?php echo $prop->approval_status; ?></strong></span>
 			</div>
 			<div class="col-md-2">
 				<form method="post" action="home">
@@ -60,7 +59,7 @@
 					<button type="submit" class="btn btn-home" name="action" value="email"><strong>Email</strong></button><br>
 					<button type="submit" class="btn btn-home" name="action" value="feedback"><strong>View Feedback</strong></button>
 										
-					<input type="hidden" name="openedid" value="<?php echo $proposal['id']; ?>">
+					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
 					
 				</form>
 			</div>

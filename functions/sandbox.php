@@ -97,5 +97,113 @@ function checkString($string){
 }
 
 
+function convertDepartmentFromCode($dept_code){
+	switch ($dept_code){
+		case 'ART':
+			return 'Art';
+			break;
+			
+		case 'ANTH':
+			return 'Anthropology';
+			break;
+			
+		case 'BIOL':
+			return 'Biology';
+			break;
+			
+		case 'CLAS':
+			return 'Classics';
+			break;
+			
+		case 'GRRU':
+			return 'German, Russian & E Asian Languages';
+			break;
+			
+		case 'COLI':
+			return 'Comparative Literature';
+			break;
+			
+		case 'MATH':
+			return 'Mathematics & Computer Science';
+			break;
+			
+		case 'CHBI':
+			return 'Chemistry & Biochemistry';
+			break;
+			
+		case 'EDUC':
+			return 'Education';
+			break;
+			
+		case 'DRDA':
+			return 'Drama & Dance';
+			break;
+			
+		case 'ENSC':
+			return 'Environmental Science';
+			break;
+			
+		case 'ENGL':
+			return 'English';
+			break;
+			
+		case 'NOST':
+			return 'Non-Departmental Studies';
+			break;
+			
+		case 'ROLA':
+			return 'Romance Languages';
+			break;
+			
+		case 'FEGE':
+			return 'Feminist & Gender Studies';
+			break;
+			
+		case 'HIST':
+			return 'History';
+			break;
+			
+		case 'GEOL':
+			return 'Geology';
+			break;
+			
+		case 'RELI':
+			return 'Religion';
+			break;
+			
+		case 'MUSI':
+			return 'Music';
+			break;
+			
+		case 'POSC':
+			return 'Political Science';
+			break;
+			
+		case 'PHIL':
+			return 'Philosophy';
+			break;
+			
+		case 'PSYC':
+			return 'Psychology';
+			break;
+			
+		case 'PHYS':
+			return 'Physics';
+			break;
+			
+		case 'SOCI':
+			return 'Sociology';
+			break;
+			
+		case 'SOST':
+			return 'Southwest Studies';
+			break;
+		
+		default:
+			return 'Error: No department found.';
+			break;
+	}
+}
+
 
 ?>

@@ -14,28 +14,17 @@
 			$criteria_num = count($criteria_array);
 			
 			$course_id = $_GET['cid'];
-			$course_id_array = str_split($course_id);
-			$subj_code = $course_id_array[0].$course_id_array[1];
-			$course_number = $course_id_array[2].$course_id_array[3].$course_id_array[4];
+			$course = new Course($dbc);
+			$course = $course->fetchCourseFromCourseID($course_id);
 			
-			$statement = $dbc->prepare("SELECT id FROM courses WHERE subj_code = ? AND course_num = ?");
-			$statement->bind_param("ss", $subj_code, $course_number);
-			
-			$bool = $statement->execute();
-			$statement->store_result();
-			$statement->bind_result($course_real_id);
-			$statement->fetch();
-			if($bool && mysqli_stmt_num_rows($statement) == 1){
-				$q = "SELECT * FROM courses WHERE id = '$course_real_id'";
-				$r = mysqli_query($dbc, $q);
-				$course = mysqli_fetch_assoc($r);	
-			}else{
+			if($course == false){
 				header("Location: change_course_proposal_select");
 			}
+			
 		?>
 		
 		<div class="shift-down row">
-			<p class="text-20 div-center"><strong>Course to be changed: <?php echo $course_id." ".$course['course_title']; ?></strong></p>
+			<p class="text-20 div-center"><strong>Course to be changed: <?php echo $course_id." ".$course->course_title; ?></strong></p>
 		</div>
 		
 		<div class="shift-down row">
@@ -45,42 +34,42 @@
 					<label style="font-size: 20px; float: right;">Department : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['dept_desc']; ?></p>
+					<p class="font-20"><?php echo $course->dept_desc; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '2'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_id" style="font-size: 20px; float: right;">Course ID : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['subj_code'].$course['course_num']; ?></p>
+					<p class="font-20"><?php echo $course->subj_code.$course->course_num; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '3'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_title" style="font-size: 20px; float: right;">Course Title : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_title']; ?></p>
+					<p class="font-20"><?php echo $course->course_title; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '4'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_desc']; ?></p>
+					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '5'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['prereqs']; ?></p>
+					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '6'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['units']; ?></p>
+					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -92,35 +81,35 @@
 					<label for="p_course_id" style="font-size: 20px; float: right;">Course ID : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['subj_code'].$course['course_num']; ?></p>
+					<p class="font-20"><?php echo $course->subj_code.$course->course_num; ?></p>
 				</div>
 				<?php }else if($criteria_array[1] == '3'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_title" style="font-size: 20px; float: right;">Course Title : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_title']; ?></p>
+					<p class="font-20"><?php echo $course->course_title; ?></p>
 				</div>
 				<?php }else if($criteria_array[1] == '4'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_desc']; ?></p>
+					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
 				<?php }else if($criteria_array[1] == '5'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['prereqs']; ?></p>
+					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
 				<?php }else if($criteria_array[1] == '6'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['units']; ?></p>
+					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -133,28 +122,28 @@
 					<label for="p_course_title" style="font-size: 20px; float: right;">Course Title : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_title']; ?></p>
+					<p class="font-20"><?php echo $course->course_title; ?></p>
 				</div>
 				<?php }else if($criteria_array[2] == '4'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_desc']; ?></p>
+					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
 				<?php }else if($criteria_array[2] == '5'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['prereqs']; ?></p>
+					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
 				<?php }else if($criteria_array[2] == '6'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['units']; ?></p>
+					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -167,21 +156,21 @@
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['course_desc']; ?></p>
+					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
 				<?php }else if($criteria_array[3] == '5'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['prereqs']; ?></p>
+					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
 				<?php }else if($criteria_array[3] == '6'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['units']; ?></p>
+					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -194,14 +183,14 @@
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['prereqs']; ?></p>
+					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
 				<?php }else if($criteria_array[4] == '6'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['units']; ?></p>
+					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -214,7 +203,7 @@
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course['units']; ?></p>
+					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -232,7 +221,15 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_department" id="p_department" autocomplete="off">
+						<select class="form-control input-sm" name="p_department" id="p_department">
+							<?php 
+							$departments = $user->getDepartments();
+							for($i = 0; $i < count($departments); $i += 1){
+								$dept = $departments[$i];
+							?>
+							<option value="<?php echo $dept['dept_desc']; ?>"><?php echo $dept['dept_desc']; ?></option>
+							<?php } ?>
+						</select>
 					</div>
 					<?php }else if($criteria_array[0] == '2'){ ?>
 					<div class="col-md-3">

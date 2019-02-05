@@ -1,7 +1,5 @@
 <?php
 
-session_start(); //starts the session; necessary line
-
 include('config/setup.php'); //adds all setup code
 include('config/queries.php'); //static queries
 
