@@ -1,4 +1,6 @@
 <?php
+	//use PhpOffice/
+	require_once 'vendor/autoload.php';
 
 	$proposal_id = $_GET['pid'];
 	
@@ -32,18 +34,35 @@
 		$proposedPrereqs = $proposal->p_prereqs;
 		$proposedUnits = $proposal->units;
 		$proposedCourseInfoHeader = 'PROPOSED TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, AND UNITS:';
+
+		if ($proposedCourseTitle == "None"){
+			$proposedCourseTitle = $currentCourseTitle;
+		}
+		if ($proposedCourseDescription == "None"){
+			$proposedCourseDescription = $currentCourseDescription;
+		}
+		if ($proposedCourseExtraDescription == "None"){
+			$proposedCourseExtraDescription = $currentCourseExtraDescription;
+		}
+		if ($proposedPrereqs == "None"){
+			$proposedPrereqs = $currentPrereqs;
+		}
+		if ($proposedUnits == "None"){
+			$proposedUnits = $currentUnits;
+		}
+		if ($proposedCourseInfoHeader== "None"){
+			$proposedCourseInfoHeader = $currentCourseInfoHeader;
+		}
 		
 		$rationale = $proposal->rationale;
 		$libraryImpact = $proposal->library_impact;
 		$techImpact = $proposal->tech_impact;
-		
 		
 		// New Word Document				
 		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
 						
 		$phpWord = new \PhpOffice\PhpWord\PhpWord();
 		$phpWord->getSettings()->setThemeFontLang($languageEnGb);
-		
 		
 		$paragraphStyle = 'pStyle';
 		$phpWord->addParagraphStyle($paragraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 280));
@@ -144,7 +163,7 @@
 		
 		// New Word Document				
 		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
-						
+
 		$phpWord = new \PhpOffice\PhpWord\PhpWord();
 		$phpWord->getSettings()->setThemeFontLang($languageEnGb);
 		
