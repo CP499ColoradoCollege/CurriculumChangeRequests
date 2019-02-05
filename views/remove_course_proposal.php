@@ -4,7 +4,7 @@
 	<div class="card">	<!-- start of card -->
 		
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
-			<h1 style="float: left;"><strong>New Page</strong></h1>
+			<h1 style="float: left;"><strong>Remove Existing Course Proposal</strong></h1>
 		</div>
 		
 		<?php if(isset($message)){ echo $message; }?>
@@ -15,13 +15,13 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_id" style="font-size: 20px; float: right;">Course ID 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course (i.e. CP112)">
+						<label for="existing_course_id" style="font-size: 20px; float: right;" value = "<?php echo $_POST['existing_course_id']; ?>">Existing Course's Course ID 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. AA999) of the course you wish to remove">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="course_id" id="course_id" placeholder="5 character course ID" autocomplete="off">
+						<input class="form-control input-md" type="text" name="existing_course_id" id="existing_course_id" autocomplete="off">
 					</div>
 				</div>
 			</div>

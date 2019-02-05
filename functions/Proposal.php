@@ -25,6 +25,8 @@ class Proposal{
 	
 	public $type;
 	
+	public $criteria;
+	
 	public $p_department;
 	
 	public $p_course_id;
@@ -57,12 +59,12 @@ class Proposal{
 	
 	
 	public function fetchProposalFromID($id){
-		$statement = $this->dbc->prepare("SELECT user_id, related_course_id, proposal_title, proposal_date, sub_status, approval_status, department, type, p_department, p_course_id, p_course_title, p_course_desc, p_extra_desc, p_prereqs, p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status FROM proposals WHERE id = ?");
+		$statement = $this->dbc->prepare("SELECT user_id, related_course_id, proposal_title, proposal_date, sub_status, approval_status, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_extra_desc, p_prereqs, p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
 
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, $sub_status, $approval_status, $department, $type, $p_department, $p_course_id, $p_course_title, $p_course_desc, $p_extra_desc, $p_prereqs, $p_units, $p_crosslisting, $p_perspective, $rationale, $lib_impact, $tech_impact, $status);
+		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, $sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, $p_course_title, $p_course_desc, $p_extra_desc, $p_prereqs, $p_units, $p_crosslisting, $p_perspective, $rationale, $lib_impact, $tech_impact, $status);
 		$statement->fetch();
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			$this->id = $id;
@@ -74,6 +76,7 @@ class Proposal{
 			$this->approval_status = $approval_status;
 			$this->department = $department;
 			$this->type = $type;
+			$this->criteria = $criteria;
 			$this->p_department = $p_department;
 			$this->p_course_id = $p_course_id;
 			$this->p_course_title = $p_course_title;
@@ -144,12 +147,13 @@ class Proposal{
 				
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, p_department, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("sssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->p_department, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("ssssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_department, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
 										
 		$this->user_id = $user_id;
 		$this->related_course_id = $related_course_id;		
 		$this->type = "Change an Existing Course";
+		$this->criteria = $criteria;
 				
 		$criteria = str_split($criteria);	
 		$changes = "";
@@ -233,11 +237,7 @@ class Proposal{
 		if($this->tech_impact == ""){
 			$this->tech_impact = "None";
 		}
-		
-		echo 'nearly there!';
-		
-		echo 'Values: user_id = '.$this->user_id.', related_course_id = '.$this->related_course_id.', proposal_title = '.$this->proposal_title.', date = '.$this->proposal_date.', department = '.$this->department.' type = '.$this->type.', p_department = '.$this->p_department.', p_course_id = '.$this->p_course_id.', p_course_title = '.$this->p_course_title.', p_course_desc = '.$this->p_course_desc.', p_prereqs = '.$this->p_prereqs.', p_units = '.$this->p_units.', rationale = '.$this->rationale;
-		
+						
 		$bool = $statement->execute();
 		if($bool){
 			return true;
