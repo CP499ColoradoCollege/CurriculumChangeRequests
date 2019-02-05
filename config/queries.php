@@ -196,6 +196,76 @@
 			
 			break;
 			
+		case 'remove_course_proposal':
+		    
+		    if($_POST){
+		        
+		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
+		        $course_id_array = str_split($course_id);
+		        
+		        if(count($course_id_array) == 5){
+		            
+		            //first, make sure the existing_course_id isn't blank
+		            
+		            //next, check that at least one of the check boxes was checked
+		            //set $fields equal to a string of the numerals for each criteria
+		            
+		            //then, redirect to header("Location: change_course_proposal?type=".$selected_fields);
+		            
+		            if($course_id != ""){
+		                
+		                $course = new Course($dbc);
+		                $course = $course->fetchCourseFromCourseID($course_id);
+		                
+		                if($course != false){
+		                    
+		                    $criteria = "";
+		                    
+		                    if(isset($_POST['department'])){
+		                        $criteria = $criteria."1";
+		                    }
+		                    
+		                    if(isset($_POST['course_id'])){
+		                        $criteria = $criteria."2";
+		                    }
+		                    
+		                    if(isset($_POST['course_title'])){
+		                        $criteria = $criteria."3";
+		                    }
+		                    
+		                    if(isset($_POST['course_desc'])){
+		                        $criteria = $criteria."4";
+		                    }
+		                    
+		                    if(isset($_POST['prerequisites'])){
+		                        $criteria = $criteria."5";
+		                    }
+		                    
+		                    if(isset($_POST['units'])){
+		                        $criteria = $criteria."6";
+		                    }
+		                    
+		                    if($criteria != ""){
+		                        header("Location: change_course_proposal?type=".$criteria."&cid=".$course_id);
+		                    }else{
+		                        $message = '<p class="bg-danger">Error: No criteria selected to be changed.</p>';
+		                    }
+		                    
+		                }else{
+		                    $message = '<p class="bg-danger">The Existing Course ID entered does not match any existing courses.</p>';
+		                }
+		            }else{
+		                $message = '<p class="bg-danger">The Existing Course ID field is blank.</p>';
+		            }
+		        }else{
+		            $message = '<p class="bg-danger">The Existing Course ID entered is invalid.</p>';
+		        }
+		    }
+		    
+		    
+		    break;
+		    
+			
 		case 'demo':
 			
 			break;
