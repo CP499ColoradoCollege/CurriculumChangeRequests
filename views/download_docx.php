@@ -11,7 +11,7 @@
 		
 		$course_id = $proposal->related_course_id;
 		$course = new Course($dbc);
-		$course = $course.fetchCourseFromCourseID($course_id);		
+		$course = $course->fetchCourseFromCourseID($course_id);		
 		
 		$filename = str_replace(' ', '_', $proposal->proposal_title);
 		$filename = str_replace(',', '', $filename);
@@ -60,7 +60,7 @@
 		
 		// New Word Document				
 		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
-						
+
 		$phpWord = new \PhpOffice\PhpWord\PhpWord();
 		$phpWord->getSettings()->setThemeFontLang($languageEnGb);
 		
@@ -68,6 +68,7 @@
 		$phpWord->addParagraphStyle($paragraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 280));
 		
 		$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
+						
 						
 		// New portrait section
 		$section = $phpWord->addSection();
@@ -84,8 +85,11 @@
 		$standardStyle = 'standard';
 		$phpWord->addFontStyle($standardStyle, array( 'size' => 12, 'name' => 'Calibri'));
 		
+		$italicStyle = 'italic';
+		$phpWord->addFontStyle($italicStyle, array('italic' => true, 'size' => 12, 'name' => 'Calibri'));
 		
-		$section->addText($department, $deptHeaderStyle, $paragraphStyle);
+
+		//$section->addText($department, $deptHeaderStyle, $paragraphStyle); THIS CURRENTLY BREAKS BECAUSE OF THE '&' CHARACTER
 		$section->addText('A) '.$proposalType, $boldCapsStyle, $paragraphStyle);
 		$section->addText('1)'.$currentCourseTitle, $boldStyle, $paragraphStyle);
 		$section->addText($currentCourseInfoHeader, $boldCapsStyle, $paragraphStyle);
@@ -105,7 +109,7 @@
 		$section->addText('Tech Impact: '.$techImpact, $standardStyle, $paragraphStyle);
 					
 		$file = $filename.'.docx';
-		
+
 		header("Content-Description: File Transfer");
 		header('Content-Disposition: attachment; filename="' . $file . '"');
 		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.
