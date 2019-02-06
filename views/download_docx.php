@@ -13,13 +13,7 @@
 	// $department = $course->dept_desc;
 	$division = $user->getDivision($department);
 
-	function getDepartmentProposalHeader($course, $courseChangeInfoHeader ){
-		
-		$deptProposalHeader = "The department of $course->dept_desc proposes to change the $courseChangeInfoHeader for $course->dept_code $course->course_num: $course->course_title, with the approval of the $course->divs_desc Executive Committee and the Committee on Instruction.";
-		// '&' causes error in document xml MUST FIX so '&' is written instead of 'and'
-		$deptProposalHeader = str_replace('&', 'and', $deptProposalHeader);  
-		return $deptProposalHeader;
-	}
+	
 
 	if($proposal->type == "Change an Existing Course"){
 		
@@ -28,18 +22,21 @@
 		$course = $course->fetchCourseFromCourseID($course_id);		
 		$criteriaInfoHeader = getInfoHeader($proposal->criteria, "");
 		$currentCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Current");
-		// echo $currentCourseInfoHeader;
-		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader);
-		$currentCourseInfo = array("c_course_title" => $course->course_title, "c_course_desc" => $course->course_desc, 
+		$department = str_replace("&", "and", $course->dept_desc);
+		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader, $department);
+		$c_course_name = "$course->subj_code $course->course_num: $course->course_title";//produces something like "CP122: Introduction to Computer Science"
+		
+		$currentCourseInfo = array("c_course_name" => $c_course_name, "c_course_desc" => $course->course_desc, 
 									"c_course_extra_desc" => $course->extra_desc, "c_course_prereqs" => $course->prereqs, 
 									"c_course_units" => $course->units, "c_info_header" => $currentCriteriaInfoHeader, 
-									"deptProposalHeader" => $deptProposalHeader);
+									"deptProposalHeader" => $deptProposalHeader, "department"=>$department);
 
 		$proposal = checkChangedAndSame($proposal, $course);
 		
 		$proposedCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Proposed");
-		// echo $proposedCourseInfoHeader;
-		$proposedCourseInfo = array("p_course_title" => $proposal->p_course_title, "p_course_desc" => $proposal->p_course_desc, 
+		$p_course_name = "$course->subj_code $course->course_num: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
+		
+		$proposedCourseInfo = array("p_course_name" => $p_course_name , "p_course_desc" => $proposal->p_course_desc, 
 									"p_course_extra_desc" => $proposal->p_extra_desc, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
@@ -162,6 +159,13 @@
 	}else{
 		$filename = "Not_yet";
 	}
+
+	function getDepartmentProposalHeader($course, $courseChangeInfoHeader, $department ){
+		
+		$deptProposalHeader = "The department of $department proposes to change the$courseChangeInfoHeader for $course->subj_code $course->course_num: $course->course_title, with the approval of the $course->divs_desc Executive Committee and the Committee on Instruction.";
+
+		return $deptProposalHeader;
+	}
 	
 	function getInfoHeader($criteria, $current_or_proposed){
 		$headerString = $current_or_proposed;
@@ -259,11 +263,12 @@
 		$italicStyle = 'italic';
 		$phpWord->addFontStyle($italicStyle, array('italic' => true, 'size' => 12, 'name' => 'Calibri'));
 
-		//$section->addText($department, $deptHeaderStyle, $paragraphStyle); THIS CURRENTLY BREAKS BECAUSE OF THE '&' CHARACTER
+		$section->addText("Department of ".$currentCourseInfo["department"], $deptHeaderStyle, $paragraphStyle);
 		$section->addText('A. '.$proposedCourseInfo["type"], $boldCapsStyle, $paragraphStyle);
+		$section->addText('1) '.$currentCourseInfo["c_course_name"], $boldStyle, $paragraphStyle);
 		$section->addText(''.$currentCourseInfo["c_info_header"], $boldCapsStyle, $paragraphStyle);
 		$section->addText(''.$currentCourseInfo["deptProposalHeader"], $standardStyle, $paragraphStyle);
-		$section->addText('CourseTitle: '.$currentCourseInfo["c_course_title"], $boldStyle, $paragraphStyle);
+		$section->addText(''.$currentCourseInfo["c_course_name"], $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$currentCourseInfo["c_course_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Additional Description: '.$currentCourseInfo["c_course_extra_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$currentCourseInfo["c_course_prereqs"], $standardStyle, $paragraphStyle);
@@ -271,7 +276,7 @@
 
 		
 		$section->addText($proposedCourseInfo["p_info_header"], $boldCapsStyle, $paragraphStyle);
-		$section->addText('CourseTitle: '.$proposedCourseInfo["p_course_title"], $boldStyle, $paragraphStyle);
+		$section->addText(''.$proposedCourseInfo["p_course_name"], $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$proposedCourseInfo["p_course_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Additional Description: '.$proposedCourseInfo["p_course_extra_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$proposedCourseInfo["p_course_prereqs"], $standardStyle, $paragraphStyle);
