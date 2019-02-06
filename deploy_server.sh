@@ -4,7 +4,7 @@ cd "$(dirname "$0")"
 
 echo "deploying to CC web server..."
 if [ $# -lt 1 ]; then
-echo "Usage: ./buildscript <CC userneame>"
+echo "Usage: ./deploy_server.sh <CC userneame>"
 exit 1
 fi
 
