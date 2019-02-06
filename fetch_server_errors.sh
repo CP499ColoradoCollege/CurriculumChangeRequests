@@ -5,8 +5,7 @@ cd "$(dirname "$0")"
 echo "Fetching ssl error log..."
 
 ssh $1@proposal-tool.coloradocollege.edu <<EOF
-sudo su -
-cp ../../var/log/httpd/ssl_error_log ~/
+sudo cp ../../var/log/httpd/ssl_error_log ~/
 exit
 EOF
 

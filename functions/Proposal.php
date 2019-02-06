@@ -162,7 +162,9 @@ class Proposal{
 		$course = $course->fetchCourseFromCourseID($related_course_id);
 		
 		$this->department = $course->dept_desc;
-				
+
+		
+		
 		if(in_array('1', $criteria)){
 			$this->p_department = $post_array['p_department'];
 			$changes = $changes." Department";

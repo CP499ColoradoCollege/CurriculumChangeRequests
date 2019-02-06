@@ -12,28 +12,38 @@
 	
 	// $department = $course->dept_desc;
 	$division = $user->getDivision($department);
-	$proposalCriteria = $proposal->criteria;
 
-	
+	function getDepartmentProposalHeader($course, $courseChangeInfoHeader ){
+		
+		$deptProposalHeader = "The department of $course->dept_desc proposes to change the $courseChangeInfoHeader for $course->dept_code $course->course_num: $course->course_title, with the approval of the $course->divs_desc Executive Committee and the Committee on Instruction.";
+		// '&' causes error in document xml MUST FIX so '&' is written instead of 'and'
+		$deptProposalHeader = str_replace('&', 'and', $deptProposalHeader);  
+		return $deptProposalHeader;
+	}
+
 	if($proposal->type == "Change an Existing Course"){
 		
 		$course_id = $proposal->related_course_id;
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);		
-
-		$currentCourseInfoHeader = getInfoHeader($proposalCriteria, "Current");
+		$criteriaInfoHeader = getInfoHeader($proposal->criteria, "");
+		$currentCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Current");
+		// echo $currentCourseInfoHeader;
+		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader);
 		$currentCourseInfo = array("c_course_title" => $course->course_title, "c_course_desc" => $course->course_desc, 
 									"c_course_extra_desc" => $course->extra_desc, "c_course_prereqs" => $course->prereqs, 
-									"c_course_units" => $course->units, "c_info_header" => $currentCourseInfoHeader);
+									"c_course_units" => $course->units, "c_info_header" => $currentCriteriaInfoHeader, 
+									"deptProposalHeader" => $deptProposalHeader);
 
 		$proposal = checkChangedAndSame($proposal, $course);
 		
-		$proposedCourseInfoHeader = getInfoHeader($proposalCriteria, "Proposed");
+		$proposedCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Proposed");
+		// echo $proposedCourseInfoHeader;
 		$proposedCourseInfo = array("p_course_title" => $proposal->p_course_title, "p_course_desc" => $proposal->p_course_desc, 
 									"p_course_extra_desc" => $proposal->p_extra_desc, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
-									"p_info_header" => $proposedCourseInfoHeader, "type" => $proposal->type);
+									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type);
 		
 		generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal);
 						
@@ -193,7 +203,6 @@
 			$individual_criteria[count($individual_criteria)-3].= "and ";
 		}
 		$punctuatedHeaderString = implode($individual_criteria);
-
 		return $punctuatedHeaderString;
 
 	}
@@ -251,8 +260,9 @@
 		$phpWord->addFontStyle($italicStyle, array('italic' => true, 'size' => 12, 'name' => 'Calibri'));
 
 		//$section->addText($department, $deptHeaderStyle, $paragraphStyle); THIS CURRENTLY BREAKS BECAUSE OF THE '&' CHARACTER
-		$section->addText('A) '.$proposedCourseInfo["type"], $boldCapsStyle, $paragraphStyle);
-		$section->addText($currentCourseInfo["c_info_header"], $boldCapsStyle, $paragraphStyle);
+		$section->addText('A. '.$proposedCourseInfo["type"], $boldCapsStyle, $paragraphStyle);
+		$section->addText(''.$currentCourseInfo["c_info_header"], $boldCapsStyle, $paragraphStyle);
+		$section->addText(''.$currentCourseInfo["deptProposalHeader"], $standardStyle, $paragraphStyle);
 		$section->addText('CourseTitle: '.$currentCourseInfo["c_course_title"], $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$currentCourseInfo["c_course_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Additional Description: '.$currentCourseInfo["c_course_extra_desc"], $standardStyle, $paragraphStyle);
@@ -272,9 +282,10 @@
 		return $phpWord;
 	}
 	function generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal){
+		// echo $proposedCourseInfo["p_info_header"];
+		// echo $currentCourseInfo["c_info_header"];
 		$filledPhpWord = addTextToDoc($currentCourseInfo, $proposedCourseInfo);
 		serveFile($filledPhpWord, $proposal);
-		
 	}
 	function serveFile($phpWord, $proposal){
 		$filename = str_replace(' ', '_', $proposal->proposal_title);
