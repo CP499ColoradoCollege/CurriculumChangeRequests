@@ -1,16 +1,19 @@
 <?php
 	require_once 'vendor/autoload.php';
-
+	
+	// ini_set('display_errors', 'On');
+	// error_reporting(E_ALL);
 	$proposal_id = $_GET['pid'];
 	
 	$proposal = new Proposal($dbc);
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
-	function getFilenameForDownload($proposal){
-		$filename = str_replace(' ', '_', $proposal->proposal_title);
-		$filename = str_replace(',', '', $filename);
-		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters
-		return $filename;
-	}
+
+	$filename = getFilenameForDownload($proposal);
+	
+	// $department = $course->dept_desc;
+	$division = $user->getDivision($department);
+	$proposalCriteria = $proposal->criteria;
+
 	
 	if($proposal->type == "Change an Existing Course"){
 		
@@ -18,109 +21,22 @@
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);		
 
-		$filename = getFilenameForDownload($proposal);
-		
-		$department = $course->dept_desc;
-		$division = $user->getDivision($department);
-		$proposalType = $proposal->type;
-		$proposalCriteria = $proposal->criteria;
-
-		$currentCourseTitle = $course->course_title;
-		$currentCourseDescription = $course->course_desc;
-		$currentCourseExtraDescription = $course->extra_desc;
-		$currentPrereqs = $course->prereqs;
-		$currentUnits = $course->units;
-
 		$currentCourseInfoHeader = getInfoHeader($proposalCriteria, "Current");
+		$currentCourseInfo = array("c_course_title" => $course->course_title, "c_course_desc" => $course->course_desc, 
+									"c_course_extra_desc" => $course->extra_desc, "c_course_prereqs" => $course->prereqs, 
+									"c_course_units" => $course->units, "c_info_header" => $currentCourseInfoHeader);
+
+		$proposal = checkChangedAndSame($proposal, $course);
 		
-		$proposedCourseTitle = $proposal->p_course_title;
-		if ($proposedCourseTitle == "None"){
-			$proposedCourseTitle = $currentCourseTitle;
-		}
-		$proposedCourseDescription = $proposal->p_course_desc;
-		if ($proposedCourseDescription == "None"){
-			$proposedCourseDescription = $currentCourseDescription;
-		}
-		$proposedCourseExtraDescription = $proposal->p_extra_desc;
-		if ($proposedCourseExtraDescription == "None"){
-			$proposedCourseExtraDescription = $currentCourseExtraDescription;
-		}
-		$proposedPrereqs = $proposal->p_prereqs;
-		if ($proposedPrereqs == "None"){
-			$proposedPrereqs = $currentPrereqs;
-		}
-		$proposedUnits = $proposal->units;
-		if ($proposedUnits == "None"){
-			$proposedUnits = $currentUnits;
-		}
 		$proposedCourseInfoHeader = getInfoHeader($proposalCriteria, "Proposed");
+		$proposedCourseInfo = array("p_course_title" => $proposal->p_course_title, "p_course_desc" => $proposal->p_course_desc, 
+									"p_course_extra_desc" => $proposal->p_extra_desc, "p_course_prereqs" => $proposal->p_prereqs, 
+									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
+									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
+									"p_info_header" => $proposedCourseInfoHeader, "type" => $proposal->type);
 		
-		$rationale = $proposal->rationale;
-		$libraryImpact = $proposal->library_impact;
-		$techImpact = $proposal->tech_impact;
-		
-		// New Word Document				
-		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
-
-		$phpWord = new \PhpOffice\PhpWord\PhpWord();
-		$phpWord->getSettings()->setThemeFontLang($languageEnGb);
-		
-		$paragraphStyle = 'pStyle';
-		$phpWord->addParagraphStyle($paragraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 280));
-		
-		$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
+		generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal);
 						
-
-		$section = $phpWord->addSection();
-		
-		$deptHeaderStyle = 'deptHeader';
-		$phpWord->addFontStyle($deptHeaderStyle, array('bold' => true, 'size' => 14, 'name' => 'Calibri'));
-		
-		$boldCapsStyle = 'boldCaps';
-		$phpWord->addFontStyle($boldCapsStyle, array('bold' => true, 'allCaps' => true, 'size' => 12, 'name' => 'Calibri'));
-		
-		$boldStyle = 'bold';
-		$phpWord->addFontStyle($boldStyle, array('bold' => true, 'size' => 12, 'name' => 'Calibri'));
-		
-		$standardStyle = 'standard';
-		$phpWord->addFontStyle($standardStyle, array( 'size' => 12, 'name' => 'Calibri'));
-		
-		$italicStyle = 'italic';
-		$phpWord->addFontStyle($italicStyle, array('italic' => true, 'size' => 12, 'name' => 'Calibri'));
-		
-
-		//$section->addText($department, $deptHeaderStyle, $paragraphStyle); THIS CURRENTLY BREAKS BECAUSE OF THE '&' CHARACTER
-		$section->addText('A) '.$proposalType, $boldCapsStyle, $paragraphStyle);
-		$section->addText($currentCourseTitle, $boldStyle, $paragraphStyle);
-		$section->addText($currentCourseInfoHeader, $boldCapsStyle, $paragraphStyle);
-		$section->addText($currentCourseTitle, $boldStyle, $paragraphStyle);
-		$section->addText('Course Description: '.$currentCourseDescription, $standardStyle, $paragraphStyle);
-		$section->addText('Additional Description: '.$currentCourseExtraDescription, $standardStyle, $paragraphStyle);
-		$section->addText('Prerequisites: '.$currentPrereqs, $standardStyle, $paragraphStyle);
-		$section->addText('Units: '.$currentUnits, $standardStyle, $paragraphStyle);
-		$section->addText($proposedCourseInfoHeader, $boldCapsStyle, $paragraphStyle);
-		$section->addText($proposedCourseTitle, $boldStyle, $paragraphStyle);
-		$section->addText('Course Description: '.$proposedCourseDescription, $standardStyle, $paragraphStyle);
-		$section->addText('Additional Description: '.$proposedCourseExtraDescription, $standardStyle, $paragraphStyle);
-		$section->addText('Prerequisites: '.$proposedPrereqs, $standardStyle, $paragraphStyle);
-		$section->addText('Units: '.$proposedUnits, $standardStyle, $paragraphStyle);
-		$section->addText('Rationale: '.$rationale, $standardStyle, $paragraphStyle);
-		$section->addText('Library Impact: '.$libraryImpact, $standardStyle, $paragraphStyle);
-		$section->addText('Tech Impact: '.$techImpact, $standardStyle, $paragraphStyle);
-					
-		$file = $filename.'.docx';
-
-		header("Content-Description: File Transfer");
-		header('Content-Disposition: attachment; filename="' . $file . '"');
-		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.
-		˓→document');
-		header('Content-Transfer-Encoding: binary');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Expires: 0');
-		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-		$xmlWriter->save("php://output");
-						
-		
 	}else if($proposal->type == 'Add a New Course'){
 		
 		//NEED NEED NEED TO ADD DIVISION!!!
@@ -280,6 +196,101 @@
 
 		return $punctuatedHeaderString;
 
+	}
+
+	function checkChangedAndSame($proposal, $course){
+		if ($proposal->p_course_title == ""){
+			$proposal->p_course_title = $course->course_title;
+		}
+		if ($proposal->p_course_desc == ""){
+			$proposal->p_course_desc = $course->course_desc;
+		}
+		if ($proposal->p_prereqs == ""){
+			$proposal->p_prereqs = $course->prereqs;
+		}
+		if ($proposal->p_extra_desc == ""){
+			$proposal->p_extra_desc = $course->extra_desc;
+		}
+		if ($proposal->p_units == ""){
+			$proposal->p_units = $course->units;
+		}
+		return $proposal;
+	}
+	function getFilenameForDownload($proposal){
+		$filename = str_replace(' ', '_', $proposal->proposal_title);
+		$filename = str_replace(',', '', $filename);
+		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters
+		return $filename;
+	}
+	function addTextToDoc($currentCourseInfo, $proposedCourseInfo){
+		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
+
+		$phpWord = new \PhpOffice\PhpWord\PhpWord();
+		$phpWord->getSettings()->setThemeFontLang($languageEnGb);
+
+		$section = $phpWord->addSection();
+		$paragraphStyle = 'pStyle';
+
+		$phpWord->addParagraphStyle($paragraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 280));
+		
+		$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
+		
+		$deptHeaderStyle = 'deptHeader';
+		$phpWord->addFontStyle($deptHeaderStyle, array('bold' => true, 'size' => 14, 'name' => 'Calibri'));
+		
+		$boldCapsStyle = 'boldCaps';
+		$phpWord->addFontStyle($boldCapsStyle, array('bold' => true, 'allCaps' => true, 'size' => 12, 'name' => 'Calibri'));
+		
+		$boldStyle = 'bold';
+		$phpWord->addFontStyle($boldStyle, array('bold' => true, 'size' => 12, 'name' => 'Calibri'));
+		
+		$standardStyle = 'standard';
+		$phpWord->addFontStyle($standardStyle, array( 'size' => 12, 'name' => 'Calibri'));
+		
+		$italicStyle = 'italic';
+		$phpWord->addFontStyle($italicStyle, array('italic' => true, 'size' => 12, 'name' => 'Calibri'));
+
+		//$section->addText($department, $deptHeaderStyle, $paragraphStyle); THIS CURRENTLY BREAKS BECAUSE OF THE '&' CHARACTER
+		$section->addText('A) '.$proposedCourseInfo["type"], $boldCapsStyle, $paragraphStyle);
+		$section->addText($currentCourseInfo["c_info_header"], $boldCapsStyle, $paragraphStyle);
+		$section->addText('CourseTitle: '.$currentCourseInfo["c_course_title"], $boldStyle, $paragraphStyle);
+		$section->addText('Course Description: '.$currentCourseInfo["c_course_desc"], $standardStyle, $paragraphStyle);
+		$section->addText('Additional Description: '.$currentCourseInfo["c_course_extra_desc"], $standardStyle, $paragraphStyle);
+		$section->addText('Prerequisites: '.$currentCourseInfo["c_course_prereqs"], $standardStyle, $paragraphStyle);
+		$section->addText('Units: '.$currentCourseInfo["c_course_units"], $standardStyle, $paragraphStyle);
+
+		
+		$section->addText($proposedCourseInfo["p_info_header"], $boldCapsStyle, $paragraphStyle);
+		$section->addText('CourseTitle: '.$proposedCourseInfo["p_course_title"], $boldStyle, $paragraphStyle);
+		$section->addText('Course Description: '.$proposedCourseInfo["p_course_desc"], $standardStyle, $paragraphStyle);
+		$section->addText('Additional Description: '.$proposedCourseInfo["p_course_extra_desc"], $standardStyle, $paragraphStyle);
+		$section->addText('Prerequisites: '.$proposedCourseInfo["p_course_prereqs"], $standardStyle, $paragraphStyle);
+		$section->addText('Units: '.$proposedCourseInfo["p_course_units"], $standardStyle, $paragraphStyle);
+		$section->addText('Rationale: '.$proposedCourseInfo["rationale"], $standardStyle, $paragraphStyle);
+		$section->addText('Library Impact: '.$proposedCourseInfo["lib_impact"], $standardStyle, $paragraphStyle);
+		$section->addText('Tech Impact: '.$proposedCourseInfo["tech_impact"], $standardStyle, $paragraphStyle);
+		return $phpWord;
+	}
+	function generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal){
+		$filledPhpWord = addTextToDoc($currentCourseInfo, $proposedCourseInfo);
+		serveFile($filledPhpWord, $proposal);
+		
+	}
+	function serveFile($phpWord, $proposal){
+		$filename = str_replace(' ', '_', $proposal->proposal_title);
+		$filename = str_replace(',', '', $filename);
+		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters
+		$file = $filename.'.docx';
+
+		header("Content-Description: File Transfer");
+		header('Content-Disposition: attachment; filename="' . $file . '"');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.
+		˓→document');
+		header('Content-Transfer-Encoding: binary');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Expires: 0');
+		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+		$xmlWriter->save("php://output");
 	}
 		
 		
