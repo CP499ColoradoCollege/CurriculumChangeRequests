@@ -246,6 +246,43 @@ class Proposal{
 			return false;
 		}
 	}
+
+	public function createProposalRemoveExistingCourse($user_id, $course_id, $post_array){
+		
+		$dbc = $this->dbc;
+		
+		$course = new Course($dbc);
+		$course = $course->fetchCourseFromCourseID($course_id);
+		
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("sssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->rationale, $this->lib_impact, $this->tech_impact);
+		
+		$this->user_id = $user_id;
+		$this->related_course_id = $course_id;
+		
+		$this->proposal_title = 'Remove Course: '.$course_id.', '.$course->course_title;
+		$this->proposal_date = date('m/d/Y');
+		$this->department = $course->dept_desc;
+		$this->type = 'Remove an Existing Course';
+		
+		$this->rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
+		$this->lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		if($this->lib_impact == ''){
+			$this->lib_impact = 'None';
+		}
+		$this->tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		if($this->tech_impact == ''){
+			$this->tech_impact = 'None';
+		}
+		
+		$bool = $statement->execute();
+		if($bool){
+			return true;
+		}else{
+			echo "Error: ".mysqli_error($dbc);
+			return false;
+		}
+	}
 	
 }
 

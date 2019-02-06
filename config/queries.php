@@ -199,6 +199,8 @@
 		case 'remove_course_proposal':
 		    
 		    if($_POST){
+		    	
+				$user_id = $user->id;
 		        
 		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
 		        $course_id_array = str_split($course_id);
