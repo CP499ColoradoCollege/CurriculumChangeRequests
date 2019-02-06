@@ -3,14 +3,13 @@
 #This document is loaded on every page, and contains all logic for querying the MySQL Database on specific pages when forms are filled out
 #This document also contains the logic for redirecting the user when some forms are submitted via POST
 
-
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
-			
+						
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
 			$statement->bind_param("ss", $email, $password);
-			
+						
 			
 			if($_SESSION['logged_in'] == true){	//check if the user is already logged in; if so, redirect them to the HOME page
 				header('Location: home');
@@ -199,6 +198,8 @@
 		case 'remove_course_proposal':
 		    
 		    if($_POST){
+		    	
+				$user_id = $user->id;
 		        
 		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
 		        $course_id_array = str_split($course_id);
