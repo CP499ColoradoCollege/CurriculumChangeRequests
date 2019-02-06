@@ -60,7 +60,7 @@
 					<div class="col-md-3">
 						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of removing this course">
-							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+							  <i class="fa fa-question-circle" aria-hidden="true"></i> 
 						</button> : 
 					</div>
 					<div class="col-md-3">
