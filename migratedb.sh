@@ -20,23 +20,15 @@ echo "༼ つ ◕_◕ ༽つ"
 
 echo "Please enter password again to migrate"
 
+sftp $1#proposal-tool.coloradocollege.edu <<EOF
+put $2 
 
-
-mkdir deploy 
-
-cp -r config databaseConnection functions images template views deploy/
-cp index.php deploy/
-sftp $1@proposal-tool.coloradocollege.edu <<EOF
-put -r deploy/
 exit
 EOF
 
-rm -r deploy/
-
-
 
 ssh $1@proposal-tool.coloradocollege.edu <<EOF
-cp deploy ../../var/www/html 
+mysql -root proposals < $2
 exit
 EOF
 echo "*"

@@ -10,7 +10,7 @@ fi
 
 mkdir deploy 
 
-cp -r config databaseConnection functions images template views deploy/
+cp -r config databaseConnection functions vendor images template views deploy/
 cp index.php deploy/
 sftp $1@proposal-tool.coloradocollege.edu <<EOF
 put -r deploy/
@@ -23,8 +23,10 @@ echo "transferred files."
 echo "༼ つ ◕_◕ ༽つ"
 echo "Please enter password again to move them to the right place"
 
-ssh $1@proposal-tool.coloradocollege.edu <<EOF
-cp deploy ../../var/www/html 
+ssh -t -t $1@proposal-tool.coloradocollege.edu <<EOF
+sudo cp -a deploy/. ../../var/www/html 
+cd ../../var/www/html
+composer install
 exit
 EOF
 echo "*"

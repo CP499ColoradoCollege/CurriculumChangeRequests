@@ -1,58 +1,59 @@
 <?php
-	//use PhpOffice/
 	require_once 'vendor/autoload.php';
 
 	$proposal_id = $_GET['pid'];
 	
 	$proposal = new Proposal($dbc);
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
-		
+	function getFilenameForDownload($proposal){
+		$filename = str_replace(' ', '_', $proposal->proposal_title);
+		$filename = str_replace(',', '', $filename);
+		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters
+		return $filename;
+	}
+	
 	if($proposal->type == "Change an Existing Course"){
 		
 		$course_id = $proposal->related_course_id;
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);		
+
+		$filename = getFilenameForDownload($proposal);
 		
-		$filename = str_replace(' ', '_', $proposal->proposal_title);
-		$filename = str_replace(',', '', $filename);
-		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters		
-						
 		$department = $course->dept_desc;
 		$division = $user->getDivision($department);
 		$proposalType = $proposal->type;
-		
+		$proposalCriteria = $proposal->criteria;
+
 		$currentCourseTitle = $course->course_title;
 		$currentCourseDescription = $course->course_desc;
 		$currentCourseExtraDescription = $course->extra_desc;
 		$currentPrereqs = $course->prereqs;
 		$currentUnits = $course->units;
-		$currentCourseInfoHeader = 'CURRENT TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, AND UNITS:';
+
+		$currentCourseInfoHeader = getInfoHeader($proposalCriteria, "Current");
 		
 		$proposedCourseTitle = $proposal->p_course_title;
-		$proposedCourseDescription = $proposal->p_course_desc;
-		$proposedCourseExtraDescription = $proposal->p_extra_desc;
-		$proposedPrereqs = $proposal->p_prereqs;
-		$proposedUnits = $proposal->units;
-		$proposedCourseInfoHeader = 'PROPOSED TITLE, COURSE DESCRIPTION, EXTRA COURSE DESCRIPTION, PREREQUISITES, AND UNITS:';
-
 		if ($proposedCourseTitle == "None"){
 			$proposedCourseTitle = $currentCourseTitle;
 		}
+		$proposedCourseDescription = $proposal->p_course_desc;
 		if ($proposedCourseDescription == "None"){
 			$proposedCourseDescription = $currentCourseDescription;
 		}
+		$proposedCourseExtraDescription = $proposal->p_extra_desc;
 		if ($proposedCourseExtraDescription == "None"){
 			$proposedCourseExtraDescription = $currentCourseExtraDescription;
 		}
+		$proposedPrereqs = $proposal->p_prereqs;
 		if ($proposedPrereqs == "None"){
 			$proposedPrereqs = $currentPrereqs;
 		}
+		$proposedUnits = $proposal->units;
 		if ($proposedUnits == "None"){
 			$proposedUnits = $currentUnits;
 		}
-		if ($proposedCourseInfoHeader== "None"){
-			$proposedCourseInfoHeader = $currentCourseInfoHeader;
-		}
+		$proposedCourseInfoHeader = getInfoHeader($proposalCriteria, "Proposed");
 		
 		$rationale = $proposal->rationale;
 		$libraryImpact = $proposal->library_impact;
@@ -69,8 +70,7 @@
 		
 		$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
 						
-						
-		// New portrait section
+
 		$section = $phpWord->addSection();
 		
 		$deptHeaderStyle = 'deptHeader';
@@ -91,7 +91,7 @@
 
 		//$section->addText($department, $deptHeaderStyle, $paragraphStyle); THIS CURRENTLY BREAKS BECAUSE OF THE '&' CHARACTER
 		$section->addText('A) '.$proposalType, $boldCapsStyle, $paragraphStyle);
-		$section->addText('1)'.$currentCourseTitle, $boldStyle, $paragraphStyle);
+		$section->addText($currentCourseTitle, $boldStyle, $paragraphStyle);
 		$section->addText($currentCourseInfoHeader, $boldCapsStyle, $paragraphStyle);
 		$section->addText($currentCourseTitle, $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$currentCourseDescription, $standardStyle, $paragraphStyle);
@@ -236,7 +236,51 @@
 	}else{
 		$filename = "Not_yet";
 	}
-		
+	
+	function getInfoHeader($criteria, $current_or_proposed){
+		$headerString = $current_or_proposed;
+		$headerString.=" ";
+		$critArray = str_split($criteria);
+		for( $i = 0; $i<count($critArray); $i++ ){
+			switch($critArray[$i]){
+				case 1:
+					$headerString.="Department-";
+					break;
+				case 2:
+					$headerString.="Course ID-";
+					break;
+				case 3:
+					$headerString.="Course Title-";
+					break;
+				case 4:
+					$headerString.="Course Description-";
+					break;
+				case 5:
+					$headerString.="Prerequisites-";
+					break;
+				case 6:
+					$headerString.="Units-";
+					break;
+			}
+		}
+		$punctuatedHeaderString = addPunctuation($headerString);
+		return $punctuatedHeaderString;
+	}
+	function addPunctuation($headerString){
+		$individual_criteria = explode("-", $headerString);
+		if(count($individual_criteria)==2){
+			return $individual_criteria[1];
+		}else{
+			for( $i = 0; $i<count($individual_criteria)-2; $i++ ) {
+				$individual_criteria[$i] .= ", ";
+			}
+			$individual_criteria[count($individual_criteria)-3].= "and ";
+		}
+		$punctuatedHeaderString = implode($individual_criteria);
+
+		return $punctuatedHeaderString;
+
+	}
 		
 		
 ?>
