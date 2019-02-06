@@ -219,38 +219,15 @@
 		                
 		                if($course != false){
 		                    
-		                    $criteria = "";
+		                    $remove_proposal = new Proposal($dbc);
+		                    $remove_proposal = $remove_proposal->createProposalRemoveExistingCourse($user_id, $course_id, $_POST);
 		                    
-		                    if(isset($_POST['department'])){
-		                        $criteria = $criteria."1";
-		                    }
-		                    
-		                    if(isset($_POST['course_id'])){
-		                        $criteria = $criteria."2";
-		                    }
-		                    
-		                    if(isset($_POST['course_title'])){
-		                        $criteria = $criteria."3";
-		                    }
-		                    
-		                    if(isset($_POST['course_desc'])){
-		                        $criteria = $criteria."4";
-		                    }
-		                    
-		                    if(isset($_POST['prerequisites'])){
-		                        $criteria = $criteria."5";
-		                    }
-		                    
-		                    if(isset($_POST['units'])){
-		                        $criteria = $criteria."6";
-		                    }
-		                    
-		                    if($criteria != ""){
-		                        header("Location: change_course_proposal?type=".$criteria."&cid=".$course_id);
+		                    if($remove_proposal == true){
+		                        header("Location: home");
 		                    }else{
-		                        $message = '<p class="bg-danger">Error: No criteria selected to be changed.</p>';
+		                        echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($dbc)."</p>";
 		                    }
-		                    
+		                   
 		                }else{
 		                    $message = '<p class="bg-danger">The Existing Course ID entered does not match any existing courses.</p>';
 		                }
