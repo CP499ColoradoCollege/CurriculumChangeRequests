@@ -1,4 +1,6 @@
 <?php
+require_once 'vendor/autoload.php';
+
 
 class CourseTest extends PHPunit_Framework_Testcase{
 	

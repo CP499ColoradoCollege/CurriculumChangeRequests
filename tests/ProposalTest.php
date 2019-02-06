@@ -1,4 +1,6 @@
 <?php
+require_once 'vendor/autoload.php';
+
 
 class ProposalTest extends PHPunit_Framework_Testcase{
 	
