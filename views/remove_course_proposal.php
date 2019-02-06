@@ -31,12 +31,12 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="rationale" style="font-size: 20px; float: right;">Rationale 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The rationale behind this new course proposal">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The rationale behind this removing course proposal">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-4">
-						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for new course proposal" autocomplete="off"></textarea>
+						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for removing course proposal" autocomplete="off"></textarea>
 					</div>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from this course">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from removing this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
@@ -59,8 +59,8 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of this course">
-							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of removing this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i> 
 						</button> : 
 					</div>
 					<div class="col-md-3">
