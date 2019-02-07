@@ -2,7 +2,8 @@
 
 /* This class maps to the columns in our Courses table, and contains logic involved in managing Course queries
  */
-
+ 
+ 
 class Course{
 	
 	public $dbc;

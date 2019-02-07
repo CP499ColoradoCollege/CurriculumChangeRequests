@@ -50,6 +50,10 @@
 			if($_POST['action'] == 'download'){				
 				header("Location: download_docx?pid=".$_POST['openedid']);
 			}
+			if($_POST['action'] == 'edit'){				
+				header("Location: edit_proposal?pid=".$_POST['openedid']);
+			}
+			
 			
 			break;
 			
@@ -242,6 +246,46 @@
 		    
 		    
 		    break;
+			
+		case 'edit_proposal':
+			
+			if($_POST){
+				
+				$user_id = $user->id;
+				
+				$pid = $_POST['pid'];
+				
+				$proposal = new Proposal($dbc);
+				$proposal = $proposal->fetchProposalFromID($pid);
+				$title_array = explode(" ", $proposal->proposal_title);
+				$page_type = $title_array[0];
+				
+				if($page_type == 'Add'){
+				
+					$new_proposal = new Proposal($dbc);
+					$new_proposal = $new_proposal->createProposalAddNewCourse($user_id, $_POST);
+					
+					if($new_proposal != false){
+						header("Location: home");
+					}else{
+						echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($dbc)."</p>";
+					}
+						
+				}else if($page_type == 'Change'){
+					
+					
+				}else if($page_type == 'Remove'){
+					
+					
+				}else{
+					
+					
+				}
+				
+				
+			}
+			
+			break;
 		    
 			
 		case 'demo':

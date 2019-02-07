@@ -48,7 +48,7 @@ class User{
 			$this->position = $position;
 			$this->permission = $permission;
 			$this->status = $status;
-			return true;	
+			return $this;	
 		}else{
 			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 User.";
 			return false;
