@@ -41,6 +41,7 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 		$page = 'home';
 		header('Location: home');	//sets blank/empty url to the home page
 	} else{
+		$page = 'home';
 		header('Location: login');	//sets blank/empty url to the dashboard
 	}
 } else{
