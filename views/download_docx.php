@@ -9,8 +9,6 @@
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
 
 	$filename = getFilenameForDownload($proposal);
-	
-	// $department = $course->dept_desc;
 	$division = $user->getDivision($department);
 
 	
@@ -215,7 +213,7 @@
 		$textrunB->addText($b_1, $standardStyle);
 		$textrunB->addText($b_2, $boldStyle);
 		$textrunB->addText($b_3, $standardStyle);
-		// $textrunB->addTextBreak();
+
 		$textrun_prereq = $section->createTextRun();
 		$textrun_prereq->addText($f_prereq1, $italicStyle);
 		$textrun_prereq->addText($f_prereq2, $standardStyle);
@@ -276,7 +274,6 @@
 		$section->addText('Additional Description: '.$currentCourseInfo["c_course_extra_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$currentCourseInfo["c_course_prereqs"], $standardStyle, $paragraphStyle);
 		$section->addText('Units: '.$currentCourseInfo["c_course_units"], $standardStyle, $paragraphStyle);
-
 		
 		$section->addText($proposedCourseInfo["p_info_header"], $boldCapsStyle, $paragraphStyle);
 		$section->addText(''.$proposedCourseInfo["p_course_name"], $boldStyle, $paragraphStyle);
