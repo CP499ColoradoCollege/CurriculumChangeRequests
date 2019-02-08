@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /*
  * This file is part of PHPUnit.
  *
@@ -32,7 +32,7 @@ use SebastianBergmann\Version;
 use Text_Template;
 
 /**
- * @internal This class is not covered by the backward compatibility promise for PHPUnit
+ * Utility class for blacklisting PHPUnit's own source code files.
  */
 final class Blacklist
 {
@@ -70,8 +70,6 @@ final class Blacklist
     private static $directories;
 
     /**
-     * @throws \ReflectionException
-     *
      * @return string[]
      */
     public function getBlacklistedDirectories(): array
@@ -81,9 +79,6 @@ final class Blacklist
         return self::$directories;
     }
 
-    /**
-     * @throws \ReflectionException
-     */
     public function isBlacklisted(string $file): bool
     {
         if (\defined('PHPUNIT_TESTSUITE')) {
@@ -101,9 +96,6 @@ final class Blacklist
         return false;
     }
 
-    /**
-     * @throws \ReflectionException
-     */
     private function initialize(): void
     {
         if (self::$directories === null) {
