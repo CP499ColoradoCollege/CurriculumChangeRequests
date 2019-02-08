@@ -42,10 +42,6 @@
 			break;
 	
 		case 'home':
-			
-			include('functions/phpword.php');
-			include('functions/download.php');
-			
 						
 			if($_POST['action'] == 'download'){				
 				header("Location: download_docx?pid=".$_POST['openedid']);

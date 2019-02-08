@@ -25,7 +25,8 @@ include('functions/Proposal.php');
 
 
 //PhpWord includes
-include('functions/phpWordSample/code/New_Header.php');
+//include('functions/phpWordSample/code/New_Header.php');
+//include('php_word_header.php');
 
   
 #Site Setup:
