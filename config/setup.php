@@ -37,9 +37,13 @@ $site_title = 'Course Proposal System';	//sets the site's title
 
 #Page Setup:
 if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
-	
-	$page = 'home';
-	header('Location: home');	//sets blank/empty url to the home page	
+	if($_SESSION['logged_in'] == true){
+		$page = 'home';
+		header('Location: home');	//sets blank/empty url to the home page
+	} else{
+		$page = 'home';
+		header('Location: login');	//sets blank/empty url to the dashboard
+	}
 } else{
 	$page = $path['call_parts'][0];
 }
