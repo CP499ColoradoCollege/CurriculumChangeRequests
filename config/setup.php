@@ -52,7 +52,4 @@ if($_SESSION['logged_in'] == true){
 	$user = new User($dbc);
 	$user->fetchUserFromEmail($email);
 }
-
-
-
 ?>
