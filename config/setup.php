@@ -37,6 +37,7 @@ $site_title = 'Course Proposal System';	//sets the site's title
 
 #Page Setup:
 if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
+	
 	$page = 'home';
 	header('Location: home');	//sets blank/empty url to the home page	
 } else{
@@ -46,9 +47,9 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 
 
 #User Setup:
-// if($_SESSION['logged_in'] == true){
+if($_SESSION['logged_in'] == true){
 	$email = $_SESSION['user_email'];
 	$user = new User($dbc);
 	$user->fetchUserFromEmail($email);
-// }
+}
 ?>
