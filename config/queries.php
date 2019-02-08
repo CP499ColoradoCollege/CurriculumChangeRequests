@@ -9,7 +9,7 @@
 						
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
 			$statement->bind_param("ss", $email, $password);
-			header('Location: home');
+						
 			
 			if($_SESSION['logged_in'] == true){	//check if the user is already logged in; if so, redirect them to the HOME page
 				header('Location: home');
@@ -54,7 +54,7 @@
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
 			}
 			
-	
+			
 			break;
 			
 		case 'new_proposal':
