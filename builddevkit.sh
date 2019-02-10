@@ -46,25 +46,8 @@ composer require zendframework/zend-stdlib
 composer require phpoffice/phpword
 composer require phpunit/phpunit
 
-echo "Done"
-echo "Cloning Repo"
-mkdir dev
-cd dev
-
-git clone https://github.com/CP499ColoradoCollege/CurriculumChangeRequests.git
-cd CurriculumChangeRequests
-
-echo "Migrating DB...."
-
-mysql -uroot <<EOF
-CREATE DATABASE new;
-EOF
-
-mysql -uroot new < new.php
-
 chmod +x ./deploy_development.sh
-./deploy_development.sh
-# sudo cp -a CurriculumChangeRequests/. ~/../../opt/lampp/htdocs
+sudo ./deploy_development.sh
 cd databaseConnection
 sudo cp *.jar ~/../../usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext
 echo "Web files deployed to development xampp server"
