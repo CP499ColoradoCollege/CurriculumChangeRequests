@@ -8,13 +8,14 @@
 		</div>
 		
 		<?php if(isset($message)){ echo $message; }?>
-					
+		
+		<p style="text-align: center; font-size: 18px; margin-top: 20px;"><strong>Check with the <span style="color: red;">department</span> before requesting to drop a course!<br>The course may be a prerequisite for another course, or a Major/Minor requirement.</strong></p>			
 						
 		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
 			<div class="shift-down row">
 				<div class="form-group">	<!-- start of page form -->
-					<div class="col-md-2"></div>
-					<div class="col-md-3">
+					<div class="col-md-1"></div>
+					<div class="col-md-4">
 						<label for="existing_course_id" style="font-size: 20px; float: right;" value = "<?php echo $_POST['existing_course_id']; ?>">Existing Course's Course ID 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. CP112) of the course you wish to remove">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -70,11 +71,8 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-md-5"></div>
-				<div class="col-md-2">
-					<button type="submit" class="btn btn-home" style="float: center; margin-top: 50px; margin-bottom: 20px;"><strong>Save</strong></button>
+					<button type="submit" class="btn btn-home" style="margin-left: 48%; margin-top: 50px; margin-bottom: 20px;"><strong>Save</strong></button>
 					<input type="hidden" name="submitted" value="1">
-				</div>
 			</div>
 			
 
