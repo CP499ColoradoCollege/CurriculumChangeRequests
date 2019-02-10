@@ -16,12 +16,12 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="existing_course_id" style="font-size: 20px; float: right;" value = "<?php echo $_POST['existing_course_id']; ?>">Existing Course's Course ID 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. AA999) of the course you wish to remove">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. CP112) of the course you wish to remove">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="existing_course_id" id="existing_course_id" autocomplete="off">
+						<input class="form-control input-md" type="text" name="existing_course_id" id="existing_course_id" autocomplete="off" placeholder="i.e. 'CP112'">
 					</div>
 				</div>
 			</div>

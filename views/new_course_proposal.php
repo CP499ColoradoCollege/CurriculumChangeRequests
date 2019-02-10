@@ -36,12 +36,12 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="course_id" style="font-size: 20px; float: right;">Course ID 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course (i.e. CP112)">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course, containing subject code and course number (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="course_id" id="course_id" placeholder="5 character course ID" autocomplete="off">
+						<input class="form-control input-md" type="text" name="course_id" id="course_id" placeholder="i.e. 'CP112'" autocomplete="off">
 					</div>
 				</div>
 			</div>

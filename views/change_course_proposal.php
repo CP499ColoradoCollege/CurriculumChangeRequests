@@ -234,12 +234,12 @@
 					<?php }else if($criteria_array[0] == '2'){ ?>
 					<div class="col-md-3">
 						<label for="p_course_id" style="font-size: 20px; float: right; text-align: right;">Proposed Course ID 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed 5 character Course ID (i.e. AA999)">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed 5 character ID for the course, containing subject code and course number (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_course_id" id="p_course_id" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_course_id" id="p_course_id" placeholder="i.e. 'CP112'" autocomplete="off">
 					</div>
 					<?php }else if($criteria_array[0] == '3'){ ?>
 					<div class="col-md-3">
@@ -299,12 +299,12 @@
 					<?php if($criteria_array[1] == '2'){ ?>
 					<div class="col-md-3">
 						<label for="p_course_id" style="font-size: 20px; float: right; text-align: right;">Proposed Course ID 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed 5 character Course ID (i.e. AA999)">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed 5 character ID for the course, containing subject code and course number (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_course_id" id="p_course_id" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_course_id" id="p_course_id" placeholder="i.e. 'CP112'" autocomplete="off">
 					</div>
 					<?php }else if($criteria_array[1] == '3'){ ?>
 					<div class="col-md-3">

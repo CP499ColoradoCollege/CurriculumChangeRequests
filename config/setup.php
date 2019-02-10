@@ -17,11 +17,11 @@ include('functions/sandbox.php');
 
 
 #Classes
-include('functions/User.php');
+include('classes/User.php');
 
-include('functions/Course.php');
+include('classes/Course.php');
 
-include('functions/Proposal.php');
+include('classes/Proposal.php');
 
 
 //PhpWord includes

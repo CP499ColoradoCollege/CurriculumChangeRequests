@@ -97,113 +97,76 @@ function checkString($string){
 }
 
 
-function convertDepartmentFromCode($dept_code){
-	switch ($dept_code){
-		case 'ART':
-			return 'Art';
-			break;
-			
-		case 'ANTH':
-			return 'Anthropology';
-			break;
-			
-		case 'BIOL':
-			return 'Biology';
-			break;
-			
-		case 'CLAS':
-			return 'Classics';
-			break;
-			
-		case 'GRRU':
-			return 'German, Russian & E Asian Languages';
-			break;
-			
-		case 'COLI':
-			return 'Comparative Literature';
-			break;
-			
-		case 'MATH':
-			return 'Mathematics & Computer Science';
-			break;
-			
-		case 'CHBI':
-			return 'Chemistry & Biochemistry';
-			break;
-			
-		case 'EDUC':
-			return 'Education';
-			break;
-			
-		case 'DRDA':
-			return 'Drama & Dance';
-			break;
-			
-		case 'ENSC':
-			return 'Environmental Science';
-			break;
-			
-		case 'ENGL':
-			return 'English';
-			break;
-			
-		case 'NOST':
-			return 'Non-Departmental Studies';
-			break;
-			
-		case 'ROLA':
-			return 'Romance Languages';
-			break;
-			
-		case 'FEGE':
-			return 'Feminist & Gender Studies';
-			break;
-			
-		case 'HIST':
-			return 'History';
-			break;
-			
-		case 'GEOL':
-			return 'Geology';
-			break;
-			
-		case 'RELI':
-			return 'Religion';
-			break;
-			
-		case 'MUSI':
-			return 'Music';
-			break;
-			
-		case 'POSC':
-			return 'Political Science';
-			break;
-			
-		case 'PHIL':
-			return 'Philosophy';
-			break;
-			
-		case 'PSYC':
-			return 'Psychology';
-			break;
-			
-		case 'PHYS':
-			return 'Physics';
-			break;
-			
-		case 'SOCI':
-			return 'Sociology';
-			break;
-			
-		case 'SOST':
-			return 'Southwest Studies';
-			break;
-		
-		default:
-			return 'Error: No department found.';
-			break;
+
+/* This function returns true if $needle is a substring of $haystack
+ * @param $needle - the substring to look for
+ * @param $haystack - the string to search through for the given $needle
+ * @return - returns true if the $needle is in the $haystack, else returns false
+ */
+function contains($needle, $haystack){
+    return strpos($haystack, $needle) !== false;
+}
+
+
+/* This function verifies if there are any matches for any of the criteria in the criteria_array within the tables in the tables_array
+ * @param $dbc - the database connection
+ * @param $criteria_array - array of different criteria to look for
+ * @param $table_array - array of tables to search through
+ * @return $match - returns true if any of the criteria existed in any of the tables, else returns false
+ */
+function check_matches($dbc, $criteria_array, $table_array){
+	$match = false;
+	$i = 0;
+	while($i < (count($criteria_array) * count($table_array)) && $match == false){
+		$table = $table_array[$i / count($criteria_array)];
+		$criteria = $criteria_array[$i % count($criteria_array)];
+		$q = "SELECT * FROM ".$table." WHERE ".$criteria;
+		$match = check_query($dbc, $q);
+		if($match == true){
+			return $match;
+		}
+		$i++;	
+	}
+	return $match;
+}
+
+/* This function verifies if there are any matches for the specified criteria within the tables in the tables_array
+ * @param $dbc - the database connection
+ * @param $criteria - specific criteria string
+ * @param $table_array - array of tables to search through
+ * @return $match - returns true if any of the criteria existed in any of the tables, else returns false
+ */
+function check_match($dbc, $criteria, $table_array){
+	$i = 0;
+	while($i < count($table_array)){
+		$table = $table_array[i];
+		$q = "SELECT * FROM ".$table." WHERE ".$criteria;
+		$r = mysqli_query($dbc, $q);
+		if(mysqli_num_rows($r) > 1){
+			return true;
+		}
+		$i++;	
+	}
+	return false;
+}
+
+
+
+
+/* This function confirms whether or not a query returned a row from an existing table
+ * @param $dbc - the database connection
+ * @param $q - the query
+ * @return - returns true if the query returned something, else returns false
+ */
+function check_query($dbc, $q){
+	$r = mysqli_query($dbc, $q);
+	if(mysqli_num_rows($r) == 0){	//if the return is blank
+		return false;
+	} else{
+		return true;
 	}
 }
+
 
 
 ?>
