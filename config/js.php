@@ -56,10 +56,10 @@
 		});
 		
 		
-		$('.nav-form').submit(function(event){	/* for auto-loading new label of pages on nav bar */
+		$(".nav-form").submit(function(event){	/* for auto-loading new label of pages on nav bar */
 			var navData = $(this).serializeArray();
-			var navLabel = $('input[name=label]').val();
-			var navID = $('input[name=id]').val();
+			var navLabel = $("input[name=label]").val();
+			var navID = $("input[name=id]").val();
 			$.ajax({
 				url: "ajax/navigation.php",
 				type: "POST",
