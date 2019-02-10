@@ -77,6 +77,20 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
+						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Additional details about the course, such as a field trip to Baca or required fee to be paid">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="extra_details" id="extra_details" placeholder="i.e. Field trip, required fee, etc." autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">	<!-- start of page form -->
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
 						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses required before students are eligible to take this one">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
