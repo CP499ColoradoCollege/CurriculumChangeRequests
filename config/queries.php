@@ -27,7 +27,6 @@
 					$_SESSION['logged_in'] = true;
 					header('Location: home');				//once logged in, redirect to HOME page instead of LOGIN page
 				}
-				
 			}
 			break;
 			
@@ -36,12 +35,15 @@
 			unset($_SESSION['user_email']);
 			unset($_SESSION['logged_in']);
 			header("Location: login");
-			break;
 			
 			
 			break;
 	
 		case 'home':
+			
+			include('functions/phpword.php');
+			include('functions/download.php');
+			
 						
 			if($_POST['action'] == 'download'){				
 				header("Location: download_docx?pid=".$_POST['openedid']);
