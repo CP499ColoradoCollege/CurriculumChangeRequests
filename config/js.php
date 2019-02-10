@@ -15,7 +15,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
 <!-- TinyMCE -->
-<script src=js/tinymce/tinymce.min.js"></script>
+<script src="js/tinymce/tinymce.min.js"></script>
 
 <!-- Dropzone -->
 <script src="js/dropzone.js"></script>

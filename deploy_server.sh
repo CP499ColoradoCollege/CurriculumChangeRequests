@@ -24,7 +24,8 @@ echo "༼ つ ◕_◕ ༽つ"
 echo "Please enter password again to move them to the right place"
 
 ssh -t -t $1@proposal-tool.coloradocollege.edu <<EOF
-sudo cp -a deploy/. ../../var/www/html 
+sudo su -
+cp -a deploy/. ../../var/www/html 
 cd ../../var/www/html
 composer install
 exit
