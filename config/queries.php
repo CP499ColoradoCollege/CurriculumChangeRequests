@@ -2,12 +2,13 @@
 
 #This document is loaded on every page, and contains all logic for querying the MySQL Database on specific pages when forms are filled out
 #This document also contains the logic for redirecting the user when some forms are submitted via POST
-
+	echo $page;
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
 						
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
+			//echo "Statemend: $statement";
 			$statement->bind_param("ss", $email, $password);
 						
 			
@@ -41,9 +42,9 @@
 	
 		case 'home':
 			
-			include('functions/phpword.php');
-			include('functions/download.php');
-			
+			// include('functions/phpword.php');
+			// include('functions/download.php');
+		
 						
 			if($_POST['action'] == 'download'){				
 				header("Location: download_docx?pid=".$_POST['openedid']);
@@ -292,8 +293,8 @@
 		
 		default:
 			
-			//$page = 'home';
-			//header("Location: home");
+			$page = 'home';
+			header("Location: home");
 			
 			break;
 			
