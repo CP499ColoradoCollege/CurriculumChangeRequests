@@ -20,6 +20,7 @@
 		$course = $course->fetchCourseFromCourseID($course_id);		
 		$criteriaInfoHeader = getInfoHeader($proposal->criteria, "");
 		$currentCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Current");
+		//echo $proposal->criteria;
 		$department = str_replace("&", "and", $course->dept_desc);
 		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader, $department);
 		$c_course_name = "$course->subj_code $course->course_num: $course->course_title";//produces something like "CP122: Introduction to Computer Science"
@@ -65,6 +66,9 @@
 	}
 
 	function getDepartmentProposalHeader($course, $courseChangeInfoHeader, $department ){
+
+		// echo $department;
+		// echo "Course Change Header at getDepartmentProposalHeader $courseChangeInfoHeader";
 		
 		$deptProposalHeader = "The department of $department proposes to change the$courseChangeInfoHeader for $course->subj_code $course->course_num: $course->course_title, with the approval of the $course->divs_desc Executive Committee and the Committee on Instruction.";
 
@@ -75,7 +79,7 @@
 		$headerString = $current_or_proposed;
 		$headerString.=" ";
 		$critArray = str_split($criteria);
-		for( $i = 0; $i<count($critArray); $i++ ){
+		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
 				case 1:
 					$headerString.="Department-";
@@ -85,6 +89,7 @@
 					break;
 				case 3:
 					$headerString.="Course Title-";
+					// echo "Hit case 3";
 					break;
 				case 4:
 					$headerString.="Course Description-";
@@ -98,19 +103,23 @@
 			}
 		}
 		$punctuatedHeaderString = addPunctuation($headerString);
+		// echo "Puncuated header String at GetInfoHeader: $punctuatedHeaderString";
 		return $punctuatedHeaderString;
 	}
 	function addPunctuation($headerString){
 		$individual_criteria = explode("-", $headerString);
+		// echo "Individual Criteria[0] at addpunctuation $individual_criteria[0]";
 		if(count($individual_criteria)==2){
-			return $individual_criteria[1];
+			return $individual_criteria[0];
 		}else{
 			for( $i = 0; $i<count($individual_criteria)-2; $i++ ) {
 				$individual_criteria[$i] .= ", ";
 			}
 			$individual_criteria[count($individual_criteria)-3].= "and ";
 		}
+		// echo "Individual Criteria[0] at addpunctuation Post Change $individual_criteria[0]";
 		$punctuatedHeaderString = implode($individual_criteria);
+		// echo "Punctuated Header String at addPunctuation $punctuatedHeaderString";
 		return $punctuatedHeaderString;
 
 	}

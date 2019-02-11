@@ -1,27 +1,27 @@
+<?php
+
+$pid = $_GET['pid'];
+$proposal = new Proposal($dbc);
+$proposal = $proposal->fetchProposalFromID($pid);
+
+$criteria = $proposal->criteria;
+$criteria_array = str_split($criteria);
+$criteria_num = count($criteria_array);
+
+$course_id = $proposal->related_course_id;
+$course = new Course($dbc);
+$course = $course->fetchCourseFromCourseID($course_id);
+
+?>
 
 <div class="container">
 	<div class="card">	<!-- start of card -->
 		
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
-			<h1 style="float: left;"><strong>Change Course Proposal</strong></h1>
+			<h1 style="float: left;"><strong>Edit Proposal "<?php echo $proposal->proposal_title;  ?>"</strong></h1>
 		</div>
 		
 		<?php if(isset($message)){ echo $message; } ?>
-		
-		
-		<?php $criteria = $_GET['type'];
-			$criteria_array = str_split($criteria);
-			$criteria_num = count($criteria_array);
-			
-			$course_id = $_GET['cid'];
-			$course = new Course($dbc);
-			$course = $course->fetchCourseFromCourseID($course_id);
-			
-			if($course == false){
-				header("Location: change_course_proposal_select");
-			}
-			
-		?>
 		
 		<div class="shift-down row">
 			<p class="text-20 div-center"><strong>Course to be changed: <?php echo $course_id." ".$course->course_title; ?></strong></p>
@@ -264,9 +264,10 @@
 			</div>
 			<?php } ?>
 		
-		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
+		
+		<form method="post" role="form">
 			<div class="shift-down row">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<?php if($criteria_array[0] == '1'){ ?>
 					<div class="col-md-4">
@@ -276,7 +277,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_course_id" id="p_course_id" placeholder="i.e. 'CP112'" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_course_id" id="p_course_id" placeholder="i.e. 'CP112'" autocomplete="off" value="<?php echo $proposal->p_course_id; ?>">
 					</div>
 					<?php }else if($criteria_array[0] == '2'){ ?>
 					<div class="col-md-4">
@@ -286,7 +287,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_course_title" id="p_course_title" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_course_title" id="p_course_title" autocomplete="off" value="<?php echo $proposal->p_course_title; ?>">
 					</div>
 					<?php }else if($criteria_array[0] == '3'){ ?>
 					<div class="col-md-4">
@@ -296,7 +297,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_course_desc" id="p_course_desc" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_course_desc" id="p_course_desc" autocomplete="off"><?php echo $proposal->p_course_desc; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[0] == '4'){ ?>
 					<div class="col-md-4">
@@ -306,7 +307,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"><?php echo $proposal->p_extra_details; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[0] == '5'){ ?>
 					<div class="col-md-4">
@@ -316,7 +317,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off" value="<?php echo $proposal->p_limit; ?>">
 					</div>
 					<?php }else if($criteria_array[0] == '6'){ ?>
 					<div class="col-md-4">
@@ -326,7 +327,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off" value="<?php echo $proposal->p_prereqs; ?>">
 					</div>
 					<?php }else if($criteria_array[0] == '7'){ ?>
 					<div class="col-md-4">
@@ -337,11 +338,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -361,7 +362,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_course_title" id="p_course_title" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_course_title" id="p_course_title" autocomplete="off" value="<?php echo $proposal->p_course_title; ?>">
 					</div>
 					<?php }else if($criteria_array[1] == '3'){ ?>
 					<div class="col-md-4">
@@ -371,7 +372,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_course_desc" id="p_course_desc" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_course_desc" id="p_course_desc" autocomplete="off"><?php echo $proposal->p_course_desc; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[1] == '4'){ ?>
 					<div class="col-md-4">
@@ -381,7 +382,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"><?php echo $proposal->p_extra_details; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[1] == '5'){ ?>
 					<div class="col-md-4">
@@ -391,7 +392,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off" value="<?php echo $proposal->p_limit; ?>">
 					</div>
 					<?php }else if($criteria_array[1] == '6'){ ?>
 					<div class="col-md-4">
@@ -401,7 +402,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off" value="<?php echo $proposal->p_prereqs; ?>">
 					</div>
 					<?php }else if($criteria_array[1] == '7'){ ?>
 					<div class="col-md-4">
@@ -412,11 +413,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -437,7 +438,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_course_desc" id="p_course_desc" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_course_desc" id="p_course_desc" autocomplete="off"><?php echo $proposal->p_course_desc; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[2] == '4'){ ?>
 					<div class="col-md-4">
@@ -447,7 +448,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"><?php echo $proposal->p_extra_details; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[2] == '5'){ ?>
 					<div class="col-md-4">
@@ -457,7 +458,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off" value="<?php echo $proposal->p_limit; ?>">
 					</div>
 					<?php }else if($criteria_array[2] == '6'){ ?>
 					<div class="col-md-4">
@@ -467,7 +468,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off" value="<?php echo $proposal->p_prereqs; ?>">
 					</div>
 					<?php }else if($criteria_array[2] == '7'){ ?>
 					<div class="col-md-4">
@@ -478,11 +479,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -503,7 +504,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"></textarea>
+						<textarea class="form-control input-md text-box" type="text" name="p_extra_details" id="p_extra_details" autocomplete="off"><?php echo $proposal->p_extra_details; ?></textarea>
 					</div>
 					<?php }else if($criteria_array[3] == '5'){ ?>
 					<div class="col-md-4">
@@ -513,7 +514,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off" value="<?php echo $proposal->p_limit; ?>">
 					</div>
 					<?php }else if($criteria_array[3] == '6'){ ?>
 					<div class="col-md-4">
@@ -523,7 +524,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off" value="<?php echo $proposal->p_prereqs; ?>">
 					</div>
 					<?php }else if($criteria_array[3] == '7'){ ?>
 					<div class="col-md-4">
@@ -534,11 +535,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -558,7 +559,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" autocomplete="off" value="<?php echo $proposal->p_limit; ?>">
 					</div>
 					<?php }else if($criteria_array[4] == '6'){ ?>
 					<div class="col-md-4">
@@ -568,7 +569,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off" value="<?php echo $proposal->p_prereqs; ?>">
 					</div>
 					<?php }else if($criteria_array[4] == '7'){ ?>
 					<div class="col-md-4">
@@ -579,11 +580,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -603,7 +604,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_prereqs" id="p_prereqs" autocomplete="off" value="<?php echo $proposal->p_prereqs; ?>">
 					</div>
 					<?php }else if($criteria_array[5] == '7'){ ?>
 					<div class="col-md-4">
@@ -614,11 +615,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -639,11 +640,11 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="p_units" id="p_units">
-							<option value="0 Units" selected>0 Units</option>
-							<option value="0.25 Units">0.25 Units</option>
-							<option value="0.5 Units">0.5 Units</option>
-							<option value="1 Unit">1 Unit</option>
-							<option value="2 Units">2 Units</option>
+							<option value="0 Units"<?php if ($proposal->p_units == '0 Units'){ echo ' selected'; } ?>>0 Units</option>
+							<option value="0.25 Units"<?php if ($proposal->p_units == '0.25 Units'){ echo ' selected'; } ?>>0.25 Units</option>
+							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
+							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
+							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
 					<?php } ?>
@@ -661,7 +662,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-4">
-						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for change existing course proposal" autocomplete="off"></textarea>
+						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for change existing course proposal" autocomplete="off"><?php echo $proposal->rationale; ?></textarea>
 					</div>
 				</div>
 			</div>
@@ -675,7 +676,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="lib_impact" id="lib_impact" autocomplete="off">
+						<input class="form-control input-md" type="text" name="lib_impact" id="lib_impact" autocomplete="off" value="<?php echo $proposal->lib_impact; ?>">
 					</div>
 				</div>
 			</div>
@@ -689,7 +690,7 @@
 						</button> : 
 					</div>
 					<div class="col-md-3">
-						<input class="form-control input-md" type="text" name="tech_impact" id="tech_impact" autocomplete="off">
+						<input class="form-control input-md" type="text" name="tech_impact" id="tech_impact" autocomplete="off" value="<?php echo $proposal->tech_impact; ?>">
 					</div>
 				</div>
 			</div>
@@ -704,6 +705,3 @@
 		
 	</div>
 </div>
-
-
-

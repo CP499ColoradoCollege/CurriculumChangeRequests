@@ -16,7 +16,7 @@
 					<div class="col-md-2"></div>
 					
 					<div class="col-md-3">
-						<label for="type" style="font-size: 22px; float: right;">Type of New Proposal :  
+						<label for="type" style="font-size: 22px; float: right;">Type of New Proposal : </label>
 					</div>
 					
 					<div class="col-md-3">
@@ -24,7 +24,6 @@
 							<option value="1" selected>Add a New Course</option>
 							<option value="2">Change an Existing Course</option>
 							<option value="3">Remove an Existing Course</option>
-							<option value="4">Other...</option>
 						</select>
 					</div>
 					

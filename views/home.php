@@ -28,7 +28,7 @@
 			</div>
 			
 		</div>
-		
+				
 		<?php
 			$proposals = $user->getProposals();
 			
