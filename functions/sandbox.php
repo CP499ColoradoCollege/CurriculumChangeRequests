@@ -14,7 +14,7 @@ function get_path() {
     if ($path['call'] == basename($_SERVER['PHP_SELF'])) {
       $path['call'] = '';
 		}
-		echo "Path:".$path['call'];
+		// echo "Path:".$path['call'];
     $path['call_parts'] = explode('/', $path['call']);
     $path['query_utf8'] = urldecode($request_path[1]);
     $path['query'] = utf8_decode(urldecode($request_path[1]));

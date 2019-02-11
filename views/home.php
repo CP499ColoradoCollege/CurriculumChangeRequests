@@ -30,9 +30,6 @@
 		</div>
 		
 		<?php
-		include('../functions/User.php');
-			$user = new User($dbc);
-			$user->fetchUserFromEmail("admin@proposals.com");
 			$proposals = $user->getProposals();
 			
 			for($i = 0; $i < count($proposals); $i += 1){

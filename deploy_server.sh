@@ -11,7 +11,7 @@ fi
 mkdir deploy 
 
 cp -r config databaseConnection functions vendor images template views deploy/
-cp index.php deploy/
+cp index.php .htaccess deploy/
 sftp $1@proposal-tool.coloradocollege.edu <<EOF
 put -r deploy/
 exit
