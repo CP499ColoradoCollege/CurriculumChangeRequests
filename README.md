@@ -1,5 +1,5 @@
 ## Filesystem
-![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/image1.png)
+![alt text](CurriculumChangeRequests/image1.png)
 
 Here is an explanation of each of the directories, as well as each file in the directory:
 
@@ -12,24 +12,24 @@ Here is an explanation of each of the directories, as well as each file in the d
 + Vendor : contains all of the PHP dependencies necessary for our web-application to function properly, such as PHPWord.
 + Views : contains the HTML structure for our each of our web-application’s web pages.
 ## System Architecture
-![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/Architecture.jpg)
+![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/Architecture.png)
 ### External Components:
-**Banner Course Database:**
+**Banner Course Database:**  
   A database which holds records for all courses at CC.
-**Banner:**
+**Banner:**  
   The point of interface between our application data and the Banner Course Database
 ### Internal Components:
-**Linux Server:**
+**Linux Server:**  
   A linux machine running CentOS 7.6
-**Apache:**
+**Apache:**  
   Used for web hosting. Handles https requests and serves the browser of the client
-**CAS**
+**CAS**  
   CAS is Colorado college’s single sign in authentication system. Our web server checks for an authentication token, which is produced by CAS. If this token is not present or invalid, the user is routed to cas.coloradocollege.edu. There, they are prompted to provide their CC username and password. If their credentials are good, an access token is produced and they are redirected once again to our domain - proposal-tool.coloradocollege.edu
-**Webpages:**
+**Webpages:**  
   Our webpages use HTML and CSS for front end UI. Backend functionality for the webpages is written in PHP. PHP also queries our proposal-tool SQL database to fill in relevant information in course proposal web forms, and course proposal documents.
-**Java:**
+**Java:**  
   Java is used to continually update our server. Once a day, the ExtractExcelData program reads a .csv file containing the course catalog data, and pushes that information into our proposal-tool SQL database. In addition, Java is also used to produce a .csv file containing all accepted changed, which is sent to Banner.  
-**Cron:**
+**Cron:**  
 Cron is used to schedule the ExtractExcelData program to run once per day.
 
 
