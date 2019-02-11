@@ -24,7 +24,7 @@ function get_path() {
       $path['query_vars'][$t[0]] = $t[1];
     }
 	}
-	echo "Path:".$path['call_parts'];
+	// echo "Path:".$path['call_parts'];
   return $path;
 }
 

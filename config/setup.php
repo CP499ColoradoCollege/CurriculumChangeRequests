@@ -1,7 +1,8 @@
 <?php
 // Setup File:
-
-error_reporting(1);	//not necessary; gets rid of annoying error reporting
+error_reporting(E_ALL); 
+ini_set('display_errors', 'On');
+// error_reporting(1);	//not necessary; gets rid of annoying error reporting
 
 #Database Connection:
 include_once('config/connection.php');	//for the connection to the database
@@ -35,20 +36,14 @@ $path = get_path();		//gets the url/path
 $site_title = 'Course Proposal System';	//sets the site's title
 
 
-
-
-
-
-echo "HERE IS THE PATH".$path['call_parts'][0];
 #Page Setup:
 $_SESSION['logged_in'] = true;
 if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
-	echo "Made it";
 	if($_SESSION['logged_in'] == true){
 		$page = 'home';
-		// header('Location: home');	//sets blank/empty url to the home page
+		header('Location: home');	//sets blank/empty url to the home page
 	} else{
-		// header('Location: login');	//sets blank/empty url to the dashboard
+		header('Location: login');	//sets blank/empty url to the dashboard
 	}
 } else{
 	$page = $path['call_parts'][0];
@@ -59,8 +54,9 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 $_SESSION['logged_in'] = true;
 if($_SESSION['logged_in'] == true){
 	$email = $_SESSION['user_email'];
+	echo "Email: ".$email;
 	$user = new User($dbc);
-	$user->fetchUserFromEmail($email);
+	$user->fetchUserFromEmail("admin@proposals.com");
 }
 
 
