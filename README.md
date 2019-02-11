@@ -1,5 +1,5 @@
 ## Filesystem
-!(https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/image1.png)
+![alt text](CurriculumChangeRequests/image1.png)
 
 Here is an explanation of each of the directories, as well as each file in the directory:
 
