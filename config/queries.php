@@ -151,7 +151,6 @@
 							
 							$criteria = "";
 							
-							
 							if(isset($_POST['course_id'])){
 								$criteria = $criteria."1";
 							}
@@ -165,11 +164,11 @@
 							}
 							
 							if(isset($_POST['extra_details'])){
-							    $criteria = $criteria."4";
+								$criteria = $criteria."4";
 							}
 							
 							if(isset($_POST['enrollment_limit'])){
-							    $criteria = $criteria."5";
+								$criteria = $criteria."5";
 							}
 							
 							if(isset($_POST['prerequisites'])){
@@ -247,6 +246,91 @@
 		    
 		    
 		    break;
+			
+		case 'edit_proposal_add':
+			
+			if($_POST){
+				
+				$pid = $_GET['pid'];
+				
+				$user_id = $user->id;
+				$new_proposal = new Proposal($dbc);
+				$new_proposal = $new_proposal->editProposalAddNewCourse($user_id, $pid, $_POST);
+				
+				if($new_proposal != false){
+					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
+				}else{
+					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
+				}
+			}
+			
+			break;
+			
+		case 'edit_proposal_revise':
+			
+			if($_POST){
+				
+				$user_id = $user->id;
+				$pid = $_GET['pid'];
+				
+				$proposal = new Proposal($dbc);
+				$proposal = $proposal->fetchProposalFromID($pid);
+				
+				$change = new Proposal($dbc);
+				
+				$updated = $change->editProposalReviseExistingCourse($pid, $proposal->proposal_date, $user_id, $proposal->related_course_id, $proposal->criteria, $_POST);
+				
+				if($updated == true){
+					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
+				}else{
+					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
+				}
+					
+			}
+			
+			break;
+			
+		case 'edit_proposal_drop':
+			
+			if($_POST){
+					
+				$user_id = $user->id;
+				$pid = $_GET['pid'];
+		        
+		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
+		        $course_id_array = str_split($course_id);
+		        
+		        if(count($course_id_array) == 5){
+		            
+		            if($course_id != ""){
+		                
+		                $course = new Course($dbc);
+		                $course = $course->fetchCourseFromCourseID($course_id);
+		                
+		                if($course != false){
+		                    
+		                    $remove_proposal = new Proposal($dbc);
+		                    $remove_proposal = $remove_proposal->editProposalDropExistingCourse($user_id, $pid, $_POST);
+		                    
+		                    if($remove_proposal == true){
+		                        $message = '<p class="bg-success">Your edits were successfully saved.</p>';
+		                    }else{
+		                        $message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
+		                    }
+		                   
+		                }else{
+		                    $message = '<p class="bg-danger">The Existing Course ID entered does not match any existing courses.</p>';
+		                }
+		            }else{
+		                $message = '<p class="bg-danger">The Existing Course ID field is blank.</p>';
+		            }
+		        }else{
+		            $message = '<p class="bg-danger">The Existing Course ID entered is invalid.</p>';
+		        }
+				
+			}
+			
+			break;
 			
 		case 'edit_proposal':
 			
