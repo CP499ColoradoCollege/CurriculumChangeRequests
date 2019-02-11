@@ -35,7 +35,9 @@ class Proposal{
 	
 	public $p_course_desc;
 	
-	public $p_extra_desc;
+	public $p_extra_details;
+	
+	public $p_limit;
 	
 	public $p_prereqs;
 	
@@ -59,12 +61,15 @@ class Proposal{
 	
 	
 	public function fetchProposalFromID($id){
-		$statement = $this->dbc->prepare("SELECT user_id, related_course_id, proposal_title, proposal_date, sub_status, approval_status, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_extra_desc, p_prereqs, p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status FROM proposals WHERE id = ?");
+		
+		$dbc = $this->dbc;
+		
+		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, proposal_date, sub_status, approval_status, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
 
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, $sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, $p_course_title, $p_course_desc, $p_extra_desc, $p_prereqs, $p_units, $p_crosslisting, $p_perspective, $rationale, $lib_impact, $tech_impact, $status);
+		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, $sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $p_crosslisting, $p_perspective, $rationale, $lib_impact, $tech_impact, $status);
 		$statement->fetch();
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			$this->id = $id;
@@ -81,7 +86,8 @@ class Proposal{
 			$this->p_course_id = $p_course_id;
 			$this->p_course_title = $p_course_title;
 			$this->p_course_desc = $p_course_desc;
-			$this->p_extra_desc = $p_extra_desc;
+			$this->p_extra_details = $p_extra_details;
+			$this->p_limit = $p_limit;
 			$this->p_prereqs = $p_prereqs;
 			$this->p_units = $p_units;
 			$this->p_crosslisting = $p_crosslisting;
@@ -98,15 +104,14 @@ class Proposal{
 		}
 	}
 	
-	
 
 	
 	public function createProposalAddNewCourse($user_id, $post_array){
 		
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, proposal_date, department, type, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("sssssssssssss", $this->user_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, proposal_date, department, type, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("sssssssssssssss", $this->user_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
 		
 		$course_id = mysqli_real_escape_string($dbc, $post_array['course_id']);
 		$course_title = mysqli_real_escape_string($dbc, $post_array['course_title']);
@@ -119,6 +124,9 @@ class Proposal{
 		$this->p_course_id = $course_id;
 		$this->p_course_title = $course_title;
 		$this->p_course_desc = mysqli_real_escape_string($dbc, $post_array['course_desc']);
+		$this->p_extra_details = mysqli_real_escape_string($dbc, $post_array['extra_details']);
+		$this->p_limit = mysqli_real_escape_string($dbc, $post_array['p_limit']);
+		
 		$this->p_prereqs = mysqli_real_escape_string($dbc, $post_array['course_prereqs']);
 		if($this->p_prereqs == ''){
 			$this->p_prereqs = 'None';
@@ -142,13 +150,47 @@ class Proposal{
 		}
 	}
 
+
+	public function editProposalAddNewCourse($user_id, $pid, $post_array){
+			
+		$dbc = $this->dbc;
+		
+		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
+		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
+		
+		$p_course_id = mysqli_escape_string($dbc, $post_array['course_id']);
+		$p_course_title = mysqli_escape_string($dbc, $post_array['course_title']);
+		$p_course_desc = mysqli_escape_string($dbc, $post_array['course_desc']);
+		$p_extra_details = mysqli_escape_string($dbc, $post_array['extra_details']);
+		$p_limit = mysqli_escape_string($dbc, $post_array['limit']);
+		$p_prereqs = mysqli_escape_string($dbc, $post_array['course_prereqs']);
+		$p_units = mysqli_escape_string($dbc, $post_array['course_units']);
+		$rationale = mysqli_escape_string($dbc, $post_array['rationale']);
+		$lib_impact = mysqli_escape_string($dbc, $post_array['lib_impact']);
+		if($lib_impact == ''){
+			$lib_impact = 'None';
+		}
+		$tech_impact = mysqli_escape_string($dbc, $post_array['tech_impact']);
+		if($tech_impact == ''){
+			$tech_impact = 'None';
+		}
+		
+		$bool = $statement->execute();
+		if($bool){
+			return true;
+		}else{
+			echo 'error: '.mysqli_error($dbc);
+			return false;
+		}
+	}
+
 	
 	public function createProposalChangeExistingCourse($user_id, $related_course_id, $criteria, $post_array){
 				
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("ssssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_department, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("sssssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
 										
 		$this->user_id = $user_id;
 		$this->related_course_id = $related_course_id;		
@@ -166,24 +208,13 @@ class Proposal{
 		
 		
 		if(in_array('1', $criteria)){
-			$this->p_department = $post_array['p_department'];
-			$changes = $changes." Department";
-		}else{
-			$this->p_department = "";
-		}
-		
-		if(in_array('2', $criteria)){
 			$this->p_course_id = mysqli_real_escape_string($dbc, $post_array['p_course_id']);
-			if($changes != ""){
-				$changes = $changes.", Course ID";
-			}else{
-				$changes = $changes." Course ID";
-			}
+			$changes = $changes." Course ID";
 		}else{
 			$this->p_course_id = "";
 		}
 		
-		if(in_array('3', $criteria)){
+		if(in_array('2', $criteria)){
 			$this->p_course_title = mysqli_real_escape_string($dbc, $post_array['p_course_title']);
 			if($changes != ""){
 				$changes = $changes.", Title";
@@ -194,7 +225,7 @@ class Proposal{
 			$this->p_course_title = "";
 		}
 		
-		if(in_array('4', $criteria)){
+		if(in_array('3', $criteria)){
 			$this->p_course_desc = mysqli_real_escape_string($dbc, $post_array['p_course_desc']);
 			if($changes != ""){
 				$changes = $changes.", Description";
@@ -205,7 +236,29 @@ class Proposal{
 			$this->p_course_desc = "";
 		}
 		
+		if(in_array('4', $criteria)){
+			$this->p_extra_details = mysqli_real_escape_string($dbc, $post_array['p_extra_details']);
+			if($changes != ""){
+				$changes = $changes.", Extra Details";
+			}else{
+				$changes = $changes." Extra Details";
+			}
+		}else{
+			$this->p_extra_details = "";
+		}
+		
 		if(in_array('5', $criteria)){
+			$this->p_limit = mysqli_real_escape_string($dbc, $post_array['p_limit']);
+			if($changes != ""){
+				$changes = $changes.", Limit";
+			}else{
+				$changes = $changes." Limit";
+			}
+		}else{
+			$this->p_limit = "";
+		}
+		
+		if(in_array('6', $criteria)){
 			$this->p_prereqs = mysqli_real_escape_string($dbc, $post_array['p_prereqs']);
 			if($changes != ""){
 				$changes = $changes.", Prerequisites";
@@ -216,7 +269,7 @@ class Proposal{
 			$this->p_prereqs = "";
 		}
 		
-		if(in_array('6', $criteria)){
+		if(in_array('7', $criteria)){
 			$this->p_units = $post_array['p_units'];
 			if($changes != ""){
 				$changes = $changes.", Units";
@@ -247,7 +300,120 @@ class Proposal{
 			echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($this->dbc)."</p>";
 			return false;
 		}
+		return true;
 	}
+
+
+	public function editProposalReviseExistingCourse($pid, $date, $user_id, $related_course_id, $criteria, $post_array){		
+		
+		$dbc = $this->dbc;
+
+		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
+		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
+				
+		$criteria = str_split($criteria);	
+		$changes = "";
+		
+		$course = new Course($dbc);
+		$course = $course->fetchCourseFromCourseID($related_course_id);
+		
+		if(in_array('1', $criteria)){
+			$p_course_id = mysqli_real_escape_string($dbc, $post_array['p_course_id']);
+			$changes = $changes." Course ID";
+		}else{
+			$p_course_id = "";
+		}
+		
+		if(in_array('2', $criteria)){
+			$p_course_title = mysqli_real_escape_string($dbc, $post_array['p_course_title']);
+			if($changes != ""){
+				$changes = $changes.", Title";
+			}else{
+				$changes = $changes." Title";
+			}
+		}else{
+			$p_course_title = "";
+		}
+		
+		if(in_array('3', $criteria)){
+			$p_course_desc = mysqli_real_escape_string($dbc, $post_array['p_course_desc']);
+			if($changes != ""){
+				$changes = $changes.", Description";
+			}else{
+				$changes = $changes." Description";
+			}
+		}else{
+			$p_course_desc = "";
+		}
+		
+		if(in_array('4', $criteria)){
+			$p_extra_details = mysqli_real_escape_string($dbc, $post_array['p_extra_details']);
+			if($changes != ""){
+				$changes = $changes.", Extra Details";
+			}else{
+				$changes = $changes." Extra Details";
+			}
+		}else{
+			$p_extra_details = "";
+		}
+		
+		if(in_array('5', $criteria)){
+			$p_limit = mysqli_real_escape_string($dbc, $post_array['p_limit']);
+			if($changes != ""){
+				$changes = $changes.", Limit";
+			}else{
+				$changes = $changes." Limit";
+			}
+		}else{
+			$p_limit = "";
+		}
+		
+		if(in_array('6', $criteria)){
+			$p_prereqs = mysqli_real_escape_string($dbc, $post_array['p_prereqs']);
+			if($changes != ""){
+				$changes = $changes.", Prerequisites";
+			}else{
+				$changes = $changes." Prerequisites";
+			}
+		}else{
+			$p_prereqs = "";
+		}
+		
+		if(in_array('7', $criteria)){
+			$p_units = $post_array['p_units'];
+			if($changes != ""){
+				$changes = $changes.", Units";
+			}else{
+				$changes = $changes." Units";
+			}
+		}else{
+			$p_units = "";
+		}
+		
+		$rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
+		$lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		if($lib_impact == ""){
+			$lib_impact = "None";
+		}
+		$tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		if($tech_impact == ""){
+			$tech_impact = "None";
+		}
+						
+		$bool = $statement->execute();
+		if($bool){
+			return true;
+		}else{
+			echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($this->dbc)."</p>";
+			return false;
+		}
+		return true;
+		
+		
+		
+	}
+
+
 
 	public function createProposalRemoveExistingCourse($user_id, $course_id, $post_array){
 		
@@ -285,6 +451,36 @@ class Proposal{
 			return false;
 		}
 	}
+
+	public function editProposalDropExistingCourse($user_id, $pid, $post_array){
+		
+		$dbc = $this->dbc;
+				
+		$statement = $dbc->prepare("UPDATE proposals SET related_course_id = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
+		$statement->bind_param("sssss", $related_course_id, $rationale, $lib_impact, $tech_impact, $pid);
+	
+		$related_course_id = mysqli_real_escape_string($dbc, $post_array['existing_course_id']);
+		$rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
+		$lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		if($lib_impact == ''){
+			$lib_impact = 'None';
+		}
+		$tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		if($tech_impact == ''){
+			$tech_impact = 'None';
+		}
+		
+		$bool = $statement->execute();
+		if($bool){
+			return true;
+		}else{
+			echo "Error: ".mysqli_error($dbc);
+			return false;
+		}
+	}
+
+
+
 	
 }
 
