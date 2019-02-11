@@ -12,7 +12,7 @@ Here is an explanation of each of the directories, as well as each file in the d
 + Vendor : contains all of the PHP dependencies necessary for our web-application to function properly, such as PHPWord.
 + Views : contains the HTML structure for our each of our web-application’s web pages.
 ## System Architecture
-![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/Architecture.png)
+![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/Architecture.jpg)
 ### External Components:
 **Banner Course Database:**
   A database which holds records for all courses at CC.
