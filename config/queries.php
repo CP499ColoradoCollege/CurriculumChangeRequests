@@ -151,28 +151,33 @@
 							
 							$criteria = "";
 							
-							if(isset($_POST['department'])){
+							
+							if(isset($_POST['course_id'])){
 								$criteria = $criteria."1";
 							}
 							
-							if(isset($_POST['course_id'])){
+							if(isset($_POST['course_title'])){
 								$criteria = $criteria."2";
 							}
 							
-							if(isset($_POST['course_title'])){
+							if(isset($_POST['course_desc'])){
 								$criteria = $criteria."3";
 							}
 							
-							if(isset($_POST['course_desc'])){
-								$criteria = $criteria."4";
+							if(isset($_POST['extra_details'])){
+							    $criteria = $criteria."4";
+							}
+							
+							if(isset($_POST['enrollment_limit'])){
+							    $criteria = $criteria."5";
 							}
 							
 							if(isset($_POST['prerequisites'])){
-								$criteria = $criteria."5";
+								$criteria = $criteria."6";
 							}
 							
 							if(isset($_POST['units'])){
-								$criteria = $criteria."6";
+								$criteria = $criteria."7";
 							}
 							
 							if($criteria != ""){
