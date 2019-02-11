@@ -17,12 +17,12 @@
 
 
 <!-- Dropzone CSS -->
-<link rel="stylesheet" href="css/dropzone.css">
+<!-- <link rel="stylesheet" href="css/dropzone.css"> -->
 
 
-<link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/font-awesome.min.css" />
-<link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/phpword.css" />
+<!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/bootstrap.min.css" /> -->
+<!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/font-awesome.min.css" /> -->
+<!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/phpword.css" /> -->
 
 
 <style>

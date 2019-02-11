@@ -15,10 +15,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
 <!-- TinyMCE -->
-<script src=js/tinymce/tinymce.min.js"></script>
+<!-- <script src="js/tinymce/tinymce.min.js"></script> -->
 
 <!-- Dropzone -->
-<script src="js/dropzone.js"></script>
+<!-- <script src="js/dropzone.js"></script> -->
 
 
 <script>
@@ -56,10 +56,10 @@
 		});
 		
 		
-		$('.nav-form').submit(function(event){	/* for auto-loading new label of pages on nav bar */
+		$(".nav-form").submit(function(event){	/* for auto-loading new label of pages on nav bar */
 			var navData = $(this).serializeArray();
-			var navLabel = $('input[name=label]').val();
-			var navID = $('input[name=id]').val();
+			var navLabel = $("input[name=label]").val();
+			var navID = $("input[name=id]").val();
 			$.ajax({
 				url: "ajax/navigation.php",
 				type: "POST",
@@ -74,15 +74,15 @@
 	});	//END document.ready();
 	
 	//following chunk is for the TinyMCE widget, which applies to all divs with class "editor"
-	tinymce.init({
-		selector: ".editor",
-		theme: "modern",
-		plugins: [
-			"advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-			"searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-			"save table contextmenu directionality emoticons template paste textcolor"
-		]
-	});
+	// tinymce.init({
+	// 	selector: ".editor",
+	// 	theme: "modern",
+	// 	plugins: [
+	// 		"advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+	// 		"searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+	// 		"save table contextmenu directionality emoticons template paste textcolor"
+	// 	]
+	// });
 	
 </script>
 

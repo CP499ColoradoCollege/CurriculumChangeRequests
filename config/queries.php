@@ -2,11 +2,10 @@
 
 #This document is loaded on every page, and contains all logic for querying the MySQL Database on specific pages when forms are filled out
 #This document also contains the logic for redirecting the user when some forms are submitted via POST
-	echo $page;
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
-		$_SESSION['logged_in'] = true;
+			$_SESSION['logged_in'] = true;
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
 			echo "Statemend: $statement";
 			$statement->bind_param("ss", $email, $password);
@@ -32,11 +31,10 @@
 			break;
 			
 		case 'logout':
-			
+			//TODO make this delete cas toke, requiring cas authentication again.
 			unset($_SESSION['user_email']);
 			unset($_SESSION['logged_in']);
 			header("Location: login");
-			
 			
 			break;
 	
@@ -46,7 +44,8 @@
 			// include('functions/download.php');
 		
 						
-			if($_POST['action'] == 'download'){				
+			if($_POST['action'] == 'download'){	
+				// echo "action!";			
 				header("Location: download_docx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
@@ -292,9 +291,6 @@
 			break;
 		
 		default:
-			
-			$page = 'home';
-			header("Location: home");
 			
 			break;
 			

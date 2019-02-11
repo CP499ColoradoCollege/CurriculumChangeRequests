@@ -5,6 +5,7 @@ include('config/connection.php');	//database connection
 include('config/queries.php');
 include('config/css.php');
 include('config/js.php');
+echo "I found it here";
  ?>
 
 <!DOCTYPE  html>

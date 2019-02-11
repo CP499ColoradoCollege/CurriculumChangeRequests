@@ -1,10 +1,11 @@
 <?php
 // Setup File:
-
-error_reporting(1);	//not necessary; gets rid of annoying error reporting
+// error_reporting(E_ALL); 
+// ini_set('display_errors', 'On');
+ error_reporting(0);	//not necessary; gets rid of annoying error reporting
 
 #Database Connection:
-include('config/connection.php');	//for the connection to the database
+include_once('config/connection.php');	//for the connection to the database
 
 #Constants:
 $string_min = 6;
@@ -27,7 +28,7 @@ include('classes/Proposal.php');
 //PhpWord includes
 //include('functions/phpWordSample/code/New_Header.php');
 //include('php_word_header.php');
-
+$_SESSION['user_email'] = "admin@proposals.com";
   
 #Site Setup:
 //$debug = data_setting_value($dbc, 'debug-status');	//gets the current debug setting value (for developing)
@@ -35,8 +36,8 @@ $path = get_path();		//gets the url/path
 $site_title = 'Course Proposal System';	//sets the site's title
 
 
-
 #Page Setup:
+// $_SESSION['logged_in'] = true;
 if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 	if($_SESSION['logged_in'] == true){
 		$page = 'home';
@@ -49,12 +50,11 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 }
 
 
-
 #User Setup:
+// $_SESSION['logged_in'] = true;
 if($_SESSION['logged_in'] == true){
-	$email = $_SESSION['user_email'];
 	$user = new User($dbc);
-	$user->fetchUserFromEmail($email);
+	$user->fetchUserFromEmail($_SESSION['user_email']);
 }
 
 

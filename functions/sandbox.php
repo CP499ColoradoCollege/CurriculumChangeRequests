@@ -13,7 +13,8 @@ function get_path() {
     $path['call'] = utf8_decode($path['call_utf8']);
     if ($path['call'] == basename($_SERVER['PHP_SELF'])) {
       $path['call'] = '';
-    }
+		}
+		// echo "Path:".$path['call'];
     $path['call_parts'] = explode('/', $path['call']);
     $path['query_utf8'] = urldecode($request_path[1]);
     $path['query'] = utf8_decode(urldecode($request_path[1]));
@@ -22,7 +23,8 @@ function get_path() {
       $t = explode('=', $var);
       $path['query_vars'][$t[0]] = $t[1];
     }
-  }
+	}
+	// echo "Path:".$path['call_parts'];
   return $path;
 }
 

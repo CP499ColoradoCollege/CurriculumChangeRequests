@@ -5,10 +5,10 @@
 session_start();
 
 if($_SESSION['logged_in'] == true){
-	
+	// $_SESSION['user_email'] = "admin@proposals.com";
 	//dynamic header w/ navbar
 	include('template/header.php');
-
+	// $page = "home";
 	//dynamic pages
 	include('views/'.$page.'.php');
 	
