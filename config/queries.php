@@ -40,12 +40,7 @@
 	
 		case 'home':
 			
-			// include('functions/phpword.php');
-			// include('functions/download.php');
-		
-						
 			if($_POST['action'] == 'download'){	
-				// echo "action!";			
 				header("Location: download_docx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
@@ -92,10 +87,12 @@
 			if($_POST){
 								
 				$user_id = $user->id;
+				echo "User ID: $user_id";
 				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->createProposalAddNewCourse($user_id, $_POST);
 				
+				echo " ABout to check stuff";
 				if($new_proposal != false){
 					header("Location: home");
 				}else{
@@ -291,7 +288,8 @@
 			break;
 		
 		default:
-			
+			// $page = 'home';
+			// header('Location: home');
 			break;
 			
 	}

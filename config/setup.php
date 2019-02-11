@@ -1,8 +1,8 @@
 <?php
 // Setup File:
-// error_reporting(E_ALL); 
-// ini_set('display_errors', 'On');
- error_reporting(0);	//not necessary; gets rid of annoying error reporting
+ //error_reporting(E_ALL); 
+ //ini_set('display_errors', 'On');
+  error_reporting(0);	//not necessary; gets rid of annoying error reporting
 
 #Database Connection:
 include_once('config/connection.php');	//for the connection to the database
@@ -13,7 +13,6 @@ $string_max = 150;
 
 
 #Functions:
-include('functions/data.php');		//for importing all data-related functions
 include('functions/sandbox.php');
 
 

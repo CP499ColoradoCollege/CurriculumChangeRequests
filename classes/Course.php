@@ -84,7 +84,7 @@ class Course{
 			$this->status = $status;
 			return $this;
 		}else{
-			//echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 Course.";
+			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 Course.";
 			return false;
 		}
 	}
