@@ -15,21 +15,21 @@ Here is an explanation of each of the directories, as well as each file in the d
 ![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/Architecture.jpg)
 ### External Components:
 **Banner Course Database:**  
-  A database which holds records for all courses at CC
+  A database which holds records for all courses at CC  
 **Banner:**  
-  The point of interface between our application data and the Banner Course Database
+  The point of interface between our application data and the Banner Course Database  
 ### Internal Components:
 **Linux Server:**  
-  A linux machine running CentOS 7.6
+  A linux machine running CentOS 7.6  
 **Apache:**  
-  Used for web hosting. Handles https requests and serves the browser of the client
+  Used for web hosting. Handles https requests and serves the browser of the client  
 **CAS**  
-  CAS is Colorado college’s single sign in authentication system. Our web server checks for an authentication token, which is produced by CAS. If this token is not present or invalid, the user is routed to cas.coloradocollege.edu. There, they are prompted to provide their CC username and password. If their credentials are good, an access token is produced and they are redirected once again to our domain - proposal-tool.coloradocollege.edu
+  CAS is Colorado college’s single sign in authentication system. Our web server checks for an authentication token, which is produced by CAS. If this token is not present or invalid, the user is routed to cas.coloradocollege.edu. There, they are prompted to provide their CC username and password. If their credentials are good, an access token is produced and they are redirected once again to our domain - proposal-tool.coloradocollege.edu  
 **Webpages:**  
-  Our webpages use HTML and CSS for front end UI. Backend functionality for the webpages is written in PHP. PHP also queries our proposal-tool SQL database to fill in relevant information in course proposal web forms, and course proposal documents.
+  Our webpages use HTML and CSS for front end UI. Backend functionality for the webpages is written in PHP. PHP also queries our proposal-tool SQL database to fill in relevant information in course proposal web forms, and course proposal documents.  
 **Java:**  
   Java is used to continually update our server. Once a day, the ExtractExcelData program reads a .csv file containing the course catalog data, and pushes that information into our proposal-tool SQL database. In addition, Java is also used to produce a .csv file containing all accepted changed, which is sent to Banner.  
 **Cron:**  
-Cron is used to schedule the ExtractExcelData program to run once per day.
+Cron is used to schedule the ExtractExcelData program to run once per day.  
 
 
