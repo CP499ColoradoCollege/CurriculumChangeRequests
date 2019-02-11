@@ -147,8 +147,8 @@ class Proposal{
 				
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("ssssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_department, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("sssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
 										
 		$this->user_id = $user_id;
 		$this->related_course_id = $related_course_id;		
@@ -165,14 +165,14 @@ class Proposal{
 
 		
 		
-		if(in_array('1', $criteria)){
-			$this->p_department = $post_array['p_department'];
-			$changes = $changes." Department";
-		}else{
-			$this->p_department = "";
-		}
+// 		if(in_array('1', $criteria)){
+// 			$this->p_department = $post_array['p_department'];
+// 			$changes = $changes." Department";
+// 		}else{
+// 			$this->p_department = "";
+// 		}
 		
-		if(in_array('2', $criteria)){
+		if(in_array('1', $criteria)){
 			$this->p_course_id = mysqli_real_escape_string($dbc, $post_array['p_course_id']);
 			if($changes != ""){
 				$changes = $changes.", Course ID";
@@ -183,7 +183,7 @@ class Proposal{
 			$this->p_course_id = "";
 		}
 		
-		if(in_array('3', $criteria)){
+		if(in_array('2', $criteria)){
 			$this->p_course_title = mysqli_real_escape_string($dbc, $post_array['p_course_title']);
 			if($changes != ""){
 				$changes = $changes.", Title";
@@ -194,7 +194,7 @@ class Proposal{
 			$this->p_course_title = "";
 		}
 		
-		if(in_array('4', $criteria)){
+		if(in_array('3', $criteria)){
 			$this->p_course_desc = mysqli_real_escape_string($dbc, $post_array['p_course_desc']);
 			if($changes != ""){
 				$changes = $changes.", Description";
@@ -205,7 +205,7 @@ class Proposal{
 			$this->p_course_desc = "";
 		}
 		
-		if(in_array('5', $criteria)){
+		if(in_array('6', $criteria)){
 			$this->p_prereqs = mysqli_real_escape_string($dbc, $post_array['p_prereqs']);
 			if($changes != ""){
 				$changes = $changes.", Prerequisites";
@@ -216,7 +216,7 @@ class Proposal{
 			$this->p_prereqs = "";
 		}
 		
-		if(in_array('6', $criteria)){
+		if(in_array('7', $criteria)){
 			$this->p_units = $post_array['p_units'];
 			if($changes != ""){
 				$changes = $changes.", Units";
