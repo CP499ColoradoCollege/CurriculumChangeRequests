@@ -205,6 +205,7 @@ class Proposal{
 			$this->p_course_desc = "";
 		}
 		
+		
 		if(in_array('6', $criteria)){
 			$this->p_prereqs = mysqli_real_escape_string($dbc, $post_array['p_prereqs']);
 			if($changes != ""){
