@@ -35,57 +35,43 @@
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="course_id" name="course_id">						
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Course ID
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Course ID</label>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="course_title" name="course_title">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Course Title
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Course Title</label>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="course_desc" name="course_desc">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Course Description
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Course Description</label>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="extra_details" name="extra_details">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Extra Course Details
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Extra Course Details</label>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="enrollment_limit" name="enrollment_limit">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Enrollment Limit
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Enrollment Limit</label>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="prerequisites" name="prerequisites">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Prerequisites
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Prerequisites</label>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="units" name="units">
-						<label class="form-check-label change-label" for="defaultCheck1">
-							Units
-						</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Units</label>
 					</div>
 				</div>
 				<div class="row">

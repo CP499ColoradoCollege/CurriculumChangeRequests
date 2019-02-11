@@ -16,7 +16,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
-						<label for="existing_course_id" style="font-size: 20px; float: right;" value = "<?php echo $_POST['existing_course_id']; ?>">Course ID of Course to be Dropped : 
+						<label for="existing_course_id" style="font-size: 20px; float: right;" value = "<?php echo $_POST['existing_course_id']; ?>">Course ID of Course to be Dropped : </label>
 					</div>
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="existing_course_id" id="existing_course_id" autocomplete="off" placeholder="i.e. 'CP112'">
@@ -28,7 +28,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="rationale" style="font-size: 20px; float: right;">Rationale : 
+						<label for="rationale" style="font-size: 20px; float: right;">Rationale : </label>
 					</div>
 					<div class="col-md-4">
 						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for dropping this course" autocomplete="off"></textarea>
@@ -39,7 +39,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
+						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact : </label>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from removing this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -53,7 +53,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
+						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact : </label>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of removing this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i> 
 						</button> : 

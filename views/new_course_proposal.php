@@ -12,7 +12,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="department" style="font-size: 20px; float: right;">Department 
+						<label for="department" style="font-size: 20px; float: right;">Department</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The department the new course falls under">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -34,7 +34,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_id" style="font-size: 20px; float: right;">Course ID 
+						<label for="course_id" style="font-size: 20px; float: right;">Course ID</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course, containing subject code and course number (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -48,7 +48,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_title" style="font-size: 20px; float: right;">Course Title 
+						<label for="course_title" style="font-size: 20px; float: right;">Course Title</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Title for the new course (i.e. Calculus I)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -62,7 +62,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_desc" style="font-size: 20px; float: right;">Course Description 
+						<label for="course_desc" style="font-size: 20px; float: right;">Course Description</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Describes what the class is about/what students will learn">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -76,7 +76,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details 
+						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Additional details about the course, such as a field trip to Baca or required fee to be paid">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -90,7 +90,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="limit" style="font-size: 20px; float: right;">Enrollment Limit 
+						<label for="limit" style="font-size: 20px; float: right;">Enrollment Limit</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Maximum number of students that can sign up for a course (typically 25 or 32)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -104,7 +104,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites 
+						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses required before students are eligible to take this one">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -118,7 +118,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_units" style="font-size: 20px; float: right;">Course Units 
+						<label for="course_units" style="font-size: 20px; float: right;">Course Units</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -138,7 +138,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="rationale" style="font-size: 20px; float: right;">Rationale 
+						<label for="rationale" style="font-size: 20px; float: right;">Rationale</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The rationale behind this new course proposal">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -152,7 +152,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
+						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -166,7 +166,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
+						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact</label> 
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
