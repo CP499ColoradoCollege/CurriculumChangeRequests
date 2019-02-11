@@ -1,7 +1,7 @@
 <?php
 
 include('config/setup.php'); //adds all setup code
-include('config/queries.php'); //static queries
+// include('config/queries.php'); //static queries
 
 if($page != 'download_docx'){
 

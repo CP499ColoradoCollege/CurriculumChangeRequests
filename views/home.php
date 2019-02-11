@@ -4,7 +4,7 @@
 	<div class="card">
 		
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
-			<form class"form-inline" method="post" action="new_proposal">
+			<form class="form-inline" method="post" action="new_proposal">
 				<h1 style="float: left;"><strong>My Proposals</strong></h1>
 				<button type="submit" class="btn btn-new"><strong>New Proposal</strong></button>
 			</form>

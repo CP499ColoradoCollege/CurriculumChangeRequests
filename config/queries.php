@@ -6,9 +6,9 @@
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
-						
+		$_SESSION['logged_in'] = true;
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
-			//echo "Statemend: $statement";
+			echo "Statemend: $statement";
 			$statement->bind_param("ss", $email, $password);
 						
 			
@@ -42,8 +42,8 @@
 	
 		case 'home':
 			
-			// include('functions/phpword.php');
-			// include('functions/download.php');
+			include('functions/phpword.php');
+			include('functions/download.php');
 		
 						
 			if($_POST['action'] == 'download'){				

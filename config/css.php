@@ -17,7 +17,7 @@
 
 
 <!-- Dropzone CSS -->
-<link rel="stylesheet" href="css/dropzone.css">
+<!-- <link rel="stylesheet" href="css/dropzone.css"> -->
 
 
 <!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/bootstrap.min.css" /> -->

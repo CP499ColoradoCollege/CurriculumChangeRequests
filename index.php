@@ -5,10 +5,9 @@
 session_start();
 
 if($_SESSION['logged_in'] == true){
-	
 	//dynamic header w/ navbar
 	include('template/header.php');
-
+	$page = "home";
 	//dynamic pages
 	include('views/'.$page.'.php');
 	
