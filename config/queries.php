@@ -7,7 +7,6 @@
 		case 'login':
 			$_SESSION['logged_in'] = true;
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
-			echo "Statemend: $statement";
 			$statement->bind_param("ss", $email, $password);
 						
 			

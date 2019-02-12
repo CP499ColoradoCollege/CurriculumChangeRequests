@@ -1,6 +1,6 @@
 <?php 
 
-class FetchUserCest
+class FirstCest
 {
     public function _before(AcceptanceTester $I)
     {
