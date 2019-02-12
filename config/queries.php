@@ -2,10 +2,14 @@
 
 #This document is loaded on every page, and contains all logic for querying the MySQL Database on specific pages when forms are filled out
 #This document also contains the logic for redirecting the user when some forms are submitted via POST
+
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
+			
+			$_SESSION['user_email'] = 'admin@proposals.com';
 			$_SESSION['logged_in'] = true;
+						
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
 			$statement->bind_param("ss", $email, $password);
 						
@@ -14,7 +18,7 @@
 				header('Location: home');
 			}
 			
-			if($_POST) {	//check if the LOGIN form has been submitted by the current session
+			/*if($_POST) {
 			
 				$email = $_POST['email'];
 				$password = $_POST['password'];
@@ -24,22 +28,23 @@
 				if($bool){
 					$_SESSION['user_email'] = $_POST['email'];
 					$_SESSION['logged_in'] = true;
-					header('Location: home');				//once logged in, redirect to HOME page instead of LOGIN page
+					header('Location: home');		
 				}
-			}
+				
+			}*/
+			
 			break;
 			
 		case 'logout':
-			//TODO make this delete cas toke, requiring cas authentication again.
+			
 			unset($_SESSION['user_email']);
 			unset($_SESSION['logged_in']);
 			header("Location: login");
-			
 			break;
 	
 		case 'home':
-			
-			if($_POST['action'] == 'download'){	
+						
+			if($_POST['action'] == 'download'){				
 				header("Location: download_docx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
@@ -148,30 +153,35 @@
 						if($course != false){
 							
 							$criteria = "";
-							
-							if(isset($_POST['department'])){
+
+							if(isset($_POST['course_id'])){
 								$criteria = $criteria."1";
 							}
 							
-							if(isset($_POST['course_id'])){
+							if(isset($_POST['course_title'])){
 								$criteria = $criteria."2";
 							}
 							
-							if(isset($_POST['course_title'])){
+							if(isset($_POST['course_desc'])){
 								$criteria = $criteria."3";
 							}
 							
-							if(isset($_POST['course_desc'])){
+							if(isset($_POST['extra_details'])){
 								$criteria = $criteria."4";
 							}
 							
+							if(isset($_POST['enrollment_limit'])){
+							    $criteria = $criteria."5";
+							}
+							
 							if(isset($_POST['prerequisites'])){
-								$criteria = $criteria."5";
+								$criteria = $criteria."6";
 							}
 							
 							if(isset($_POST['units'])){
-								$criteria = $criteria."6";
+								$criteria = $criteria."7";
 							}
+							
 							
 							if($criteria != ""){
 								header("Location: change_course_proposal?type=".$criteria."&cid=".$course_id);
@@ -241,43 +251,93 @@
 		    
 		    break;
 			
-		case 'edit_proposal':
+		case 'edit_proposal_add':
+			
+			if($_POST){
+				
+				$pid = $_GET['pid'];
+				
+				$user_id = $user->id;
+				$new_proposal = new Proposal($dbc);
+				$new_proposal = $new_proposal->editProposalAddNewCourse($user_id, $pid, $_POST);
+				
+				if($new_proposal != false){
+					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
+				}else{
+					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
+				}
+			}
+			
+			break;
+			
+		case 'edit_proposal_revise':
 			
 			if($_POST){
 				
 				$user_id = $user->id;
-				
-				$pid = $_POST['pid'];
+				$pid = $_GET['pid'];
 				
 				$proposal = new Proposal($dbc);
 				$proposal = $proposal->fetchProposalFromID($pid);
-				$title_array = explode(" ", $proposal->proposal_title);
-				$page_type = $title_array[0];
 				
-				if($page_type == 'Add'){
+				$change = new Proposal($dbc);
 				
-					$new_proposal = new Proposal($dbc);
-					$new_proposal = $new_proposal->createProposalAddNewCourse($user_id, $_POST);
-					
-					if($new_proposal != false){
-						header("Location: home");
-					}else{
-						echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($dbc)."</p>";
-					}
-						
-				}else if($page_type == 'Change'){
-					
-					
-				}else if($page_type == 'Remove'){
-					
-					
+				$updated = $change->editProposalReviseExistingCourse($pid, $proposal->proposal_date, $user_id, $proposal->related_course_id, $proposal->criteria, $_POST);
+				
+				if($updated == true){
+					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
 				}else{
-					
-					
+					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
 				}
-				
+					
+			}
+			
+			break;
+			
+		case 'edit_proposal_drop':
+			
+			if($_POST){
+					
+				$user_id = $user->id;
+				$pid = $_GET['pid'];
+		        
+		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
+		        $course_id_array = str_split($course_id);
+		        
+		        if(count($course_id_array) == 5){
+		            
+		            if($course_id != ""){
+		                
+		                $course = new Course($dbc);
+		                $course = $course->fetchCourseFromCourseID($course_id);
+		                
+		                if($course != false){
+		                    
+		                    $remove_proposal = new Proposal($dbc);
+		                    $remove_proposal = $remove_proposal->editProposalDropExistingCourse($user_id, $pid, $_POST);
+		                    
+		                    if($remove_proposal == true){
+		                        $message = '<p class="bg-success">Your edits were successfully saved.</p>';
+		                    }else{
+		                        $message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
+		                    }
+		                   
+		                }else{
+		                    $message = '<p class="bg-danger">The Existing Course ID entered does not match any existing courses.</p>';
+		                }
+		            }else{
+		                $message = '<p class="bg-danger">The Existing Course ID field is blank.</p>';
+		            }
+		        }else{
+		            $message = '<p class="bg-danger">The Existing Course ID entered is invalid.</p>';
+		        }
 				
 			}
+			
+			break;
+			
+		case 'edit_proposal':
+			
 			
 			break;
 		    
@@ -287,8 +347,10 @@
 			break;
 		
 		default:
-			// $page = 'home';
-			// header('Location: home');
+			
+			//$page = 'home';
+			//header("Location: home");
+			
 			break;
 			
 	}

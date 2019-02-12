@@ -62,7 +62,7 @@
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '6'){ ?>
 				<div class="col-md-3">
@@ -109,7 +109,7 @@
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[1] == '6'){ ?>
 				<div class="col-md-3">
@@ -150,7 +150,7 @@
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[2] == '6'){ ?>
 				<div class="col-md-3">
@@ -184,7 +184,7 @@
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[3] == '6'){ ?>
 				<div class="col-md-3">
@@ -211,7 +211,7 @@
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[4] == '6'){ ?>
 				<div class="col-md-3">

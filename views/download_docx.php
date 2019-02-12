@@ -1,8 +1,6 @@
 <?php
 	require_once 'vendor/autoload.php';
-	
-	// ini_set('display_errors', 'On');
-	// error_reporting(E_ALL);
+
 	$proposal_id = $_GET['pid'];
 	
 	$proposal = new Proposal($dbc);
@@ -20,13 +18,12 @@
 		$course = $course->fetchCourseFromCourseID($course_id);		
 		$criteriaInfoHeader = getInfoHeader($proposal->criteria, "");
 		$currentCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Current");
-		//echo $proposal->criteria;
 		$department = str_replace("&", "and", $course->dept_desc);
 		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader, $department);
 		$c_course_name = "$course->subj_code $course->course_num: $course->course_title";//produces something like "CP122: Introduction to Computer Science"
 		
 		$currentCourseInfo = array("c_course_name" => $c_course_name, "c_course_desc" => $course->course_desc, 
-									"c_course_extra_desc" => $course->extra_desc, "c_course_prereqs" => $course->prereqs, 
+									"c_course_extra_desc" => $course->extra_details, "c_course_prereqs" => $course->prereqs, 
 									"c_course_units" => $course->units, "c_info_header" => $currentCriteriaInfoHeader, 
 									"deptProposalHeader" => $deptProposalHeader, "department"=>$department);
 
@@ -36,7 +33,7 @@
 		$p_course_name = "$course->subj_code $course->course_num: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
 		
 		$proposedCourseInfo = array("p_course_name" => $p_course_name , "p_course_desc" => $proposal->p_course_desc, 
-									"p_course_extra_desc" => $proposal->p_extra_desc, "p_course_prereqs" => $proposal->p_prereqs, 
+									"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
 									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type);
@@ -53,7 +50,7 @@
 		$p_course_name = "$proposal->p_course_id: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
 		
 		$proposedCourseInfo = array("p_course_name" => $p_course_name , "p_course_desc" => $proposal->p_course_desc, 
-									"p_course_extra_desc" => $proposal->p_extra_desc, "p_course_prereqs" => $proposal->p_prereqs, 
+									"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
 									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type,
@@ -134,8 +131,8 @@
 		if ($proposal->p_prereqs == ""){
 			$proposal->p_prereqs = $course->prereqs;
 		}
-		if ($proposal->p_extra_desc == ""){
-			$proposal->p_extra_desc = $course->extra_desc;
+		if ($proposal->p_extra_details == ""){
+			$proposal->p_extra_details = $course->extra_details;
 		}
 		if ($proposal->p_units == ""){
 			$proposal->p_units = $course->units;
@@ -299,7 +296,7 @@
 	function serveFile($phpWord, $proposal){
 		$filename = str_replace(' ', '_', $proposal->proposal_title);
 		$filename = str_replace(',', '', $filename);
-		$filename = str_replace("'", '', $filename);	//revise - this should strip ALL extra characters
+		$filename = str_replace("'", '', $filename);
 		$file = $filename.'.docx';
 
 		header("Content-Description: File Transfer");
