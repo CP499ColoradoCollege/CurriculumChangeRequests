@@ -15,12 +15,12 @@
 					<div class="col-md-3"></div>
 					<div class="col-md-4">
 						<label for="existing_course_id" style="font-size: 20px; float: right;" value="<?php echo $_POST['existing_course_id']; ?>">Existing Course's Course ID
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. AA999) of the course you wish to propose a change to">
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character Course ID (i.e. CP122) of the course you wish to propose a change to">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : </label>
 					</div>
 					<div class="col-md-2">
-						<input class="form-control input-md" type="text" name="existing_course_id" id="existing_course_id" autocomplete="off">
+						<input class="form-control input-md" type="text" name="existing_course_id" id="existing_course_id" autocomplete="off" placeholder="i.e. CP122">
 					</div>
 					
 				</div>

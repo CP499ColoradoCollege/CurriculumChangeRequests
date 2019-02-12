@@ -13,7 +13,6 @@ $string_max = 150;
 
 
 #Functions:
-include('functions/data.php');		//for importing all data-related functions
 include('functions/sandbox.php');
 
 

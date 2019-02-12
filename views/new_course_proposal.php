@@ -12,10 +12,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="department" style="font-size: 20px; float: right;">Department</label> 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The department the new course falls under">
-							  <i class="fa fa-question-circle" aria-hidden="true"></i>
-						</button> : 
+						<label for="department" style="font-size: 20px; float: right;">Department : 
 					</div>
 					<div class="col-md-3">
 						<select class="form-control input-sm" name="department" id="department">
@@ -34,7 +31,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_id" style="font-size: 20px; float: right;">Course ID</label> 
+						<label for="course_id" style="font-size: 20px; float: right;">Course ID
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course, containing subject code and course number (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -48,10 +45,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_title" style="font-size: 20px; float: right;">Course Title</label> 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Title for the new course (i.e. Calculus I)">
-							  <i class="fa fa-question-circle" aria-hidden="true"></i>
-						</button> : 
+						<label for="course_title" style="font-size: 20px; float: right;">Course Title : 
 					</div>
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="course_title" id="course_title" autocomplete="off">
@@ -62,7 +56,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_desc" style="font-size: 20px; float: right;">Course Description</label> 
+						<label for="course_desc" style="font-size: 20px; float: right;">Course Description
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Describes what the class is about/what students will learn">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -76,7 +70,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details</label> 
+						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Additional details about the course, such as a field trip to Baca or required fee to be paid">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -90,13 +84,13 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="limit" style="font-size: 20px; float: right;">Enrollment Limit</label> 
+						<label for="p_limit" style="font-size: 20px; float: right;">Enrollment Limit
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Maximum number of students that can sign up for a course (typically 25 or 32)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
 					<div class="col-md-4">
-						<input class="form-control input-md" type="text" name="limit" id="limit" placeholder="typically 25 or 32" autocomplete="off">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" placeholder="typically 25 or 32" autocomplete="off">
 					</div>
 				</div>
 			</div>
@@ -104,7 +98,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites</label> 
+						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses required before students are eligible to take this one">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -118,8 +112,8 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="course_units" style="font-size: 20px; float: right;">Course Units</label> 
-						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course (i.e. CP112)">
+						<label for="course_units" style="font-size: 20px; float: right;">Course Units
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Units of credit received for taking this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
 					</div>
@@ -138,7 +132,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="rationale" style="font-size: 20px; float: right;">Rationale</label> 
+						<label for="rationale" style="font-size: 20px; float: right;">Rationale
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The rationale behind this new course proposal">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -152,7 +146,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact</label> 
+						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -166,7 +160,7 @@
 				<div class="form-group">	<!-- start of page form -->
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
-						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact</label> 
+						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
