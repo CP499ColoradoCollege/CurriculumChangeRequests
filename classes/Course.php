@@ -28,7 +28,7 @@ class Course{
 	
 	public $course_desc;
 	
-	public $extra_desc;
+	public $extra_details;
 	
 	public $enrollment_limit;
 	
@@ -57,12 +57,12 @@ class Course{
 		$subj_code = $course_id_array[0].$course_id_array[1];
 		$course_num = $course_id_array[2].$course_id_array[3].$course_id_array[4];
 		
-		$statement = $this->dbc->prepare("SELECT id, subj_desc, divs_code, divs_desc, dept_code, dept_desc, course_title, course_desc, extra_desc, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE subj_code = ? AND course_num = ?");
+		$statement = $this->dbc->prepare("SELECT id, subj_desc, divs_code, divs_desc, dept_code, dept_desc, course_title, course_desc, extra_details, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE subj_code = ? AND course_num = ?");
 		$statement->bind_param("ss", $subj_code, $course_num);
 		
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($id, $subj_desc, $divs_code, $divs_desc, $dept_code, $dept_desc, $course_title, $course_desc, $extra_desc, $enrollment_limit, $prereqs, $units, $crosslisting, $perspective, $date_last_modified, $related_proposals, $status);
+		$statement->bind_result($id, $subj_desc, $divs_code, $divs_desc, $dept_code, $dept_desc, $course_title, $course_desc, $extra_details, $enrollment_limit, $prereqs, $units, $crosslisting, $perspective, $date_last_modified, $related_proposals, $status);
 		$statement->fetch();
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			
@@ -76,7 +76,7 @@ class Course{
 			$this->dept_desc = $dept_desc;
 			$this->course_title = $course_title;
 			$this->course_desc = $course_desc;
-			$this->extra_desc = $extra_desc;
+			$this->extra_details = $extra_details;
 			$this->enrollment_limit = $enrollment_limit;
 			$this->prereqs = $prereqs;
 			$this->units = $units;
@@ -95,12 +95,12 @@ class Course{
 
 	public function fetchCourseFromTitle($course_title){
 		
-		$statement = $this->dbc->prepare("SELECT id, subj_code, subj_desc, course_num, divs_code, divs_desc, dept_code, dept_desc, course_desc, extra_desc, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE course_title = ?");
-		$statement->bind_param("ss", $subj_code, $course_num);
+		$statement = $this->dbc->prepare("SELECT id, subj_code, subj_desc, course_num, divs_code, divs_desc, dept_code, dept_desc, course_desc, extra_details, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE course_title = ?");
+		$statement->bind_param("s", $course_title);
 		
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($id, $subj_code, $subj_desc, $course_num, $divs_code, $divs_desc, $dept_code, $dept_desc, $course_desc, $extra_desc, $enrollment_limit, $prereqs, $units, $crosslisting, $perspective, $date_last_modified, $related_proposals, $status);
+		$statement->bind_result($id, $subj_code, $subj_desc, $course_num, $divs_code, $divs_desc, $dept_code, $dept_desc, $course_desc, $extra_details, $enrollment_limit, $prereqs, $units, $crosslisting, $perspective, $date_last_modified, $related_proposals, $status);
 		$statement->fetch();
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			
@@ -114,7 +114,7 @@ class Course{
 			$this->dept_desc = $dept_desc;
 			$this->course_title = $course_title;
 			$this->course_desc = $course_desc;
-			$this->extra_desc = $extra_desc;
+			$this->extra_details = $extra_details;
 			$this->enrollment_limit = $enrollment_limit;
 			$this->prereqs = $prereqs;
 			$this->units = $units;
