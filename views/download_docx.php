@@ -20,32 +20,24 @@
 		$currentCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Current");
 		$department = str_replace("&", "and", $course->dept_desc);
 		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader, $department);
-		$c_course_name = $course->subj_code.$course->course_num.": ".$course->course_title;//produces something like "CP122: Introduction to Computer Science"
+		$c_course_name = "$course->subj_code $course->course_num: $course->course_title";//produces something like "CP122: Introduction to Computer Science"
 		
 		$currentCourseInfo = array("c_course_name" => $c_course_name, "c_course_desc" => $course->course_desc, 
-									"c_course_extra_details" => $course->extra_details, "c_course_prereqs" => $course->prereqs, 
+									"c_course_extra_desc" => $course->extra_details, "c_course_prereqs" => $course->prereqs, 
 									"c_course_units" => $course->units, "c_info_header" => $currentCriteriaInfoHeader, 
 									"deptProposalHeader" => $deptProposalHeader, "department"=>$department);
 
 		$proposal = checkChangedAndSame($proposal, $course);
 		
 		$proposedCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Proposed");
-		$p_course_name = "$proposal->p_course_id: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
+		$p_course_name = "$course->subj_code $course->course_num: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
 		
 		$proposedCourseInfo = array("p_course_name" => $p_course_name , "p_course_desc" => $proposal->p_course_desc, 
-									"p_course_extra_details" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
+									"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
 									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type);
 		
-		/*echo "course array: ".$currentCourseInfo['c_course_name'].", ".$currentCourseInfo['c_course_desc'].", ".$currentCourseInfo['c_course_extra_details'].", ".$currentCourseInfo['c_course_prereqs'].", ";
-		echo $currentCourseInfo['c_course_units'].", ".$currentCourseInfo['c_info_header'].", ".$currentCourseInfo['deptProposalHeader'].", ".$currentCourseInfo['department'];
-		
-		echo "proposal array: ".$proposedCourseInfo['p_course_name'].", ".$proposedCourseInfo['p_course_desc'].", ".$proposedCourseInfo['p_course_extra_details'].", ".$proposedCourseInfo['p_course_prereqs'].", ";
-		echo $proposedCourseInfo['p_course_units'].", ".$proposedCourseInfo['rationale'].", ".$proposedCourseInfo['lib_impact'].", ".$proposedCourseInfo['tech_impact'].", ".$proposedCourseInfo['p_info_header'].", ".$proposedCourseInfo['type'];
-		
-		 * 
-		 */
 		generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal);
 						
 	}else if($proposal->type == 'Add a New Course'){
@@ -58,12 +50,12 @@
 		$p_course_name = "$proposal->p_course_id: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
 		
 		$proposedCourseInfo = array("p_course_name" => $p_course_name , "p_course_desc" => $proposal->p_course_desc, 
-									"p_course_extra_details" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
+									"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
 									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type,
 									"department" => $department, "division" => $division);
-
+		
 		generateAddCourseDoc($proposedCourseInfo, $proposal);
 		
 	}else{
@@ -130,23 +122,19 @@
 	}
 
 	function checkChangedAndSame($proposal, $course){
-		if ($proposal->p_course_id == "" || $proposal->p_course_id == null){
-			$proposal->p_course_id = $course->subj_code.$course->course_num;
-		}
-		
-		if ($proposal->p_course_title == "" || $proposal->p_course_title == null){
+		if ($proposal->p_course_title == ""){
 			$proposal->p_course_title = $course->course_title;
 		}
-		if ($proposal->p_course_desc == "" || $proposal->p_course_desc == null){
+		if ($proposal->p_course_desc == ""){
 			$proposal->p_course_desc = $course->course_desc;
 		}
-		if ($proposal->p_prereqs == "" || $proposal->p_prereqs == null){
+		if ($proposal->p_prereqs == ""){
 			$proposal->p_prereqs = $course->prereqs;
 		}
-		if ($proposal->p_extra_details == "" || $proposal->p_extra_details == null){
+		if ($proposal->p_extra_details == ""){
 			$proposal->p_extra_details = $course->extra_details;
 		}
-		if ($proposal->p_units == "" || $proposal->p_units == null){
+		if ($proposal->p_units == ""){
 			$proposal->p_units = $course->units;
 		}
 		return $proposal;
@@ -289,29 +277,19 @@
 		$section->addText(''.$currentCourseInfo["deptProposalHeader"], $standardStyle, $paragraphStyle);
 		$section->addText(''.$currentCourseInfo["c_course_name"], $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$currentCourseInfo["c_course_desc"], $standardStyle, $paragraphStyle);
-		$section->addText('Additional Description: '.$currentCourseInfo["c_course_extra_details"], $standardStyle, $paragraphStyle);
+		$section->addText('Additional Description: '.$currentCourseInfo["c_course_extra_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$currentCourseInfo["c_course_prereqs"], $standardStyle, $paragraphStyle);
 		$section->addText('Units: '.$currentCourseInfo["c_course_units"], $standardStyle, $paragraphStyle);
 		
 		$section->addText($proposedCourseInfo["p_info_header"], $boldCapsStyle, $paragraphStyle);
 		$section->addText(''.$proposedCourseInfo["p_course_name"], $boldStyle, $paragraphStyle);
 		$section->addText('Course Description: '.$proposedCourseInfo["p_course_desc"], $standardStyle, $paragraphStyle);
-		$section->addText('Additional Description: '.$proposedCourseInfo["p_course_extra_details"], $standardStyle, $paragraphStyle);
+		$section->addText('Additional Description: '.$proposedCourseInfo["p_course_extra_desc"], $standardStyle, $paragraphStyle);
 		$section->addText('Prerequisites: '.$proposedCourseInfo["p_course_prereqs"], $standardStyle, $paragraphStyle);
 		$section->addText('Units: '.$proposedCourseInfo["p_course_units"], $standardStyle, $paragraphStyle);
 		$section->addText('Rationale: '.$proposedCourseInfo["rationale"], $standardStyle, $paragraphStyle);
 		$section->addText('Library Impact: '.$proposedCourseInfo["lib_impact"], $standardStyle, $paragraphStyle);
 		$section->addText('Tech Impact: '.$proposedCourseInfo["tech_impact"], $standardStyle, $paragraphStyle);
-		
-		/*
-		echo $currentCourseInfo["department"].", ".$proposedCourseInfo["type"].", ".$currentCourseInfo["c_course_name"].", ".$currentCourseInfo["c_info_header"].", ".$currentCourseInfo["deptProposalHeader"].", ";
-		echo $currentCourseInfo["c_course_name"].", ".$currentCourseInfo["c_course_desc"].", ".$currentCourseInfo["c_course_extra_details"].", ".$currentCourseInfo["c_course_prereqs"].", ".$currentCourseInfo["c_course_units"];
-		
-		echo $proposedCourseInfo["p_info_header"].", ".$proposedCourseInfo["p_course_name"].", ".$proposedCourseInfo["p_course_desc"].", ".$proposedCourseInfo["p_course_extra_details"].", ".$proposedCourseInfo["p_course_prereqs"];
-		echo ", ".$proposedCourseInfo["p_course_units"].", ".$proposedCourseInfo["rationale"].", ".$proposedCourseInfo["lib_impact"].", ".$proposedCourseInfo["tech_impact"];
-		
-		 * 
-		 */
 		return $phpWord;
 	}
 	

@@ -1,0 +1,1 @@
+C:30:"PHPUnit\Runner\TestResultCache":258:{a:2:{s:7:"defects";a:2:{s:39:"CourseTest::testFetchCourseFromCourseID";i:4;s:42:"CourseTest::testFetchCourseFromCourseTitle";i:4;}s:5:"times";a:2:{s:39:"CourseTest::testFetchCourseFromCourseID";d:0.001;s:42:"CourseTest::testFetchCourseFromCourseTitle";d:0;}}}

@@ -5,8 +5,7 @@ include('config/connection.php');	//database connection
 include('config/queries.php');
 include('config/css.php');
 include('config/js.php');
-echo "I found it here";
- ?>
+?>
 
 <!DOCTYPE  html>
 <html>
@@ -49,13 +48,6 @@ echo "I found it here";
 						  		<label for="password">Password</label>
 						  		<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 							</div>
-							
-							<!-- this is for a checkbox
-							<div class="form-group form-check">
-						  		<input type="checkbox" class="form-check-input" id="exampleCheck1">
-						  		<label class="form-check-label" for="exampleCheck1">Check me out</label>
-							</div>
-							-->
 							
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form> <!-- END login form -->

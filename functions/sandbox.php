@@ -14,7 +14,6 @@ function get_path() {
     if ($path['call'] == basename($_SERVER['PHP_SELF'])) {
       $path['call'] = '';
 		}
-		// echo "Path:".$path['call'];
     $path['call_parts'] = explode('/', $path['call']);
     $path['query_utf8'] = urldecode($request_path[1]);
     $path['query'] = utf8_decode(urldecode($request_path[1]));
@@ -24,7 +23,6 @@ function get_path() {
       $path['query_vars'][$t[0]] = $t[1];
     }
 	}
-	// echo "Path:".$path['call_parts'];
   return $path;
 }
 
@@ -55,6 +53,8 @@ function validateEmail($string){
 	return filter_var($string, FILTER_VALIDATE_EMAIL);
 }
 
+
+
 function validateString($string){
 	return preg_match('/^\w+( \w+)*$/', $string);
 }
@@ -73,7 +73,6 @@ function checkStringLength($string){
 
 //checks if the string is a valid entry; returns TRUE if valid, and FALSE if invalid
 function isValid($string) {
-	//return !preg_match("/^([A-Za-z0-9 \-]+/@/(?:\'|&#0*39;)*)*[A-Za-z0-9]+$/", $string);
     return preg_match('/^\w+( \w+)*$/', $string);
 }
 
