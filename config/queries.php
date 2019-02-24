@@ -116,7 +116,7 @@
 				$criteria = $_GET['type'];
 				
 				$change_proposal = new Proposal($dbc);
-				$change_proposal = $change_proposal->createProposalChangeExistingCourse($user_id, $course_id, $criteria, $_POST);
+				$change_proposal = $change_proposal->createProposalReviseExistingCourse($user_id, $course_id, $criteria, $_POST);
 				
 				if($change_proposal == true){
 					header("Location: home");
@@ -229,7 +229,7 @@
 		                if($course != false){
 		                    
 		                    $remove_proposal = new Proposal($dbc);
-		                    $remove_proposal = $remove_proposal->createProposalRemoveExistingCourse($user_id, $course_id, $_POST);
+		                    $remove_proposal = $remove_proposal->createProposalDropExistingCourse($user_id, $course_id, $_POST);
 		                    
 		                    if($remove_proposal == true){
 		                        header("Location: home");

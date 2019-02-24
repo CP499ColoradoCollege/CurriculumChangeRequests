@@ -1,6 +1,8 @@
 <?php
 
-/* This class maps to the columns in our Proposals table, and contains logic involved in managing Proposal queries
+/* This class maps to the columns in the Proposals table, and contains logic involved in managing Proposal queries
+   There are three types of proposal queries: addNewCourse, ReviseExistingCourse, and DropExisting Course.
+   Each of these three proposal types has two functions: one to create the proposal, and one to edit the proposal.
  */
 
 class Proposal{
@@ -185,7 +187,7 @@ class Proposal{
 	}
 
 	
-	public function createProposalChangeExistingCourse($user_id, $related_course_id, $criteria, $post_array){
+	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){
 				
 		$dbc = $this->dbc;
 		
@@ -197,16 +199,28 @@ class Proposal{
 		$this->type = "Change an Existing Course";
 		$this->criteria = $criteria;
 				
-		$criteria = str_split($criteria);	
-		$changes = "";
+		
+		
 		
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($related_course_id);
 		
 		$this->department = $course->dept_desc;
 
-		
-		
+		$criteria = str_split($criteria);
+			
+		/* the $criteria array contains which criteria the user has selected to propose changes to. For example Course Id or Prerequisites.
+		   These criteria are numbered from 1 - 7
+		   1 : Course Id
+		   2 : Course Title
+		   3 : Course Description
+		   4 : Extra details (Additional costs, field trips, etc)
+		   5 : Enrollment Limit
+		   6 : Prerequisites
+		   7 : Units
+		*/
+
+		$changes = "";
 		if(in_array('1', $criteria)){
 			$this->p_course_id = mysqli_real_escape_string($dbc, $post_array['p_course_id']);
 			$changes = $changes." Course ID";
@@ -415,7 +429,7 @@ class Proposal{
 
 
 
-	public function createProposalRemoveExistingCourse($user_id, $course_id, $post_array){
+	public function createProposalDropExistingCourse($user_id, $course_id, $post_array){
 		
 		$dbc = $this->dbc;
 		
