@@ -18,21 +18,6 @@
 				header('Location: home');
 			}
 			
-			/*if($_POST) {
-			
-				$email = $_POST['email'];
-				$password = $_POST['password'];
-				
-				$bool = $statement->execute();
-				
-				if($bool){
-					$_SESSION['user_email'] = $_POST['email'];
-					$_SESSION['logged_in'] = true;
-					header('Location: home');		
-				}
-				
-			}*/
-			
 			break;
 			
 		case 'logout':
