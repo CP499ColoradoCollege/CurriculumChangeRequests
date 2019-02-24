@@ -1,6 +1,14 @@
 <?php
+
+/*
+ * This is a Test class for testing the site's Add New Course Proposal page and form functionality
+ */
+ 
 class NewCourseCest
 {
+	/*
+	 * Tests that the user can navigate from the Home page to the Add New Course Proposal page
+	 */
     public function newCourseProposalPageWorks(AcceptanceTester $I)
     {
 		$I->amOnPage('/home');
@@ -13,6 +21,10 @@ class NewCourseCest
         $I->see('Add New Course Proposal');  
     }
 	
+	/*
+	 * Tests that the Add New Course Proposal form loads, that saving proposal correctly redirects the user,
+	 * and that the new proposal is added to user's Home page after saving the proposal
+	 */
 	public function newCourseProposalFormWorks(AcceptanceTester $I)
     {
 		$I->amOnPage('/home');

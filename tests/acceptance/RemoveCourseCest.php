@@ -1,6 +1,14 @@
 <?php
+
+/*
+ * This is a Test class for testing the site's Remove Existing Proposal page and form functionality
+ */
+
 class RemoveCourseCest
 {
+	/*
+	 * Tests that the user can navigate from the Home page to the Remove Existing Course Proposal page
+	 */
     public function removeCourseProposalPageWorks(AcceptanceTester $I)
     {
         $I->amOnPage('/home');
@@ -13,6 +21,10 @@ class RemoveCourseCest
         $I->see('Remove Existing Course Proposal');  
     }
 	
+	/*
+	 * Tests that the Remove Existing Course Proposal page/form load correctly, that the form redirects to the Home page once submitted,
+	 * and that the saved proposal is added to the user's Home page once saved
+	 */
 	public function removeCourseProposalFormWorks(AcceptanceTester $I)
     {
         $I->amOnPage('/home');

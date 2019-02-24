@@ -1,5 +1,10 @@
 <?php
 
+/* This file contains useful functions not specifically linked to one of the Classes in the classes folder, 
+ * such as getting the current URL path; PHP
+ * /
+
+
 /* This function gets the path of the desired page to be loaded
  * @return $path - returns the path of the page to be loaded
  */
@@ -49,34 +54,31 @@ function selected($value1, $value2, $return) {
 }
 
 
+/* This function validates that the entered string is in email address format
+ * @param $string - the supposed email address string
+ * @return - returns true if the string is a valid email address, or false if it is not
+ */
 function validateEmail($string){
 	return filter_var($string, FILTER_VALIDATE_EMAIL);
 }
 
 
-
+/* This function validates that the string entered doesn't use any illegal characters, including ' and ,
+ * @param $string - the string to be tested
+ * @return - returns true if the string is clean, or false if it contains illegal characters
+ */
 function validateString($string){
 	return preg_match('/^\w+( \w+)*$/', $string);
 }
 
 
-function checkStringLength($string){
-	$parts = explode("", $string);
-	if(count($parts) > 255){
-		return false;
-	}
-	return true;
-}
-
-
-
-
-//checks if the string is a valid entry; returns TRUE if valid, and FALSE if invalid
-function isValid($string) {
-    return preg_match('/^\w+( \w+)*$/', $string);
-}
-
 //checks the length of a string within a range, returns true if in range
+/* This function checks the length of a string within a range, returning true if it is in the range
+ * @param $string - the string for which the length is to be checked
+ * @param $min - the minimum length of the string
+ * @param $max - the maximum length of the string
+ * @return - returns true if the string is within the length range, or returns false if it is not
+ */
 function checkLength($string, $min, $max) {
 	if((strlen($string) > $min) && (strlen($string) < $max)){
 		return true;
@@ -84,19 +86,6 @@ function checkLength($string, $min, $max) {
 		return false;
 	}
 }
-
-
-//Master function for checking strings for validity
-function checkString($string){
-	$valid = false;
-	$valid = isValid($string);
-	if($valid){
-		//$valid = checkLength((string)$string, $string_min, $string_max);
-	}
-	//any other string checks go here
-	return $valid;
-}
-
 
 
 /* This function returns true if $needle is a substring of $haystack
@@ -107,51 +96,6 @@ function checkString($string){
 function contains($needle, $haystack){
     return strpos($haystack, $needle) !== false;
 }
-
-
-/* This function verifies if there are any matches for any of the criteria in the criteria_array within the tables in the tables_array
- * @param $dbc - the database connection
- * @param $criteria_array - array of different criteria to look for
- * @param $table_array - array of tables to search through
- * @return $match - returns true if any of the criteria existed in any of the tables, else returns false
- */
-function check_matches($dbc, $criteria_array, $table_array){
-	$match = false;
-	$i = 0;
-	while($i < (count($criteria_array) * count($table_array)) && $match == false){
-		$table = $table_array[$i / count($criteria_array)];
-		$criteria = $criteria_array[$i % count($criteria_array)];
-		$q = "SELECT * FROM ".$table." WHERE ".$criteria;
-		$match = check_query($dbc, $q);
-		if($match == true){
-			return $match;
-		}
-		$i++;	
-	}
-	return $match;
-}
-
-/* This function verifies if there are any matches for the specified criteria within the tables in the tables_array
- * @param $dbc - the database connection
- * @param $criteria - specific criteria string
- * @param $table_array - array of tables to search through
- * @return $match - returns true if any of the criteria existed in any of the tables, else returns false
- */
-function check_match($dbc, $criteria, $table_array){
-	$i = 0;
-	while($i < count($table_array)){
-		$table = $table_array[i];
-		$q = "SELECT * FROM ".$table." WHERE ".$criteria;
-		$r = mysqli_query($dbc, $q);
-		if(mysqli_num_rows($r) > 1){
-			return true;
-		}
-		$i++;	
-	}
-	return false;
-}
-
-
 
 
 /* This function confirms whether or not a query returned a row from an existing table

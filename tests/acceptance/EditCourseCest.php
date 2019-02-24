@@ -1,6 +1,14 @@
 <?php
+
+/*
+ * This is a Test class for testing the site's Edit Existing Course page and form functionality
+ */
+
 class EditCourseCest
 {
+	/*
+	 * Tests that the User can navigate from the Home page to the Change Existing Course Proposal page
+	 */
     public function changeCourseProposalSelectPageWorks(AcceptanceTester $I)
     {
 		$I->amOnPage('/home');
@@ -14,6 +22,10 @@ class EditCourseCest
         $I->see('Change Existing Course Proposal');  
     }
 	
+	/*
+	 * Tests that the Change Existing Course Proposal Select page form works, save button redirects to correct page/form, 
+	 * and that the URL contains the criteria as 'type'
+	 */
 	public function changeCourseProposalSelectFormWorks(AcceptanceTester $I)
     {
 		$I->amOnPage('/home');
@@ -39,6 +51,9 @@ class EditCourseCest
 		$I->amOnPage('/change_course_proposal?type=1234567');
     }
 	
+	/*
+	 * Tests that the Change Existing Course Proposal Select form redirects to the proper page with the correct Course ID in URL as 'cid'
+	 */
 	public function changeCourseProposalPageWorks(AcceptanceTester $I)
     {
 		$I->amOnPage('/home');
@@ -58,6 +73,10 @@ class EditCourseCest
         $I->see('Change Course Proposal');  
     }
 	
+	/*
+	 * Tests that the Change Existing Course Proposal Select form redirects to correct page/form, that Change Existing Course Proposal page/form loads correctly, 
+	 * that form can be submitted, and that the submitted form now appears on the user's Home page
+	 */
 	public function changeCourseProposalFormWorks(AcceptanceTester $I)
     {
 		$I->amOnPage('/home');
