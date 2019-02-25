@@ -1,17 +1,25 @@
 <?php
+/*
+ * Edit Remove an Existing Course Proposal Page:
+ * This PHP file contains all HTML and PHP needed to produce the correct form to edit an existing Remove an Existing Course Proposal
+ */
+?>
 
+<?php
+//Need to get the proposal's id from the page URL:
 $pid = $_GET['pid'];
+
 $proposal = new Proposal($dbc);
 $proposal = $proposal->fetchProposalFromID($pid);
 
-if($proposal == false){
+if($proposal == false || $proposal['user_id'] != $user->id){ //if the proposal doesn't exist/wasn't created by the current User
 	header("Location: home");
 }
 
 $course = new Course($dbc);
 $course = $course->fetchCourseFromCourseID($proposal->related_course_id);
 
-if($course == false){
+if($course == false){ //if the course doesn't exist
 	header("Location: home");
 }
 
@@ -20,8 +28,9 @@ if($course == false){
 
 
 <div class="container">
-	<div class="card">	<!-- start of card -->
+	<div class="card">
 		
+		<!-- Page Header -->
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<h1 style="float: left;"><strong>Edit Proposal "<?php echo $proposal->proposal_title;  ?>"</strong></h1>
 		</div>
@@ -30,9 +39,11 @@ if($course == false){
 		
 		<p style="text-align: center; font-size: 18px; margin-top: 20px;"><strong>Check with the <span style="color: red;">department</span> before requesting to drop a course!<br>The course may be a prerequisite for another course, or a Major/Minor requirement.</strong></p>			
 						
-		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
+		<!-- Edit Remove an Existing Course Proposal form - the fields in this form contain the info already filled-in for the Proposal, which can then be editted -->
+		<form method="post" role="form">
 			<div class="shift-down row">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Course ID of Course to be Removed -->
+				<div class="form-group">
 					<div class="col-md-5">
 						<label for="existing_course_id" style="font-size: 20px; float: right; text-align: right;">Course ID of Course to be Dropped
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The Course ID (i.e. CP112) of the course you wish to drop">
@@ -46,7 +57,8 @@ if($course == false){
 			</div>
 			
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Rationale -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="rationale" style="font-size: 20px; float: right;">Rationale : 
@@ -57,7 +69,8 @@ if($course == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Library Impact -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
@@ -71,7 +84,8 @@ if($course == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Technology Impact -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
@@ -84,15 +98,12 @@ if($course == false){
 					</div>
 				</div>
 			</div>
-			
 			<div class="row">
+					<!-- Save Button -->
 					<button type="submit" class="btn btn-home" style="margin-left: 48%; margin-top: 50px; margin-bottom: 20px;"><strong>Save</strong></button>
 					<input type="hidden" name="submitted" value="1">
 			</div>
-			
-
 		</form>					
-		
 		
 	</div>
 </div>

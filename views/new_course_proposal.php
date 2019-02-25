@@ -1,15 +1,26 @@
+<?php
+/*
+ * New Course Proposal Page:
+ * This PHP file contains all HTML and PHP needed for the site's Add New Course Proposal page to generate, including the form for an Add New Course proposal
+ * The form on this page redirects to the Home page when submitted correctly
+ */
+?>
+
 <div class="container">
-	<div class="card">	<!-- start of card -->
+	<div class="card">
 		
+		<!-- Page Header -->
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<h1 style="float: left;"><strong>Add New Course Proposal</strong></h1>
 		</div>
 		
 		<?php if(isset($message)){ echo $message; } ?>
 		
-		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
+		<!-- Add New Course Proposal form -->
+		<form method="post" role="form">
 			<div class="shift-down row">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Department -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="department" style="font-size: 20px; float: right;">Department : 
@@ -28,7 +39,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Course ID -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="course_id" style="font-size: 20px; float: right;">Course ID
@@ -42,7 +54,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Course Title -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="course_title" style="font-size: 20px; float: right;">Course Title : 
@@ -53,7 +66,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Course Description -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="course_desc" style="font-size: 20px; float: right;">Course Description
@@ -67,7 +81,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Extra Details -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details
@@ -81,7 +96,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Enrollment Limit -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="p_limit" style="font-size: 20px; float: right;">Enrollment Limit
@@ -95,7 +111,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Course Prerequisites -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites
@@ -109,7 +126,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Course Units -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="course_units" style="font-size: 20px; float: right;">Course Units
@@ -129,7 +147,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Rationale -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="rationale" style="font-size: 20px; float: right;">Rationale
@@ -143,7 +162,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Library Impact -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact
@@ -157,7 +177,8 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Technology Impact -->
+				<div class="form-group">
 					<div class="col-md-2"></div>
 					<div class="col-md-3">
 						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact
@@ -170,19 +191,15 @@
 					</div>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="col-md-5"></div>
 				<div class="col-md-2">
+					<!-- Save Proposal Button -->
 					<button type="submit" class="btn btn-home" style="float: center; margin-top: 50px; margin-bottom: 20px;"><strong>Save</strong></button>
 					<input type="hidden" name="submitted" value="1">
 				</div>
 			</div>
-			
-
 		</form>
 										
-		
-		
 	</div>
 </div>

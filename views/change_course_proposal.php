@@ -1,7 +1,15 @@
+<?php
+/*
+ * Change Existing Course Proposal Page:
+ * This PHP file contains all HTML and PHP needed for the site's Change Existing Course Proposal page to generate, including generating the correct form via the information from the Change Existing Course Proposal Select page
+ * The form on this page redirects to the Home page when submitted correctly
+ */
+?>
 
 <div class="container">
-	<div class="card">	<!-- start of card -->
+	<div class="card">
 		
+		<!-- Page Header -->
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<h1 style="float: left;"><strong>Change Course Proposal</strong></h1>
 		</div>
@@ -9,7 +17,11 @@
 		<?php if(isset($message)){ echo $message; } ?>
 		
 		
-		<?php $criteria = $_GET['type'];
+		<?php 
+			/*
+			 * This page contains important info in the URL; need to save this info as variables, $criteria and $course_id, and use info to fetch data from database
+			 */
+			$criteria = $_GET['type'];
 			$criteria_array = str_split($criteria);
 			$criteria_num = count($criteria_array);
 			
@@ -17,12 +29,14 @@
 			$course = new Course($dbc);
 			$course = $course->fetchCourseFromCourseID($course_id);
 			
-			if($course == false){
+			if($course == false){ 	//redirects the user if the URL contains an invalid course ID
 				header("Location: change_course_proposal_select");
 			}
 			
 		?>
 		
+		
+		<!-- the below HTML is for displaying info about the existing course, showing only fields that have been proposed for change -->
 		<div class="shift-down row">
 			<p class="text-20 div-center"><strong>Course to be changed: <?php echo $course_id." ".$course->course_title; ?></strong></p>
 		</div>
@@ -263,10 +277,14 @@
 				<?php } ?>
 			</div>
 			<?php } ?>
+			
+			<!-- END existing course info HTML -->
 		
-		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
+		
+		<!-- Change Existing Course Proposal form - this form dynamically includes only the criteria that were selected to be changed on the Change Existing Course Proposal Select page -->
+		<form method="post" role="form">
 			<div class="shift-down row">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<?php if($criteria_array[0] == '1'){ ?>
 					<div class="col-md-4">
@@ -350,7 +368,7 @@
 			<?php if($criteria_num > 1){ ?>
 				
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[1] == '2'){ ?>
@@ -426,7 +444,7 @@
 			if($criteria_num > 2){ ?>
 			
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[2] == '3'){ ?>
@@ -492,7 +510,7 @@
 			if($criteria_num > 3){ ?>
 				
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[3] == '4'){ ?>
@@ -547,7 +565,7 @@
 			<?php }
 			if($criteria_num > 4){ ?>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[4] == '5'){ ?>
@@ -592,7 +610,7 @@
 			<?php }
 			if($criteria_num > 5){ ?>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[5] == '6'){ ?>
@@ -627,7 +645,7 @@
 			<?php }
 			if($criteria_num > 6){ ?>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[6] == '7'){ ?>
@@ -652,7 +670,7 @@
 			<?php } ?>
 			
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
 						<label for="rationale" style="font-size: 20px; float: right;">Rationale 
@@ -666,7 +684,7 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
 						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
@@ -680,7 +698,7 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
 						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 

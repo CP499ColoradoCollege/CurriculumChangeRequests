@@ -1,8 +1,20 @@
 <?php
+/*
+ * Edit Change an Existing Course Proposal Page:
+ * This PHP file contains all HTML and PHP needed to produce the correct form to edit an existing Change an Existing Course Proposal
+ */
+?>
 
+<?php
+//Need to get the proposal's id from the page URL:
 $pid = $_GET['pid'];
+
 $proposal = new Proposal($dbc);
 $proposal = $proposal->fetchProposalFromID($pid);
+
+if($proposal == false || $proposal['user_id'] != $user->id){ //if the proposal doesn't exist/wasn't created by the current User
+	header("Location: home");
+}
 
 $criteria = $proposal->criteria;
 $criteria_array = str_split($criteria);
@@ -12,17 +24,23 @@ $course_id = $proposal->related_course_id;
 $course = new Course($dbc);
 $course = $course->fetchCourseFromCourseID($course_id);
 
+if($course == false){ //if the course doesn't exist
+	header("Location: home");
+}
+
 ?>
 
 <div class="container">
-	<div class="card">	<!-- start of card -->
+	<div class="card">
 		
+		<!-- Page Header -->
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<h1 style="float: left;"><strong>Edit Proposal "<?php echo $proposal->proposal_title;  ?>"</strong></h1>
 		</div>
 		
 		<?php if(isset($message)){ echo $message; } ?>
 		
+		<!-- the below HTML will dynamically display the info about the Course to be changed based on the Proposal's criteria-->
 		<div class="shift-down row">
 			<p class="text-20 div-center"><strong>Course to be changed: <?php echo $course_id." ".$course->course_title; ?></strong></p>
 		</div>
@@ -263,8 +281,10 @@ $course = $course->fetchCourseFromCourseID($course_id);
 				<?php } ?>
 			</div>
 			<?php } ?>
+			
+			<!-- END existing course info HTML -->
 		
-		
+		<!-- Edit Change an Existing Course Proposal form - the fields in this dynamically-created form contain the info already filled-in for the Proposal, which can then be editted -->
 		<form method="post" role="form">
 			<div class="shift-down row">
 				<div class="form-group">
@@ -351,7 +371,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			<?php if($criteria_num > 1){ ?>
 				
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[1] == '2'){ ?>
@@ -427,7 +447,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			if($criteria_num > 2){ ?>
 			
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[2] == '3'){ ?>
@@ -493,7 +513,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			if($criteria_num > 3){ ?>
 				
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[3] == '4'){ ?>
@@ -548,7 +568,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			<?php }
 			if($criteria_num > 4){ ?>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[4] == '5'){ ?>
@@ -593,7 +613,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			<?php }
 			if($criteria_num > 5){ ?>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[5] == '6'){ ?>
@@ -628,7 +648,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			<?php }
 			if($criteria_num > 6){ ?>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					
 					<?php if($criteria_array[6] == '7'){ ?>
@@ -653,7 +673,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			<?php } ?>
 			
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
 						<label for="rationale" style="font-size: 20px; float: right;">Rationale 
@@ -667,7 +687,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
 						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact 
@@ -681,7 +701,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<div class="form-group">
 					<div class="col-md-1"></div>
 					<div class="col-md-4">
 						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact 
@@ -697,6 +717,7 @@ $course = $course->fetchCourseFromCourseID($course_id);
 			<div class="row">
 				<div class="col-md-5"></div>
 				<div class="col-md-2">
+					<!-- Save Button -->
 					<button type="submit" class="btn btn-home" style="float: none; margin-top: 50px; margin-bottom: 20px; margin-left: 40%;"><strong>Save</strong></button>
 					<input type="hidden" name="submitted" value="1">
 				</div>

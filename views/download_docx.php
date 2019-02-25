@@ -1,18 +1,30 @@
 <?php
-	require_once 'vendor/autoload.php';
+/*
+ * download_docx.php:
+ * This PHP file looks at the Proposal that is to be downloaded, and determines what how to handle formatting the Proposal so that it can be downloaded as a Word document by the user's browser, then begins the download
+ */
+?>
 
+<?php
+	require_once 'vendor/autoload.php';		//necessary to use PHPWord
+	
+	//Need to get the proposal's id from the page URL:
 	$proposal_id = $_GET['pid'];
 	
 	$proposal = new Proposal($dbc);
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
-
-	$filename = getFilenameForDownload($proposal);
-	$division = $user->getDivision($department);
-
 	
+	if($proposal == false || $proposal['user_id'] != $user->id){ //if the proposal doesn't exist/wasn't created by the current User
+		header("Location: home");
+	}
 
+	$filename = getFilenameForDownload($proposal);	//creates the downloaded file's filename
+	$division = $user->getDivision($proposal->department);	//determines the Division the proposal falls under
+
+	//The following loop handles formatting and downloading to the browser different types of Proposals
 	if($proposal->type == "Change an Existing Course"){
 		
+		//set the variables needed in the Word document:
 		$course_id = $proposal->related_course_id;
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);		
@@ -38,9 +50,12 @@
 									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
 									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type);
 		
+		//generate and download the Word document:
 		generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal);
 						
 	}else if($proposal->type == 'Add a New Course'){
+		
+		//set the variables needed in the Word document:
 		$course_id = $proposal->related_course_id;
 		$division = $user->getDivision($proposal->department);
 		$department = str_replace("&", "and", $proposal->department);
@@ -56,22 +71,35 @@
 									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type,
 									"department" => $department, "division" => $division);
 		
+		//generate and download the Word document:
 		generateAddCourseDoc($proposedCourseInfo, $proposal);
 		
 	}else{
 		$filename = "Not_yet";
 	}
 
+?>
+
+<?php
+
+	/*
+	 * This function produces the Department Proposal Header for each Word document
+	 * @param $course - the existing Course involved in the Proposal
+	 * @param $courseChangeInfoHeader - the important Proposal details
+	 * @param $department - the department that the course falls under
+	 * @return $deptProposalHeader - returns the string that is the proper Department Proposal Header
+	 */
 	function getDepartmentProposalHeader($course, $courseChangeInfoHeader, $department ){
-
-		// echo $department;
-		// echo "Course Change Header at getDepartmentProposalHeader $courseChangeInfoHeader";
-		
 		$deptProposalHeader = "The department of $department proposes to change the$courseChangeInfoHeader for $course->subj_code $course->course_num: $course->course_title, with the approval of the $course->divs_desc Executive Committee and the Committee on Instruction.";
-
 		return $deptProposalHeader;
 	}
 	
+	/*
+	 * This function produces the Info Header for each Change Existing Course Proposal Word document
+	 * @param $criteria - the criteria involved in the Change Existing Course Proposal
+	 * @param $current_or_proposed - indicates whether this is for the current Course details of the proposed Course details
+	 * @return $punctuatedHeaderString - returns the proper Info Header
+	 */
 	function getInfoHeader($criteria, $current_or_proposed){
 		$headerString = $current_or_proposed;
 		$headerString.=" ";
@@ -86,7 +114,6 @@
 					break;
 				case 3:
 					$headerString.="Course Title-";
-					// echo "Hit case 3";
 					break;
 				case 4:
 					$headerString.="Course Description-";
@@ -100,12 +127,17 @@
 			}
 		}
 		$punctuatedHeaderString = addPunctuation($headerString);
-		// echo "Puncuated header String at GetInfoHeader: $punctuatedHeaderString";
 		return $punctuatedHeaderString;
 	}
+	
+	
+	/*
+	 * This function adds punctuation to the desired Header string
+	 * @param $headerString - the string that needs to have punctuation added to it
+	 * @return $punctuatedHeaderString - the punctuated Header String produced
+	 */
 	function addPunctuation($headerString){
 		$individual_criteria = explode("-", $headerString);
-		// echo "Individual Criteria[0] at addpunctuation $individual_criteria[0]";
 		if(count($individual_criteria)==2){
 			return $individual_criteria[0];
 		}else{
@@ -114,13 +146,17 @@
 			}
 			$individual_criteria[count($individual_criteria)-3].= "and ";
 		}
-		// echo "Individual Criteria[0] at addpunctuation Post Change $individual_criteria[0]";
 		$punctuatedHeaderString = implode($individual_criteria);
-		// echo "Punctuated Header String at addPunctuation $punctuatedHeaderString";
 		return $punctuatedHeaderString;
 
 	}
 
+	/*
+	 * This function checks the criteria for a Change Existing Course Proposal to see what has changed, and sets blank variables to the original course info
+	 * @param proposal - the Proposal to be checked
+	 * @param course - the Course that changes are being proposed for
+	 * @return $proposal - returns the Proposal, with its blank details now set
+	 */
 	function checkChangedAndSame($proposal, $course){
 		if ($proposal->p_course_title == ""){
 			$proposal->p_course_title = $course->course_title;
@@ -128,17 +164,27 @@
 		if ($proposal->p_course_desc == ""){
 			$proposal->p_course_desc = $course->course_desc;
 		}
-		if ($proposal->p_prereqs == ""){
-			$proposal->p_prereqs = $course->prereqs;
-		}
 		if ($proposal->p_extra_details == ""){
 			$proposal->p_extra_details = $course->extra_details;
+		}
+		if ($proposal->p_limit == ""){
+			$proposal->p_limit = $course->enrollment_limit;
+		}
+		if ($proposal->p_prereqs == ""){
+			$proposal->p_prereqs = $course->prereqs;
 		}
 		if ($proposal->p_units == ""){
 			$proposal->p_units = $course->units;
 		}
 		return $proposal;
 	}
+	
+	
+	/*
+	 * This function generates the filename for the file to be downloaded
+	 * @param $proposal - the Proposal that the file is being generated for
+	 * @return $filename - returns the generated filename for this Proposal
+	 */
 	function getFilenameForDownload($proposal){
 		$filename = str_replace(' ', '_', $proposal->proposal_title);
 		$filename = str_replace(',', '', $filename);
@@ -146,16 +192,35 @@
 		return $filename;
 	}
 
+
+	/*
+	 * This function generates and downloads to the user's browser the Word Document for a Change Existing Course Proposal
+	 * @param $currentCourseInfo - the information related to the existing Course
+	 * @param $proposedCourseInfo - the information that has been proposed for change
+	 * @param $proposal - the actual Proposal that is being downloaded
+	 */
 	function generateDoc($currentCourseInfo, $proposedCourseInfo, $proposal){	
 		$filledPhpWord = addTextToDoc($currentCourseInfo, $proposedCourseInfo);
 		serveFile($filledPhpWord, $proposal);
 	}
 
+
+	/*
+	 * This function generates and downloads to the user's browser the Word Document for an Add a New Course Proposal
+	 * @param $proposedCourseInfo - the information for the newly proposed course
+	 * @param $proposal - the actual Proposal that is being downloaded
+	 */
 	function generateAddCourseDoc($proposedCourseInfo, $proposal){
 		$filledPhpWord = addTextToAddCourseDoc($proposedCourseInfo);
 		serveFile($filledPhpWord, $proposal);
 	}
 
+
+	/*
+	 * This function formats the Word Document for an Add a New Course Proposal
+	 * @param $proposedCourseInfo - the information for the newly proposed course
+	 * @return $phpWord - the PHPWord object that represents the Word document
+	 */
 	function addTextToAddCourseDoc($proposedCourseInfo){
 		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
 
@@ -242,6 +307,14 @@
 
 		return $phpWord;
 	}
+
+	
+	/*
+	 * This function formats the Word Document for a Change an Existing Course Proposal
+	 * @param $currentCourseInfo - the information for the existing course
+	 * @param $proposedCourseInfo - the proposed changes to the existing course
+	 * @return $phpWord - the PHPWord object that represents the Word document
+	 */
 	function addTextToDoc($currentCourseInfo, $proposedCourseInfo){
 		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
 
@@ -293,6 +366,11 @@
 		return $phpWord;
 	}
 	
+	/*
+	 * This function downloads the actual Word document to the user's browser
+	 * @param $phpWord - the PHPWord object that represents the Word document
+	 * @param $proposal - the actual Proposal to be downloaded
+	 */
 	function serveFile($phpWord, $proposal){
 		$filename = str_replace(' ', '_', $proposal->proposal_title);
 		$filename = str_replace(',', '', $filename);

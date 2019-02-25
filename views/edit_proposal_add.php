@@ -1,28 +1,37 @@
 <?php
+/*
+ * Edit Add a New Course Proposal Page:
+ * This PHP file contains all HTML and PHP needed to produce the correct form to edit an existing Add a New Course Proposal
+ */
+?>
 
+<?php
+//Need to get the proposal's id from the page URL:
 $pid = $_GET['pid'];
+
 $proposal = new Proposal($dbc);
 $proposal = $proposal->fetchProposalFromID($pid);
 
-if($proposal == false){
+if($proposal == false || $proposal['user_id'] != $user->id){ //if the proposal doesn't exist/wasn't created by the current User
 	header("Location: home");
 }
-
 ?>
 
 <div class="container">
-	<div class="card">	<!-- start of card -->
+	<div class="card">
 		
+		<!-- Page Header -->
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<h1 style="float: left;"><strong>Edit Proposal "<?php echo $proposal->proposal_title;  ?>"</strong></h1>
 		</div>
 		
 		<?php if(isset($message)){ echo $message; } ?>
 
-		
-		<form method="post" role="form">	<!-- fills in the form if a page is already open when reloaded-->
+		<!-- Edit Add a New Course Proposal form - the fields in this form contain the info already filled-in for the Proposal, which can then be editted -->
+		<form method="post" role="form">
 			<div class="shift-down row">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Department -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Department</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The department the new course falls under">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -31,6 +40,7 @@ if($proposal == false){
 					<div class="col-md-4">
 						<select class="form-control input-sm" name="department" id="department">
 							<?php 
+							//below PHP gets all departments, and then determines which one was already chosen in the original Proposal
 							$departments = $user->getDepartments();
 							for($i = 0; $i < count($departments); $i += 1){
 								$dept = $departments[$i];
@@ -46,7 +56,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Course ID -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course ID</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -58,7 +69,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Course Title -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Title</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Title for the new course (i.e. Calculus I)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -70,7 +82,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Course Description -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Description</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Describes what the class is about/what students will learn">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -82,7 +95,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Extra Details -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Extra Details</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Additional details about the course, such as a field trip to Baca or required fee to be paid">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -94,8 +108,9 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
-					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Limit</strong>
+				<!-- Current Enrollment Limit -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Enrollment Limit</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Maximum number of students that can sign up for a course (typically 25 or 32)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
 						</button> : 
@@ -106,7 +121,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Course Prerequisites -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Prerequisites</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses required before students are eligible to take this one">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -118,7 +134,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Course Units -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Units</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course (i.e. CP112)">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -136,7 +153,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Rationale -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Rationale:</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The rationale behind this new course proposal">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -148,7 +166,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Library Impact -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Library Impact</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -160,7 +179,8 @@ if($proposal == false){
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
-				<div class="form-group">	<!-- start of page form -->
+				<!-- Current Technology Impact -->
+				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Technology Impact</strong>
 						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of this course">
 							  <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -171,17 +191,13 @@ if($proposal == false){
 					</div>
 				</div>
 			</div>
-			
 			<div class="row">
-				
+					<!-- Save Button -->
 					<button type="submit" class="btn btn-home" style="margin-left: 48%; margin-top: 50px; margin-bottom: 20px; text-align: center;"><strong>Save</strong></button>
 					<input type="hidden" name="pid" value="<?php echo $proposal->id; ?>">
 					<input type="hidden" name="submitted" value="1">
 			</div>
-			
-
 		</form>
-		
 		
 	</div>
 </div>
