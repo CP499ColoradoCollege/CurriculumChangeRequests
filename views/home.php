@@ -17,6 +17,16 @@
 			</form>
 		</div>
 		
+		<?php 
+		$success = $_GET['success'];
+		if($success == 'add'){
+			echo '<p class="bg-success">Your Add a New Course proposal was successfully saved!</p>'; 
+		}else if($success == 'change'){
+			echo '<p class="bg-success">Your Change an Existing Course proposal was successfully saved!</p>'; 
+		}else if($success == 'remove'){
+			echo '<p class="bg-success">Your Remove an Existing Course proposal was successfully saved!</p>'; 
+		} ?>
+		
 		<!-- Set up columns to be displayed: -->
 		<div class="row" style="margin-top: 30px;">
 			<div class="col-md-3">

@@ -75,15 +75,12 @@
 			
 			if($_POST){
 								
-				$user_id = $user->id;
-				echo "User ID: $user_id";
-				
+				$user_id = $user->id;				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->createProposalAddNewCourse($user_id, $_POST);
 				
-				echo " ABout to check stuff";
 				if($new_proposal != false){
-					header("Location: home");
+					header("Location: home?success=add");
 				}else{
 					echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($dbc)."</p>";
 				}
@@ -104,7 +101,7 @@
 				$change_proposal = $change_proposal->createProposalReviseExistingCourse($user_id, $course_id, $criteria, $_POST);
 				
 				if($change_proposal == true){
-					header("Location: home");
+					header("Location: home?success=change");
 				}else{
 					echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($dbc)."</p>";
 				}
@@ -217,7 +214,7 @@
 		                    $remove_proposal = $remove_proposal->createProposalDropExistingCourse($user_id, $course_id, $_POST);
 		                    
 		                    if($remove_proposal == true){
-		                        header("Location: home");
+		                        header("Location: home?success=remove");
 		                    }else{
 		                        echo '<p class="bg-danger">Error: proposal could not be processed. '.mysqli_error($dbc)."</p>";
 		                    }

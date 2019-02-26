@@ -12,7 +12,7 @@ $pid = $_GET['pid'];
 $proposal = new Proposal($dbc);
 $proposal = $proposal->fetchProposalFromID($pid);
 
-if($proposal == false || $proposal['user_id'] != $user->id){ //if the proposal doesn't exist/wasn't created by the current User
+if($proposal == false){ //if the proposal doesn't exist/wasn't created by the current User
 	header("Location: home");
 }
 

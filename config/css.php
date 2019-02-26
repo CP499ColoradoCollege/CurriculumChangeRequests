@@ -78,6 +78,7 @@
 	
 	.website-banner {
 		height: 60px;
+		width: 100%;
 		float: left;
 		margin-top: 0px;
 		padding-bottom: 1px;

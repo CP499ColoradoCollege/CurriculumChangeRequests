@@ -1,11 +1,4 @@
 <?php
-/*
- * download_docx.php:
- * This PHP file looks at the Proposal that is to be downloaded, and determines what how to handle formatting the Proposal so that it can be downloaded as a Word document by the user's browser, then begins the download
- */
-?>
-
-<?php
 	require_once 'vendor/autoload.php';		//necessary to use PHPWord
 	
 	//Need to get the proposal's id from the page URL:
@@ -14,7 +7,7 @@
 	$proposal = new Proposal($dbc);
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
 	
-	if($proposal == false || $proposal['user_id'] != $user->id){ //if the proposal doesn't exist/wasn't created by the current User
+	if($proposal == false){ //if the proposal doesn't exist/wasn't created by the current User
 		header("Location: home");
 	}
 
