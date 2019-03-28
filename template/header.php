@@ -6,7 +6,7 @@
 include('config/setup.php'); //adds all setup code
 include('config/queries.php'); //static queries
 
-if($page != 'download_docx'){
+if($page != 'download_docx_3'){
 
  ?>
 <!DOCTYPE  html>

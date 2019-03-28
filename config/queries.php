@@ -30,7 +30,7 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){				
-				header("Location: download_docx?pid=".$_POST['openedid']);
+				header("Location: download_docx_3?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);

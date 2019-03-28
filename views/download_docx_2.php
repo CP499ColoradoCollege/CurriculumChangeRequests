@@ -1,20 +1,16 @@
 <?php
-	require_once 'vendor/autoload.php';		//necessary to use PHPWord
-	
-	//Need to get the proposal's id from the page URL:
+	require_once 'vendor/autoload.php';
 	$proposal_id = $_GET['pid'];
-	
 	$proposal = new Proposal($dbc);
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
 	
-	if($proposal == false){ //if the proposal doesn't exist/wasn't created by the current User
+	if($proposal == false){
 		header("Location: home");
 	}
 
-	$filename = getFilenameForDownload($proposal);	//creates the downloaded file's filename
-	$division = $user->getDivision($proposal->department);	//determines the Division the proposal falls under
+	$filename = getFilenameForDownload($proposal);
+	$division = $user->getDivision($proposal->department);
 
-	//The following loop handles formatting and downloading to the browser different types of Proposals
 	if($proposal->type == "Change an Existing Course"){
 		
 		//set the variables needed in the Word document:
@@ -48,23 +44,16 @@
 						
 	}else if($proposal->type == 'Add a New Course'){
 		
-		//set the variables needed in the Word document:
 		$course_id = $proposal->related_course_id;
-		$division = $user->getDivision($proposal->department);
-		$department = str_replace("&", "and", $proposal->department);
-		$criteriaInfoHeader = getInfoHeader($proposal->criteria, "");
-		$deptProposalHeader = getDepartmentProposalHeader($course, $criteriaInfoHeader, $department);
-
-		$p_course_name = "$proposal->p_course_id: $proposal->p_course_title"; //produces something like "CP122: Introduction to Computer Science"
-		
+		$department = str_replace("&", "and", $proposal->department);	
+		$proposedCriteriaInfoHeader = getInfoHeader($proposal->criteria, "Proposed");
+		$p_course_name = "$proposal->p_course_id: $proposal->p_course_title";		
 		$proposedCourseInfo = array("p_course_name" => $p_course_name , "p_course_desc" => $proposal->p_course_desc, 
 									"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 									"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
-									"lib_impact" => $proposal->lib_impact, "tech_impact" =>  $proposal->tech_impact,
-									"p_info_header" => "", "type" => $proposal->type,
+									"lib_impact" => $proposal->lib_impact, "tech_impact" => $proposal->tech_impact,
+									"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type,
 									"department" => $department, "division" => $division);
-		
-		//generate and download the Word document:
 		generateAddCourseDoc($proposedCourseInfo, $proposal);
 		
 	}else{
