@@ -116,30 +116,30 @@ class Proposal{
 		$statement->bind_param("sssssssssssssss", $this->user_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
 		
 		$course_id = mysqli_real_escape_string($dbc, $post_array['course_id']);
-		$course_title = mysqli_real_escape_string($dbc, $post_array['course_title']);
+		$course_title = $post_array['course_title'];
 		
 		$this->user_id = $user_id;
 		$this->proposal_title = 'New Course: '.$course_id.', '.$course_title;
 		$this->proposal_date = date('m/d/Y');
-		$this->department = mysqli_real_escape_string($dbc, $post_array['department']);
+		$this->department = $post_array['department'];
 		$this->type = 'Add a New Course';
 		$this->p_course_id = $course_id;
 		$this->p_course_title = $course_title;
-		$this->p_course_desc = mysqli_real_escape_string($dbc, $post_array['course_desc']);
-		$this->p_extra_details = mysqli_real_escape_string($dbc, $post_array['extra_details']);
-		$this->p_limit = mysqli_real_escape_string($dbc, $post_array['p_limit']);
+		$this->p_course_desc = $post_array['course_desc'];
+		$this->p_extra_details = $post_array['extra_details'];
+		$this->p_limit = $post_array['p_limit'];
 		
-		$this->p_prereqs = mysqli_real_escape_string($dbc, $post_array['course_prereqs']);
+		$this->p_prereqs = $post_array['course_prereqs'];
 		if($this->p_prereqs == ''){
 			$this->p_prereqs = 'None';
 		}
 		$this->p_units = $post_array['course_units'];
-		$this->rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
-		$this->lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		$this->rationale = $post_array['rationale'];
+		$this->lib_impact = $post_array['lib_impact'];
 		if($this->lib_impact == ''){
 			$this->lib_impact = 'None';
 		}
-		$this->tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		$this->tech_impact = $post_array['tech_impact'];
 		if($this->tech_impact == ''){
 			$this->tech_impact = 'None';
 		}
@@ -160,19 +160,19 @@ class Proposal{
 		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
 		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
 		
-		$p_course_id = mysqli_escape_string($dbc, $post_array['course_id']);
-		$p_course_title = mysqli_escape_string($dbc, $post_array['course_title']);
-		$p_course_desc = mysqli_escape_string($dbc, $post_array['course_desc']);
-		$p_extra_details = mysqli_escape_string($dbc, $post_array['extra_details']);
-		$p_limit = mysqli_escape_string($dbc, $post_array['limit']);
-		$p_prereqs = mysqli_escape_string($dbc, $post_array['course_prereqs']);
-		$p_units = mysqli_escape_string($dbc, $post_array['course_units']);
-		$rationale = mysqli_escape_string($dbc, $post_array['rationale']);
-		$lib_impact = mysqli_escape_string($dbc, $post_array['lib_impact']);
+		$p_course_id = $post_array['course_id'];
+		$p_course_title = $post_array['course_title'];
+		$p_course_desc = $post_array['course_desc'];
+		$p_extra_details = $post_array['extra_details'];
+		$p_limit = $post_array['limit'];
+		$p_prereqs = $post_array['course_prereqs'];
+		$p_units = $post_array['course_units'];
+		$rationale = $post_array['rationale'];
+		$lib_impact = $post_array['lib_impact'];
 		if($lib_impact == ''){
 			$lib_impact = 'None';
 		}
-		$tech_impact = mysqli_escape_string($dbc, $post_array['tech_impact']);
+		$tech_impact = $post_array['tech_impact'];
 		if($tech_impact == ''){
 			$tech_impact = 'None';
 		}
@@ -222,14 +222,14 @@ class Proposal{
 
 		$changes = "";
 		if(in_array('1', $criteria)){
-			$this->p_course_id = mysqli_real_escape_string($dbc, $post_array['p_course_id']);
+			$this->p_course_id = $post_array['p_course_id'];
 			$changes = $changes." Course ID";
 		}else{
 			$this->p_course_id = "";
 		}
 		
 		if(in_array('2', $criteria)){
-			$this->p_course_title = mysqli_real_escape_string($dbc, $post_array['p_course_title']);
+			$this->p_course_title = $post_array['p_course_title'];
 			if($changes != ""){
 				$changes = $changes.", Title";
 			}else{
@@ -240,7 +240,7 @@ class Proposal{
 		}
 		
 		if(in_array('3', $criteria)){
-			$this->p_course_desc = mysqli_real_escape_string($dbc, $post_array['p_course_desc']);
+			$this->p_course_desc = $post_array['p_course_desc'];
 			if($changes != ""){
 				$changes = $changes.", Description";
 			}else{
@@ -251,7 +251,7 @@ class Proposal{
 		}
 		
 		if(in_array('4', $criteria)){
-			$this->p_extra_details = mysqli_real_escape_string($dbc, $post_array['p_extra_details']);
+			$this->p_extra_details = $post_array['p_extra_details'];
 			if($changes != ""){
 				$changes = $changes.", Extra Details";
 			}else{
@@ -262,7 +262,7 @@ class Proposal{
 		}
 		
 		if(in_array('5', $criteria)){
-			$this->p_limit = mysqli_real_escape_string($dbc, $post_array['p_limit']);
+			$this->p_limit = $post_array['p_limit'];
 			if($changes != ""){
 				$changes = $changes.", Limit";
 			}else{
@@ -273,7 +273,7 @@ class Proposal{
 		}
 		
 		if(in_array('6', $criteria)){
-			$this->p_prereqs = mysqli_real_escape_string($dbc, $post_array['p_prereqs']);
+			$this->p_prereqs = $post_array['p_prereqs'];
 			if($changes != ""){
 				$changes = $changes.", Prerequisites";
 			}else{
@@ -297,12 +297,12 @@ class Proposal{
 		$this->proposal_title = 'Change'.$changes.' of Course: '.$related_course_id.', '.$course->course_title;
 		$this->proposal_date = date('m/d/Y');
 		$this->department = $course->dept_desc;
-		$this->rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
-		$this->lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		$this->rationale = $post_array['rationale'];
+		$this->lib_impact = $post_array['lib_impact'];
 		if($this->lib_impact == ""){
 			$this->lib_impact = "None";
 		}
-		$this->tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		$this->tech_impact = $post_array['tech_impact'];
 		if($this->tech_impact == ""){
 			$this->tech_impact = "None";
 		}
@@ -332,14 +332,14 @@ class Proposal{
 		$course = $course->fetchCourseFromCourseID($related_course_id);
 		
 		if(in_array('1', $criteria)){
-			$p_course_id = mysqli_real_escape_string($dbc, $post_array['p_course_id']);
+			$p_course_id = $post_array['p_course_id'];
 			$changes = $changes." Course ID";
 		}else{
 			$p_course_id = "";
 		}
 		
 		if(in_array('2', $criteria)){
-			$p_course_title = mysqli_real_escape_string($dbc, $post_array['p_course_title']);
+			$p_course_title = $post_array['p_course_title'];
 			if($changes != ""){
 				$changes = $changes.", Title";
 			}else{
@@ -350,7 +350,7 @@ class Proposal{
 		}
 		
 		if(in_array('3', $criteria)){
-			$p_course_desc = mysqli_real_escape_string($dbc, $post_array['p_course_desc']);
+			$p_course_desc = $post_array['p_course_desc'];
 			if($changes != ""){
 				$changes = $changes.", Description";
 			}else{
@@ -361,7 +361,7 @@ class Proposal{
 		}
 		
 		if(in_array('4', $criteria)){
-			$p_extra_details = mysqli_real_escape_string($dbc, $post_array['p_extra_details']);
+			$p_extra_details = $post_array['p_extra_details'];
 			if($changes != ""){
 				$changes = $changes.", Extra Details";
 			}else{
@@ -372,7 +372,7 @@ class Proposal{
 		}
 		
 		if(in_array('5', $criteria)){
-			$p_limit = mysqli_real_escape_string($dbc, $post_array['p_limit']);
+			$p_limit = $post_array['p_limit'];
 			if($changes != ""){
 				$changes = $changes.", Limit";
 			}else{
@@ -383,7 +383,7 @@ class Proposal{
 		}
 		
 		if(in_array('6', $criteria)){
-			$p_prereqs = mysqli_real_escape_string($dbc, $post_array['p_prereqs']);
+			$p_prereqs = $post_array['p_prereqs'];
 			if($changes != ""){
 				$changes = $changes.", Prerequisites";
 			}else{
@@ -404,12 +404,12 @@ class Proposal{
 			$p_units = "";
 		}
 		
-		$rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
-		$lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		$rationale = $post_array['rationale'];
+		$lib_impact = $post_array['lib_impact'];
 		if($lib_impact == ""){
 			$lib_impact = "None";
 		}
-		$tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		$tech_impact = $post_array['tech_impact'];
 		if($tech_impact == ""){
 			$tech_impact = "None";
 		}
@@ -447,12 +447,12 @@ class Proposal{
 		$this->department = $course->dept_desc;
 		$this->type = 'Remove an Existing Course';
 		
-		$this->rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
-		$this->lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		$this->rationale = $post_array['rationale'];
+		$this->lib_impact = $post_array['lib_impact'];
 		if($this->lib_impact == ''){
 			$this->lib_impact = 'None';
 		}
-		$this->tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		$this->tech_impact = $post_array['tech_impact'];
 		if($this->tech_impact == ''){
 			$this->tech_impact = 'None';
 		}
@@ -473,13 +473,13 @@ class Proposal{
 		$statement = $dbc->prepare("UPDATE proposals SET related_course_id = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
 		$statement->bind_param("sssss", $related_course_id, $rationale, $lib_impact, $tech_impact, $pid);
 	
-		$related_course_id = mysqli_real_escape_string($dbc, $post_array['existing_course_id']);
-		$rationale = mysqli_real_escape_string($dbc, $post_array['rationale']);
-		$lib_impact = mysqli_real_escape_string($dbc, $post_array['lib_impact']);
+		$related_course_id = $post_array['existing_course_id'];
+		$rationale = $post_array['rationale'];
+		$lib_impact = $post_array['lib_impact'];
 		if($lib_impact == ''){
 			$lib_impact = 'None';
 		}
-		$tech_impact = mysqli_real_escape_string($dbc, $post_array['tech_impact']);
+		$tech_impact = $post_array['tech_impact'];
 		if($tech_impact == ''){
 			$tech_impact = 'None';
 		}

@@ -112,6 +112,13 @@ function check_query($dbc, $q){
 	}
 }
 
+/*
+ * This function strings a string of anything other than letters, numbers, spaces and basic punctuation (. , ? ! )
+ */
+function stripString($string){
+	return preg_match("/^[a-zA-Z0-9 .'\-]+$/i", $string);
+}
+
 
 
 ?>
