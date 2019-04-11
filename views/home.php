@@ -38,10 +38,10 @@
 			<div class="col-md-3">
 				<span class="label-home"><strong>Submission Status:</strong></span>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-2" style="margin-left: -40px;">
 				<span class="label-home"><strong>Approval Status:</strong></span>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-2" style="margin-left: 40px;">
 				<span class="label-home"><strong>Options:</strong></span>
 			</div>
 			
@@ -67,22 +67,22 @@
 			</div>
 			<!-- Proposal Submission Status -->
 			<div class="col-md-3">
-				<span class="info-home"><strong><?php echo $prop->sub_status; ?></strong></span>
+				<span class="info-home"><strong><?php echo convertSubmissionStatus($prop->sub_status); ?></strong></span>
 			</div>
 			<!-- Proposal Approval Status -->
-			<div class="col-md-2">
-				<span class="info-home"><strong><?php echo $prop->approval_status; ?></strong></span>
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong><?php echo convertApprovalStatus($prop->approval_status); ?></strong></span>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-2" style="margin-left: 40px;">
 				<form method="post" action="home">
 					<!-- Download Button -->
 					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
 					<!-- Edit Button -->
 					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
 					<!-- Email Button (NOT YET WORKING) -->
-					<button type="submit" class="btn btn-home" name="action" value="email"><strong>Email</strong></button><br>
+					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
 					<!-- View Feedback Button (NOT YET WORKING) -->
-					<button type="submit" class="btn btn-home" name="action" value="feedback"><strong>View Feedback</strong></button>
+					<span class="btn btn-home" name="action" value="feedback"><strong>View Feedback</strong></span>
 					
 					<!-- Specific Proposal's ID -->			
 					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">

@@ -109,7 +109,7 @@ class User{
 	
 	public function getProposals(){
 		$proposals = array();
-		$q = "SELECT id FROM proposals WHERE user_id = '$this->id'";
+		$q = "SELECT id FROM proposals WHERE user_id = '$this->id' ORDER BY id DESC";
 		$r = mysqli_query($this->dbc, $q);
 		while($proposal_id = mysqli_fetch_assoc($r)){
 			$current = new Proposal($this->dbc);

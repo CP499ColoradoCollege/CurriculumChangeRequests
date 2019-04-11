@@ -41,19 +41,6 @@ function get_slug($dbc, $url){
 }
 
 
-/* This function returns the desired return value if the two params are equivalent
- * @param $value1 - first value for comparison
- * @param $value2 - second value for comparison
- * @param $return - the value to be returned
- * @return $return - returns the specified return value
- */
-function selected($value1, $value2, $return) {
-	if($value1 == $value2){
-		echo $return;
-	}
-}
-
-
 /* This function validates that the entered string is in email address format
  * @param $string - the supposed email address string
  * @return - returns true if the string is a valid email address, or false if it is not
@@ -88,16 +75,6 @@ function checkLength($string, $min, $max) {
 }
 
 
-/* This function returns true if $needle is a substring of $haystack
- * @param $needle - the substring to look for
- * @param $haystack - the string to search through for the given $needle
- * @return - returns true if the $needle is in the $haystack, else returns false
- */
-function contains($needle, $haystack){
-    return strpos($haystack, $needle) !== false;
-}
-
-
 /* This function confirms whether or not a query returned a row from an existing table
  * @param $dbc - the database connection
  * @param $q - the query
@@ -112,13 +89,46 @@ function check_query($dbc, $q){
 	}
 }
 
-/*
- * This function strings a string of anything other than letters, numbers, spaces and basic punctuation (. , ? ! )
+/* This function returns true if $needle is a substring of $haystack
+ * @param $needle - the substring to look for
+ * @param $haystack - the string to search through for the given $needle
+ * @return - returns true if the $needle is in the $haystack, else returns false
  */
-function stripString($string){
-	return preg_match("/^[a-zA-Z0-9 .'\-]+$/i", $string);
+function contains($needle, $haystack){
+    return strpos($haystack, $needle) !== false;
 }
 
+
+/* This function returns the desired return value if the two params are equivalent
+ * @param $value1 - first value for comparison
+ * @param $value2 - second value for comparison
+ * @param $return - the value to be returned
+ * @return $return - returns the specified return value
+ */
+function selected($value1, $value2, $return) {
+	if($value1 == $value2){
+		echo $return;
+	}
+}
+
+
+function convertSubmissionStatus($value){
+	if($value == '0'){
+		return 'Not Submitted';
+	}else{
+		return 'Submitted';
+	}
+}
+
+function convertApprovalStatus($value){
+	if($value == '0'){
+		return 'N/A';
+	}else if($value == '1'){
+		return 'Awaiting approval from Head of Department';
+	}else if($value == '2'){
+		return 'Approved by Head of Department - awaiting approval from COI Divisional Rep';
+	}
+}
 
 
 ?>
