@@ -1,7 +1,7 @@
 <!-- this document contains the code needed for the nav bar at the top of the Proposal Tool application; HTML and PHP -->
 
 <nav class="navbar navbar-default" role="navigation">
-	<img class="website-banner" src="banner.JPG"/>
+	<img class="website-banner" src="banner_1.JPG"/>
 		
 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
        <span class="sr-only">Toggle navigation</span>
