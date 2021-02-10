@@ -29,7 +29,8 @@
 	
 		case 'home':
 						
-			if($_POST['action'] == 'download'){				
+			if($_POST['action'] == 'download'){	
+				//Unclear why this works for some download calls but not others...delete later			
 				header("Location: download_docx_3?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
