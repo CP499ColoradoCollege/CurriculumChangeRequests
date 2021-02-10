@@ -1,10 +1,7 @@
 <?php
-
 /*
  * This is a Test class for testing the site's Edit Existing Course page and form functionality
  */
-
-class EditCourseTest
 {
 	/*
 	 * Tests that the User can navigate from the Home page to the Change Existing Course Proposal page
