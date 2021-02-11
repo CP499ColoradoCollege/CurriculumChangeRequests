@@ -48,6 +48,10 @@
 		</div>
 				
 		<?php
+			//DEBUG
+			$msgTwo = "reached print in home page before loading info from database";
+			error_log(print_r($msgTwo, TRUE)); 
+
 			//need to request the proposals that correspond to the current User from the database to display them on the page
 			//the following for-loop produces HTML for each of the User's related Proposals
 			$proposals = $user->getProposals();
