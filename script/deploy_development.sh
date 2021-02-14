@@ -4,10 +4,11 @@ cd "$(dirname "$0")"
 
 echo "deploying to xampp..."
 echo "༼ つ ◕_◕ ༽つ"
+cd .. #navigate to root directory
 
 sudo cp -a tests vendor /opt/lampp/htdocs
 
-cd ../html
+cd html
 
 sudo cp -a config classes databaseConnection functions template views index.php .htaccess /opt/lampp/htdocs
 cd ../resources
