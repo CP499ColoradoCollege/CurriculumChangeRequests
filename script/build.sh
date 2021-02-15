@@ -16,12 +16,12 @@ export PATH=$PATH:$JAVA_HOME/bin
 #clone repo
 git clone https://github.com/CP499ColoradoCollege/CurriculumChangeRequests.git
 
-#set composer requirements
-composer require zendframework/zend-escaper zendframework/zend-stdlib phpoffice/phpword phpunit/phpunit
-
 #set working directory
 cd CurriculumChangeRequests
 working_dir=$(pwd)
+
+#set composer requirements
+composer require zendframework/zend-escaper zendframework/zend-stdlib phpoffice/phpword phpunit/phpunit
 
 #copy files to xampp localhost 
 cp composer.json /opt/lampp/htdocs/ 
