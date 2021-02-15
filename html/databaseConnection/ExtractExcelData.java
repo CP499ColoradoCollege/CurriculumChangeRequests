@@ -59,7 +59,7 @@ public class ExtractExcelData {
 //		 }
 		try {
 			// Step 1: Allocate a database "Connection" object
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/proposal-toolDB?user=root&password="); // MySQL
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:" + PORT_NUMBER + "/proposaltoolDB?user=root&password="); // MySQL
 			// Step 2: Allocate a "Statement" object in the Connection
 			Statement stmt = conn.createStatement();
 				
