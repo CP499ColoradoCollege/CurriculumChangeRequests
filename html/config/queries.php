@@ -30,14 +30,13 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){	
-				//DEBUG
-				$msg = "Reached query redirect to download page";
-				error_log(print_r($msg, TRUE)); 		
+				// //DEBUG
+				// $msg = "Reached query redirect to download page";
+				// error_log(print_r($msg, TRUE)); 		
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
-				header("Location: download_genEddocx?pid=".$_POST['openedid']); //why won't you WORK >:(
+				header("Location: download_GEdocx?pid=".$_POST['openedid']);
 				exit();
-				//header("Location: download_CCdocx?pid=".$_POST['openedid']);//...doesn't work either
 			}
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
