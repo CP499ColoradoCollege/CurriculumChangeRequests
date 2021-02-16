@@ -1,4 +1,4 @@
-f#!/bin/bash
+#!/bin/bash
 echo "Devkit installation in progress"
 echo "Welcome Stranger..."
 

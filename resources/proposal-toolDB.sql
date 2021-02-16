@@ -148,18 +148,46 @@ CREATE TABLE `proposals` (
   `rationale` varchar(1000) NOT NULL DEFAULT 'None',
   `lib_impact` varchar(100) NOT NULL DEFAULT 'None',
   `tech_impact` varchar(100) NOT NULL DEFAULT 'None',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT '1',
+  `p_aligned_assignments` varchar(1000) NOT NULL DEFAULT 'None',
+  `p_first_offering` varchar(10) NOT NULL DEFAULT 'None',
+  `p_course_status` varchar(100) NOT NULL DEFAULT 'None',
+  `p_designation_scope` varchar(10) NOT NULL DEFAULT 'None',
+  `p_designation_prof` varchar(50) NOT NULL DEFAULT 'None',
+  `p_feedback` varchar(1000) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proposals`
 --
 
-INSERT INTO `proposals` (`id`, `user_id`, `related_course_id`, `proposal_title`, `proposal_date`, `sub_status`, `approval_status`, `department`, `type`, `criteria`, `p_department`, `p_course_id`, `p_course_title`, `p_course_desc`, `p_extra_details`, `p_limit`, `p_prereqs`, `p_units`, `p_crosslisting`, `p_perspective`, `rationale`, `lib_impact`, `tech_impact`, `status`) VALUES
-(33, 1, 'None', 'New Course: 20304, Sociology of Performance', '02/07/2019', 0, 0, 'Sociology', 'Add a New Course', 'None', 'None', '20304', 'Sociology of Performance', 'This course will focus on qualitative sociological methods in collaboration with the performing arts. Students will learn how to translate interview data into creative expression.', 'None', '', 'None', '1 Unit', 'None', 'None', 'This course links the social sciences to the humanities, enabling students to perform information gained from interviews.', 'None', 'None', 1),
-(42, 2, 'None', 'New Course: CP999, Super Hard CS Class', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 'Add a New Course', 'None', 'None', 'CP999', 'Super Hard CS Class', 'This class is super hard.', '', '', 'none', '1 Unit', 'None', 'None', 'We need more CS courses.', 'None', 'None', 1),
-(43, 2, 'CP122', 'Change Title, Description, Extra Details, Limit of Course: CP122, Computer Science I', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 'Change an Existing Course', '2345', 'None', '', 'Computer Science One', 'Take out the numerals.', '', '25', '', '', 'None', 'None', 'wanted to make a few changes.', 'None', 'None', 1),
-(44, 2, 'CP122', 'Remove Course: CP122, Computer Science I', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 'Remove an Existing Course', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'gotta drop it!!', 'None', 'None', 1);
+INSERT INTO `proposals` (`id`, `user_id`, `related_course_id`, `proposal_title`, 
+`proposal_date`, `sub_status`, `approval_status`, `department`, `type`, `criteria`, 
+`p_department`, `p_course_id`, `p_course_title`, `p_course_desc`, `p_extra_details`, 
+`p_limit`, `p_prereqs`, `p_units`, `p_crosslisting`, `p_perspective`, `rationale`, 
+`lib_impact`, `tech_impact`, `status`, `p_aligned_assignments`, `p_first_offering`, 
+`p_course_status`, `p_designation_scope`, `p_designation_prof`, `p_feedback`) VALUES
+(33, 1, 'None', 'New Course: 20304, Sociology of Performance', '02/07/2019', 0, 0, 
+'Sociology', 'Add a New Course', 'None', 'None', '20304', 'Sociology of Performance', 
+'This course will focus on qualitative sociological methods in collaboration with the 
+performing arts. Students will learn how to translate interview data into creative expression.', 
+'None', '', 'None', '1 Unit', 'None', 'None', 'This course links the social sciences to the humanities, 
+enabling students to perform information gained from interviews.', 'None', 'None', 1, 
+'Probably a a dance routine', 'Spring 2027', 'None', 'All Sections of Course', 'N/A', 'None'),
+(42, 2, 'None', 'New Course: CP999, Super Hard CS Class', '02/11/2019', 0, 0, 
+'Mathematics & Computer Science', 'Add a New Course', 'None', 'None', 'CP999', 
+'Super Hard CS Class', 'This class is super hard.', '', '', 'none', '1 Unit', 'None', 
+'None', 'We need more CS courses.', 'None', 'None', 1, 'Probably a video game', 'Winter 2077', 
+'None', 'All Sections of Course', 'N/A', 'None'),
+(43, 2, 'CP122', 'Change Title, Description, Extra Details, Limit of Course: CP122, 
+Computer Science I', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 
+'Change an Existing Course', '2345', 'None', '', 'Computer Science One', 
+'Take out the numerals.', '', '25', '', '', 'None', 'None', 'wanted to make a few changes.', 
+'None', 'None', 1, 'None', 'Spring 2037', 'None', 'All Sections of Course', 'N/A', 'None'),
+(44, 2, 'CP122', 'Remove Course: CP122, Computer Science I', '02/11/2019', 0, 0, 
+'Mathematics & Computer Science', 'Remove an Existing Course', 'None', 'None', 'None', 
+'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'gotta drop it!!', 'None', 'None', 1, 
+'Nothing!', 'Spring 2027', 'None', 'All Sections of Course', 'N/A', 'None');
 
 -- --------------------------------------------------------
 
