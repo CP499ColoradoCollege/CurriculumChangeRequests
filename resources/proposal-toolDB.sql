@@ -148,7 +148,13 @@ CREATE TABLE `proposals` (
   `rationale` varchar(1000) NOT NULL DEFAULT 'None',
   `lib_impact` varchar(100) NOT NULL DEFAULT 'None',
   `tech_impact` varchar(100) NOT NULL DEFAULT 'None',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT '1',
+  `p_aligned_assignments` varchar(1000) NOT NULL DEFAULT 'None',
+  `p_first_offering` varchar(10) NOT NULL DEFAULT 'None',
+  `p_course_status` varchar(100) NOT NULL DEFAULT 'None',
+  `p_designation_scope` varchar(10) NOT NULL DEFAULT 'None',
+  `p_designation_prof` varchar(50) NOT NULL DEFAULT 'None',
+  `p_feedback` varchar(1000) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
