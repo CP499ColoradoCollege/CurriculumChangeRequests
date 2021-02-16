@@ -57,7 +57,6 @@ class Proposal{
 	
 	public $status;
 
-	//DELANEY-ADDED VARIABLES; NOW (hopefully) ADDED TO DB TABLE
 	public $p_aligned_assignments; //"Courses in each GenEd category need to include >=1 assignment aligned to each learning outcome"
 	public $p_first_offering; //first semester and year course will be offered
 	public $p_course_status; //new not yet approved by COI, new approved but not yet offered, current under minor revision, current under major revision
@@ -138,7 +137,9 @@ class Proposal{
 		
 		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, 
 		proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
-		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) 
+		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact, 
+		p_aligned_assignments, p_first_offering, p_course_status, p_designation_scope, 
+		p_designation_prof, p_feedback) 
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		$statement->bind_param("sssssssssssssssssssss", $this->user_id, $this->proposal_title, 
@@ -179,6 +180,8 @@ class Proposal{
 		if($this->tech_impact == ''){
 			$this->tech_impact = 'None';
 		}
+		//TODO: add new vars here and check post_array
+		//$this->aligned_assignments = $post_array['p_aligned_assignments'];
 		
 		$bool = $statement->execute();
 		if($bool){

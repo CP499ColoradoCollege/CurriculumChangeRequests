@@ -15,6 +15,7 @@
 		error_log(print_r($msg, TRUE)); 
 
 		header("Location: home");
+		exit();
 	}
 	
 	$filename = str_replace(' ', '_', $proposal->proposal_title);
