@@ -81,6 +81,8 @@ class Proposal{
 		status FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
 
+		//things being out of order might have something to do with above not having status when below does
+
 		$bool = $statement->execute();
 		$statement->store_result();
 		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, 

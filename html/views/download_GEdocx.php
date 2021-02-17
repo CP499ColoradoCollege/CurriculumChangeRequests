@@ -76,7 +76,7 @@
 		}
 
 		//end debug
-		$perspectiveText = htmlspecialchars($proposedCourseInfo["p_perspective"]); //needed bc "&" character breaks things
+		$perspectiveText = htmlentities($proposedCourseInfo["p_perspective"]); //needed bc "&" character breaks things
 
 		$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
 		$phpWord = new \PhpOffice\PhpWord\PhpWord();
@@ -85,6 +85,8 @@
 
 		$paragraphStyle = 'pStyle';
 		$phpWord->addParagraphStyle($paragraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 280));
+		$noSpaceParagraphStyle = 'nspStyle';
+		$phpWord->addParagraphStyle($noSpaceParagraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 10));
 		$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
 		$boldCapsStyle = 'boldCaps';
 		$phpWord->addFontStyle($boldCapsStyle, array('bold' => true, 'allCaps' => true, 'size' => 12, 'name' => 'Calibri'));
@@ -169,16 +171,16 @@
 
 		$section->addText('Curricular goals', $secHeaderStyle, $paragraphStyle);
 		foreach ($curricularGoals as $goal){
-			$section->addListItem($goal, $standardStyle);
+			$section->addListItem($goal, 0, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(2);
 
-		$section->addText('Learning outcomes', $secHeaderStyle, $paragraphStyle);
+		$section->addText('Learning outcomes', $secHeaderStyle, $noSpaceParagraphStyle);
 		$section->addText($learningOutcomesDesc, $standardStyle);
 		$section->addTextBreak(1);
 		foreach ($learningOutcomes as $outcome){
-			$section->addListItem($outcome, $standardStyle);
+			$section->addListItem($outcome, 0, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(3);
@@ -203,10 +205,10 @@
 
 		//TODO: have the bullet style change from EMPTY to FILLED based on submission/approval status
 		$section->addText('This course is (select one):', $standardStyle);
-		$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
-		$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
-		$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
-		$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 		$section->addTextBreak(1);
 
 		//TODO: have the bullet style change from EMPTY to FILLED based on p_designation_scope
@@ -219,14 +221,14 @@
 
 		$section->addText('Please provide the course description', $boldStyle);
 		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
-		$section->addText(htmlspecialchars($proposedCourseInfo["p_course_desc"]), $standardStyle);
+		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
 		$section->addPageBreak();
 
 		$rationaleTextRun = $section->createTextRun($paragraphStyle);
 		$rationaleTextRun->addText('Please provide a brief rationale addressing how the proposed course aligns with the description of the ', $boldStyle);
 		$rationaleTextRun->addText($perspectiveText, $secHeaderStyle);
 		$rationaleTextRun->addText(' category:', $boldStyle);
-		$section->addText(htmlspecialchars($proposedCourseInfo["rationale"]), $standardStyle);
+		$section->addText(htmlentities($proposedCourseInfo["rationale"]), $standardStyle);
 		$section->addPageBreak();
 		
 		$assignTextRun = $section->createTextRun($paragraphStyle);
@@ -234,13 +236,13 @@
 		$assignTextRun->addText('to each learning outcome. What assignment(s) would enable students to reach the learning outcomes for the ', $boldStyle);
 		$assignTextRun->addText($perspectiveText, $secHeaderStyle);
 		$assignTextRun->addText(' category?', $boldStyle);
-		$section->addText(htmlspecialchars($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
+		$section->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
 		$section->addPageBreak();
 
 		$section->addText('Submit to: Sub-Committee', $boldStyle);
-		$section->addListItem('Accepted (on to COI)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
-		$section->addListItem('Revise and Resubmit (back to Faculty)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
-		$section->addListItem('Rejected (back to Faculty)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('Accepted (on to COI)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		$section->addListItem('Revise and Resubmit (back to Faculty)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		$section->addListItem('Rejected (back to Faculty)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 		$section->addTextBreak(1);
 
 		$section->addText('Comments from Sub-Committee:', $boldStyle);
@@ -248,7 +250,7 @@
 			$section->addTextBreak(20);
 		}
 		else{
-			$section->addText(htmlspecialchars($proposedCourseInfo["p_feedback"]), $standardStyle);
+			$section->addText(htmlentities($proposedCourseInfo["p_feedback"]), $standardStyle);
 		}
 		
 
@@ -264,6 +266,3 @@
 		header('Expires: 0');
 		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 		$xmlWriter->save("php://output");
-		
-		
-?>
