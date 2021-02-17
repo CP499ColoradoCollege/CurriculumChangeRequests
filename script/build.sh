@@ -9,7 +9,7 @@ chmod 755 xampp-linux-x64-8.0.1-1-installer.run
 ./xampp-linux-x64-8.0.1-1-installer.run
 
 #download and install java and composer dependencies
-apt install openjdk-14-jdk composer php-xml php-zip php-mbstring net-tools mysql-server
+apt install openjdk-14-jdk composer php-xml php-zip php-mbstring net-tools 
 export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
 
