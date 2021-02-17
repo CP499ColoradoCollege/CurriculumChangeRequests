@@ -110,7 +110,7 @@
 		$phpWord->addFontStyle($standardStyle, array( 'size' => 11, 'name' => 'Calibri'));
 
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit courses for ";
-		$genEdDesc = "No description set";
+		$genEdDesc = array("No description set");
 		$curricularGoals = array("No curricular goals defined"); //each entry is a bullet point
 		$learningOutcomes = array("No learning outcomes defined"); //each entry is a bullet point
 		$learningOutcomesDesc = "As a result of taking a course in ".$perspectiveText." students will be able to:";
@@ -130,8 +130,8 @@
 				$genEd1 .= "access to resources and opportunities, and the production of knowledge. In these courses, ";
 				$genEd1 .= "students develop analytical and interpretive tools and/or reflective habits and interpersonal ";
 				$genEd1 .= "skills for thinking critically about how inequities are produced, reinforced, experienced, and resisted.";
-				$genEd1 .= "\nEquity and Power courses may be taken as part of the Critical Learning Across the Liberal Arts categories.";
-				$genEdDesc = $genEd1;
+				$genEd2 = "Equity and Power courses may be taken as part of the Critical Learning Across the Liberal Arts categories.";
+				$genEdDesc = array($genEd1, $genEd2);
 				$curricularGoals = array("Students will gain an understanding of social, political, cultural, epistemological and/or economic forces that have produced and/or now sustain multiple forms of inequalities and their intersections;", 
 					"Students will identify, analyze, and evaluate the ways in which individuals and groups have unequal experiences, social positions, opportunities or outcomes based on the intersections of race, indigeneity, caste or class, citizenship, gender, gender identity, sexuality, size, (dis)ability, religious practices, belief systems, or other dimensions of difference;", 
 					"Students will seek to identify and challenge their implicit biases and assumptions while learning to participate respectfully and productively in potentially uncomfortable discussions about equity and power and their position in relationship to others.");
@@ -168,6 +168,11 @@
 		$textRunZ->addText($formDesc, $standardStyle);
 		$perspectivePlusPeriod = "".$perspectiveText.".";
 		$textRunZ->addText($perspectivePlusPeriod, $genEdStyle);
+
+		foreach ($genEdDesc as $paragraph){
+			$section->addText($paragraph, $standardStyle);
+		}
+		$section->addTextBreak(1);
 
 		$section->addText('Curricular goals', $secHeaderStyle, $paragraphStyle);
 		foreach ($curricularGoals as $goal){
