@@ -41,6 +41,9 @@
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
 			}
+			if($_POST['action'] == 'history'){				
+				header("Location: history?pid=".$_POST['openedid']);
+			}
 			
 			
 			break;
@@ -244,12 +247,18 @@
 			if($_POST){
 				
 				$pid = $_GET['pid'];
-				
 				$user_id = $user->id;
+				$original_proposal = new Proposal($dbc);
+				$original_proposal = $original_proposal->fetchProposalFromID($pid);
+		
+				$new_proposalhistory = new Proposal($dbc);
+				$new_proposalhistory = $new_proposalhistory->addProposalhistory($pid, $user_id, $_POST, $original_proposal);
+				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->editProposalAddNewCourse($user_id, $pid, $_POST);
+																						   
 				
-				if($new_proposal != false){
+				if($new_proposalhistory != false && $new_proposal != false){
 					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
 				}else{
 					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
@@ -269,8 +278,9 @@
 				$proposal = $proposal->fetchProposalFromID($pid);
 				
 				$change = new Proposal($dbc);
-				
 				$updated = $change->editProposalReviseExistingCourse($pid, $proposal->proposal_date, $user_id, $proposal->related_course_id, $proposal->criteria, $_POST);
+				
+				
 				
 				if($updated == true){
 					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
@@ -325,8 +335,23 @@
 			break;
 			
 		case 'edit_proposal':
-			
-			
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false){
+				header("Location: home");
+			}
+			$title_array = explode(" ", $proposal->proposal_title);
+			$p_type = $title_array[0];
+			if($p_type == 'New'){
+				header("Location: edit_proposal_add?pid=".$pid);
+			}else if($p_type == 'Change'){
+				header("Location: edit_proposal_revise?pid=".$pid);
+			}else if($p_type == 'Remove'){
+				header("Location: edit_proposal_drop?pid=".$pid);
+			}else{
+				header("Location: home");
+			}	
 			break;
 		    
 			

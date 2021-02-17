@@ -64,6 +64,8 @@ class Proposal{
 	public $p_designation_prof; //addendum to above: list of professor(s) for instructor-specific sections if applicable
 	public $p_feedback;
 	
+	public $edit_date;
+	
 	public function __construct($dbc){
 		$this->dbc = $dbc;
 	}
@@ -193,6 +195,92 @@ class Proposal{
 		}
 	}
 
+	public function addProposalHistory($pid, $user_id, $post_array, $original_proposal){
+		
+		$dbc = $this->dbc;
+		
+		$statement = $dbc->prepare("INSERT INTO proposal_history (id, user_id, edit_date, proposal_title, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("ssssssssssssss", $this->id, $this->user_id, $this->edit_date, $this->proposal_title, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
+		
+		$this->id = $pid;
+		$this->user_id = $user_id;
+		$this->edit_date = date('m/d/Y');
+		$this->proposal_title = $original_proposal->proposal_title;
+		if($post_array['course_id'] != $original_proposal->p_course_id){
+			$this->p_course_id = $post_array['course_id'];	
+							
+		}else{
+			$this->p_course_id = 'unchanged';
+		}
+		if($post_array['course_title'] != $original_proposal->p_course_title){
+			$this->p_course_title = $post_array['course_title'];	
+							
+		}else{
+			$this->p_course_title = 'Unchanged';
+		}
+		if($post_array['course_desc'] != $original_proposal->p_course_desc){
+			$this->p_course_desc = $post_array['course_desc'];
+							
+		}else{
+			$this->p_course_desc = 'Unchanged';
+		}
+		if($post_array['course_details'] != $original_proposal->p_course_details){
+			$this->p_extra_details = $post_array['extra_details'];
+							
+		}else{
+			$this->p_extra_details = 'Unchanged';
+		}
+		if($post_array['limit'] != $original_proposal->p_limit){
+			$this->p_limit = $post_array['limit'];
+							
+		}else{
+			$this->p_limit = 'Unchanged';
+		}
+		if($post_array['course_prereqs'] != $original_proposal->p_prereqs){
+			$this->p_prereqs = $post_array['course_prereqs'];
+							
+		}else{
+			$this->p_prereqs = 'Unchanged';
+		}
+		if($post_array['course_units'] != $original_proposal->p_units){
+			$this->p_units = $post_array['course_units'];
+							
+		}else{
+			$this->p_units = 'Unchanged';
+		}
+		if($post_array['rationale'] != $original_proposal->rationale){
+			$this->rationale = $post_array['rationale'];
+							
+		}else{
+			$this->rationale = 'Unchanged';
+		}
+		if($post_array['lib_impact'] != $original_proposal->lib_impact){
+			$this->lib_impact = $post_array['lib_impact'];
+			if($this->$lib_impact == ''){
+				$this->lib_impact = 'None';
+			}
+							
+		}else{
+			$this->lib_impact = 'Unchanged';
+		}
+		if($post_array['tech_impact'] != $original_proposal->tech_impact){
+			$this->tech_impact = $post_array['tech_impact'];
+			if($this->tech_impact == ''){
+				$this->tech_impact = 'None';
+			}
+							
+		}else{
+			$this->tech_impact = 'Unchanged';
+		}	
+		
+		$bool = $statement->execute();
+		if($bool){
+			return true;
+		}else{
+			echo 'error: '.mysqli_error($dbc);
+			return false;
+		}
+	}
 
 	public function editProposalAddNewCourse($user_id, $pid, $post_array){
 			
@@ -533,9 +621,8 @@ class Proposal{
 			return false;
 		}
 	}
-
-
-
+	
+	
 	
 }
 

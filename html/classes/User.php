@@ -119,6 +119,32 @@ class User{
 		return $proposals;
 	}
 	
+	public function getProposalHistory($id){
+		$edits = array();
+		$q = "SELECT edit_date, proposal_title, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact FROM proposal_history WHERE user_id = '$this->id'";
+		$r = mysqli_query($this->dbc, $q);
+		
+		while($row = mysqli_fetch_assoc($r)){
+			$current = new Proposal($this->$dbc);		
+			$current->edit_date = $row["edit_date"];
+			$current->proposal_title = $row["proposal_title"];
+			$current->p_course_id = $row["p_course_id"];
+			$current->p_course_title = $row["p_course_title"];
+			$current->p_course_desc = $row["p_course_desc"];
+			$current->p_extra_details = $row["p_extra_details"];
+			$current->p_limit = $row["p_limit"];
+			$current->p_prereqs = $row["p_prereqs"];
+			$current->p_units = $row["p_units"];
+			$current->rationale = $row["rationale"];
+			$current->lib_impact = $row["lib_impact"];
+			$current->tech_impact = $row["tech_impact"];
+			array_unshift($edits, $current);	
+		}		
+		
+		
+		return $edits;
+	}
+	
 	public function getDepartments(){
 		$depts = array();
 		$q = "SELECT dept_code, dept_desc FROM departments";

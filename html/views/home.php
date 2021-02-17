@@ -79,6 +79,8 @@
 					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
 					<!-- Edit Button -->
 					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>			
 					<!-- Email Button (NOT YET WORKING) -->
 					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
 					<!-- View Feedback Button (NOT YET WORKING) -->
