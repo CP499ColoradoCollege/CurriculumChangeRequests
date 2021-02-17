@@ -150,10 +150,10 @@ CREATE TABLE `proposals` (
   `tech_impact` varchar(100) NOT NULL DEFAULT 'None',
   `status` int(1) NOT NULL DEFAULT '1',
   `p_aligned_assignments` varchar(1000) NOT NULL DEFAULT 'None',
-  `p_first_offering` varchar(10) NOT NULL DEFAULT 'None',
+  `p_first_offering` varchar(100) NOT NULL DEFAULT 'None',
   `p_course_status` varchar(100) NOT NULL DEFAULT 'None',
-  `p_designation_scope` varchar(10) NOT NULL DEFAULT 'None',
-  `p_designation_prof` varchar(50) NOT NULL DEFAULT 'None',
+  `p_designation_scope` varchar(100) NOT NULL DEFAULT 'None',
+  `p_designation_prof` varchar(500) NOT NULL DEFAULT 'None',
   `p_feedback` varchar(1000) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -171,7 +171,7 @@ INSERT INTO `proposals` (`id`, `user_id`, `related_course_id`, `proposal_title`,
 'Sociology', 'Add a New Course', 'None', 'None', '20304', 'Sociology of Performance', 
 'This course will focus on qualitative sociological methods in collaboration with the 
 performing arts. Students will learn how to translate interview data into creative expression.', 
-'None', '', 'None', '1 Unit', 'None', 'None', 'This course links the social sciences to the humanities, 
+'None', '', 'None', '1 Unit', 'None', 'Equity & Power - Global', 'This course links the social sciences to the humanities, 
 enabling students to perform information gained from interviews.', 'None', 'None', 1, 
 'Probably a a dance routine', 'Spring 2027', 'None', 'All Sections of Course', 'N/A', 'None'),
 (42, 2, 'None', 'New Course: CP999, Super Hard CS Class', '02/11/2019', 0, 0, 

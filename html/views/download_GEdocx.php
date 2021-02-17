@@ -35,15 +35,37 @@
 		$proposedCriteriaInfoHeader = "Proposed: ";
 		$p_course_name = "$proposal->p_course_id: $proposal->p_course_title";
 
+		//DEBUG: DOES NOT WORK
+		$msg = "user id: ".$proposal->user_id;
+		error_log(print_r($msg, TRUE));
+		$p_user = $user->fetchUserFromID($proposal->user_id);
+		if($p_user == false){
+			//DEBUG
+			$msg = "Hit user abort condition in download_GEdocx.php";
+			error_log(print_r($msg, TRUE)); 
+
+			header("Location: home");
+			exit();
+		}
+		$instructor_name = $p_user->$first_name;
+		$instructor_name .= " ".$p_user->$last_name;
+		$instructor_email = $p_user->$email;
+		//DEBUG
+		$msg = "instructor name: ".$instructor_name;
+		error_log(print_r($msg, TRUE));
+		$msg = "instructor email: ".$instructor_email;
+		error_log(print_r($msg, TRUE));
+
+
 		$proposedCourseInfo = array("p_course_name" => $p_course_name, "p_course_desc" => $proposal->p_course_desc, 
 						"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 						"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 						"lib_impact" => $proposal->lib_impact, "tech_impact" => $proposal->tech_impact,
 						"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type, 
-						"p_aligned_assignments" => $proposal->$p_aligned_assignments, "p_first_offering" => $proposal->$p_first_offering, 
-						"p_course_status" => $proposal->$p_course_status, "p_designation_scope" => $proposal->$p_designation_scope, 
-						"p_designation_prof" => $proposal->$p_designation_prof, "p_feedback" => $proposal->$p_feedback, 
-						"department" => $department, "division" => $division, "p_perspective" => $proposal->$p_perspective);
+						"p_aligned_assignments" => $proposal->p_aligned_assignments, "p_first_offering" => $proposal->p_first_offering, 
+						"p_course_status" => $proposal->p_course_status, "p_designation_scope" => $proposal->p_designation_scope, 
+						"p_designation_prof" => $proposal->p_designation_prof, "p_feedback" => $proposal->p_feedback, 
+						"department" => $department, "division" => $division, "p_perspective" => $proposal->p_perspective);
 
 		//DEBUG
 		$n = 1;
@@ -51,11 +73,6 @@
 			$msg = "Thing ".$n." of 19: ".$info;
 			error_log(print_r($msg, TRUE));
 			$n ++;
-		}
-		if(is_null($proposedCourseInfo["p_perspective"])){
-			$proposedCourseInfo["p_perspective"] = "Equity & Power - Global"; //it's not supposed to be null :/
-			$msg = "Perspective was null. Is now: ".$proposedCourseInfo["p_perspective"];
-			error_log(print_r($msg, TRUE));
 		}
 
 		//end debug
@@ -88,7 +105,7 @@
 		$descStyle = 'desc';
 		$phpWord->addFontStyle($descStyle, array( 'size' => 11, 'name' => 'Calibri'));
 		$standardStyle = 'standard';
-		$phpWord->addFontStyle($standardStyle, array( 'size' => 12, 'name' => 'Calibri'));
+		$phpWord->addFontStyle($standardStyle, array( 'size' => 11, 'name' => 'Calibri'));
 
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit courses for ";
 		$genEdDesc = "No description set";
@@ -158,19 +175,84 @@
 		$section->addTextBreak(2);
 
 		$section->addText('Learning outcomes', $secHeaderStyle, $paragraphStyle);
-		$section->addText($learningOutcomesDesc);
+		$section->addText($learningOutcomesDesc, $standardStyle);
+		$section->addTextBreak(1);
 		foreach ($learningOutcomes as $outcome){
 			$section->addListItem($outcome, $standardStyle);
 			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(3);
+
+		//Submitter information and onward (approximately the lower third of the first page)
+		$section->addText('Submitter information', $boldStyle);
+		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		
+		//TODO: FIX THIS (right now, just blank)
+		$section->addText('Instructor Name: '.$instructor_name, $standardStyle);
+		$section->addText('Email address: '.$instructor_email, $standardStyle);
+		$section->addTextBreak(1);
+
+		$section->addText('Basic course information', $boldStyle);
+		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText('Department/program: '.$department, $standardStyle);
+		$section->addText('Course number (if available): '.$course_id, $standardStyle);
+		$section->addText('Course title: '.$p_course_name, $standardStyle);
+		$section->addText('When is the first semester and year the course will be offered? '.$proposedCourseInfo["p_first_offering"], 
+		 	$standardStyle);
+		$section->addTextBreak(1);
+
+		//TODO: have the bullet style change from EMPTY to FILLED based on submission/approval status
+		$section->addText('This course is (select one):', $standardStyle);
+		$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addTextBreak(1);
+
+		//TODO: have the bullet style change from EMPTY to FILLED based on p_designation_scope
+		$section->addText('This designation is being sought for:', $boldStyle);
+		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
+			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addTextBreak(2);
+
+		$section->addText('Please provide the course description', $boldStyle);
+		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText(htmlspecialchars($proposedCourseInfo["p_course_desc"]), $standardStyle);
+		$section->addPageBreak();
+
+		$rationaleTextRun = $section->createTextRun($paragraphStyle);
+		$rationaleTextRun->addText('Please provide a brief rationale addressing how the proposed course aligns with the description of the ', $boldStyle);
+		$rationaleTextRun->addText($perspectiveText, $secHeaderStyle);
+		$rationaleTextRun->addText(' category:', $boldStyle);
+		$section->addText(htmlspecialchars($proposedCourseInfo["rationale"]), $standardStyle);
+		$section->addPageBreak();
+		
+		$assignTextRun = $section->createTextRun($paragraphStyle);
+		$assignTextRun->addText('Courses in each General Education category need to include at least one assignment aligned ', $boldStyle);
+		$assignTextRun->addText('to each learning outcome. What assignment(s) would enable students to reach the learning outcomes for the ', $boldStyle);
+		$assignTextRun->addText($perspectiveText, $secHeaderStyle);
+		$assignTextRun->addText(' category?', $boldStyle);
+		$section->addText(htmlspecialchars($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
+		$section->addPageBreak();
+
+		$section->addText('Submit to: Sub-Committee', $boldStyle);
+		$section->addListItem('Accepted (on to COI)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('Revise and Resubmit (back to Faculty)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addListItem('Rejected (back to Faculty)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addTextBreak(1);
+
+		$section->addText('Comments from Sub-Committee:', $boldStyle);
+		if(is_null($proposedCourseInfo["p_feedback"] || $proposedCourseInfo["p_feedback"] == "None")){
+			$section->addTextBreak(20);
+		}
+		else{
+			$section->addText(htmlspecialchars($proposedCourseInfo["p_feedback"]), $standardStyle);
+		}
 		
 
 	}
-	
-	//$phpWord = new \PhpOffice\PhpWord\PhpWord();
-		//$section = $phpWord->addSection();	
-		//$section->addText('Hello World! V8');
 		
 		$file = $filename.'.docx';
 		header("Content-Description: File Transfer");
@@ -184,6 +266,4 @@
 		$xmlWriter->save("php://output");
 		
 		
-	
-	
 ?>
