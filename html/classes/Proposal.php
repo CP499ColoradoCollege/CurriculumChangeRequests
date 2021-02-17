@@ -76,9 +76,9 @@ class Proposal{
 		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, 
 		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
 		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
-		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, p_aligned_assignments, 
-		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback, 
-		status FROM proposals WHERE id = ?");
+		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status, p_aligned_assignments, 
+		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback
+		 FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
 
 		//things being out of order might have something to do with above not having status when below does

@@ -187,7 +187,7 @@
 
 		//Submitter information and onward (approximately the lower third of the first page)
 		$section->addText('Submitter information', $boldStyle);
-		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		
 		//TODO: FIX THIS (right now, just blank)
 		$section->addText('Instructor Name: '.$instructor_name, $standardStyle);
@@ -195,7 +195,7 @@
 		$section->addTextBreak(1);
 
 		$section->addText('Basic course information', $boldStyle);
-		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		$section->addText('Department/program: '.$department, $standardStyle);
 		$section->addText('Course number (if available): '.$course_id, $standardStyle);
 		$section->addText('Course title: '.$p_course_name, $standardStyle);
@@ -213,14 +213,14 @@
 
 		//TODO: have the bullet style change from EMPTY to FILLED based on p_designation_scope
 		$section->addText('This designation is being sought for:', $boldStyle);
-		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
-		$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 		$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
 			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
 		$section->addTextBreak(2);
 
 		$section->addText('Please provide the course description', $boldStyle);
-		$section->addText('------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
 		$section->addPageBreak();
 
