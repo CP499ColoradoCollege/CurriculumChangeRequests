@@ -59,8 +59,6 @@
 		$phpWord->getSettings()->setThemeFontLang($languageEnGb);
 		$section = $phpWord->addSection();
 
-		/*
-
 		$paragraphStyle = 'pStyle';
 		$phpWord->addParagraphStyle($paragraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 280));
 		$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
@@ -167,26 +165,10 @@
 
 		//for hollow bulleted lists: TYPE_BULLET_EMPTY ?
 
-
-		*/
-
 		//DEBUG
 		$msg = "Got past final text formatting";
 		error_log(print_r($msg, TRUE)); 
 
-		$section->addText('Hello World!');
-		$file = 'HelloWorld.docx';
-		header("Content-Description: File Transfer");
-		header('Content-Disposition: attachment; filename="' . $file . '"'); 
-		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.˓→document');
-		header('Content-Transfer-Encoding: binary');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0'); 
-		header('Expires: 0');
-		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-		$xmlWriter->save("php://output");
-
-
-		/*
 
 		$file = $filename.'.docx';
 		header("Content-Description: File Transfer");
@@ -198,7 +180,6 @@
 		header('Expires: 0');
 		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 		$xmlWriter->save("php://output");
-		*/
 	}
 
 ?>

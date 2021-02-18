@@ -78,9 +78,8 @@ class Proposal{
 		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, 
 		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
 		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
-		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, p_aligned_assignments, 
-		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback, 
-		status FROM proposals WHERE id = ?");
+		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
+		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
 
 		$bool = $statement->execute();
@@ -148,9 +147,9 @@ class Proposal{
 		$this->proposal_date, $this->department, $this->type, $this->p_course_id, 
 		$this->p_course_title, $this->p_course_desc, $this->p_extra_details, 
 		$this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, 
-		$this->lib_impact, $this->tech_impact, $this->$p_aligned_assignments, 
-		$this->$p_first_offering, $this->$p_course_status, $this->$p_designation_scope, 
-		$this->$p_designation_prof, $this->$p_feedback);
+		$this->lib_impact, $this->tech_impact, $this->p_aligned_assignments, 
+		$this->p_first_offering, $this->p_course_status, $this->p_designation_scope, 
+		$this->p_designation_prof, $this->p_feedback);
 
 		//one s for every variable...make sure to add all 6!
 
@@ -182,9 +181,13 @@ class Proposal{
 		if($this->tech_impact == ''){
 			$this->tech_impact = 'None';
 		}
-		//TODO: add new vars here and check post_array
-		//$this->aligned_assignments = $post_array['p_aligned_assignments'];
 		
+		$this->p_aligned_assignments = $post_array['aligned_assignments'];
+		$this->p_first_offering = $post_array['first_offering'];
+		$this->p_course_status = $post_array['course_status'];
+		$this->p_designation_scope = $post_array['designation_scope'];
+		$this->p_designation_prof = $post_array['designation_prof'];
+		$this->p_feedback = 'None';
 		$bool = $statement->execute();
 		if($bool){
 			return true;
@@ -284,8 +287,8 @@ class Proposal{
 			
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
-		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
+		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ?, p_aligned_assignments = ?, p_first_offering = ?, p_course_status = ?, p_designation_scope = ?, p_designation_prof = ? WHERE id = ?");
+		$statement->bind_param("ssssssssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $p_aligned_assignments, $p_first_offering, $p_course_status, $p_designation_scope, $p_designation_prof, $pid);
 		
 		$p_course_id = $post_array['course_id'];
 		$p_course_title = $post_array['course_title'];
@@ -303,7 +306,11 @@ class Proposal{
 		if($tech_impact == ''){
 			$tech_impact = 'None';
 		}
-		
+		$p_aligned_assignments = $post_array['aligned_assignments'];
+		$p_first_offering = $post_array['first_offering'];
+		$p_course_status = $post_array['course_status'];
+		$p_designation_scope = $post_array['designation_scope'];
+		$p_designation_prof = $post_array['designation_prof'];
 		$bool = $statement->execute();
 		if($bool){
 			return true;
@@ -314,13 +321,20 @@ class Proposal{
 	}
 
 	
-	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){
-				
+	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){	
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("sssssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
-										
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, 
+		proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
+		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) 
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+		$statement->bind_param("sssssssssssssss", $this->user_id, $this->proposal_title, 
+		$this->proposal_date, $this->department, $this->type, $this->p_course_id, 
+		$this->p_course_title, $this->p_course_desc, $this->p_extra_details, 
+		$this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, 
+		$this->lib_impact, $this->tech_impact);
+		echo "2";							
 		$this->user_id = $user_id;
 		$this->related_course_id = $related_course_id;		
 		$this->type = "Change an Existing Course";
@@ -432,8 +446,7 @@ class Proposal{
 		$this->tech_impact = $post_array['tech_impact'];
 		if($this->tech_impact == ""){
 			$this->tech_impact = "None";
-		}
-						
+		}			
 		$bool = $statement->execute();
 		if($bool){
 			return true;

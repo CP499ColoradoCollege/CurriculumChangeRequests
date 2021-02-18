@@ -51,19 +51,19 @@ class Course{
 	}
 	
 	public function fetchCourseFromCourseID($course_id){
-		
+		$dbc = $this->dbc;
 		$course_id_array = str_split($course_id);
 		
 		$subj_code = $course_id_array[0].$course_id_array[1];
 		$course_num = $course_id_array[2].$course_id_array[3].$course_id_array[4];
-		
-		$statement = $this->dbc->prepare("SELECT id, subj_desc, divs_code, divs_desc, dept_code, dept_desc, course_title, course_desc, extra_details, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE subj_code = ? AND course_num = ?");
+		$statement = $dbc->prepare("SELECT id, subj_desc, divs_code, divs_desc, dept_code, dept_desc, course_title, course_desc, extra_details, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE subj_code = ? AND course_num = ?");
 		$statement->bind_param("ss", $subj_code, $course_num);
 		
 		$bool = $statement->execute();
 		$statement->store_result();
 		$statement->bind_result($id, $subj_desc, $divs_code, $divs_desc, $dept_code, $dept_desc, $course_title, $course_desc, $extra_details, $enrollment_limit, $prereqs, $units, $crosslisting, $perspective, $date_last_modified, $related_proposals, $status);
 		$statement->fetch();
+		
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			
 			$this->id = $id;
@@ -87,7 +87,7 @@ class Course{
 			$this->status = $status;
 			return $this;
 		}else{
-			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 Course.";
+			echo "afaeffa";
 			return false;
 		}
 	}

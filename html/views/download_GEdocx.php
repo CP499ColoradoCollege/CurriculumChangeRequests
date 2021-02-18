@@ -40,10 +40,10 @@
 						"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
 						"lib_impact" => $proposal->lib_impact, "tech_impact" => $proposal->tech_impact,
 						"p_info_header" => $proposedCriteriaInfoHeader, "type" => $proposal->type, 
-						"p_aligned_assignments" => $proposal->$p_aligned_assignments, "p_first_offering" => $proposal->$p_first_offering, 
-						"p_course_status" => $proposal->$p_course_status, "p_designation_scope" => $proposal->$p_designation_scope, 
-						"p_designation_prof" => $proposal->$p_designation_prof, "p_feedback" => $proposal->$p_feedback, 
-						"department" => $department, "division" => $division, "p_perspective" => $proposal->$p_perspective);
+						"p_aligned_assignments" => $proposal->p_aligned_assignments, "p_first_offering" => $proposal->p_first_offering, 
+						"p_course_status" => $proposal->p_course_status, "p_designation_scope" => $proposal->p_designation_scope, 
+						"p_designation_prof" => $proposal->p_designation_prof, "p_feedback" => $proposal->p_feedback, 
+						"department" => $department, "division" => $division, "p_perspective" => $proposal->p_perspective);
 
 		//DEBUG
 		$n = 1;
@@ -52,12 +52,7 @@
 			error_log(print_r($msg, TRUE));
 			$n ++;
 		}
-		if(is_null($proposedCourseInfo["p_perspective"])){
-			$proposedCourseInfo["p_perspective"] = "Equity & Power - Global"; //it's not supposed to be null :/
-			$msg = "Perspective was null. Is now: ".$proposedCourseInfo["p_perspective"];
-			error_log(print_r($msg, TRUE));
-		}
-
+		
 		//end debug
 		$perspectiveText = htmlspecialchars($proposedCourseInfo["p_perspective"]); //needed bc "&" character breaks things
 

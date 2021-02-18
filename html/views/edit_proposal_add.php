@@ -192,6 +192,80 @@ if($proposal == false){ //if the proposal doesn't exist/wasn't created by the cu
 				</div>
 			</div>
 			<div class="row">
+			<div class="row" style="margin-top: 25px;">
+				<!-- Current Aligned Assignments -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Aligned Assignments</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The aligned assignments of this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="aligned_assignments" id="aligned_assignments" placeholder="" autocomplete="off"><?php echo $proposal->p_aligned_assignments; ?></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="row" style="margin-top: 25px;">
+				<!-- Current Aligned Assignments -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current First Offering</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The first offering of this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="first_offering" id="first_offering" placeholder="" autocomplete="off"><?php echo $proposal->p_first_offering; ?></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Current Course Status -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Status</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Course status">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<select class="input-sm" style="float: left;" name="course_status" id="course_status">
+							<option value="new not yet approved by COI"<?php if ($proposal->p_course_status == 'new not yet approved by COI'){ echo ' selected'; } ?>>new not yet approved by COI</option>
+							<option value="new approved but not yet offered Units"<?php if ($proposal->p_course_status == 'new approved but not yet offered'){ echo ' selected'; } ?>>0new approved but not yet offered</option>
+							<option value="current under minor revision"<?php if ($proposal->p_course_status == 'current under minor revision'){ echo ' selected'; } ?>>current under minor revision</option>
+							<option value="current under major revision"<?php if ($proposal->p_course_status == 'current under major revision'){ echo ' selected'; } ?>>current under major revision</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="row" style="margin-top: 25px;">
+				<!-- Current Designation Scope -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Designation Scope</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The designation scope of this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="designation_scope" id="designation_scope" placeholder="" autocomplete="off"><?php echo $proposal->p_designation_scope; ?></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="row" style="margin-top: 25px;">
+				<!-- Current Designation Professor(s) -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Designation Professor(s)</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The designation professor(s) of this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="designation_prof" id="designation_prof" placeholder="" autocomplete="off"><?php echo $proposal->p_designation_prof; ?></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 					<!-- Save Button -->
 					<button type="submit" class="btn btn-home" style="margin-left: 48%; margin-top: 50px; margin-bottom: 20px; text-align: center;"><strong>Save</strong></button>
 					<input type="hidden" name="pid" value="<?php echo $proposal->id; ?>">

@@ -191,6 +191,84 @@
 					</div>
 				</div>
 			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Aligned Assignments -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses in each GenEd category need to include >=1 assignment aligned to each learning outcome">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+					<textarea class="form-control input-md form-textbox" type="text" name="aligned_assignments" id="aligned_assignments" placeholder="" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- First Offering -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="first_offering" style="font-size: 20px; float: right;">First Offering
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="First semester and year course will be offered">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+					<textarea class="form-control input-md form-textbox" type="text" name="first_offering" id="first_offering" placeholder="" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Status -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_status" style="font-size: 20px; float: right;">Course Status
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Course status">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="course_status" id="course_status">
+							<option value="new not yet approved by COI" selected>new not yet approved by COI</option>
+							<option value="new approved but not yet offered">new approved but not yet offered</option>
+							<option value="current under minor revision">current under minor revision</option>
+							<option value="current under major revision">current under major revision</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Designation Scope -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="designation_scope" style="font-size: 20px; float: right;">Designation Scope
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="GenEd designation sought for all sections of course or instructor-specific section">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<textarea class="form-control input-md form-textbox" type="text" name="designation_scope" id="designation_scope" placeholder="" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Designation Prof -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="designation_prof" style="font-size: 20px; float: right;">Designation Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="addendum to above: list of professor(s) for instructor-specific sections if applicable">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<textarea class="form-control input-md form-textbox" type="text" name="designation_prof" id="designation_prof" placeholder="List of professors" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-5"></div>
 				<div class="col-md-2">
