@@ -1,5 +1,5 @@
 <?php 
-class sandboxFunctionTests extends \Codeception\Test\Unit
+class HelpersFunctionTests extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester

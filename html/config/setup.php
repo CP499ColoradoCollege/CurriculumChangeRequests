@@ -17,7 +17,7 @@ $string_max = 150;
 
 #Functions:
 
-include('functions/sandbox.php');
+include('functions/helpers.php');
 
 
 #Classes
