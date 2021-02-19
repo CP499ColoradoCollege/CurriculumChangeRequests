@@ -23,16 +23,17 @@ export JAVA_HOME="/usr/lib/jvm/java-14-openjdk-amd64"
 export PATH="$PATH:$JAVA_HOME/bin"
 sudo cp html/databaseConnection/*.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext
 
-#set composer requirements
-sudo composer require zendframework/zend-escaper zendframework/zend-stdlib phpoffice/phpword phpunit/phpunit
+#install composer from lock file
+cd resources/ 
+composer install
+cd ..
 
 #copy files to XAMPP
-sudo cp composer.json /opt/lampp/htdocs/ 
+sudo cp resources/composer.json /opt/lampp/htdocs/ 
 sudo cp html/* html/.htaccess resources/banner.JPG resources/bootstrap.php /opt/lampp/htdocs
 
 #install composer dependencies to localhost
 cd /opt/lampp/htdocs
-composer install
 
 #ensure correct permissions to application files  
 sudo chmod 755 /opt/lampp/htdocs/
