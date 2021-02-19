@@ -326,15 +326,15 @@ class Proposal{
 		
 		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, 
 		proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
-		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) 
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact, p_aligned_assignments, p_first_offering, p_designation_scope, p_designation_prof ) 
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		$statement->bind_param("sssssssssssssss", $this->user_id, $this->proposal_title, 
+		$statement->bind_param("sssssssssssssssssss", $this->user_id, $this->proposal_title, 
 		$this->proposal_date, $this->department, $this->type, $this->p_course_id, 
 		$this->p_course_title, $this->p_course_desc, $this->p_extra_details, 
 		$this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, 
-		$this->lib_impact, $this->tech_impact);
-		echo "2";							
+		$this->lib_impact, $this->tech_impact, $this->p_aligned_assignments, $this->p_first_offering, $this->p_designation_scope, $this->p_designation_prof);
+									
 		$this->user_id = $user_id;
 		$this->related_course_id = $related_course_id;		
 		$this->type = "Change an Existing Course";
@@ -435,6 +435,50 @@ class Proposal{
 			$this->p_units = "";
 		}
 		
+		if(in_array('8', $criteria)){
+			$this->p_first_offering = $post_array['p_first_offering'];
+			if($changes != ""){
+				$changes = $changes.", First Offering";
+			}else{
+				$changes = $changes." First Offering";
+			}
+		}else{
+			$this->p_first_offering = "";
+		}
+		
+		if(in_array('9', $criteria)){
+			$this->p_aligned_assignments = $post_array['p_aligned_assignments'];
+			if($changes != ""){
+				$changes = $changes.", Aligned Assignments";
+			}else{
+				$changes = $changes." Aligned Assignments";
+			}
+		}else{
+			$this->p_aligned_assignments = "";
+		}
+		
+		if(in_array('a', $criteria)){
+			$this->p_designation_scope = $post_array['p_designation_scope'];
+			if($changes != ""){
+				$changes = $changes.", Designation Scope";
+			}else{
+				$changes = $changes." Designation Scope";
+			}
+		}else{
+			$this->p_designation_scope = "";
+		}
+		
+		if(in_array('b', $criteria)){
+			$this->p_designation_prof = $post_array['p_designation_prof'];
+			if($changes != ""){
+				$changes = $changes.", Designation Professor(s)";
+			}else{
+				$changes = $changes." Designation Professor(s)";
+			}
+		}else{
+			$this->p_designation_prof = "";
+		}
+		
 		$this->proposal_title = 'Change'.$changes.' of Course: '.$related_course_id.', '.$course->course_title;
 		$this->proposal_date = date('m/d/Y');
 		$this->department = $course->dept_desc;
@@ -462,8 +506,8 @@ class Proposal{
 		
 		$dbc = $this->dbc;
 
-		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
-		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
+		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ?, p_aligned_assignments = ?, p_first_offering = ?, p_designation_scope = ?, p_designation_prof = ? WHERE id = ?");
+		$statement->bind_param("sssssssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $p_aligned_assignments, $p_first_offering, $p_designation_scope, $p_designation_prof, $pid);
 				
 		$criteria = str_split($criteria);	
 		$changes = "";
@@ -542,6 +586,50 @@ class Proposal{
 			}
 		}else{
 			$p_units = "";
+		}
+		
+		if(in_array('8', $criteria)){
+			$p_first_offering = $post_array['p_first_offering'];
+			if($changes != ""){
+				$changes = $changes.", First Offering";
+			}else{
+				$changes = $changes." First Offering";
+			}
+		}else{
+			$p_first_offering = "";
+		}
+		
+		if(in_array('9', $criteria)){
+			$p_aligned_assignments = $post_array['p_aligned_assignments'];
+			if($changes != ""){
+				$changes = $changes.", Aligned Assignments";
+			}else{
+				$changes = $changes." Aligned Assignments";
+			}
+		}else{
+			$p_aligned_assignments = "";
+		}
+		
+		if(in_array('a', $criteria)){
+			$p_designation_scope = $post_array['p_designation_scope'];
+			if($changes != ""){
+				$changes = $changes.", Designation Scope";
+			}else{
+				$changes = $changes." Designation Scope";
+			}
+		}else{
+			$p_designation_scope = "";
+		}
+		
+		if(in_array('b', $criteria)){
+			$p_designation_prof = $post_array['p_designation_prof'];
+			if($changes != ""){
+				$changes = $changes.", Designation Professor(s)";
+			}else{
+				$changes = $changes." Designation Professor(s)";
+			}
+		}else{
+			$p_designation_prof = "";
 		}
 		
 		$rationale = $post_array['rationale'];
