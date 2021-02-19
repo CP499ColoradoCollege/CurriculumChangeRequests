@@ -39,11 +39,16 @@ CREATE TABLE `courses` (
   `dept_desc` varchar(100) NOT NULL,
   `course_title` varchar(200) NOT NULL,
   `course_desc` varchar(1000) NOT NULL,
-  `extra_desc` varchar(500) NOT NULL DEFAULT '0',
+  `extra_details` varchar(500) NOT NULL DEFAULT '0',
+  `enrollment_limit` int(2) Not NULL,
   `prereqs` varchar(500) NOT NULL DEFAULT '0',
   `units` varchar(10) NOT NULL DEFAULT '0',
   `crosslisting` varchar(200) NOT NULL,
   `perspective` varchar(100) NOT NULL,
+  `aligned_assignments` varchar(1000) NOT NULL DEFAULT 'None',
+  `first_offering` varchar(10) NOT NULL DEFAULT 'None',
+  `designation_scope` varchar(10) NOT NULL DEFAULT 'None',
+  `designation_prof` varchar(50) NOT NULL DEFAULT 'None',
   `date_last_modified` varchar(10) NOT NULL DEFAULT '0',
   `related_proposals` varchar(1000) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '1'
@@ -53,11 +58,11 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `subj_code`, `subj_desc`, `course_num`, `divs_code`, `divs_desc`, `dept_code`, `dept_desc`, `course_title`, `course_desc`, `extra_desc`, `prereqs`, `units`, `crosslisting`, `perspective`, `date_last_modified`, `related_proposals`, `status`) VALUES
-(1, 'CP', 'Computer Science', 122, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science I', 'Introduction to algorithms and data structures, and the design of computer programs using the programming language Java. This course requires some experience in programming.', '<i>Prerequisite: </i>Computer Science 115 or consent of instructor. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Burge, Wellman.', 'Prerequisite: Computer Science 115 or consent of instructor.', '1 unit', '', '', '0', '0', 1),
-(2, 'CP', 'Computer Science', 222, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science II', 'Examination of algorithms for searching, sorting, and manipulation of data structures. Exploration of queues, stacks, trees, and graphs using a variety of design techniques including recursion and object-oriented programming.', '<i>Prerequisite: </i>Computer Science 122. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Ellsworth.', 'Prerequisite: Computer Science 122.', '1 unit', '', '', '0', '0', 1),
-(3, 'CP', 'Computer Science', 275, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Organization', 'Exploration of the design and organization of computer processors, memory, and operating systems. Topics include processor architecture, digital circuits, memory management, scheduling, file systems, assembly language, and peripheral device control.', '<i>Prerequisite: </i>Computer Science 222. 1 unit - Ylvisaker.', 'Prerequisite: Computer Science 222.', '1 unit', '', '', '0', '0', 1),
-(4, 'CP', 'Computer Science', 341, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Topics in Computer Science', 'Special topics in computer science not offered on a regular basis.', '<i>Prerequisite: </i>Computer Science 222, Computer Science 274, Computer Science 275. 1 unit - Burge, Ellsworth, Erickson, Ylvisaker.', 'Prerequisite: Computer Science 222, Computer Science 274, Computer Science 275.', '1 unit', '', '', '0', '0', 1);
+INSERT INTO `courses` (`id`, `subj_code`, `subj_desc`, `course_num`, `divs_code`, `divs_desc`, `dept_code`, `dept_desc`, `course_title`, `course_desc`, `extra_details`, `enrollment_limit`, `prereqs`, `units`, `crosslisting`, `perspective`, `aligned_assignments`, `first_offering`, `designation_scope`, `designation_prof`, `date_last_modified`, `related_proposals`, `status`) VALUES
+(1, 'CP', 'Computer Science', 122, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science I', 'Introduction to algorithms and data structures, and the design of computer programs using the programming language Java. This course requires some experience in programming.', '<i>Prerequisite: </i>Computer Science 115 or consent of instructor. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Burge, Wellman.', 25, 'Prerequisite: Computer Science 115 or consent of instructor.', '1 unit', '', '', '', '', '', '', '0', '0', 1),
+(2, 'CP', 'Computer Science', 222, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science II', 'Examination of algorithms for searching, sorting, and manipulation of data structures. Exploration of queues, stacks, trees, and graphs using a variety of design techniques including recursion and object-oriented programming.', '<i>Prerequisite: </i>Computer Science 122. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Ellsworth.', 25, 'Prerequisite: Computer Science 122.', '1 unit', '', '', '', '', '', '', '0', '0', 1),
+(3, 'CP', 'Computer Science', 275, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Organization', 'Exploration of the design and organization of computer processors, memory, and operating systems. Topics include processor architecture, digital circuits, memory management, scheduling, file systems, assembly language, and peripheral device control.', '<i>Prerequisite: </i>Computer Science 222. 1 unit - Ylvisaker.', 25,  'Prerequisite: Computer Science 222.', '1 unit', '', '', '', '', '', '', '0', '0', 1),
+(4, 'CP', 'Computer Science', 341, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Topics in Computer Science', 'Special topics in computer science not offered on a regular basis.', '<i>Prerequisite: </i>Computer Science 222, Computer Science 274, Computer Science 275. 1 unit - Burge, Ellsworth, Erickson, Ylvisaker.', 25, 'Prerequisite: Computer Science 222, Computer Science 274, Computer Science 275.', '1 unit', '', '', '', '', '', '', '0', '0', 1);
 
 -- --------------------------------------------------------
 

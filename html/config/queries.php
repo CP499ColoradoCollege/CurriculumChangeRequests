@@ -6,14 +6,14 @@
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
-			
+		
 			$_SESSION['user_email'] = 'admin@proposals.com';
 			$_SESSION['logged_in'] = true;
-						
+							
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
 			$statement->bind_param("ss", $email, $password);
-						
-			
+				
+				
 			if($_SESSION['logged_in'] == true){	//check if the user is already logged in; if so, redirect them to the HOME page
 				header('Location: home');
 			}
@@ -30,13 +30,14 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){	
-				// //DEBUG
-				// $msg = "Reached query redirect to download page";
-				// error_log(print_r($msg, TRUE)); 		
+				//DEBUG
+				$msg = "Reached query redirect to download page";
+				error_log(print_r($msg, TRUE)); 		
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
-				header("Location: download_GEdocx?pid=".$_POST['openedid']);
-				exit;
+				header("Location: download_GEdocx?pid=".$_POST['openedid']); 
+				exit();
+				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
@@ -173,21 +174,22 @@
 								$criteria = $criteria."g";
 							}
 							
-							if(isset($_POST['p_first_offering'])){
-								$criteria.="h";
+							if(isset($_POST['first_offering'])){
+								$criteria = $criteria."h";
 							}
-
-							if(isset($_POST['p_aligned_assignments'])){
-								$criteria.="i";
+							
+							if(isset($_POST['aligned_assignments'])){
+								$criteria = $criteria."i";
 							}
-
-							if(isset($_POST['p_designation_scope'])){
-								$criteria.="j";
+							
+							if(isset($_POST['designation_scope'])){
+								$criteria = $criteria."j";
 							}
-
-							if(isset($_POST['p_designation_prof'])){
-								$criteria.="k";
+							
+							if(isset($_POST['designation_prof'])){
+								$criteria = $criteria."k";
 							}
+							
 							
 							if($criteria != ""){
 								header("Location: change_course_proposal?type=".$criteria."&cid=".$course_id);
@@ -213,11 +215,11 @@
 		    
 		    if($_POST){
 		    	
-				$user_id = $user->id;
+			$user_id = $user->id;
 		        
 		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
 		        $course_id_array = str_split($course_id);
-		        
+		       
 		        if(count($course_id_array) == 5){
 		            
 		            //first, make sure the existing_course_id isn't blank
@@ -231,7 +233,7 @@
 		                
 		                $course = new Course($dbc);
 		                $course = $course->fetchCourseFromCourseID($course_id);
-		                
+		                header("Location: home");
 		                if($course != false){
 		                    
 		                    $remove_proposal = new Proposal($dbc);
@@ -263,17 +265,17 @@
 				
 				$pid = $_GET['pid'];
 				$user_id = $user->id;
-				$original_proposal = new Proposal($dbc);
-				$original_proposal = $original_proposal->fetchProposalFromID($pid);
+				//$original_proposal = new Proposal($dbc);
+				//$original_proposal = $original_proposal->fetchProposalFromID($pid);
 		
-				$new_proposalhistory = new Proposal($dbc);
-				$new_proposalhistory = $new_proposalhistory->addProposalhistory($pid, $user_id, $_POST, $original_proposal);
+				//$new_proposalhistory = new Proposal($dbc);
+				//$new_proposalhistory = $new_proposalhistory->addProposalhistory($pid, $user_id, $_POST, $original_proposal);
 				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->editProposalAddNewCourse($user_id, $pid, $_POST);
 																						   
 				
-				if($new_proposalhistory != false && $new_proposal != false){
+				if($new_proposal != false){
 					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
 				}else{
 					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";

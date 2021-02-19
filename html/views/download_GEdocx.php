@@ -38,7 +38,6 @@
 		//DEBUG
 		$msg = "Hit user abort condition in download_GEdocx.php";
 		error_log(print_r($msg, TRUE)); 
-
 		header("Location: home");
 		exit();
 	}
@@ -361,7 +360,6 @@
 		//2: the proposed changes
 		//3: the rationale behind those changes
 			//CHECK IF IT'S ONE RATIONALE FOR EVERYTHING OR EACH ONE HAS ITS OWN
-		
 	}
 	else if($proposal->type == "Remove an Existing Course"){
 		//TODO
