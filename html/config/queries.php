@@ -36,7 +36,7 @@
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
 				header("Location: download_GEdocx?pid=".$_POST['openedid']);
-				exit();
+				exit;
 			}
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
@@ -146,33 +146,48 @@
 							$criteria = "";
 
 							if(isset($_POST['course_id'])){
-								$criteria = $criteria."1";
+								$criteria = $criteria."a";
 							}
 							
 							if(isset($_POST['course_title'])){
-								$criteria = $criteria."2";
+								$criteria = $criteria."b";
 							}
 							
 							if(isset($_POST['course_desc'])){
-								$criteria = $criteria."3";
+								$criteria = $criteria."c";
 							}
 							
 							if(isset($_POST['extra_details'])){
-								$criteria = $criteria."4";
+								$criteria = $criteria."d";
 							}
 							
 							if(isset($_POST['enrollment_limit'])){
-							    $criteria = $criteria."5";
+							    $criteria = $criteria."e";
 							}
 							
 							if(isset($_POST['prerequisites'])){
-								$criteria = $criteria."6";
+								$criteria = $criteria."f";
 							}
 							
 							if(isset($_POST['units'])){
-								$criteria = $criteria."7";
+								$criteria = $criteria."g";
 							}
 							
+							if(isset($_POST['p_first_offering'])){
+								$criteria.="h";
+							}
+
+							if(isset($_POST['p_aligned_assignments'])){
+								$criteria.="i";
+							}
+
+							if(isset($_POST['p_designation_scope'])){
+								$criteria.="j";
+							}
+
+							if(isset($_POST['p_designation_prof'])){
+								$criteria.="k";
+							}
 							
 							if($criteria != ""){
 								header("Location: change_course_proposal?type=".$criteria."&cid=".$course_id);
