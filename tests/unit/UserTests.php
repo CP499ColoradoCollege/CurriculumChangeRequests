@@ -19,8 +19,6 @@ class ExampleTest extends \Codeception\Test\Unit
         $username = "c_kennedy"
     }
 
-  
-
     public function testFetchUserFromEmail()
 	{
         $user_correctly_constructed = $user.testFetchUserFromEmail($email) #false if something goes wrong, otherwise correctly populates user object
