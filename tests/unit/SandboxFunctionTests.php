@@ -14,26 +14,21 @@ class sandboxFunctionTests extends \Codeception\Test\Unit
 		$this->assertFalse(contains(3, $test_array));
 		
 		//next will test selected
-		
 		$value_1 = "Test_String";
 		$value_2 = "Test"."_"."String";
 		assertTrue(selected($value_1, $value_2, True));
 		
 		
 		//then will test convertsSubmissionStatus
-		
 		assertTrue(selected(convertSubmissionStatus('0'), 'Not Submitted', True));
-		
 		assertTrue(selected(convertSubmissionStatus('1'), 'Submitted', True));
 		
 		//then will test convertsApprovalStatus
-		
 		assertTrue(selected(convertApprovalStatus('0'), 'N/A', True));
 		assertTrue(selected(convertApprovalStatus('1'), 'Awaiting approval from Head of Department', True));
 		assertTrue(selected(convertApprovalStatus('2'), 'Approved by Head of Department - awaiting approval from COI Divisional Rep', True));
 		
     }
-	
-	
-	
 }
+
+?>

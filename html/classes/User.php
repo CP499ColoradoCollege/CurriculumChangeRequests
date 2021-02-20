@@ -52,9 +52,7 @@ class User{
 		}else{
 			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 User.";
 			return false;
-		}
-		
-		
+		}		
 	}
 	
 	public function fetchUserFromUsername($username){

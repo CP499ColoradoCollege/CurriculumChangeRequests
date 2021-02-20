@@ -37,6 +37,12 @@ class HomeCest
 		$I->canSeeInCurrentUrl('/edit_proposal');
     	}
 	
+	public function downloadButtonWorks(AcceptanceTester $I)
+	{
+		$I->amOnPage('/home')
+		$I->see('Download')
+		$I->click('Download')
+	}
 }
 
 ?>
