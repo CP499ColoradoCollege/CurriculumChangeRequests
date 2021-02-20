@@ -98,6 +98,8 @@
 	$phpWord->addFontStyle($descStyle, array( 'size' => 11, 'name' => 'Calibri'));
 	$standardStyle = 'standard';
 	$phpWord->addFontStyle($standardStyle, array( 'size' => 11, 'name' => 'Calibri'));
+	$smallBoldStyle = 'smallBold';
+	$phpWord->addFontStyle($smallBoldStyle, array( 'bold' => true, 'size' => 11, 'name' => 'Calibri'));
 
 	if($proposal->type == "Add a New Course"){
 		//DEBUG
@@ -237,7 +239,7 @@
 		if(is_null($proposedCourseInfo["p_limit"])){
 			$proposedCourseInfo["p_limit"] == "None specified";
 		}
-		$limitDesc = "Enrollment Limit: ".$proposedCourseInfo["p_limit"];
+		$limitDesc = "Enrolment Limit: ".$proposedCourseInfo["p_limit"];
 		$libImpactDesc = "Library Impact: ".$proposedCourseInfo["lib_impact"];
 		$techImpactDesc = "Technology Impact: ".$proposedCourseInfo["tech_impact"];
 		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
@@ -292,59 +294,46 @@
 		$titleTextRun->addText($a_2, $appHeaderStyle);
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit changes to existing courses.";
 		$section->addText($formDesc, $standardStyle);
-		$section->addTextBreak(2);
-		
+		$section->addTextBreak(1);
 
 		//identify criteria being changed
 		$headerString = "";
 		$critArray = str_split($criteria);
 		
-		$individualCritArray = array(); //for figuring out what sections to include later
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
 				case 'a':
 					$headerString.="Course ID-";
-					array_push($individualCritArray, "Course ID");
 					break;
 				case 'b':
 					$headerString.="Course Title-";
-					array_push($individualCritArray, "Course Title");
 					break;
 				case 'c':
 					$headerString.="Course Description-";
-					array_push($individualCritArray, "Course Description");
 					break;
 				case 'd':
 					$headerString.="Extra Details-";
-					array_push($individualCritArray, "Extra Details");
 					break;
 				case 'e':
-					$headerString.="Enrollment Limit-";
-					array_push($individualCritArray, "Enrollment Limit");
+					$headerString.="Enrolment Limit-";
 					break;
 				case 'f':
 					$headerString.="Prerequisites-";
-					array_push($individualCritArray, "Prerequisites");
 					break;
 				case 'g':
 					$headerString.="Units-";
-					array_push($individualCritArray, "Units");
 					break;
 				case 'h':
 					$headerString.="First Offering-";
-					array_push($individualCritArray, "First Offering");
 					break;
 				case 'i':
 					$headerString.="Aligned Assignments-";
-					array_push($individualCritArray, "Aligned Assignments");
 					break;
 				case 'j':
 					$headerString.="General Education Categorization Scope-";
-					array_push($individualCritArray, "General Education Categorization Scope");
 					break;
 				case 'k':
 					$headerString.="General Education Categorization Professors-";
-					array_push($individualCritArray, "General Education Categorization Professor(s)");
 					break;
 			}
 		}
@@ -354,7 +343,7 @@
 			//do nothing...?
 		}
 		else if(count($individual_criteria)==2){
-			$individual_criteria[0] .= "and ";
+			$individual_criteria[0] .= " and ";
 		}else{
 			for( $i = 0; $i<count($individual_criteria)-1; $i++ ) {
 				$individual_criteria[$i] .= ", ";
@@ -362,13 +351,165 @@
 			$individual_criteria[count($individual_criteria)-2].= "and ";
 		}
 		$criteriaInfoHeader = implode($individual_criteria);
-		$section->addText("The ".$department." department proposes changes to the ".$criteriaInfoHeader." of ".htmlentities($course_title).".");
-		//1: the existing criteria being changed
-			//use $individualCritArray - has strings of each thing being changed
-		//2: the proposed changes
-		//3: the rationale behind those changes
-			//it's one rationale
+		$section->addText("The ".$department." department proposes changes to the ".$criteriaInfoHeader." of ".htmlentities($course_title).".", $standardStyle);
+		$section->addTextBreak(1);
 
+		//1: the existing criteria being changed
+		$section->addText('Current course information', $boldStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		foreach($critArray as $criteria){
+			//use $course 
+			switch($criteria){
+				case 'a':
+					$textRunA = $section->createTextRun();
+					$textRunA->addText("Course ID: ", $smallBoldStyle);
+					$textRunA->addText(htmlentities($course->id), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'b':
+					$textRunB = $section->createTextRun();
+					$textRunB->addText("Course Title: ", $smallBoldStyle);
+					$textRunB->addText(htmlentities($course->course_title), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'c':
+					$textRunC = $section->createTextRun();
+					$textRunC->addText("Course Description: ", $smallBoldStyle);
+					$textRunC->addText(htmlentities($course->course_desc), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'd':
+					$textRunD = $section->createTextRun();
+					$textRunD->addText("Extra Details: ", $smallBoldStyle);
+					$textRunD->addText(htmlentities($course->extra_details), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'e':
+					$textRunE = $section->createTextRun();
+					$textRunE->addText("Enrolment Limit: ", $smallBoldStyle);
+					$textRunE->addText(htmlentities($course->enrollment_limit), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'f':
+					$textRunF = $section->createTextRun();
+					$textRunF->addText("Prerequisites: ", $smallBoldStyle);
+					$textRunF->addText(htmlentities($course->prereqs), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'g':
+					$textRunG = $section->createTextRun();
+					$textRunG->addText("Units: ", $smallBoldStyle);
+					$textRunG->addText(htmlentities($course->units), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'h':
+					$textRunH = $section->createTextRun();
+					$textRunH->addText("First Offering: ", $smallBoldStyle);
+					$textRunH->addText(htmlentities($course->first_offering), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'i':
+					$textRunI = $section->createTextRun();
+					$textRunI->addText("Aligned Assignments: ", $smallBoldStyle);
+					$textRunI->addText(htmlentities($course->aligned_assignments), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'j':
+					$textRunJ = $section->createTextRun();
+					$textRunJ->addText("General Education Categorization Scope: ", $smallBoldStyle);
+					$textRunJ->addText(htmlentities($course->designation_scope), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'k':
+					$textRunK = $section->createTextRun();
+					$textRunK->addText("General Education Categorization Professor(s): ", $smallBoldStyle);
+					$textRunK->addText(htmlentities($course->designation_prof), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+			}
+		}
+		$section->addTextBreak(2);
+
+		//2: the proposed changes
+		$section->addText('Proposed changes', $boldStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		foreach($critArray as $criteria){
+			//use $course 
+			switch($criteria){
+				case 'a':
+					$textRunA = $section->createTextRun();
+					$textRunA->addText("Course ID: ", $smallBoldStyle);
+					$textRunA->addText(htmlentities($course_id), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'b':
+					$textRunB = $section->createTextRun();
+					$textRunB->addText("Course Title: ", $smallBoldStyle);
+					$textRunB->addText(htmlentities($course_title), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'c':
+					$textRunC = $section->createTextRun();
+					$textRunC->addText("Course Description: ", $smallBoldStyle);
+					$textRunC->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'd':
+					$textRunD = $section->createTextRun();
+					$textRunD->addText("Extra Details: ", $smallBoldStyle);
+					$textRunD->addText(htmlentities($proposedCourseInfo["p_course_extra_desc"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'e':
+					$textRunE = $section->createTextRun();
+					$textRunE->addText("Enrolment Limit: ", $smallBoldStyle);
+					$textRunE->addText(htmlentities($proposedCourseInfo["p_limit"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'f':
+					$textRunF = $section->createTextRun();
+					$textRunF->addText("Prerequisites: ", $smallBoldStyle);
+					$textRunF->addText(htmlentities($proposedCourseInfo["p_course_prereqs"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'g':
+					$textRunG = $section->createTextRun();
+					$textRunG->addText("Units: ", $smallBoldStyle);
+					$textRunG->addText(htmlentities($proposedCourseInfo["p_course_units"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'h':
+					$textRunH = $section->createTextRun();
+					$textRunH->addText("First Offering: ", $smallBoldStyle);
+					$textRunH->addText(htmlentities($proposedCourseInfo["p_first_offering"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'i':
+					$textRunI = $section->createTextRun();
+					$textRunI->addText("Aligned Assignments: ", $smallBoldStyle);
+					$textRunI->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'j':
+					$textRunJ = $section->createTextRun();
+					$textRunJ->addText("General Education Categorization Scope: ", $smallBoldStyle);
+					$textRunJ->addText(htmlentities($proposedCourseInfo["p_designation_scope"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'k':
+					$textRunK = $section->createTextRun();
+					$textRunK->addText("General Education Categorization Professor(s): ", $smallBoldStyle);
+					$textRunK->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+			}
+		}
+		$section->addTextBreak(2);
+		//3: the rationale behind those changes
+		$section->addText('Rationale', $boldStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+			//it's one rationale
+		$section->addText($proposedCourseInfo["rationale"]);
 			
 	}
 	else if($proposal->type == "Remove an Existing Course"){
