@@ -1,8 +1,8 @@
 <?php
 	require_once 'vendor/autoload.php';
-	// //DEBUG
-	// $msg = "Reached beginning of download_GEdocx.php";
-	// error_log(print_r($msg, TRUE)); 
+	//DEBUG
+	$msg = "Reached beginning of download_GEdocx.php";
+	error_log(print_r($msg, TRUE)); 
 	
 	$proposal_id = $_GET['pid'];
 	$proposal = new Proposal($dbc);
@@ -202,7 +202,7 @@
 		$section->addText('Department/program: '.$department, $standardStyle);
 		$section->addText('Course number (if available): '.$course_id, $standardStyle);
 		$course_title = "$course->subj_code $course->course_num: $course->course_title";
-		$section->addText('Course title: '.htmlentities($course_title), $standardStyle);
+		$section->addText('Course title: '.htmlentities($p_course_name), $standardStyle);
 		$section->addText('When is the first semester and year the course will be offered? '.$proposedCourseInfo["p_first_offering"], 
 		 	$standardStyle);
 		$section->addTextBreak(1);
@@ -221,26 +221,34 @@
 		$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 		$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
 			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
-		if(!is_null($proposedCourseInfo["p_feedback"] || $proposedCourseInfo["p_feedback"] != "None")){
+		if(is_null($proposedCourseInfo["p_designation_prof"] || $proposedCourseInfo["p_designation_prof"] == "None" || $proposedCourseInfo["p_designation_prof"] == "N/A")){
+			$section->addTextBreak(2);
+		}
+		else{
 			$section->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
 		}
-		$section->addTextBreak(2);
 
 		$section->addText('Please provide the course description', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
 		$section->addTextBreak(2);
 
-		$textRunDetails = $section->createTextRun($paragraphStyle);
+		if(is_null($proposedCourseInfo["p_course_units"])){
+			$proposedCourseInfo["p_course_units"] == "None specified";
+		}
 		$unitsDesc = "Units: ".$proposedCourseInfo["p_course_units"];
-		$limitDesc = "Limit: ".$proposedCourseInfo["p_limit"];
+		if(is_null($proposedCourseInfo["p_limit"])){
+			$proposedCourseInfo["p_limit"] == "None specified";
+		}
+		$limitDesc = "Enrollment Limit: ".$proposedCourseInfo["p_limit"];
 		$libImpactDesc = "Library Impact: ".$proposedCourseInfo["lib_impact"];
 		$techImpactDesc = "Technology Impact: ".$proposedCourseInfo["tech_impact"];
 		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
-		$textRunDetails->addText($unitsDesc, $standardStyle);
-		$textRunDetails->addText($limitDesc, $standardStyle);
-		$textRunDetails->addText($libImpactDesc, $standardStyle);
-		$textRunDetails->addText($techImpactDesc, $standardStyle);
+		$section->addText($unitsDesc, $standardStyle);
+		$section->addText($limitDesc, $standardStyle);
+		$section->addText($libImpactDesc, $standardStyle);
+		$section->addText($techImpactDesc, $standardStyle);
+		$section->addText($prereqDesc, $standardStyle);
 		$section->addPageBreak();
 
 		$rationaleTextRun = $section->createTextRun($paragraphStyle);
@@ -273,7 +281,11 @@
 		}
 
 	}
-	else if($proposal->type == "Change an Existing Course"){
+	else if($proposal->type == "Change an Existing Course"){		
+		//DEBUG
+		$msg = "Reached interior of change an existing course if statement";
+		error_log(print_r($msg, TRUE)); 
+		/*
 		//TODO: make sure $criteria array gets loaded with changes to:
 			//first offering, aligned assignments, designation scope, and designation professor in indexes 7, 8, and 9
 		$course = new Course($dbc);
@@ -288,6 +300,7 @@
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit changes to existing courses.";
 		$section->addText($formDesc, $standardStyle);
 		$section->addTextBreak(2);
+		
 
 		//identify criteria being changed
 		$headerString = "";
@@ -360,6 +373,8 @@
 		//2: the proposed changes
 		//3: the rationale behind those changes
 			//CHECK IF IT'S ONE RATIONALE FOR EVERYTHING OR EACH ONE HAS ITS OWN
+
+			*/
 	}
 	else if($proposal->type == "Remove an Existing Course"){
 		//TODO
@@ -371,7 +386,7 @@
 		header('Location: home');
 		exit;
 	}
-	$file = $filename.'.docx';
+	$file = htmlentities($filename).'.docx';
 	header("Content-Description: File Transfer");
 	header('Content-Disposition: attachment; filename="' . $file . '"');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.
