@@ -1,5 +1,18 @@
 <?php
 	require_once 'vendor/autoload.php';
+
+	/*
+	This document contains all logic for generating .docx files for GenEd proposals and then downloading them.
+	It should be loaded when a user hits a "download" button on the Home page.
+
+	Tips: if Microsoft Word is refusing to open the documents but LibreOffice can do it, wrap every
+	single string in htmlentities().
+	If you're being redirected to a page full of question marks, there's some kind of encoding issue. Make
+	sure your document title isn't too long and that you're using UTF-8. 
+	If you want to make a new download php file but redirects aren't working right, check that you 
+	have added your file as an exception in headers.php.
+	PHPWord has pretty good documentation. Be sure to check it out!
+	*/
 	
 	$proposal_id = $_GET['pid'];
 	$proposal = new Proposal($dbc);
@@ -78,8 +91,6 @@
 	$noSpaceParagraphStyle = 'nspStyle';
 	$phpWord->addParagraphStyle($noSpaceParagraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 10));
 	$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
-	$boldCapsStyle = 'boldCaps';
-	$phpWord->addFontStyle($boldCapsStyle, array('bold' => true, 'allCaps' => true, 'size' => 12, 'name' => 'Calibri'));
 	$boldStyle = 'bold';
 	$phpWord->addFontStyle($boldStyle, array('bold' => true, 'size' => 12, 'name' => 'Calibri'));
 	$italicStyle = 'italic';
@@ -153,7 +164,7 @@
 				$genEdDesc = "Societies & Human Behaviors description not transcribed.";
 				break;
 			default:
-				$genEdDesc = "Default case. General Education requirement".$perspectiveText."does not match case labels.";
+				$genEdDesc = "Default case. General Education requirement ".$perspectiveText." does not match case labels.";
 				
 		  }
 
