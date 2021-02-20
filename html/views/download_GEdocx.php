@@ -6,7 +6,7 @@
 	It should be loaded when a user hits a "download" button on the Home page.
 
 	Tips: if Microsoft Word is refusing to open the documents but LibreOffice can do it, wrap every
-	single string in htmlentities().
+	single string going into the document in htmlentities().
 	If you're being redirected to a page full of question marks, there's some kind of encoding issue. Make
 	sure your document title isn't too long and that you're using UTF-8. 
 	If you want to make a new download php file but redirects aren't working right, check that you 
@@ -236,12 +236,13 @@
 		}
 		else{
 			$section->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
+			$section->addTextBreak(2);
 		}
 
 		$section->addText('Please provide the course description', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
-		$section->addTextBreak(2);
+		$section->addTextBreak(1);
 
 		if(is_null($proposedCourseInfo["p_course_units"])){
 			$proposedCourseInfo["p_course_units"] == "None specified";
@@ -366,7 +367,7 @@
 		$section->addTextBreak(1);
 
 		//1: the existing criteria being changed
-		$section->addText('Current course information', $boldStyle);
+		$section->addText('Current course information', $boldStyle, $noSpaceParagraphStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		foreach($critArray as $criteria){
 			//use $course 
@@ -433,7 +434,7 @@
 					break;
 				case 'k':
 					$textRunK = $section->createTextRun();
-					$textRunK->addText("General Education Categorization Professor(s): ", $smallBoldStyle);
+					$textRunK->addText("General Education Categorization Instructor(s): ", $smallBoldStyle);
 					$textRunK->addText(htmlentities($course->designation_prof), $standardStyle);
 					$section->addTextBreak(1);
 					break;
@@ -442,7 +443,7 @@
 		$section->addTextBreak(2);
 
 		//2: the proposed changes
-		$section->addText('Proposed changes', $boldStyle);
+		$section->addText('Proposed changes', $boldStyle, $noSpaceParagraphStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		foreach($critArray as $criteria){
 			//use $course 
@@ -509,7 +510,7 @@
 					break;
 				case 'k':
 					$textRunK = $section->createTextRun();
-					$textRunK->addText("General Education Categorization Professor(s): ", $smallBoldStyle);
+					$textRunK->addText("General Education Categorization Instructor(s): ", $smallBoldStyle);
 					$textRunK->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
 					$section->addTextBreak(1);
 					break;
@@ -517,7 +518,7 @@
 		}
 		$section->addTextBreak(2);
 		//3: the rationale behind those changes
-		$section->addText('Rationale', $boldStyle);
+		$section->addText('Rationale', $boldStyle, $noSpaceParagraphStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 			//it's one rationale
 		$section->addText($proposedCourseInfo["rationale"]);
