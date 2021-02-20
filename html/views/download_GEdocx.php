@@ -1,8 +1,5 @@
 <?php
 	require_once 'vendor/autoload.php';
-	//DEBUG
-	$msg = "Reached beginning of download_GEdocx.php";
-	error_log(print_r($msg, TRUE)); 
 	
 	$proposal_id = $_GET['pid'];
 	$proposal = new Proposal($dbc);
@@ -282,10 +279,6 @@
 
 	}
 	else if($proposal->type == "Change an Existing Course"){		
-		//DEBUG
-		$msg = "Reached interior of change an existing course if statement";
-		error_log(print_r($msg, TRUE)); 
-		/*
 		//TODO: make sure $criteria array gets loaded with changes to:
 			//first offering, aligned assignments, designation scope, and designation professor in indexes 7, 8, and 9
 		$course = new Course($dbc);
@@ -305,6 +298,7 @@
 		//identify criteria being changed
 		$headerString = "";
 		$critArray = str_split($criteria);
+		
 		$individualCritArray = array(); //for figuring out what sections to include later
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
@@ -360,33 +354,53 @@
 			//do nothing...?
 		}
 		else if(count($individual_criteria)==2){
-			$individual_criteria[0] .= " and ";
+			$individual_criteria[0] .= "and ";
 		}else{
 			for( $i = 0; $i<count($individual_criteria)-1; $i++ ) {
 				$individual_criteria[$i] .= ", ";
 			}
-			$individual_criteria[count($individual_criteria)-2].= " and ";
+			$individual_criteria[count($individual_criteria)-2].= "and ";
 		}
 		$criteriaInfoHeader = implode($individual_criteria);
-		$section->addText("The ".$department." proposes changes to the ".$individual_criteria." of ".htmlentities($course_title).".");
+		$section->addText("The ".$department." department proposes changes to the ".$criteriaInfoHeader." of ".htmlentities($course_title).".");
 		//1: the existing criteria being changed
+			//use $individualCritArray - has strings of each thing being changed
 		//2: the proposed changes
 		//3: the rationale behind those changes
-			//CHECK IF IT'S ONE RATIONALE FOR EVERYTHING OR EACH ONE HAS ITS OWN
+			//it's one rationale
 
-			*/
+			
 	}
 	else if($proposal->type == "Remove an Existing Course"){
 		//TODO
 	}
 	else if($proposal->type == "Custom Submission"){
-		//TODO
+		//TODO - if you're reading this, it was iceboxed
 	}
 	else{
+		//DEBUG
+		$msg = "Reached else statement in download_GEdocx.php";
+		error_log(print_r($msg, TRUE)); 
 		header('Location: home');
 		exit;
 	}
-	$file = htmlentities($filename).'.docx';
+	$file = 'no_name_specified.docx';
+	if($proposal->type == "Change an Existing Course"){
+		//something about just using $filename for change causes encoding errors
+		//possibly length; I don't have the time/motivation to nail it down
+		$filename = str_replace(' ', '_', $course_id.$p_course_name);
+		$filename = str_replace(',', '', $filename);
+		$filename = str_replace("'", '', $filename);
+		$file = htmlentities('Change_'.$filename.'.docx');
+	}
+	else{
+		$file = htmlentities($filename).'.docx';
+	}
+	//DEBUG
+	$msg = "file name: ".$file;
+	error_log(print_r($msg, TRUE)); 
+	
+	//note: $file MUST have .docx at the end
 	header("Content-Description: File Transfer");
 	header('Content-Disposition: attachment; filename="' . $file . '"');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.

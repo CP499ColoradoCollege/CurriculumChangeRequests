@@ -30,9 +30,6 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){	
-				//DEBUG
-				$msg = "Reached query redirect to download page";
-				error_log(print_r($msg, TRUE)); 		
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
 				header("Location: download_GEdocx?pid=".$_POST['openedid']); 
