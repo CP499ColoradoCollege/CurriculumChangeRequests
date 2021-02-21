@@ -30,10 +30,13 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){	
+				//2019 group's download file
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
+				//2021 group's download file
 				header("Location: download_GEdocx?pid=".$_POST['openedid']); 
 				exit();
+				//2021 group's incomplete download file specifically for CC100 and CC120 courses
 				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				

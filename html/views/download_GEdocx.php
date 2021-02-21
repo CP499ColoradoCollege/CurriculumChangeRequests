@@ -9,7 +9,7 @@
 	single string going into the document in htmlentities().
 	If you're being redirected to a page full of question marks, there's some kind of encoding issue. Make
 	sure your document title isn't too long and that you're using UTF-8. 
-	If you want to make a new download php file but redirects aren't working right, check that you 
+	If you want to make a new download php file but redirects aren't working right in queries.php, check that you 
 	have added your file as an exception in headers.php.
 	PHPWord has pretty good documentation. Be sure to check it out!
 	*/
@@ -43,7 +43,7 @@
 	//DEBUG: DOES NOT WORK
 	$msg = "user id: ".$proposal->user_id;
 	error_log(print_r($msg, TRUE));
-	$p_user = $user->fetchUserFromID($proposal->user_id);
+	$p_user = $user->fetchUserFromID($proposal->user_id); //try putting debug in fetchUserFromID to make sure it's being called
 	if($p_user == false){
 		//DEBUG
 		$msg = "Hit user abort condition in download_GEdocx.php";
@@ -119,11 +119,14 @@
 
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit courses for ";
 		$genEdDesc = array("No description set");
-		$curricularGoals = array("No curricular goals defined"); //each entry is a bullet point
-		$learningOutcomes = array("No learning outcomes defined"); //each entry is a bullet point
+		$curricularGoals = array("No curricular goals defined"); //each entry will be a bullet point
+		$learningOutcomes = array("No learning outcomes defined"); //each entry will be a bullet point
 		$learningOutcomesDesc = "As a result of taking a course in ".$perspectiveText." students will be able to:";
 		
 		//note: all newlines within the quotes "" will transfer to word doc, so that's why the code lines go waaaaay off to the right
+		if(is_null($proposedCourseInfo["p_perspective"])){
+			$proposedCourseInfo["p_perspective"] = "No Perspective Specified";
+		}
 		switch ($proposedCourseInfo["p_perspective"]) {
 			case "Analysis & Interpretation of Meaning":
 				$genEdDesc = "Analysis & Interpretation of Meaning description not transcribed.";
@@ -165,7 +168,7 @@
 				break;
 			default:
 				$genEdDesc = "Default case. General Education requirement ".$perspectiveText." does not match case labels.";
-				
+				break;
 		  }
 
 		//everything before "Submitter Information"
@@ -185,7 +188,6 @@
 		$section->addText('Curricular goals', $secHeaderStyle, $paragraphStyle);
 		foreach ($curricularGoals as $goal){
 			$section->addListItem($goal, 0, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(2);
 
@@ -194,11 +196,10 @@
 		$section->addTextBreak(1);
 		foreach ($learningOutcomes as $outcome){
 			$section->addListItem($outcome, 0, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(3);
 
-		//Submitter information and onward (approximately the lower third of the first page)
+		//Submitter information and onward
 		$section->addText('Submitter information', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		
@@ -293,8 +294,6 @@
 
 	}
 	else if($proposal->type == "Change an Existing Course"){		
-		//TODO: make sure $criteria array gets loaded with changes to:
-			//first offering, aligned assignments, designation scope, and designation professor in indexes 7, 8, and 9
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);	
 		$criteria = $proposal->criteria;	//237
@@ -363,8 +362,8 @@
 			$individual_criteria[count($individual_criteria)-2].= "and ";
 		}
 		$criteriaInfoHeader = implode($individual_criteria);
-		$section->addText("The ".$department." department proposes changes to the ".$criteriaInfoHeader." of ".htmlentities($course_title).".", $standardStyle);
-		$section->addTextBreak(1);
+		$section->addText("The department of ".$department." proposes changes to the ".$criteriaInfoHeader." of ".htmlentities($course_title).".", $standardStyle);
+		$section->addTextBreak(2);
 
 		//1: the existing criteria being changed
 		$section->addText('Current course information', $boldStyle, $noSpaceParagraphStyle);
@@ -526,6 +525,59 @@
 	}
 	else if($proposal->type == "Remove an Existing Course"){
 		//TODO
+		$course = new Course($dbc);
+		$course = $course->fetchCourseFromCourseID($course_id);	
+		$course_title = htmlentities("$course->subj_code $course->course_num: $course->course_title");
+		
+		//0: boilerplate
+		$titleTextRun = $section->createTextRun($paragraphStyle);
+		$a_2 = "Application to remove ".htmlentities($course_title);
+		$titleTextRun->addText($a_2, $appHeaderStyle);
+		$formDesc = "The following form should be used by Colorado College departments and/or faculty to remove existing courses.";
+		$section->addText($formDesc, $standardStyle);
+		$section->addTextBreak(1);
+		
+
+		$descTextRun = $section->createTextRun($paragraphStyle);
+		$descTextRun->addText("The department of ".htmlentities($department)." proposes to remove the existing course ", $standardStyle);
+		$descTextRun->addText(htmlentities($course_title), $smallBoldStyle);
+		$section->addTextBreak(1);
+		
+
+		//1: everything else
+		$section->addText('Course information', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		$infoTextRun = $section->createTextRun($paragraphStyle);
+		$infoTextRun->addText('Course description: ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->course_desc), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('Units: ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->units), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('Prerequisites: ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->prereqs), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('Crosslisting (if applicable): ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->crosslisting), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('General Education Category (if applicable): ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->perspective), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		
+
+		$section->addText('Rationale', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText(htmlentities($proposedCourseInfo['rationale']), $standardStyle);
+		$section->addTextBreak(2);
+		
+
+		$bonusTextRun = $section->createTextRun($paragraphStyle);
+		$bonusTextRun->addText('Library Impact: ', $smallBoldStyle);
+		$bonusTextRun->addText(htmlentities($proposedCourseInfo['lib_impact']), $standardStyle);
+		$bonusTextRun->addTextBreak(1);
+		$bonusTextRun->addText('Technology Impact: ', $smallBoldStyle);
+		$bonusTextRun->addText(htmlentities($proposedCourseInfo['tech_impact']), $standardStyle);
+
 	}
 	else if($proposal->type == "Custom Submission"){
 		//TODO - if you're reading this, it was iceboxed
