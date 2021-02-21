@@ -17,7 +17,7 @@
 
 namespace PhpOffice\PhpWord\Element;
 
-use PhpOffice\PhpWord\Shared\Text as SharedText;
+use PhpOffice\Common\Text as CommonText;
 use PhpOffice\PhpWord\Style\Font;
 use PhpOffice\PhpWord\Style\Paragraph;
 
@@ -136,7 +136,7 @@ class Text extends AbstractElement
      */
     public function setText($text)
     {
-        $this->text = SharedText::toUTF8($text);
+        $this->text = CommonText::toUTF8($text);
 
         return $this;
     }

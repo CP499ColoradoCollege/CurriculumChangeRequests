@@ -48,10 +48,6 @@ class Section extends AbstractStyle
         $xmlWriter->writeAttribute('w:h', $style->getPageSizeH());
         $xmlWriter->endElement(); // w:pgSz
 
-        // Vertical alignment
-        $vAlign = $style->getVAlign();
-        $xmlWriter->writeElementIf(!is_null($vAlign), 'w:vAlign', 'w:val', $vAlign);
-
         // Margins
         $margins = array(
             'w:top'    => array('getMarginTop', SectionStyle::DEFAULT_MARGIN),

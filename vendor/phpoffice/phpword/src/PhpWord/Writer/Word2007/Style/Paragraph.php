@@ -17,7 +17,7 @@
 
 namespace PhpOffice\PhpWord\Writer\Word2007\Style;
 
-use PhpOffice\PhpWord\Shared\XMLWriter;
+use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpWord\Style;
 use PhpOffice\PhpWord\Style\Paragraph as ParagraphStyle;
 use PhpOffice\PhpWord\Writer\Word2007\Element\ParagraphAlignment;
@@ -132,7 +132,6 @@ class Paragraph extends AbstractStyle
 
             $styleWriter = new MarginBorder($xmlWriter);
             $styleWriter->setSizes($style->getBorderSize());
-            $styleWriter->setStyles($style->getBorderStyle());
             $styleWriter->setColors($style->getBorderColor());
             $styleWriter->write();
 
@@ -147,7 +146,7 @@ class Paragraph extends AbstractStyle
     /**
      * Write tabs.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param \PhpOffice\PhpWord\Style\Tab[] $tabs
      */
     private function writeTabs(XMLWriter $xmlWriter, $tabs)
@@ -165,7 +164,7 @@ class Paragraph extends AbstractStyle
     /**
      * Write numbering.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param array $numbering
      */
     private function writeNumbering(XMLWriter $xmlWriter, $numbering)

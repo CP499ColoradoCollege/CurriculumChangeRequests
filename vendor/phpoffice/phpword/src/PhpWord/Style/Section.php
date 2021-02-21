@@ -17,9 +17,6 @@
 
 namespace PhpOffice\PhpWord\Style;
 
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\SimpleType\VerticalJc;
-
 /**
  * Section settings
  */
@@ -170,14 +167,6 @@ class Section extends Border
     private $lineNumbering;
 
     /**
-     * Vertical Text Alignment on Page
-     * One of \PhpOffice\PhpWord\SimpleType\VerticalJc
-     *
-     * @var string
-     */
-    private $vAlign;
-
-    /**
      * Create new instance
      */
     public function __construct()
@@ -201,11 +190,8 @@ class Section extends Border
      * @param string $value
      * @return self
      */
-    public function setPaperSize($value = '')
+    public function setPaperSize($value = 'A4')
     {
-        if (!$value) {
-            $value = Settings::getDefaultPaper();
-        }
         if ($this->paper === null) {
             $this->paper = new Paper();
         }
@@ -610,30 +596,6 @@ class Section extends Border
     public function setLineNumbering($value = null)
     {
         $this->setObjectVal($value, 'LineNumbering', $this->lineNumbering);
-
-        return $this;
-    }
-
-    /**
-     * Get vertical alignment
-     *
-     * @return string
-     */
-    public function getVAlign()
-    {
-        return $this->vAlign;
-    }
-
-    /**
-     * Set vertical alignment
-     *
-     * @param string $value
-     * @return self
-     */
-    public function setVAlign($value = null)
-    {
-        VerticalJc::validate($value);
-        $this->vAlign = $value;
 
         return $this;
     }

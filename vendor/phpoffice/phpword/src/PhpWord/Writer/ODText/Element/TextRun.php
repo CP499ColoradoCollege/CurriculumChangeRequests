@@ -22,7 +22,7 @@ namespace PhpOffice\PhpWord\Writer\ODText\Element;
  *
  * @since 0.10.0
  */
-class TextRun extends Text
+class TextRun extends AbstractElement
 {
     /**
      * Write element
@@ -33,12 +33,6 @@ class TextRun extends Text
         $element = $this->getElement();
 
         $xmlWriter->startElement('text:p');
-        /** @scrutinizer ignore-call */
-        $pStyle = $element->getParagraphStyle();
-        if (!is_string($pStyle)) {
-            $pStyle = 'Normal';
-        }
-        $xmlWriter->writeAttribute('text:style-name', $pStyle);
 
         $containerWriter = new Container($xmlWriter, $element);
         $containerWriter->write();

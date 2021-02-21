@@ -17,7 +17,7 @@
 
 namespace PhpOffice\PhpWord\Style;
 
-use PhpOffice\PhpWord\Shared\Text;
+use PhpOffice\Common\Text;
 
 /**
  * Abstract style class

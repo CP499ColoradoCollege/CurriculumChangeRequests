@@ -9,10 +9,7 @@
  */
 namespace PHPUnit\Runner;
 
-/**
- * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
- */
-interface AfterTestHook extends TestHook
+interface AfterTestHook extends Hook
 {
     /**
      * This hook will fire after any test, regardless of the result.

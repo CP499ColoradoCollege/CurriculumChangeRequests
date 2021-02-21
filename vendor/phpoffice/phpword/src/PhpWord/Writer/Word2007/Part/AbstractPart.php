@@ -17,9 +17,9 @@
 
 namespace PhpOffice\PhpWord\Writer\Word2007\Part;
 
+use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpWord\Exception\Exception;
 use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Shared\XMLWriter;
 use PhpOffice\PhpWord\Writer\AbstractWriter;
 
 /**
@@ -73,7 +73,7 @@ abstract class AbstractPart
     /**
      * Get XML Writer
      *
-     * @return \PhpOffice\PhpWord\Shared\XMLWriter
+     * @return \PhpOffice\Common\XMLWriter
      */
     protected function getXmlWriter()
     {

@@ -17,7 +17,7 @@
 
 namespace PhpOffice\PhpWord\Element;
 
-use PhpOffice\PhpWord\Shared\Text as SharedText;
+use PhpOffice\Common\Text as CommonText;
 
 /**
  * Check box element
@@ -55,7 +55,7 @@ class CheckBox extends Text
      */
     public function setName($name)
     {
-        $this->name = SharedText::toUTF8($name);
+        $this->name = CommonText::toUTF8($name);
 
         return $this;
     }

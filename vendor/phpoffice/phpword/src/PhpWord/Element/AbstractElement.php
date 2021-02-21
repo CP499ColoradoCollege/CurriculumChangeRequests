@@ -96,7 +96,7 @@ abstract class AbstractElement
     /**
      * A reference to the parent
      *
-     * @var AbstractElement|null
+     * @var \PhpOffice\PhpWord\Element\AbstractElement
      */
     private $parent;
 
@@ -335,11 +335,6 @@ abstract class AbstractElement
         $this->commentRangeEnd->setEndElement($this);
     }
 
-    /**
-     * Get parent element
-     *
-     * @return AbstractElement|null
-     */
     public function getParent()
     {
         return $this->parent;

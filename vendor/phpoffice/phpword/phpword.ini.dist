@@ -14,7 +14,3 @@ outputEscapingEnabled = false
 
 defaultFontName = Arial
 defaultFontSize = 10
-
-[Paper]
-
-defaultPaper = "A4"

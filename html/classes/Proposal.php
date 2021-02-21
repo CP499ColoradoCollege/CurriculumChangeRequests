@@ -106,8 +106,6 @@ class Proposal{
 		}
 	}
 	
-
-	
 	public function createProposalAddNewCourse($user_id, $post_array){
 		
 		$dbc = $this->dbc;

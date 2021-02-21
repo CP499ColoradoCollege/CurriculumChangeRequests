@@ -18,7 +18,6 @@
 namespace PhpOffice\PhpWord\Style;
 
 use PhpOffice\PhpWord\SimpleType\TblWidth;
-use PhpOffice\PhpWord\SimpleType\VerticalJc;
 
 /**
  * Table cell style
@@ -29,20 +28,10 @@ class Cell extends Border
      * Vertical alignment constants
      *
      * @const string
-     * @deprecated Use \PhpOffice\PhpWord\SimpleType\VerticalJc::TOP instead
      */
     const VALIGN_TOP = 'top';
-    /**
-     * @deprecated Use \PhpOffice\PhpWord\SimpleType\VerticalJc::CENTER instead
-     */
     const VALIGN_CENTER = 'center';
-    /**
-     * @deprecated Use \PhpOffice\PhpWord\SimpleType\VerticalJc::BOTTOM instead
-     */
     const VALIGN_BOTTOM = 'bottom';
-    /**
-     * @deprecated Use \PhpOffice\PhpWord\SimpleType\VerticalJc::BOTH instead
-     */
     const VALIGN_BOTH = 'both';
 
     //Text direction constants
@@ -156,8 +145,8 @@ class Cell extends Border
      */
     public function setVAlign($value = null)
     {
-        VerticalJc::validate($value);
-        $this->vAlign = $this->setEnumVal($value, VerticalJc::values(), $this->vAlign);
+        $enum = array(self::VALIGN_TOP, self::VALIGN_CENTER, self::VALIGN_BOTTOM, self::VALIGN_BOTH);
+        $this->vAlign = $this->setEnumVal($value, $enum, $this->vAlign);
 
         return $this;
     }

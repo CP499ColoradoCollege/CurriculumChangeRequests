@@ -17,7 +17,7 @@
 
 namespace PhpOffice\PhpWord\Writer\Word2007\Style;
 
-use PhpOffice\PhpWord\Shared\XMLWriter;
+use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpWord\SimpleType\TblWidth;
 use PhpOffice\PhpWord\Style\Table as TableStyle;
 use PhpOffice\PhpWord\Writer\Word2007\Element\TableAlignment;
@@ -59,7 +59,7 @@ class Table extends AbstractStyle
     /**
      * Write full style.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param \PhpOffice\PhpWord\Style\Table $style
      */
     private function writeStyle(XMLWriter $xmlWriter, TableStyle $style)
@@ -86,9 +86,6 @@ class Table extends AbstractStyle
         $styleWriter = new TablePosition($xmlWriter, $style->getPosition());
         $styleWriter->write();
 
-        //Right to left
-        $xmlWriter->writeElementIf($style->isBidiVisual() !== null, 'w:bidiVisual', 'w:val', $this->writeOnOf($style->isBidiVisual()));
-
         $this->writeMargin($xmlWriter, $style);
         $this->writeBorder($xmlWriter, $style);
 
@@ -106,7 +103,7 @@ class Table extends AbstractStyle
     /**
      * Enable/Disable automatic resizing of the table
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param string $layout autofit / fixed
      */
     private function writeLayout(XMLWriter $xmlWriter, $layout)
@@ -119,7 +116,7 @@ class Table extends AbstractStyle
     /**
      * Write margin.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param \PhpOffice\PhpWord\Style\Table $style
      */
     private function writeMargin(XMLWriter $xmlWriter, TableStyle $style)
@@ -138,7 +135,7 @@ class Table extends AbstractStyle
     /**
      * Write border.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param \PhpOffice\PhpWord\Style\Table $style
      */
     private function writeBorder(XMLWriter $xmlWriter, TableStyle $style)
@@ -158,7 +155,7 @@ class Table extends AbstractStyle
     /**
      * Writes a table width
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param string $elementName
      * @param string $unit
      * @param int|float $width
@@ -177,7 +174,7 @@ class Table extends AbstractStyle
     /**
      * Write row style.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param \PhpOffice\PhpWord\Style\Table $style
      */
     private function writeFirstRow(XMLWriter $xmlWriter, TableStyle $style)
@@ -196,7 +193,7 @@ class Table extends AbstractStyle
     /**
      * Write shading.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
      * @param \PhpOffice\PhpWord\Style\Table $style
      */
     private function writeShading(XMLWriter $xmlWriter, TableStyle $style)

@@ -17,9 +17,9 @@
 
 namespace PhpOffice\PhpWord\Reader\Word2007;
 
+use PhpOffice\Common\XMLReader;
 use PhpOffice\PhpWord\Element\Section;
 use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Shared\XMLReader;
 
 /**
  * Document reader
@@ -97,7 +97,7 @@ class Document extends AbstractPart
     /**
      * Read w:sectPr
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLReader $xmlReader
+     * @param \PhpOffice\Common\XMLReader $xmlReader
      * @param \DOMElement $domNode
      * @ignoreScrutinizerPatch
      * @return array
@@ -106,7 +106,6 @@ class Document extends AbstractPart
     {
         $styleDefs = array(
             'breakType'     => array(self::READ_VALUE, 'w:type'),
-            'vAlign'        => array(self::READ_VALUE, 'w:vAlign'),
             'pageSizeW'     => array(self::READ_VALUE, 'w:pgSz', 'w:w'),
             'pageSizeH'     => array(self::READ_VALUE, 'w:pgSz', 'w:h'),
             'orientation'   => array(self::READ_VALUE, 'w:pgSz', 'w:orient'),
@@ -141,7 +140,7 @@ class Document extends AbstractPart
     /**
      * Read w:p node.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLReader $xmlReader
+     * @param \PhpOffice\Common\XMLReader $xmlReader
      * @param \DOMElement $node
      * @param \PhpOffice\PhpWord\Element\Section &$section
      *
@@ -170,7 +169,7 @@ class Document extends AbstractPart
     /**
      * Read w:sectPr node.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLReader $xmlReader
+     * @param \PhpOffice\Common\XMLReader $xmlReader
      * @param \DOMElement $node
      * @param \PhpOffice\PhpWord\Element\Section &$section
      */

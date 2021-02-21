@@ -7,3 +7,11 @@ modules:
     enabled:
         - Asserts
         - \Helper\Unit
+        # - Db: 
+        #     dsn: 'mysql:host=localhost;dbname=testproposaltooldb'
+        #     user: 'root'
+        #     password: ''
+        #     dump: 'tests/_data/testdump.sql'
+        #     populate: true
+        #     cleanup: true
+        #     reconnect: true

@@ -17,7 +17,7 @@
 
 namespace PhpOffice\PhpWord\Element;
 
-use PhpOffice\PhpWord\Shared\Text as SharedText;
+use PhpOffice\Common\Text as CommonText;
 
 /**
  * Bookmark element
@@ -45,7 +45,7 @@ class Bookmark extends AbstractElement
      */
     public function __construct($name = '')
     {
-        $this->name = SharedText::toUTF8($name);
+        $this->name = CommonText::toUTF8($name);
     }
 
     /**
