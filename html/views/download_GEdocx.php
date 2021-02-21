@@ -20,7 +20,7 @@
 	
 	if($proposal == false){
 		//DEBUG
-		$msg = "Hit abort condition in download_GEdocx.php";
+		$msg = "Hit empty proposal abort condition in download_GEdocx.php";
 		error_log(print_r($msg, TRUE)); 
 
 		header("Location: home");
@@ -58,7 +58,9 @@
 	// 	$n ++;
 	// }
 	//end debug
-
+	if(is_null($proposedCourseInfo["p_perspective"])){
+		$proposedCourseInfo["p_perspective"] = "No Perspective Specified";
+	}
 	$perspectiveText = htmlentities($proposedCourseInfo["p_perspective"]); //needed bc "&" character breaks things
 
 	$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
@@ -120,15 +122,17 @@
 		$learningOutcomesDesc = "As a result of taking a course in ".$perspectiveText." students will be able to:";
 		
 		//note: all newlines within the quotes "" will transfer to word doc, so that's why the code lines go waaaaay off to the right
-		if(is_null($proposedCourseInfo["p_perspective"])){
-			$proposedCourseInfo["p_perspective"] = "No Perspective Specified";
-		}
+		
+		//DEBUG
+		// $msg = "switch case: ".$proposedCourseInfo["p_perspective"];
+		// error_log(print_r($msg, TRUE));
+
 		switch ($proposedCourseInfo["p_perspective"]) {
 			case "Analysis & Interpretation of Meaning":
-				$genEdDesc = "Analysis & Interpretation of Meaning description not transcribed.";
+				$genEdDesc = array("Analysis & Interpretation of Meaning description not transcribed.");
 				break;
 			case "Creative Process":
-				$genEdDesc = "Creative Process description not transcribed.";
+				$genEdDesc = array("Creative Process description not transcribed.");
 			  	break;
 			case "Equity & Power - Global":
 				$genEd1 = "Engaging questions of equity and power, in both U.S. and global contexts, ";
@@ -148,23 +152,22 @@
 					"Describe their own positionality with regard to one or more systems of inequality.");
 				break;
 			case "Equity & Power - U.S.":
-				$genEdDesc = "Equity & Power - U.S. description not transcribed.";
+				$genEdDesc = array("Equity & Power - U.S. description not transcribed.");
 				break;
 			case "Formal Reasoning & Logic":
-				$genEdDesc = "Formal Reasoning & Logic description not transcribed.";
+				$genEdDesc = array("Formal Reasoning & Logic description not transcribed.");
 				break;
 			case "Historical Perspectives":
-				$genEdDesc = "Historical Perspectives description not transcribed.";
+				$genEdDesc = array("Historical Perspectives description not transcribed.");
 				break;
 			case "Scientific Analysis":
-				$genEdDesc = "Scientific Analysis description not transcribed.";
+				$genEdDesc = array("Scientific Analysis description not transcribed.");
 				break;
 			case "Societies & Human Behaviors":
-				$genEdDesc = "Societies & Human Behaviors description not transcribed.";
+				$genEdDesc = array("Societies & Human Behaviors description not transcribed.");
 				break;
 			default:
-				$genEdDesc = "Default case. General Education requirement ".$perspectiveText." does not match case labels.";
-				break;
+				$genEdDesc = array("Regrettably, General Education requirement ".$perspectiveText." does not match case labels.");
 		  }
 
 		//everything before "Submitter Information"
