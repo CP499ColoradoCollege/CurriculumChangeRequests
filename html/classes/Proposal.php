@@ -82,8 +82,6 @@ class Proposal{
 		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
 
-		//things being out of order might have something to do with above not having status when below does
-
 		$bool = $statement->execute();
 		$statement->store_result();
 		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, 

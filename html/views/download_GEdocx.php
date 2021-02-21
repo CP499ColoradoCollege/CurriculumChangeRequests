@@ -40,26 +40,6 @@
 	$proposedCriteriaInfoHeader = "Proposed: ";
 	$p_course_name = "$proposal->p_course_id: $proposal->p_course_title";
 
-	//DEBUG: DOES NOT WORK
-	$msg = "user id: ".$proposal->user_id;
-	error_log(print_r($msg, TRUE));
-	$p_user = $user->fetchUserFromID($proposal->user_id); //try putting debug in fetchUserFromID to make sure it's being called
-	if($p_user == false){
-		//DEBUG
-		$msg = "Hit user abort condition in download_GEdocx.php";
-		error_log(print_r($msg, TRUE)); 
-		header("Location: home");
-		exit();
-	}
-	$instructor_name = $p_user->$first_name;
-	$instructor_name .= " ".$p_user->$last_name;
-	$instructor_email = $p_user->$email;
-	//DEBUG
-	$msg = "instructor name: ".$instructor_name;
-	error_log(print_r($msg, TRUE));
-	$msg = "instructor email: ".$instructor_email;
-	error_log(print_r($msg, TRUE));
-
 	$proposedCourseInfo = array("p_course_name" => $p_course_name, "p_course_desc" => $proposal->p_course_desc, 
 					"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 					"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
@@ -116,6 +96,22 @@
 		//DEBUG
 		$msg = "Reached interior of Add a New Course if statement";
 		error_log(print_r($msg, TRUE)); 
+
+		//DEBUG: DOES NOT WORK
+		$user = new $user($dbc);
+		$msg = "user id: ".$proposal->user_id;
+		error_log(print_r($msg, TRUE));
+		$user = $user->fetchUserFromID($proposal->user_id); //try putting debug in fetchUserFromID to make sure it's being called
+		if($user == false){
+			//DEBUG
+			$msg = "Hit user abort condition in download_GEdocx.php";
+			error_log(print_r($msg, TRUE)); 
+			header("Location: home");
+			exit();
+		}
+		$instructor_name = htmlentities($user->first_name);
+		$instructor_name .= htmlentities(" ".$user->last_name);
+		$instructor_email = htmlentities($user->email);
 
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit courses for ";
 		$genEdDesc = array("No description set");

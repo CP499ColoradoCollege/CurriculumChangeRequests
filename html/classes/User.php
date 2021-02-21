@@ -83,13 +83,23 @@ class User{
 	}
 	
 	public function fetchUserFromID($id){
-		$statement = $this->dbc->prepare("SELECT email, first_name, last_name, username, department, position, permission, status FROM users WHERE id = ?");
+		//DEBUG
+		$msg = "Hit fetchUserFromID in User.php";
+		error_log(print_r($msg, TRUE)); 
+		$msg = "Provided user ID: ".$id;
+		error_log(print_r($msg, TRUE));
+
+		$dbc = $dbc = $this->dbc;
+		$statement = $dbc->prepare("SELECT email, first_name, last_name, username, department, 
+		position, permission, status FROM users WHERE id = ?");
 		$statement->bind_param("s", $id);
 		
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($email, $first_name, $last_name, $username, $department, $position, $permission, $status);
+		$statement->bind_result($email, $first_name, $last_name, $username, $department, 
+		$position, $permission, $status);
 		$statement->fetch();
+		
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			$this->id = $id;
 			$this->email = $email;
@@ -99,7 +109,7 @@ class User{
 			$this->department = $department;
 			$this->position = $position;
 			$this->permission = $permission;
-			$this->status = $status;	
+			$this->status = $status;
 			return $this;
 		}else{
 			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 User.";
