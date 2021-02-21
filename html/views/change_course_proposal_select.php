@@ -110,7 +110,7 @@
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
 						<input class="form-check-input" type="checkbox" id="designation_prof" name="designation_prof">
-						<label class="form-check-label change-label" for="defaultCheck1">Professor(s)</label>
+						<label class="form-check-label change-label" for="defaultCheck1">Designation Professor(s)</label>
 					</div>
 				</div>
 				<div class="row">

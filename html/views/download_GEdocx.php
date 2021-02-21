@@ -217,25 +217,69 @@
 		 	$standardStyle);
 		$section->addTextBreak(1);
 
-		//TODO: have the bullet style change from EMPTY to FILLED based on submission/approval status
+		//post array under id "course_status" - strings should be exactly what's below
+		$courseOptions = array('A new course not yet approved by COI', 'A new course approved by COI, not yet offered', 
+		'A current course undergoing major revisions', 'A current course undergoing minor revisions');
+		$selectedOption = $proposedCourseInfo['p_course_status'];
+
+		//DEBUG
+		$msg = "switch case for 1 of 4 course statuses: ".$selectedOption;
+		error_log(print_r($msg, TRUE));
+
 		$section->addText('This course is (select one):', $standardStyle);
-		$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		switch($selectedOption){
+			case $courseOptions[0]:
+				//new not yet approved
+				$section->addListItem('A new course not yet approved by COI X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			case $courseOptions[1]:
+				//new not yet offered
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			case $courseOptions[2]:
+				//major revisions
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			case $courseOptions[3]:
+				//minor revisions
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			default:
+				//no option selected (or the code is broken...)
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		}
 		$section->addTextBreak(1);
 
 		//TODO: have the bullet style change from EMPTY to FILLED based on p_designation_scope
 		$section->addText('This designation is being sought for:', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
-		$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
-			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		
 		if(is_null($proposedCourseInfo["p_designation_prof"] || $proposedCourseInfo["p_designation_prof"] == "None" || $proposedCourseInfo["p_designation_prof"] == "N/A")){
+			$section->addListItem('All sections of this course', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
+			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
 			$section->addTextBreak(2);
 		}
 		else{
-			$section->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
+			$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
+			1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addText(htmlentities('			'.$proposedCourseInfo["p_designation_prof"]), $standardStyle);
 			$section->addTextBreak(2);
 		}
 
@@ -252,22 +296,23 @@
 			$proposedCourseInfo["p_limit"] == "None specified";
 		}
 		$limitDesc = "Enrolment Limit: ".$proposedCourseInfo["p_limit"];
+		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
 		$libImpactDesc = "Library Impact: ".$proposedCourseInfo["lib_impact"];
 		$techImpactDesc = "Technology Impact: ".$proposedCourseInfo["tech_impact"];
-		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
 		$section->addText($unitsDesc, $standardStyle);
 		$section->addText($limitDesc, $standardStyle);
+		$section->addText($prereqDesc, $standardStyle);
+		$section->addTextBreak(1);
 		$section->addText($libImpactDesc, $standardStyle);
 		$section->addText($techImpactDesc, $standardStyle);
-		$section->addText($prereqDesc, $standardStyle);
-		$section->addPageBreak();
+		$section->addTextBreak(20);
 
 		$rationaleTextRun = $section->createTextRun($paragraphStyle);
 		$rationaleTextRun->addText('Please provide a brief rationale addressing how the proposed course aligns with the description of the ', $boldStyle);
 		$rationaleTextRun->addText($perspectiveText, $secHeaderStyle);
 		$rationaleTextRun->addText(' category:', $boldStyle);
 		$section->addText(htmlentities($proposedCourseInfo["rationale"]), $standardStyle);
-		$section->addPageBreak();
+		$section->addTextBreak(20);
 		
 		$assignTextRun = $section->createTextRun($paragraphStyle);
 		$assignTextRun->addText('Courses in each General Education category need to include at least one assignment aligned ', $boldStyle);
@@ -275,7 +320,7 @@
 		$assignTextRun->addText($perspectiveText, $secHeaderStyle);
 		$assignTextRun->addText(' category?', $boldStyle);
 		$section->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
-		$section->addPageBreak();
+		$section->addTextBreak(20);
 
 		$section->addText('Submit to: Sub-Committee', $boldStyle);
 		$section->addListItem('Accepted (on to COI)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);

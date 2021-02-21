@@ -229,10 +229,10 @@ if($proposal == false){ //if the proposal doesn't exist/wasn't created by the cu
 					</p></div>
 					<div class="col-md-4">
 						<select class="input-sm" style="float: left;" name="course_status" id="course_status">
-							<option value="new not yet approved by COI"<?php if ($proposal->p_course_status == 'new not yet approved by COI'){ echo ' selected'; } ?>>new not yet approved by COI</option>
-							<option value="new approved but not yet offered Units"<?php if ($proposal->p_course_status == 'new approved but not yet offered'){ echo ' selected'; } ?>>0new approved but not yet offered</option>
-							<option value="current under minor revision"<?php if ($proposal->p_course_status == 'current under minor revision'){ echo ' selected'; } ?>>current under minor revision</option>
-							<option value="current under major revision"<?php if ($proposal->p_course_status == 'current under major revision'){ echo ' selected'; } ?>>current under major revision</option>
+							<option value="A new course not yet approved by COI"<?php if ($proposal->p_course_status == 'A new course not yet approved by COI'){ echo ' selected'; } ?>>A new course not yet approved by COI</option>
+							<option value="A new course approved by COI, not yet offered"<?php if ($proposal->p_course_status == 'A new course approved by COI, not yet offered'){ echo ' selected'; } ?>>A new course approved by COI, not yet offered</option>
+							<option value="A current course undergoing minor revisions"<?php if ($proposal->p_course_status == 'A current course undergoing minor revisions'){ echo ' selected'; } ?>>A current course undergoing minor revisions</option>
+							<option value="A current course undergoing major revisions"<?php if ($proposal->p_course_status == 'A current course undergoing major revisions'){ echo ' selected'; } ?>>A current course undergoing major revisions</option>
 						</select>
 					</div>
 				</div>
