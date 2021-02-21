@@ -53,6 +53,13 @@
 			$proposals = $user->getProposals();
 			for($i = 0; $i < count($proposals); $i += 1){
 				$prop = $proposals[$i];
+
+				$sub_status = $prop->sub_status;
+				if ($sub_status) {
+					$submit_message = "Unsubmit";
+				} else {
+					$submit_message = "Submit";
+				}
 		?>
 		
 		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
@@ -80,7 +87,9 @@
 					<!-- Edit Button -->
 					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
 					<!-- View History Button -->	
-					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>			
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Submit Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="submit_proposal"><strong><?php echo $submit_message ?></strong></button><br>
 					<!-- Email Button (NOT YET WORKING) -->
 					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
 					<!-- View Feedback Button (NOT YET WORKING) -->

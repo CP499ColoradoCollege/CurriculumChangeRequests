@@ -70,6 +70,14 @@ class Proposal{
 		$this->dbc = $dbc;
 	}
 	
+
+	public function updateProposalField($id, $value) {
+		$dbc = $this->dbc;
+
+		$statement = $dbc->prepare("UPDATE proposals SET sub_status = ? WHERE id = ?");
+		$statement->bind_param("ss", $value, $id);
+		$bool = $statement->execute();
+	}
 	
 	public function fetchProposalFromID($id){
 		

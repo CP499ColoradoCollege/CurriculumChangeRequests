@@ -386,7 +386,8 @@
 		header('Location: home');
 		exit;
 	}
-	$file = htmlentities($filename).'.docx';
+	preg_replace("/[^A-Za-z0-9 ]/", '', $p_course_name);
+	$file = $p_course_name.'.docx';
 	header("Content-Description: File Transfer");
 	header('Content-Disposition: attachment; filename="' . $file . '"');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.
