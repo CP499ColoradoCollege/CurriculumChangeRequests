@@ -1,9 +1,0 @@
-{
-    "require": {
-        "zendframework/zend-escaper": "^2.6",
-        "zendframework/zend-stdlib": "^3.2",
-        "phpoffice/phpword": "^0.18.0",
-        "phpunit/phpunit": "^9.5",
-        "codeception/codeception" :"^4.1"
-    }
-}
