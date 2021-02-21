@@ -92,7 +92,6 @@ class Course{
 		}
 	}
 
-
 	public function fetchCourseFromTitle($course_title){
 		
 		$statement = $this->dbc->prepare("SELECT id, subj_code, subj_desc, course_num, divs_code, divs_desc, dept_code, dept_desc, course_desc, extra_details, enrollment_limit, prereqs, units, crosslisting, perspective, date_last_modified, related_proposals, status FROM courses WHERE course_title = ?");

@@ -1,4 +1,8 @@
 <?php 
+
+$user_filepath = __DIR__.'/../../html/classes/Proposal.php';
+require $user_filepath;
+
 class ProposalTest extends \Codeception\Test\Unit
 {
     /**
@@ -10,21 +14,19 @@ class ProposalTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->dbc = mysqli_connect('localhost', 'root', '', 'testproposaltoolDB') OR die('Error: '.mysqli_connect_error());
+        $this->dbc = mysqli_connect('localhost', 'root', ''); #'testproposaltoolDB') OR die('Error: '.mysqli_connect_error());
         $this->proposal = new Proposal($this->dbc);
-
     }
 
     protected function _after()
     {
 
     }
-
     
     public function testFetchProposalFromID()
     {
-        $proposal_fetched = $this->proposal->fetchProposalFromID(42);
-        assertTrue($proposal_fetched);
+        $proposal_fetched = (bool)$this->proposal->fetchProposalFromID(42);
+        $this->assertTrue($proposal_fetched);
     }
 
     public function testCreateProposalAddNewCourse()

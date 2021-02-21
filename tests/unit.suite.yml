@@ -8,10 +8,12 @@ modules:
         - Asserts
         - \Helper\Unit
         # - Db: 
-        #     dsn: 'mysql:host=localhost;dbname=testproposaltooldb'
+        #     dsn: 'mysql:host=localhost;dbname=testDB'
         #     user: 'root'
         #     password: ''
         #     dump: 'tests/_data/testdump.sql'
         #     populate: true
         #     cleanup: true
-        #     reconnect: true
+        #     # initial_queries:
+        #     #  - 'CREATE DATABASE IF NOT EXISTS testDB;'
+        #     populator: '/opt/lampp/bin/mysql -u $user -h $host $dbname < $dump'

@@ -1,3 +1,2 @@
-tests/unit/UserTest.php:testFetchUserFromUsername
-tests/unit/UserTest.php:testGetProposals
-tests/unit/UserTest.php:testGetDepartments
+tests/unit/CourseTest.php:testFetchCourseFromCourseID
+tests/unit/CourseTest.php:testFetchCourseFromTitle

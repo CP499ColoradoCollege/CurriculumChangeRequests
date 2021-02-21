@@ -56,12 +56,12 @@ class User{
 	}
 	
 	public function fetchUserFromUsername($username){
-		$statement = $this->dbc->prepare("SELECT id, first_name, last_name, username, email, department, position, permission, status FROM users WHERE username = ?");
+		$statement = $this->dbc->prepare("SELECT id, first_name, last_name, email, department, position, permission, status FROM users WHERE username = ?");
 		$statement->bind_param("s", $username);
 		
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($id, $first_name, $last_name, $username, $email, $department, $position, $permission, $status);
+		$statement->bind_result($id, $first_name, $last_name, $email, $department, $position, $permission, $status);
 		$statement->fetch();
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			$this->id = $id;
