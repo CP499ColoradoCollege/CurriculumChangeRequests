@@ -147,6 +147,30 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
+				<!-- Course Perspective -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_perspective" style="font-size: 20px; float: right;">Course Perspective
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Perspective of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="course_perspective" id="course_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
 				<!-- Rationale -->
 				<div class="form-group">
 					<div class="col-md-2"></div>

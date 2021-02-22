@@ -120,6 +120,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[0] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php if($criteria_num > 1){ ?>
@@ -195,6 +202,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[1] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -264,6 +278,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[2] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -326,6 +347,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[3] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -381,6 +409,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[4] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -429,6 +464,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[5] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -470,6 +512,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[6] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -504,6 +553,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[7] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -531,6 +587,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[8] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -551,6 +614,13 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[9] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -564,9 +634,29 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
+				<?php }else if($criteria_array[10] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
-			<?php } ?>
+			<?php }
+			if($criteria_num > 11){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[11] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php } ?>	
 			
 			<!-- END existing course info HTML -->
 		
@@ -692,6 +782,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[0] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -807,6 +916,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[1] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -913,6 +1041,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[2] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1009,6 +1156,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[3] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1094,6 +1260,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[4] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1169,6 +1354,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[5] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1234,6 +1438,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[6] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1283,6 +1506,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[7] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1322,6 +1564,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[8] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1351,6 +1612,25 @@
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
+					<?php }else if($criteria_array[9] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -1369,6 +1649,53 @@
 					</div>
 					<div class="col-md-3">
 						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[10] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php } 
+			if($criteria_num > 11){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[11] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perpective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
 					</div>
 					<?php } ?>
 				</div>
@@ -1428,6 +1755,5 @@
 		
 	</div>
 </div>
-
 
 

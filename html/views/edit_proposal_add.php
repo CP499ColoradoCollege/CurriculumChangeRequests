@@ -153,6 +153,28 @@ if($proposal == false){ //if the proposal doesn't exist/wasn't created by the cu
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
+				<!-- Current Course Perspective -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Perspective</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The course perspective">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<select class="input-sm" style="float: left;" name="course_perspective" id="course_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
 				<!-- Current Rationale -->
 				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Rationale:</strong>

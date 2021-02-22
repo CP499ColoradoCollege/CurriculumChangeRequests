@@ -85,6 +85,13 @@
 						<label class="form-check-label change-label" for="defaultCheck1">Units</label>
 					</div>
 				</div>
+				<!-- Perspective checkbox -->
+				<div class="row" style="margin-top: 25px;">
+					<div class="form-check div-left shift-right">
+						<input class="form-check-input" type="checkbox" id="perspective" name="perspective">
+						<label class="form-check-label change-label" for="defaultCheck1">Perspective</label>
+					</div>
+				</div>
 				<!-- First Offering checkbox -->
 				<div class="row" style="margin-top: 25px;">
 					<div class="form-check div-left shift-right">
