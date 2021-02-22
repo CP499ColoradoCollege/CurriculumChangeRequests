@@ -1,7 +1,7 @@
 <?php 
 
-$user_filepath = __DIR__.'/../../html/classes/Proposal.php';
-require $user_filepath;
+$proposal_filepath = __DIR__.'/../../html/classes/Proposal.php';
+require $proposal_filepath;
 
 class ProposalTest extends \Codeception\Test\Unit
 {

@@ -14,7 +14,7 @@ class CourseTest extends \Codeception\Test\Unit
     
     protected function _before()
     {
-        $this->dbc = mysqli_connect('localhost', 'root', '', 'testDB') OR die('Error: '.mysqli_connect_error());
+        $this->dbc = mysqli_connect('localhost', 'root', '', 'testproposaltoolDB') OR die('Error: '.mysqli_connect_error());
         $this->course = new Course($this->dbc);
     }
 
@@ -25,13 +25,13 @@ class CourseTest extends \Codeception\Test\Unit
 
     public function testFetchCourseFromCourseID()
     {
-        $course_fetched = $this->course->fetchCourseFromCourseID(1) ? true : false;
-        assertTrue($course_fetched);
+        $course_fetched = $this->course->fetchCourseFromCourseID('CP122') ? true : false;
+        $this->assertTrue($course_fetched);
     }
 
     public function testFetchCourseFromTitle()
     {
         $course_fetched = $this->course->fetchCourseFromTitle("Computer Organization") ? true : false;
-        assertTrue($course_fetched);
+        $this->assertTrue($course_fetched);
     }
 }

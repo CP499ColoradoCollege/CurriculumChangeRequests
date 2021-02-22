@@ -2,8 +2,10 @@
 
 $user_filepath = __DIR__.'/../../html/classes/User.php';
 require $user_filepath;
+$proposal_filepath = __DIR__.'/../../html/classes/Proposal.php';
+require $proposal_filepath;
 
-class ExampleTest extends \Codeception\Test\Unit
+class UserTest extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester
@@ -16,13 +18,13 @@ class ExampleTest extends \Codeception\Test\Unit
     protected function _before()
     {
         codecept_debug(getcwd());
-        $this->dbc = mysqli_connect('localhost', 'root', '', 'proposaltoolDB');
+        $this->dbc = mysqli_connect('localhost', 'root', '', 'testproposaltoolDB');
         $this->user = new User($this->dbc);
     }
 
     public function testFetchUserFromEmail()
 	{
-        $user_fetched = (bool)$this->user->fetchUserFromEmail("admin@proposals.com"); #false if something goes wrong, otherwise correctly populates
+        $user_fetched = $this->user->fetchUserFromEmail("admin@proposals.com") ? true : false; #false if something goes wrong, otherwise correctly populates
         $this->assertTrue($user_fetched); 
 	}
 
@@ -34,12 +36,13 @@ class ExampleTest extends \Codeception\Test\Unit
 
     public function testFetchUserFromID() 
     {
-        $user_fetched = (bool)$this->user->fetchUserFromID(1); 
+        $user_fetched = $this->user->fetchUserFromID(1) ? true : false; 
         $this->assertTrue($user_fetched); 
     }   
     
     public function testGetProposals() 
     {
+        $this->user->fetchUserFromID(1); #this function requires the user id to have already been queried 
         $proposals_fetched = $this->user->getProposals();
         $num_proposals_fetched = sizeof($proposals_fetched);
         $this->assertTrue($num_proposals_fetched == 5); #there should be 5 proposals in made by h_helm
@@ -47,7 +50,8 @@ class ExampleTest extends \Codeception\Test\Unit
 
     public function testGetDepartments() 
     {
-        $departments_fetched = $this->user->getProposals();
+        $this->user->fetchUserFromID(1);
+        $departments_fetched = $this->user->getProposals() ? true : false;
         $this->assertTrue($departments_fetched);
         // $education = $departments_fetched["EDUC"];
         // $this->assertTrue($education == "Education"); #see if we can get a dept_desc from dept_code    
