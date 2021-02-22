@@ -19,19 +19,19 @@
 				<!-- Set up columns to be displayed: -->
 		<div class="row" style="margin-top: 30px;">
 			<div class="col-md-3">
-				<span class="label-home"><strong>Title:</strong></span>
+				<span class="label-history"><strong>Title:</strong></span>
 			</div>
 			<div class="col-md-2">
-				<span class="label-home"><strong>Date Editted:</strong></span>
+				<span class="label-history"><strong>Date Editted:</strong></span>
 			</div>
 			<div class="col-md-3">
-				<span class="label-home"><strong>Submission Status:</strong></span>
+				<span class="label-history"><strong>Submission Status:</strong></span>
 			</div>
 			<div class="col-md-2" style="margin-left: -40px;">
-				<span class="label-home"><strong>Approval Status:</strong></span>
+				<span class="label-history"><strong>Approval Status:</strong></span>
 			</div>
 			<div class="col-md-2" style="margin-left: 40px;">
-				<span class="label-home"><strong>Options:</strong></span>
+				<span class="label-history"><strong>Options:</strong></span>
 			</div>
 			
 		</div>
@@ -49,27 +49,27 @@
 			
 			<!-- Proposal Title -->
 			<div class="col-md-3">
-				<span class="info-home"><strong><?php echo $prop->proposal_title; ?></strong></span>
+				<span class="info-history"><strong><?php echo $prop->proposal_title; ?></strong></span>
 			</div>
 			<!-- Proposal Date -->
 			<div class="col-md-2">
-				<span class="info-home"><strong><?php echo $prop->proposal_date; ?></strong></span>
+				<span class="info-history"><strong><?php echo $prop->proposal_date; ?></strong></span>
 			</div>
 			<!-- Proposal Submission Status -->
 			<div class="col-md-3">
-				<span class="info-home"><strong><?php echo convertSubmissionStatus($prop->sub_status); ?></strong></span>
+				<span class="info-history"><strong><?php echo convertSubmissionStatus($prop->sub_status); ?></strong></span>
 			</div>
 			<!-- Proposal Approval Status -->
 			<div class="col-md-2" style="margin-left: -40px;">
-				<span class="info-home"><strong><?php echo convertApprovalStatus($prop->approval_status); ?></strong></span>
+				<span class="info-history"><strong><?php echo convertApprovalStatus($prop->approval_status); ?></strong></span>
 			</div>
 			<div class="col-md-2" style="margin-left: 40px;">
-				<form method="post" action="home">
+				<form method="post" action="history">
 					<!-- Download Button -->
-					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<button type="submit" class="btn btn-history" name="action" value="download"><strong>Download</strong></button><br>
 					
 					<!-- Specific Proposal's ID -->			
-					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
+					<input type="hidden" name="openedid" value="<?php echo $prop->history_id; ?>">
 				</form>
 			</div>
 			

@@ -30,14 +30,14 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){	
-				//DEBUG
-				$msg = "Reached query redirect to download page";
-				error_log(print_r($msg, TRUE)); 		
+				//2019 group's download file
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
-				header("Location: download_GEdocx?pid=".$_POST['openedid']); //why won't you WORK >:(
+				//2021 group's download file
+				header("Location: download_GEdocx?pid=".$_POST['openedid']."&type="."proposal"); 
 				exit();
-				//header("Location: download_CCdocx?pid=".$_POST['openedid']);//...doesn't work either
+				//2021 group's incomplete download file specifically for CC100 and CC120 courses
+				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
@@ -396,7 +396,21 @@
 			}	
 			break;
 		    
+		case 'history':
+						
+			if($_POST['action'] == 'download'){	
+				//2019 group's download file
+				//header("Location: download_docx_3?pid=".$_POST['openedid']);
+				
+				//2021 group's download file
+				header("Location: download_GEdocx?pid=".$_POST['openedid']."&type="."proposalhistory"); 
+				exit();
+				//2021 group's incomplete download file specifically for CC100 and CC120 courses
+				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
+			}
 			
+			break;
+				
 		case 'demo':
 			
 			break;

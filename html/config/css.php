@@ -94,6 +94,15 @@
 		margin-bottom: 5px;
 	}
 	
+	.btn-history{
+		color: black;
+		background-color: #D19E21;
+		font-size: 15px;
+		border-radius: 10px;
+		float: none;
+		margin-bottom: 5px;
+	}
+	
 	.btn-new{
 		color: black;
 		background-color: #D19E21;
@@ -132,6 +141,14 @@
 	}
 	
 	.info-home{
+		font-size: 18px;
+	}
+	
+	.label-history{
+		font-size: 20px;
+	}
+	
+	.info-history{
 		font-size: 18px;
 	}
 	
