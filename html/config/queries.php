@@ -48,6 +48,9 @@
 			if($_POST['action'] == 'submit_proposal') {
 				header("Location: submit_proposal?pid=".$_POST['openedid']);
 			}
+			if($_POST['action'] == 'approve_proposal') {
+				header("Location: approve_proposal?pid=".$_POST['openedid']);
+			}
 			
 			
 			break;
@@ -383,7 +386,20 @@
 				header("Location: home");
 			}
 			if (isset($_POST['confirm'])) {
-				$proposal->updateProposalField($pid, $_POST['confirm']);
+				$proposal->updateProposalField($pid, "sub_status", $_POST['confirm']);
+				header("Location: home");
+			}
+			break;
+
+		case 'approve_proposal':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['confirm'])) {
+				$proposal->updateProposalField($pid, "approval_status", $_POST['confirm']);
 				header("Location: home");
 			}
 			break;

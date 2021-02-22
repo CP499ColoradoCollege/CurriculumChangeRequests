@@ -60,8 +60,66 @@
 				} else {
 					$submit_message = "Submit";
 				}
+
+				$approval_status = $prop->approval_status;
+				if ($approval_status) {
+					$approval_message = "Reject";
+				} else {
+					$approval_message = "Approve";
+				}
+
+				if ($user->permission > 1) {
+					$submission_status = convertSubmissionStatus($prop->sub_status);
+					if ($user->permission === $prop->approval_status) {
+						$submission_status = "Awaiting approval from you.";
+					}
 		?>
-		
+
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong><?php echo $prop->proposal_title; ?></strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong><?php echo $prop->proposal_date; ?></strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong><?php echo convertSubmissionStatus($prop->sub_status); ?></strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong><?php echo convertApprovalStatus($prop->approval_status); ?></strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong><?php echo $approval_message ?></strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<span class="btn btn-home" name="action" value="feedback"><strong>Add Feedback</strong></span>
+					
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
+				</form>
+			</div>
+			
+		</div>
+
+		<?php 	
+				} else {
+		?>
+
 		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
 			
 			<!-- Proposal Title -->
@@ -102,7 +160,10 @@
 			
 		</div>
 			
-		<?php } ?>
+		<?php 	
+				} 
+			}
+		?>
 		
 	</div>
 </div>
