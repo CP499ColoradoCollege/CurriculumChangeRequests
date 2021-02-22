@@ -45,6 +45,9 @@
 			if($_POST['action'] == 'history'){				
 				header("Location: history?pid=".$_POST['openedid']);
 			}
+			if($_POST['action'] == 'submit_proposal') {
+				header("Location: submit_proposal?pid=".$_POST['openedid']);
+			}
 			
 			
 			break;
@@ -395,7 +398,20 @@
 				header("Location: home");
 			}	
 			break;
-		    
+
+		case 'submit_proposal':
+			// TODO view feedback
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['confirm'])) {
+				$proposal->updateProposalField($pid, $_POST['confirm']);
+				header("Location: home");
+			}
+			break;
 			
 		case 'demo':
 			
