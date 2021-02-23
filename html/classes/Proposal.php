@@ -27,7 +27,7 @@ class Proposal{
 	
 	public $type;
 	
-	public $criteria;
+	public $criteria; //probably needs to be adjusted
 	
 	public $p_department;
 	
@@ -47,31 +47,59 @@ class Proposal{
 	
 	public $p_crosslisting;
 	
-	public $p_perspective;
+	public $p_perspective; //probably deprecated...or can be switched to GenEd category?
 	
-	public $rationale;
+	public $rationale; //probably deprecated...or can be switched to GenEd rationale?
 	
-	public $lib_impact;
+	public $lib_impact; //possibly deprecated
 	
-	public $tech_impact;
+	public $tech_impact; //possibly deprecated
 	
 	public $status;
+
+	public $p_aligned_assignments; //"Courses in each GenEd category need to include >=1 assignment aligned to each learning outcome"
+	public $p_first_offering; //first semester and year course will be offered - format stored as varchar
+	public $p_course_status; //4 options: new not yet approved by COI, new approved but not yet offered, current under minor revision, current under major revision
+	public $p_designation_scope; //GenEd designation sought for all sections of course or instructor-specific section
+	public $p_designation_prof; //addendum to above: list of professor(s) for instructor-specific sections if applicable
+	public $p_feedback;
+	
+	public $edit_date;
 	
 	public function __construct($dbc){
 		$this->dbc = $dbc;
 	}
 	
+
+	public function updateProposalField($id, $field, $value) {
+		$dbc = $this->dbc;
+
+		$statement = $dbc->prepare("UPDATE proposals SET ".$field." = ? WHERE id = ?");
+		$statement->bind_param("ss", $value, $id);
+		$bool = $statement->execute();
+	}
 	
 	public function fetchProposalFromID($id){
 		
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, proposal_date, sub_status, approval_status, department, type, criteria, p_department, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status FROM proposals WHERE id = ?");
+		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, 
+		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
+		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
+		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
+		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
+
+		//things being out of order might have something to do with above not having status when below does
 
 		$bool = $statement->execute();
 		$statement->store_result();
-		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, $sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $p_crosslisting, $p_perspective, $rationale, $lib_impact, $tech_impact, $status);
+		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, 
+		$sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, 
+		$p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $p_crosslisting, 
+		$p_perspective, $rationale, $lib_impact, $tech_impact, $status, $p_aligned_assignments, 
+		$p_first_offering, $p_course_status, $p_designation_scope, $p_designation_prof, $p_feedback);
+
 		$statement->fetch();
 		if($bool && mysqli_stmt_num_rows($statement) == 1){
 			$this->id = $id;
@@ -98,6 +126,12 @@ class Proposal{
 			$this->lib_impact = $lib_impact;
 			$this->tech_impact = $tech_impact;
 			$this->status = $status;
+			$this->p_aligned_assignments = $p_aligned_assignments;
+			$this->p_first_offering = $p_first_offering;
+			$this->p_course_status = $p_course_status;
+			$this->p_designation_scope = $p_designation_scope;
+			$this->p_designation_prof = $p_designation_prof;
+			$this->p_feedback = $p_feedback;
 			
 			return $this;
 		}else{
@@ -110,9 +144,23 @@ class Proposal{
 		
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, proposal_date, department, type, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("sssssssssssssss", $this->user_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
-		
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, 
+		proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
+		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact, 
+		p_aligned_assignments, p_first_offering, p_course_status, p_designation_scope, 
+		p_designation_prof, p_feedback) 
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+		$statement->bind_param("sssssssssssssssssssss", $this->user_id, $this->proposal_title, 
+		$this->proposal_date, $this->department, $this->type, $this->p_course_id, 
+		$this->p_course_title, $this->p_course_desc, $this->p_extra_details, 
+		$this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, 
+		$this->lib_impact, $this->tech_impact, $this->p_aligned_assignments, 
+		$this->p_first_offering, $this->p_course_status, $this->p_designation_scope, 
+		$this->p_designation_prof, $this->p_feedback);
+
+		//one s for every variable...make sure to add all 6!
+
 		$course_id = mysqli_real_escape_string($dbc, $post_array['course_id']);
 		$course_title = $post_array['course_title'];
 		
@@ -142,6 +190,12 @@ class Proposal{
 			$this->tech_impact = 'None';
 		}
 		
+		$this->p_aligned_assignments = $post_array['aligned_assignments'];
+		$this->p_first_offering = $post_array['first_offering'];
+		$this->p_course_status = $post_array['course_status'];
+		$this->p_designation_scope = $post_array['designation_scope'];
+		$this->p_designation_prof = $post_array['designation_prof'];
+		$this->p_feedback = 'None';
 		$bool = $statement->execute();
 		if($bool){
 			return true;
@@ -150,13 +204,99 @@ class Proposal{
 		}
 	}
 
+	public function addProposalHistory($pid, $user_id, $post_array, $original_proposal){
+		
+		$dbc = $this->dbc;
+		
+		$statement = $dbc->prepare("INSERT INTO proposal_history (id, user_id, edit_date, proposal_title, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement->bind_param("ssssssssssssss", $this->id, $this->user_id, $this->edit_date, $this->proposal_title, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
+		
+		$this->id = $pid;
+		$this->user_id = $user_id;
+		$this->edit_date = date('m/d/Y');
+		$this->proposal_title = $original_proposal->proposal_title;
+		if($post_array['course_id'] != $original_proposal->p_course_id){
+			$this->p_course_id = $post_array['course_id'];	
+							
+		}else{
+			$this->p_course_id = 'unchanged';
+		}
+		if($post_array['course_title'] != $original_proposal->p_course_title){
+			$this->p_course_title = $post_array['course_title'];	
+							
+		}else{
+			$this->p_course_title = 'Unchanged';
+		}
+		if($post_array['course_desc'] != $original_proposal->p_course_desc){
+			$this->p_course_desc = $post_array['course_desc'];
+							
+		}else{
+			$this->p_course_desc = 'Unchanged';
+		}
+		if($post_array['course_details'] != $original_proposal->p_course_details){
+			$this->p_extra_details = $post_array['extra_details'];
+							
+		}else{
+			$this->p_extra_details = 'Unchanged';
+		}
+		if($post_array['limit'] != $original_proposal->p_limit){
+			$this->p_limit = $post_array['limit'];
+							
+		}else{
+			$this->p_limit = 'Unchanged';
+		}
+		if($post_array['course_prereqs'] != $original_proposal->p_prereqs){
+			$this->p_prereqs = $post_array['course_prereqs'];
+							
+		}else{
+			$this->p_prereqs = 'Unchanged';
+		}
+		if($post_array['course_units'] != $original_proposal->p_units){
+			$this->p_units = $post_array['course_units'];
+							
+		}else{
+			$this->p_units = 'Unchanged';
+		}
+		if($post_array['rationale'] != $original_proposal->rationale){
+			$this->rationale = $post_array['rationale'];
+							
+		}else{
+			$this->rationale = 'Unchanged';
+		}
+		if($post_array['lib_impact'] != $original_proposal->lib_impact){
+			$this->lib_impact = $post_array['lib_impact'];
+			if($this->$lib_impact == ''){
+				$this->lib_impact = 'None';
+			}
+							
+		}else{
+			$this->lib_impact = 'Unchanged';
+		}
+		if($post_array['tech_impact'] != $original_proposal->tech_impact){
+			$this->tech_impact = $post_array['tech_impact'];
+			if($this->tech_impact == ''){
+				$this->tech_impact = 'None';
+			}
+							
+		}else{
+			$this->tech_impact = 'Unchanged';
+		}	
+		
+		$bool = $statement->execute();
+		if($bool){
+			return true;
+		}else{
+			echo 'error: '.mysqli_error($dbc);
+			return false;
+		}
+	}
 
 	public function editProposalAddNewCourse($user_id, $pid, $post_array){
 			
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
-		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
+		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ?, p_aligned_assignments = ?, p_first_offering = ?, p_course_status = ?, p_designation_scope = ?, p_designation_prof = ? WHERE id = ?");
+		$statement->bind_param("ssssssssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $p_aligned_assignments, $p_first_offering, $p_course_status, $p_designation_scope, $p_designation_prof, $pid);
 		
 		$p_course_id = $post_array['course_id'];
 		$p_course_title = $post_array['course_title'];
@@ -174,7 +314,11 @@ class Proposal{
 		if($tech_impact == ''){
 			$tech_impact = 'None';
 		}
-		
+		$p_aligned_assignments = $post_array['aligned_assignments'];
+		$p_first_offering = $post_array['first_offering'];
+		$p_course_status = $post_array['course_status'];
+		$p_designation_scope = $post_array['designation_scope'];
+		$p_designation_prof = $post_array['designation_prof'];
 		$bool = $statement->execute();
 		if($bool){
 			return true;
@@ -185,13 +329,20 @@ class Proposal{
 	}
 
 	
-	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){
-				
+	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){	
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposals (user_id, related_course_id, proposal_title, proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$statement->bind_param("sssssssssssssssss", $this->user_id, $this->related_course_id, $this->proposal_title, $this->proposal_date, $this->department, $this->type, $this->criteria, $this->p_course_id, $this->p_course_title, $this->p_course_desc, $this->p_extra_details, $this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, $this->lib_impact, $this->tech_impact);
-										
+		$statement = $dbc->prepare("INSERT INTO proposals (user_id, proposal_title, 
+		proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
+		p_extra_details, p_limit, p_prereqs, p_units, rationale, lib_impact, tech_impact, p_aligned_assignments, p_first_offering, p_designation_scope, p_designation_prof ) 
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+		$statement->bind_param("sssssssssssssssssss", $this->user_id, $this->proposal_title, 
+		$this->proposal_date, $this->department, $this->type, $this->p_course_id, 
+		$this->p_course_title, $this->p_course_desc, $this->p_extra_details, 
+		$this->p_limit, $this->p_prereqs, $this->p_units, $this->rationale, 
+		$this->lib_impact, $this->tech_impact, $this->p_aligned_assignments, $this->p_first_offering, $this->p_designation_scope, $this->p_designation_prof);
+									
 		$this->user_id = $user_id;
 		$this->related_course_id = $related_course_id;		
 		$this->type = "Change an Existing Course";
@@ -292,6 +443,50 @@ class Proposal{
 			$this->p_units = "";
 		}
 		
+		if(in_array('8', $criteria)){
+			$this->p_first_offering = $post_array['p_first_offering'];
+			if($changes != ""){
+				$changes = $changes.", First Offering";
+			}else{
+				$changes = $changes." First Offering";
+			}
+		}else{
+			$this->p_first_offering = "";
+		}
+		
+		if(in_array('9', $criteria)){
+			$this->p_aligned_assignments = $post_array['p_aligned_assignments'];
+			if($changes != ""){
+				$changes = $changes.", Aligned Assignments";
+			}else{
+				$changes = $changes." Aligned Assignments";
+			}
+		}else{
+			$this->p_aligned_assignments = "";
+		}
+		
+		if(in_array('a', $criteria)){
+			$this->p_designation_scope = $post_array['p_designation_scope'];
+			if($changes != ""){
+				$changes = $changes.", Designation Scope";
+			}else{
+				$changes = $changes." Designation Scope";
+			}
+		}else{
+			$this->p_designation_scope = "";
+		}
+		
+		if(in_array('b', $criteria)){
+			$this->p_designation_prof = $post_array['p_designation_prof'];
+			if($changes != ""){
+				$changes = $changes.", Designation Professor(s)";
+			}else{
+				$changes = $changes." Designation Professor(s)";
+			}
+		}else{
+			$this->p_designation_prof = "";
+		}
+		
 		$this->proposal_title = 'Change'.$changes.' of Course: '.$related_course_id.', '.$course->course_title;
 		$this->proposal_date = date('m/d/Y');
 		$this->department = $course->dept_desc;
@@ -303,8 +498,7 @@ class Proposal{
 		$this->tech_impact = $post_array['tech_impact'];
 		if($this->tech_impact == ""){
 			$this->tech_impact = "None";
-		}
-						
+		}			
 		$bool = $statement->execute();
 		if($bool){
 			return true;
@@ -320,8 +514,8 @@ class Proposal{
 		
 		$dbc = $this->dbc;
 
-		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ? WHERE id = ?");
-		$statement->bind_param("sssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $pid);
+		$statement = $dbc->prepare("UPDATE proposals SET p_course_id = ?, p_course_title = ?, p_course_desc = ?, p_extra_details = ?, p_limit = ?, p_prereqs = ?, p_units = ?, rationale = ?, lib_impact = ?, tech_impact = ?, p_aligned_assignments = ?, p_first_offering = ?, p_designation_scope = ?, p_designation_prof = ? WHERE id = ?");
+		$statement->bind_param("sssssssssssssss", $p_course_id, $p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $rationale, $lib_impact, $tech_impact, $p_aligned_assignments, $p_first_offering, $p_designation_scope, $p_designation_prof, $pid);
 				
 		$criteria = str_split($criteria);	
 		$changes = "";
@@ -400,6 +594,50 @@ class Proposal{
 			}
 		}else{
 			$p_units = "";
+		}
+		
+		if(in_array('8', $criteria)){
+			$p_first_offering = $post_array['p_first_offering'];
+			if($changes != ""){
+				$changes = $changes.", First Offering";
+			}else{
+				$changes = $changes." First Offering";
+			}
+		}else{
+			$p_first_offering = "";
+		}
+		
+		if(in_array('9', $criteria)){
+			$p_aligned_assignments = $post_array['p_aligned_assignments'];
+			if($changes != ""){
+				$changes = $changes.", Aligned Assignments";
+			}else{
+				$changes = $changes." Aligned Assignments";
+			}
+		}else{
+			$p_aligned_assignments = "";
+		}
+		
+		if(in_array('a', $criteria)){
+			$p_designation_scope = $post_array['p_designation_scope'];
+			if($changes != ""){
+				$changes = $changes.", Designation Scope";
+			}else{
+				$changes = $changes." Designation Scope";
+			}
+		}else{
+			$p_designation_scope = "";
+		}
+		
+		if(in_array('b', $criteria)){
+			$p_designation_prof = $post_array['p_designation_prof'];
+			if($changes != ""){
+				$changes = $changes.", Designation Professor(s)";
+			}else{
+				$changes = $changes." Designation Professor(s)";
+			}
+		}else{
+			$p_designation_prof = "";
 		}
 		
 		$rationale = $post_array['rationale'];
@@ -491,8 +729,34 @@ class Proposal{
 		}
 	}
 
+	public function getAllFeedback() {
+		$dbc = $this->dbc;
 
+		$statement = $dbc->prepare("SELECT comments.comment_text, users.first_name, users.last_name FROM comments INNER JOIN users ON comments.uid = users.id WHERE comments.pid = ?");
+		$statement->bind_param("s", $this->id);
+		$statement->execute();
 
+		$statement->bind_result($comment, $fname, $lname);
+
+		$feedback = "<p align='left'>";
+
+		while ($statement->fetch()) {
+			$feedback .= $fname . " " . $lname . ": " . $comment . "<br>";
+		}
+
+		$feedback .= "</p>";
+
+		$statement->close();
+
+		return $feedback;
+	}
+	
+	public function addFeedback($uid, $pid, $feedback) {
+		$dbc = $this->dbc;
+		$statement = $dbc->prepare("INSERT INTO comments (pid, uid, comment_text, tags) VALUES (?, ?, ?, '')");
+		$statement->bind_param("sss", $pid, $uid, $feedback);
+		$statement->execute();
+	}
 	
 }
 

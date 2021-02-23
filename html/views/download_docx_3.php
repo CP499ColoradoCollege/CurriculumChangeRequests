@@ -1,12 +1,21 @@
 <?php
 	require_once 'vendor/autoload.php';
+
+	//DEBUG
+	$msg = "Reached beginning of download_docx_3.php";
+	error_log(print_r($msg, TRUE)); 
 	
 	$proposal_id = $_GET['pid'];
 	$proposal = new Proposal($dbc);
 	$proposal = $proposal->fetchProposalFromID($proposal_id);
 	
 	if($proposal == false){
+		//DEBUG
+		$msg = "Hit abort condition in download_docx_3.php";
+		error_log(print_r($msg, TRUE)); 
+
 		header("Location: home");
+		exit();
 	}
 	
 	$filename = str_replace(' ', '_', $proposal->proposal_title);
@@ -103,13 +112,17 @@
 		
 	}else if($proposal->type == "Change an Existing Course"){	//this needs to dynamically understand what the proposal wants to change, and ONLY display relevant info
 		
+		//DEBUG
+		$msg = "Reached proposal-type \'change an existing course\' in download_docx_3.php";
+		error_log(print_r($msg, TRUE)); 
+
 		$course_id = $proposal->related_course_id;
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);	
 		$criteria = $proposal->criteria;	//237
 		
 		$headerString = "";
-		$headerString.=" ";
+		$headerString.=" "; //why add a space? DEBUG
 		$critArray = str_split($criteria);
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
@@ -136,10 +149,29 @@
 					break;
 			}
 		}
+		//delaney DEBUG - remove trailing whitespace that is showing up in the array DIDN'T WORK
+		//$individual_criteria = rtrim($individual_criteria);
 		
-		$individual_criteria = explode("-", $headerString);
+		//delaney DEBUG - remove "empty" entries in the array, INCLUDING 0
+		//seems to work...but I still don't understand why the 2019 group has the ==2 check at all
+		$individual_criteria = array_filter(explode("-", $headerString)); 
+		//$individual_criteria = explode("-", $headerString); original line
+
 		if(count($individual_criteria)==2){
-			return $individual_criteria[0];
+			//DEBUG
+			$msg = "Reached suspected bug 1 in download_docx_3.php";
+			error_log(print_r($msg, TRUE)); 
+			$msg = "Printing if condition variable being checked for ==2 followed by its contents:";
+			error_log(print_r($msg, TRUE));
+			$countOfCondition = count($individual_criteria);
+			error_log(print_r($countOfCondition, TRUE));
+			foreach($individual_criteria as $elementThingy){
+				$inBetween = "NEXT THING:";
+				error_log(print_r($inBetween, TRUE));
+				error_log(print_r($elementThingy, TRUE));
+			}
+
+			//return $individual_criteria[0];
 		}else{
 			for( $i = 0; $i<count($individual_criteria)-2; $i++ ) {
 				$individual_criteria[$i] .= ", ";
@@ -147,9 +179,14 @@
 			$individual_criteria[count($individual_criteria)-3].= "and ";
 		}
 		$criteriaInfoHeader = implode($individual_criteria);
+
+		//DEBUG
+		$msgTwo = "got past suspected bug 1 in download_docx_3.php";
+		error_log(print_r($msgTwo, TRUE)); 
 				
 		$headerString = "Current";
 		$headerString.=" ";
+		
 		$critArray = str_split($criteria);
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
@@ -176,16 +213,27 @@
 					break;
 			}
 		}
-		
-		$individual_criteria = explode("-", $headerString);
+
+		//delaney DEBUG - remove "empty" entries in the array, INCLUDING 0
+		//seems to work...but I still don't understand why the 2019 group has the ==2 check at all
+		$individual_criteria = array_filter(explode("-", $headerString)); 
+		//$individual_criteria = explode("-", $headerString); original line
 		if(count($individual_criteria)==2){
-			return $individual_criteria[0];
+			//DEBUG
+			$msg = "Reached suspected bug 2 in download_docx_3.php";
+			error_log(print_r($msg, TRUE)); 
+
+			//return $individual_criteria[0];
 		}else{
 			for( $i = 0; $i<count($individual_criteria)-2; $i++ ) {
 				$individual_criteria[$i] .= ", ";
 			}
 			$individual_criteria[count($individual_criteria)-3].= "and ";
 		}
+		//DEBUG
+		$msgTwo = "got past suspected bug 2 in download_docx_3.php";
+		error_log(print_r($msgTwo, TRUE)); 
+
 		$currentCriteriaInfoHeader = implode($individual_criteria);	//THIS IS WRONG!!! produces incorrect string
 		
 		//criteria = 237
@@ -253,9 +301,12 @@
 			}
 		}
 		
-		$individual_criteria = explode("-", $headerString);
+		//delaney DEBUG - remove "empty" entries in the array, INCLUDING 0
+		//seems to work...but I still don't understand why the 2019 group has the ==2 check at all
+		$individual_criteria = array_filter(explode("-", $headerString)); 
+		//$individual_criteria = explode("-", $headerString);
 		if(count($individual_criteria)==2){
-			return $individual_criteria[0];
+			//return $individual_criteria[0];
 		}else{
 			for( $i = 0; $i<count($individual_criteria)-2; $i++ ) {
 				$individual_criteria[$i] .= ", ";

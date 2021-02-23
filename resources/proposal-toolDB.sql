@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 11, 2019 at 04:43 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Feb 23, 2021 at 03:58 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,8 +18,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `new`
+-- Database: `proposal-tooldb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `pid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `comment_text` text NOT NULL,
+  `tags` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`pid`, `uid`, `comment_text`, `tags`) VALUES
+(1, 44, 'Amon Us', ''),
+(44, 1, 'Enter your comment here.', ''),
+(44, 1, 'Donkey Kongg', ''),
+(44, 1, 'Mungus', '');
 
 -- --------------------------------------------------------
 
@@ -39,25 +61,30 @@ CREATE TABLE `courses` (
   `dept_desc` varchar(100) NOT NULL,
   `course_title` varchar(200) NOT NULL,
   `course_desc` varchar(1000) NOT NULL,
-  `extra_desc` varchar(500) NOT NULL DEFAULT '0',
+  `extra_details` varchar(500) NOT NULL DEFAULT '0',
+  `enrollment_limit` int(2) NOT NULL,
   `prereqs` varchar(500) NOT NULL DEFAULT '0',
   `units` varchar(10) NOT NULL DEFAULT '0',
   `crosslisting` varchar(200) NOT NULL,
   `perspective` varchar(100) NOT NULL,
+  `aligned_assignments` varchar(1000) NOT NULL DEFAULT 'None',
+  `first_offering` varchar(10) NOT NULL DEFAULT 'None',
+  `designation_scope` varchar(10) NOT NULL DEFAULT 'None',
+  `designation_prof` varchar(50) NOT NULL DEFAULT 'None',
   `date_last_modified` varchar(10) NOT NULL DEFAULT '0',
   `related_proposals` varchar(1000) NOT NULL DEFAULT '0',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `subj_code`, `subj_desc`, `course_num`, `divs_code`, `divs_desc`, `dept_code`, `dept_desc`, `course_title`, `course_desc`, `extra_desc`, `prereqs`, `units`, `crosslisting`, `perspective`, `date_last_modified`, `related_proposals`, `status`) VALUES
-(1, 'CP', 'Computer Science', 122, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science I', 'Introduction to algorithms and data structures, and the design of computer programs using the programming language Java. This course requires some experience in programming.', '<i>Prerequisite: </i>Computer Science 115 or consent of instructor. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Burge, Wellman.', 'Prerequisite: Computer Science 115 or consent of instructor.', '1 unit', '', '', '0', '0', 1),
-(2, 'CP', 'Computer Science', 222, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science II', 'Examination of algorithms for searching, sorting, and manipulation of data structures. Exploration of queues, stacks, trees, and graphs using a variety of design techniques including recursion and object-oriented programming.', '<i>Prerequisite: </i>Computer Science 122. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Ellsworth.', 'Prerequisite: Computer Science 122.', '1 unit', '', '', '0', '0', 1),
-(3, 'CP', 'Computer Science', 275, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Organization', 'Exploration of the design and organization of computer processors, memory, and operating systems. Topics include processor architecture, digital circuits, memory management, scheduling, file systems, assembly language, and peripheral device control.', '<i>Prerequisite: </i>Computer Science 222. 1 unit - Ylvisaker.', 'Prerequisite: Computer Science 222.', '1 unit', '', '', '0', '0', 1),
-(4, 'CP', 'Computer Science', 341, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Topics in Computer Science', 'Special topics in computer science not offered on a regular basis.', '<i>Prerequisite: </i>Computer Science 222, Computer Science 274, Computer Science 275. 1 unit - Burge, Ellsworth, Erickson, Ylvisaker.', 'Prerequisite: Computer Science 222, Computer Science 274, Computer Science 275.', '1 unit', '', '', '0', '0', 1);
+INSERT INTO `courses` (`id`, `subj_code`, `subj_desc`, `course_num`, `divs_code`, `divs_desc`, `dept_code`, `dept_desc`, `course_title`, `course_desc`, `extra_details`, `enrollment_limit`, `prereqs`, `units`, `crosslisting`, `perspective`, `aligned_assignments`, `first_offering`, `designation_scope`, `designation_prof`, `date_last_modified`, `related_proposals`, `status`) VALUES
+(1, 'CP', 'Computer Science', 122, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science I', 'Introduction to algorithms and data structures, and the design of computer programs using the programming language Java. This course requires some experience in programming.', '<i>Prerequisite: </i>Computer Science 115 or consent of instructor. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Burge, Wellman.', 25, 'Prerequisite: Computer Science 115 or consent of instructor.', '1 unit', '', '', '', '', '', '', '0', '0', 1),
+(2, 'CP', 'Computer Science', 222, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Science II', 'Examination of algorithms for searching, sorting, and manipulation of data structures. Exploration of queues, stacks, trees, and graphs using a variety of design techniques including recursion and object-oriented programming.', '<i>Prerequisite: </i>Computer Science 122. (Meets the Critical Perspectives:  Quantitative Reasoning requirement.) 1 unit - Ellsworth.', 25, 'Prerequisite: Computer Science 122.', '1 unit', '', '', '', '', '', '', '0', '0', 1),
+(3, 'CP', 'Computer Science', 275, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Computer Organization', 'Exploration of the design and organization of computer processors, memory, and operating systems. Topics include processor architecture, digital circuits, memory management, scheduling, file systems, assembly language, and peripheral device control.', '<i>Prerequisite: </i>Computer Science 222. 1 unit - Ylvisaker.', 25, 'Prerequisite: Computer Science 222.', '1 unit', '', '', '', '', '', '', '0', '0', 1),
+(4, 'CP', 'Computer Science', 341, 'N', 'Natural Sciences', 'MATH', 'Mathematics & Computer Science', 'Topics in Computer Science', 'Special topics in computer science not offered on a regular basis.', '<i>Prerequisite: </i>Computer Science 222, Computer Science 274, Computer Science 275. 1 unit - Burge, Ellsworth, Erickson, Ylvisaker.', 25, 'Prerequisite: Computer Science 222, Computer Science 274, Computer Science 275.', '1 unit', '', '', '', '', '', '', '0', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +98,7 @@ CREATE TABLE `departments` (
   `dept_desc` varchar(100) NOT NULL,
   `divs_code` varchar(5) NOT NULL,
   `divs_desc` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -130,8 +157,8 @@ CREATE TABLE `proposals` (
   `related_course_id` varchar(100) NOT NULL DEFAULT 'None',
   `proposal_title` varchar(200) NOT NULL,
   `proposal_date` varchar(10) NOT NULL,
-  `sub_status` int(3) NOT NULL DEFAULT '0',
-  `approval_status` int(3) NOT NULL DEFAULT '0',
+  `sub_status` int(3) NOT NULL DEFAULT 0,
+  `approval_status` int(3) NOT NULL DEFAULT 0,
   `department` varchar(200) NOT NULL,
   `type` varchar(200) NOT NULL,
   `criteria` varchar(10) NOT NULL DEFAULT 'None',
@@ -148,18 +175,24 @@ CREATE TABLE `proposals` (
   `rationale` varchar(1000) NOT NULL DEFAULT 'None',
   `lib_impact` varchar(100) NOT NULL DEFAULT 'None',
   `tech_impact` varchar(100) NOT NULL DEFAULT 'None',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT 1,
+  `p_aligned_assignments` varchar(1000) NOT NULL DEFAULT 'None',
+  `p_first_offering` varchar(100) NOT NULL DEFAULT 'None',
+  `p_course_status` varchar(100) NOT NULL DEFAULT 'None',
+  `p_designation_scope` varchar(100) NOT NULL DEFAULT 'None',
+  `p_designation_prof` varchar(500) NOT NULL DEFAULT 'None',
+  `p_feedback` varchar(1000) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proposals`
 --
 
-INSERT INTO `proposals` (`id`, `user_id`, `related_course_id`, `proposal_title`, `proposal_date`, `sub_status`, `approval_status`, `department`, `type`, `criteria`, `p_department`, `p_course_id`, `p_course_title`, `p_course_desc`, `p_extra_details`, `p_limit`, `p_prereqs`, `p_units`, `p_crosslisting`, `p_perspective`, `rationale`, `lib_impact`, `tech_impact`, `status`) VALUES
-(33, 1, 'None', 'New Course: 20304, Sociology of Performance', '02/07/2019', 0, 0, 'Sociology', 'Add a New Course', 'None', 'None', '20304', 'Sociology of Performance', 'This course will focus on qualitative sociological methods in collaboration with the performing arts. Students will learn how to translate interview data into creative expression.', 'None', '', 'None', '1 Unit', 'None', 'None', 'This course links the social sciences to the humanities, enabling students to perform information gained from interviews.', 'None', 'None', 1),
-(42, 2, 'None', 'New Course: CP999, Super Hard CS Class', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 'Add a New Course', 'None', 'None', 'CP999', 'Super Hard CS Class', 'This class is super hard.', '', '', 'none', '1 Unit', 'None', 'None', 'We need more CS courses.', 'None', 'None', 1),
-(43, 2, 'CP122', 'Change Title, Description, Extra Details, Limit of Course: CP122, Computer Science I', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 'Change an Existing Course', '2345', 'None', '', 'Computer Science One', 'Take out the numerals.', '', '25', '', '', 'None', 'None', 'wanted to make a few changes.', 'None', 'None', 1),
-(44, 2, 'CP122', 'Remove Course: CP122, Computer Science I', '02/11/2019', 0, 0, 'Mathematics & Computer Science', 'Remove an Existing Course', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'gotta drop it!!', 'None', 'None', 1);
+INSERT INTO `proposals` (`id`, `user_id`, `related_course_id`, `proposal_title`, `proposal_date`, `sub_status`, `approval_status`, `department`, `type`, `criteria`, `p_department`, `p_course_id`, `p_course_title`, `p_course_desc`, `p_extra_details`, `p_limit`, `p_prereqs`, `p_units`, `p_crosslisting`, `p_perspective`, `rationale`, `lib_impact`, `tech_impact`, `status`, `p_aligned_assignments`, `p_first_offering`, `p_course_status`, `p_designation_scope`, `p_designation_prof`, `p_feedback`) VALUES
+(33, 1, 'None', 'New Course: 20304, Sociology of Performance', '02/07/2019', 0, 1, 'Sociology', 'Add a New Course', 'None', 'None', '20304', 'Sociology of Performance', 'This course will focus on qualitative sociological methods in collaboration with the \r\nperforming arts. Students will learn how to translate interview data into creative expression.', 'None', '', 'None', '1 Unit', 'None', 'Equity & Power - Global', 'This course links the social sciences to the humanities, \r\nenabling students to perform information gained from interviews.', 'None', 'None', 1, 'Probably a a dance routine', 'Spring 2027', 'None', 'All Sections of Course', 'N/A', 'None'),
+(42, 1, 'None', 'New Course: CP999, Super Hard CS Class', '02/11/2019', 0, 1, 'Mathematics & Computer Science', 'Add a New Course', 'None', 'None', 'CP999', 'Super Hard CS Class', 'This class is super hard.', '', '', 'none', '1 Unit', 'None', 'None', 'We need more CS courses.', 'None', 'None', 1, 'Probably a video game', 'Winter 2077', 'None', 'All Sections of Course', 'N/A', 'None'),
+(43, 1, 'CP122', 'Change Title, Description, Extra Details, Limit of Course: CP122, \r\nComputer Science I', '02/11/2019', 0, 1, 'Mathematics & Computer Science', 'Change an Existing Course', '2345', 'None', '', 'Computer Science One', 'Take out the numerals.', '', '25', '', '', 'None', 'None', 'wanted to make a few changes.', 'None', 'None', 1, 'None', 'Spring 2037', 'None', 'All Sections of Course', 'N/A', 'None'),
+(44, 1, 'CP122', 'Remove Course: CP122, Computer Science I', '02/11/2019', 1, 2, 'Mathematics & Computer Science', 'Remove an Existing Course', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'gotta drop it!!', 'None', 'None', 1, 'Nothing!', 'Spring 2027', 'None', 'All Sections of Course', 'N/A', 'Among Us');
 
 -- --------------------------------------------------------
 
@@ -176,8 +209,8 @@ CREATE TABLE `users` (
   `username` varchar(100) NOT NULL,
   `department` varchar(200) NOT NULL,
   `position` varchar(200) NOT NULL,
-  `permission` int(3) NOT NULL DEFAULT '1',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `permission` int(3) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -185,7 +218,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`, `username`, `department`, `position`, `permission`, `status`) VALUES
-(1, 'admin@proposals.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'Sys', 'Admin', 'c_kennedy', 'N/A', 'N/A', 1, 1),
+(1, 'admin@proposals.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'Alfred', 'Mungus', 'c_kennedy', 'N/A', 'N/A', 1, 1),
 (2, 'c_kennedy@coloradocollege.edu', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'Christian', 'Kennedy', 'c_kennedy', 'Mathematics & Computer Science', 'professor', 1, 1);
 
 --
@@ -242,7 +275,7 @@ ALTER TABLE `proposals`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
