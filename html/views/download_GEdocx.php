@@ -301,7 +301,6 @@
 		$section->addText($formDesc, $standardStyle);
 		$section->addTextBreak(2);
 		
-
 		//identify criteria being changed
 		$headerString = "";
 		$critArray = str_split($criteria);
@@ -354,7 +353,6 @@
 					break;
 			}
 		}
-
 		$individual_criteria = array_filter(explode("-", $headerString)); 
 		if(count($individual_criteria) == 1){
 			//do nothing...?
@@ -373,7 +371,6 @@
 		//2: the proposed changes
 		//3: the rationale behind those changes
 			//CHECK IF IT'S ONE RATIONALE FOR EVERYTHING OR EACH ONE HAS ITS OWN
-
 			*/
 	}
 	else if($proposal->type == "Remove an Existing Course"){
