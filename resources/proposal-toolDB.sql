@@ -201,6 +201,7 @@ INSERT INTO `proposals` (`id`, `user_id`, `related_course_id`, `proposal_title`,
 --
 
 CREATE TABLE `proposalhistory` (
+  `history_id` mediumint(9) NOT NULL,
   `id` mediumint(9) NOT NULL,
   `user_id` mediumint(9) NOT NULL,
   `related_course_id` varchar(100) NOT NULL DEFAULT 'None',
@@ -281,6 +282,12 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `proposals`
   ADD PRIMARY KEY (`id`);
+  
+--
+-- Indexes for table `proposalhistory`
+--
+ALTER TABLE `proposalhistory`
+  ADD PRIMARY KEY (`history_id`);
 
 --
 -- Indexes for table `users`
@@ -309,6 +316,12 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `proposals`
   MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  
+--
+-- AUTO_INCREMENT for table `proposalhistory`
+--
+ALTER TABLE `proposalhistory`
+  MODIFY `history_id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`

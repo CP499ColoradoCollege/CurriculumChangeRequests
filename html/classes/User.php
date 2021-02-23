@@ -129,7 +129,7 @@ class User{
 	
 	public function getProposalHistory($id){
 		$history = array();
-		$q = "SELECT user_id, related_course_id, proposal_title, 
+		$q = "SELECT history_id, user_id, related_course_id, proposal_title, 
 		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
 		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
 		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
@@ -137,8 +137,9 @@ class User{
 		$r = mysqli_query($this->dbc, $q);
 		
 		while($row = mysqli_fetch_assoc($r)){
-			$current = new Proposal($this->$dbc);	
-			$current->id = $row["id"];
+			$current = new Proposal($this->$dbc);
+			$current->history_id = $row["history_id"];
+			$current->id = $id;
 			$current->user_id = $row["user_id"];
 			$current->related_course_id = $row["related_course_id"];
 			$current->proposal_title = $row["proposal_title"];

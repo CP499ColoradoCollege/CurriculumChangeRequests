@@ -4,7 +4,6 @@
 	/*
 	This document contains all logic for generating .docx files for GenEd proposals and then downloading them.
 	It should be loaded when a user hits a "download" button on the Home page.
-
 	Tips: if Microsoft Word is refusing to open the documents but LibreOffice can do it, wrap every
 	single string going into the document in htmlentities().
 	If you're being redirected to a page full of question marks, there's some kind of encoding issue. Make
@@ -15,15 +14,21 @@
 	*/
 	
 	$proposal_id = $_GET['pid'];
+	$type = $_GET['type'];
 	$proposal = new Proposal($dbc);
-	$proposal = $proposal->fetchProposalFromID($proposal_id);
+	if($type == 'proposal'){
+		$proposal = $proposal->fetchProposalFromID($proposal_id);
+	}else if($type == 'proposalhistory'){
+		$proposal = $proposal->fetchProposalHistory($proposal_id);
+	}
+	
 	
 	if($proposal == false){
 		//DEBUG
 		$msg = "Hit empty proposal abort condition in download_GEdocx.php";
 		error_log(print_r($msg, TRUE)); 
 
-		header("Location: home");
+		//header("Location: home");
 		exit;
 	}
 
@@ -357,38 +362,41 @@
 		
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
-				case 'a':
+				case '1':
 					$headerString.="Course ID-";
 					break;
-				case 'b':
+				case '2':
 					$headerString.="Course Title-";
 					break;
-				case 'c':
+				case '3':
 					$headerString.="Course Description-";
 					break;
-				case 'd':
+				case '4':
 					$headerString.="Extra Details-";
 					break;
-				case 'e':
+				case '5':
 					$headerString.="Enrolment Limit-";
 					break;
-				case 'f':
+				case '6':
 					$headerString.="Prerequisites-";
 					break;
-				case 'g':
+				case '7':
 					$headerString.="Units-";
 					break;
-				case 'h':
+				case '8':
 					$headerString.="First Offering-";
 					break;
-				case 'i':
+				case '9':
 					$headerString.="Aligned Assignments-";
 					break;
-				case 'j':
+				case 'a':
 					$headerString.="General Education Categorization Scope-";
 					break;
-				case 'k':
+				case 'b':
 					$headerString.="General Education Categorization Professors-";
+					break;
+				case 'c':
+					$headerString.="General Education Perspective-";
 					break;
 			}
 		}

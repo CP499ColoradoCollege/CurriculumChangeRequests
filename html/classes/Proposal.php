@@ -9,6 +9,8 @@ class Proposal{
 	
 	public $dbc;
 	
+	public $history_id;
+	
 	public $id;
 	
 	public $user_id;
@@ -208,14 +210,14 @@ class Proposal{
 		$dbc = $this->dbc;
 		
 		$statement = $dbc->prepare("INSERT INTO proposalhistory (id, user_id, proposal_title, 
-			proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
+			proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, 
 			p_extra_details, p_limit, p_prereqs, p_units, p_perspective, rationale, lib_impact, tech_impact, 
 			p_aligned_assignments, p_first_offering, p_course_status, p_designation_scope, 
 			p_designation_prof, p_feedback) 
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		$statement->bind_param("sssssssssssssssssssssss", $proposal->id, $proposal->user_id, $proposal->proposal_title, 
-			$this->proposal_date, $proposal->department, $proposal->type, $proposal->p_course_id, 
+		$statement->bind_param("ssssssssssssssssssssssss", $proposal->id, $proposal->user_id, $proposal->proposal_title, 
+			$this->proposal_date, $proposal->department, $proposal->type, $proposal->criteria, $proposal->p_course_id, 
 			$proposal->p_course_title, $proposal->p_course_desc, $proposal->p_extra_details, 
 			$proposal->p_limit, $proposal->p_prereqs, $proposal->p_units, $proposal->p_perspective, $proposal->rationale, 
 			$proposal->lib_impact, $proposal->tech_impact, $proposal->p_aligned_assignments, 
@@ -229,6 +231,64 @@ class Proposal{
 			return true;
 		}else{
 			echo 'error: '.mysqli_error($dbc);
+			return false;
+		}
+	}
+	
+	public function fetchProposalHistory($history_id){
+		
+		$dbc = $this->dbc;
+		
+		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, 
+		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
+		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
+		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
+		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback FROM proposalhistory WHERE history_id = ?");
+		$statement->bind_param("s", $history_id);
+
+		$bool = $statement->execute();
+		$statement->store_result();
+		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, 
+		$sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, 
+		$p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $p_crosslisting, 
+		$p_perspective, $rationale, $lib_impact, $tech_impact, $status, $p_aligned_assignments, 
+		$p_first_offering, $p_course_status, $p_designation_scope, $p_designation_prof, $p_feedback);
+
+		$statement->fetch();
+		if($bool && mysqli_stmt_num_rows($statement) == 1){
+			$this->user_id = $user_id;
+			$this->related_course_id = $related_course_id;
+			$this->proposal_title = $proposal_title;
+			$this->proposal_date = $proposal_date;
+			$this->sub_status = $sub_status;
+			$this->approval_status = $approval_status;
+			$this->department = $department;
+			$this->type = $type;
+			$this->criteria = $criteria;
+			$this->p_department = $p_department;
+			$this->p_course_id = $p_course_id;
+			$this->p_course_title = $p_course_title;
+			$this->p_course_desc = $p_course_desc;
+			$this->p_extra_details = $p_extra_details;
+			$this->p_limit = $p_limit;
+			$this->p_prereqs = $p_prereqs;
+			$this->p_units = $p_units;
+			$this->p_crosslisting = $p_crosslisting;
+			$this->p_perspective = $p_perspective;
+			$this->rationale = $rationale;
+			$this->lib_impact = $lib_impact;
+			$this->tech_impact = $tech_impact;
+			$this->status = $status;
+			$this->p_aligned_assignments = $p_aligned_assignments;
+			$this->p_first_offering = $p_first_offering;
+			$this->p_course_status = $p_course_status;
+			$this->p_designation_scope = $p_designation_scope;
+			$this->p_designation_prof = $p_designation_prof;
+			$this->p_feedback = $p_feedback;
+			
+			return $this;
+		}else{
+			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 Proposal.";
 			return false;
 		}
 	}
@@ -310,6 +370,11 @@ class Proposal{
 		   5 : Enrollment Limit
 		   6 : Prerequisites
 		   7 : Units
+		   8 : First Offering
+		   9: Aligned Assignments
+		   a : Designation Scope
+		   b : Designation Professor(s)
+		   c: Perspective
 		*/
 
 		$changes = "";
