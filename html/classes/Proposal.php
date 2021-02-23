@@ -789,6 +789,14 @@ class Proposal{
 		$statement->bind_param("sss", $pid, $uid, $feedback);
 		$statement->execute();
 	}
+
+	public function deleteProposal()
+	{
+		$dbc = $this->dbc;
+		$statement = $dbc->prepare("DELETE FROM proposals WHERE id = ?");
+		$statement->bind_param("s", $this->id);
+		$statement->execute();
+	}
 	
 }
 

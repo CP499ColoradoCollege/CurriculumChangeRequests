@@ -63,6 +63,9 @@
 			if($_POST['action'] == 'add_feedback') {
 				header("Location: add_feedback?pid=".$_POST['openedid']);
 			}
+			if($_POST['action'] == 'delete_proposal') {
+				header("Location: delete_proposal?pid=".$_POST['openedid']);
+			}
 			
 			break;
 			
@@ -421,10 +424,10 @@
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
 				//2021 group's download file
-				header("Location: download_GEdocx?pid=".$_POST['openedid']."&type="."proposalhistory"); 
-				exit();
+				// header("Location: download_GEdocx?pid=".$_POST['openedid']."&type="."proposalhistory"); 
+				// exit();
 				//2021 group's incomplete download file specifically for CC100 and CC120 courses
-				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
+				header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 
 		case 'submit_proposal':
@@ -466,6 +469,20 @@
 				header("Location: home");
 			}
 			break;
+
+		case 'delete_proposal':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}	
+			if (isset($_POST['confirm'])) {
+				$proposal->deleteProposal();		
+				header("Location: home");
+			}
+			break;
+
 			
 		case 'demo':
 			

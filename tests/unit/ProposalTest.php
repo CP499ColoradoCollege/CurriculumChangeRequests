@@ -1,7 +1,7 @@
 <?php 
 
-// $proposal_filepath = __DIR__.'/../../html/classes/Proposal.php';
-// require $proposal_filepath;
+$proposal_filepath = __DIR__.'/../../html/classes/Proposal.php';
+require $proposal_filepath;
 
 class ProposalTest extends \Codeception\Test\Unit
 {
@@ -14,7 +14,7 @@ class ProposalTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->dbc = mysqli_connect('localhost', 'root', ''); #'testproposaltoolDB') OR die('Error: '.mysqli_connect_error());
+        $this->dbc = mysqli_connect('localhost', 'root', '', 'testproposaltoolDB') OR die('Error: '.mysqli_connect_error());
         $this->proposal = new Proposal($this->dbc);
     }
 
@@ -27,6 +27,11 @@ class ProposalTest extends \Codeception\Test\Unit
     {
         $proposal_fetched = $this->proposal->fetchProposalFromID(42) ? true : false;
         $this->assertTrue($proposal_fetched);
+    }
+
+    public function testDeleteProposal()
+    {
+        $this->dbc->query('DELETE FROM proposals WHERE id=42');
     }
 
     // public function testCreateProposalAddNewCourse()

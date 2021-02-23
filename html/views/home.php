@@ -105,10 +105,11 @@
 					<!-- Approve Button (IN PROGRESS) -->
 					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong><?php echo $approval_message ?></strong></button><br>
 					<!-- Email Button (NOT YET WORKING) -->
-					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
 					<!-- Add Feedback Button (NOT YET WORKING) -->
 					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
-					
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
 					<!-- Specific Proposal's ID -->			
 					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
 				</form>
@@ -149,9 +150,11 @@
 					<!-- Submit Button (IN PROGRESS) -->
 					<button type="submit" class="btn btn-home" name="action" value="submit_proposal"><strong><?php echo $submit_message ?></strong></button><br>
 					<!-- Email Button (NOT YET WORKING) -->
-					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
 					<!-- View Feedback Button (NOT YET WORKING) -->
 					<button type="submit" class="btn btn-home" name="action" value="view_feedback"><strong>View Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
 					
 					<!-- Specific Proposal's ID -->			
 					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">

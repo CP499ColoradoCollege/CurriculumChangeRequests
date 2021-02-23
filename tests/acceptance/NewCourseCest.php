@@ -33,7 +33,7 @@ class NewCourseCest
 		$I->see('New Proposal');  
 		$I->selectOption('type','1');
 		$I->click('Begin Proposal');
-		$I->amOnPage('/new_course_proposal');
+		// $I->amOnPage('/new_course_proposal');
 		$I->see('Add New Course Proposal');  
 
 		$I->selectOption('department','Art');
@@ -48,7 +48,7 @@ class NewCourseCest
 		$I->fillField('lib_impact', 'None');
 		$I->fillField('tech_impact', 'None.');
 
-		$I->click('Save');
+		$I->click(['class' => 'btn']);
 		$I->canSeeInCurrentUrl('/home');
 		$I->see('New Course: TE111, Test Course 1');		
     	}
