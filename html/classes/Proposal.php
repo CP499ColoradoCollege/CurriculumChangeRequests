@@ -764,8 +764,35 @@ class Proposal{
 			return false;
 		}
 	}
+
+	public function getAllFeedback() {
+		$dbc = $this->dbc;
+
+		$statement = $dbc->prepare("SELECT comments.comment_text, users.first_name, users.last_name FROM comments INNER JOIN users ON comments.uid = users.id WHERE comments.pid = ?");
+		$statement->bind_param("s", $this->id);
+		$statement->execute();
+
+		$statement->bind_result($comment, $fname, $lname);
+
+		$feedback = "<p align='left'>";
+
+		while ($statement->fetch()) {
+			$feedback .= $fname . " " . $lname . ": " . $comment . "<br>";
+		}
+
+		$feedback .= "</p>";
+
+		$statement->close();
+
+		return $feedback;
+	}
 	
-	
+	public function addFeedback($uid, $pid, $feedback) {
+		$dbc = $this->dbc;
+		$statement = $dbc->prepare("INSERT INTO comments (pid, uid, comment_text, tags) VALUES (?, ?, ?, '')");
+		$statement->bind_param("sss", $pid, $uid, $feedback);
+		$statement->execute();
+	}
 	
 }
 

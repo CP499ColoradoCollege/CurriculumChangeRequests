@@ -53,7 +53,12 @@
 			if($_POST['action'] == 'approve_proposal') {
 				header("Location: approve_proposal?pid=".$_POST['openedid']);
 			}
-			
+			if($_POST['action'] == 'view_feedback') {
+				header("Location: view_feedback?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'add_feedback') {
+				header("Location: add_feedback?pid=".$_POST['openedid']);
+			}
 			
 			break;
 			
@@ -444,7 +449,20 @@
 				header("Location: home");
 			}
 			break;
-				
+
+		case 'add_feedback':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['comment'])) {
+				$proposal->addFeedback($user->id, $pid, $_POST['comment']);
+				header("Location: home");
+			}
+			break;
+			
 		case 'demo':
 			
 			break;

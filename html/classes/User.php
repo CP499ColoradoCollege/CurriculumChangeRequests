@@ -185,7 +185,6 @@ class User{
 		$div = mysqli_fetch_assoc($r);
 		return $div['divs_desc'];
 	}
-	
 }
 
 ?>

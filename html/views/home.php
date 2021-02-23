@@ -107,7 +107,7 @@
 					<!-- Email Button (NOT YET WORKING) -->
 					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
 					<!-- Add Feedback Button (NOT YET WORKING) -->
-					<span class="btn btn-home" name="action" value="feedback"><strong>Add Feedback</strong></span>
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
 					
 					<!-- Specific Proposal's ID -->			
 					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
@@ -151,7 +151,7 @@
 					<!-- Email Button (NOT YET WORKING) -->
 					<span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br>
 					<!-- View Feedback Button (NOT YET WORKING) -->
-					<span class="btn btn-home" name="action" value="feedback"><strong>View Feedback</strong></span>
+					<button type="submit" class="btn btn-home" name="action" value="view_feedback"><strong>View Feedback</strong></span>
 					
 					<!-- Specific Proposal's ID -->			
 					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
