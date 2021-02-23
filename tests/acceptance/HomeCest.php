@@ -43,6 +43,22 @@ class HomeCest
 		$I->see('Download');
 		$I->click('Download');
 	}
+
+	public function historyButtonWorks(AcceptanceTester $I)
+	{
+		$I->amOnPage('/home');
+		$I->see('History');
+		$I->click('History');
+		$I->canSeeInCurrentUrl('/history');
+	}
+
+	public function submitButtonWorks(AcceptanceTester $I)
+	{
+		$I->amOnPage('/home');
+		$I->see('Submit');
+		$I->click('Submit');
+		$I->canSeeInCurrentUrl('/submit');
+	}
 }
 
 ?>

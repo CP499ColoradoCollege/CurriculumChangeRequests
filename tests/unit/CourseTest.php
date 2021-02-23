@@ -18,11 +18,6 @@ class CourseTest extends \Codeception\Test\Unit
         $this->course = new Course($this->dbc);
     }
 
-    protected function _after()
-    {
-        
-    }
-
     public function testFetchCourseFromCourseID()
     {
         $course_fetched = $this->course->fetchCourseFromCourseID('CP122') ? true : false;

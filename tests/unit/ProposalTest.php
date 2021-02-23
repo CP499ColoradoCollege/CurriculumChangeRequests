@@ -1,7 +1,7 @@
 <?php 
 
-$proposal_filepath = __DIR__.'/../../html/classes/Proposal.php';
-require $proposal_filepath;
+// $proposal_filepath = __DIR__.'/../../html/classes/Proposal.php';
+// require $proposal_filepath;
 
 class ProposalTest extends \Codeception\Test\Unit
 {
@@ -25,39 +25,39 @@ class ProposalTest extends \Codeception\Test\Unit
     
     public function testFetchProposalFromID()
     {
-        $proposal_fetched = (bool)$this->proposal->fetchProposalFromID(42);
+        $proposal_fetched = $this->proposal->fetchProposalFromID(42) ? true : false;
         $this->assertTrue($proposal_fetched);
     }
 
-    public function testCreateProposalAddNewCourse()
-    {
+    // public function testCreateProposalAddNewCourse()
+    // {
         
-    }
+    // }
     
-    public function testEditProposalAddNewCourse()
-    {
+    // public function testEditProposalAddNewCourse()
+    // {
         
-    }
+    // }
     
-    public function testCreateProposalReviseExistingCourse()
-    {
+    // public function testCreateProposalReviseExistingCourse()
+    // {
         
-    }
+    // }
     
-    public function testEditProposalReviseExistingCourse()
-    {
+    // public function testEditProposalReviseExistingCourse()
+    // {
         
-    }
+    // }
     
-    public function testCreateProposalDropExistingCourse()
-    {
+    // public function testCreateProposalDropExistingCourse()
+    // {
         
-    }
+    // }
     
-    public function testEditProposalDropExistingCourse()
-    {
+    // public function testEditProposalDropExistingCourse()
+    // {
         
-    }
+    // }
 
     
 }

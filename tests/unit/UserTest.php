@@ -17,7 +17,6 @@ class UserTest extends \Codeception\Test\Unit
     
     protected function _before()
     {
-        codecept_debug(getcwd());
         $this->dbc = mysqli_connect('localhost', 'root', '', 'testproposaltoolDB');
         $this->user = new User($this->dbc);
     }

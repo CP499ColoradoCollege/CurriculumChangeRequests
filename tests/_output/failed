@@ -1,0 +1,7 @@
+tests/acceptance/EditCourseCest.php:changeCourseProposalFormWorks
+tests/acceptance/HomeCest.php:editProposalButtonWorks
+tests/acceptance/HomeCest.php:downloadButtonWorks
+tests/acceptance/HomeCest.php:historyButtonWorks
+tests/acceptance/HomeCest.php:submitButtonWorks
+tests/acceptance/RemoveCourseCest.php:removeCourseProposalFormWorks
+tests/acceptance/RemoveCourseCest.php:removeCourseProposalFormWorks
