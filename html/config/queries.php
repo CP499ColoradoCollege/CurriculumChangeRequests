@@ -30,13 +30,13 @@
 		case 'home':
 						
 			if($_POST['action'] == 'download'){	
-				//DEBUG
-				$msg = "Reached query redirect to download page";
-				error_log(print_r($msg, TRUE)); 		
+				//2019 group's download file
 				//header("Location: download_docx_3?pid=".$_POST['openedid']);
 				
+				//2021 group's download file
 				header("Location: download_GEdocx?pid=".$_POST['openedid']); 
 				exit();
+				//2021 group's incomplete download file specifically for CC100 and CC120 courses
 				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
@@ -99,7 +99,6 @@
 				$user_id = $user->id;				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->createProposalAddNewCourse($user_id, $_POST);
-				
 				if($new_proposal != false){
 					header("Location: home?success=add");
 				}else{
@@ -201,6 +200,9 @@
 								$criteria = $criteria."k";
 							}
 							
+							if(isset($_POST['perspective'])){
+								$criteria = $criteria."c";
+							}
 							
 							if($criteria != ""){
 								header("Location: change_course_proposal?type=".$criteria."&cid=".$course_id);
@@ -276,18 +278,23 @@
 				
 				$pid = $_GET['pid'];
 				$user_id = $user->id;
-				//$original_proposal = new Proposal($dbc);
-				//$original_proposal = $original_proposal->fetchProposalFromID($pid);
-		
-				//$new_proposalhistory = new Proposal($dbc);
-				//$new_proposalhistory = $new_proposalhistory->addProposalhistory($pid, $user_id, $_POST, $original_proposal);
+				
+				$new_proposal_history = new Proposal($dbc);
+				$new_proposal_history = $new_proposal_history->fetchProposalFromID($pid);
+				
+				$new_proposal_history = $new_proposal_history->createProposalHistory($new_proposal_history);
+					
+				if($new_proposal_history == false){
+					$message = '<p class="bg-danger">Error: proposal hitsory could not be saved. '.mysqli_error($dbc)."</p>";
+				}
 				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->editProposalAddNewCourse($user_id, $pid, $_POST);
-																						   
 				
 				if($new_proposal != false){
+					
 					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
+					
 				}else{
 					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
 				}
@@ -302,16 +309,24 @@
 				$user_id = $user->id;
 				$pid = $_GET['pid'];
 				
+				$new_proposal_history = new Proposal($dbc);
+				$new_proposal_history = $new_proposal_history->fetchProposalFromID($pid);
+				
+				$new_proposal_history = $new_proposal_history->createProposalHistory($new_proposal_history);
+					
+				if($new_proposal_history == false){
+					$message = '<p class="bg-danger">Error: proposal hitsory could not be saved. '.mysqli_error($dbc)."</p>";
+				}
+				
 				$proposal = new Proposal($dbc);
 				$proposal = $proposal->fetchProposalFromID($pid);
 				
 				$change = new Proposal($dbc);
 				$updated = $change->editProposalReviseExistingCourse($pid, $proposal->proposal_date, $user_id, $proposal->related_course_id, $proposal->criteria, $_POST);
-				
-				
-				
+						
 				if($updated == true){
 					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
+					
 				}else{
 					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
 				}
@@ -337,6 +352,15 @@
 		                $course = new Course($dbc);
 		                $course = $course->fetchCourseFromCourseID($course_id);
 		                
+		                $new_proposal_history = new Proposal($dbc);
+				 $new_proposal_history = $new_proposal_history->fetchProposalFromID($pid);
+				
+				$new_proposal_history = $new_proposal_history->createProposalHistory($new_proposal_history);
+					
+				if($new_proposal_history == false){
+					$message = '<p class="bg-danger">Error: proposal hitsory could not be saved. '.mysqli_error($dbc)."</p>";
+				}
+		                
 		                if($course != false){
 		                    
 		                    $remove_proposal = new Proposal($dbc);
@@ -344,6 +368,7 @@
 		                    
 		                    if($remove_proposal == true){
 		                        $message = '<p class="bg-success">Your edits were successfully saved.</p>';
+		                        
 		                    }else{
 		                        $message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
 		                    }

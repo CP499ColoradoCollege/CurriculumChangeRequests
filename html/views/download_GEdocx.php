@@ -1,8 +1,18 @@
 <?php
 	require_once 'vendor/autoload.php';
-	//DEBUG
-	$msg = "Reached beginning of download_GEdocx.php";
-	error_log(print_r($msg, TRUE)); 
+
+	/*
+	This document contains all logic for generating .docx files for GenEd proposals and then downloading them.
+	It should be loaded when a user hits a "download" button on the Home page.
+
+	Tips: if Microsoft Word is refusing to open the documents but LibreOffice can do it, wrap every
+	single string going into the document in htmlentities().
+	If you're being redirected to a page full of question marks, there's some kind of encoding issue. Make
+	sure your document title isn't too long and that you're using UTF-8. 
+	If you want to make a new download php file but redirects aren't working right in queries.php, check that you 
+	have added your file as an exception in headers.php.
+	PHPWord has pretty good documentation. Be sure to check it out!
+	*/
 	
 	$proposal_id = $_GET['pid'];
 	$proposal = new Proposal($dbc);
@@ -10,7 +20,7 @@
 	
 	if($proposal == false){
 		//DEBUG
-		$msg = "Hit abort condition in download_GEdocx.php";
+		$msg = "Hit empty proposal abort condition in download_GEdocx.php";
 		error_log(print_r($msg, TRUE)); 
 
 		header("Location: home");
@@ -30,26 +40,6 @@
 	$proposedCriteriaInfoHeader = "Proposed: ";
 	$p_course_name = "$proposal->p_course_id: $proposal->p_course_title";
 
-	//DEBUG: DOES NOT WORK
-	$msg = "user id: ".$proposal->user_id;
-	error_log(print_r($msg, TRUE));
-	$p_user = $user->fetchUserFromID($proposal->user_id);
-	if($p_user == false){
-		//DEBUG
-		$msg = "Hit user abort condition in download_GEdocx.php";
-		error_log(print_r($msg, TRUE)); 
-		header("Location: home");
-		exit();
-	}
-	$instructor_name = $p_user->$first_name;
-	$instructor_name .= " ".$p_user->$last_name;
-	$instructor_email = $p_user->$email;
-	//DEBUG
-	$msg = "instructor name: ".$instructor_name;
-	error_log(print_r($msg, TRUE));
-	$msg = "instructor email: ".$instructor_email;
-	error_log(print_r($msg, TRUE));
-
 	$proposedCourseInfo = array("p_course_name" => $p_course_name, "p_course_desc" => $proposal->p_course_desc, 
 					"p_course_extra_desc" => $proposal->p_extra_details, "p_course_prereqs" => $proposal->p_prereqs, 
 					"p_course_units" => $proposal->p_units, "rationale" => $proposal->rationale, 
@@ -68,7 +58,9 @@
 	// 	$n ++;
 	// }
 	//end debug
-
+	if(is_null($proposedCourseInfo["p_perspective"])){
+		$proposedCourseInfo["p_perspective"] = "No Perspective Specified";
+	}
 	$perspectiveText = htmlentities($proposedCourseInfo["p_perspective"]); //needed bc "&" character breaks things
 
 	$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
@@ -81,8 +73,6 @@
 	$noSpaceParagraphStyle = 'nspStyle';
 	$phpWord->addParagraphStyle($noSpaceParagraphStyle, array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT, 'spaceAfter' => 10));
 	$phpWord->addTitleStyle(1, array('bold' => true), array('spaceAfter' => 240));
-	$boldCapsStyle = 'boldCaps';
-	$phpWord->addFontStyle($boldCapsStyle, array('bold' => true, 'allCaps' => true, 'size' => 12, 'name' => 'Calibri'));
 	$boldStyle = 'bold';
 	$phpWord->addFontStyle($boldStyle, array('bold' => true, 'size' => 12, 'name' => 'Calibri'));
 	$italicStyle = 'italic';
@@ -101,25 +91,48 @@
 	$phpWord->addFontStyle($descStyle, array( 'size' => 11, 'name' => 'Calibri'));
 	$standardStyle = 'standard';
 	$phpWord->addFontStyle($standardStyle, array( 'size' => 11, 'name' => 'Calibri'));
+	$smallBoldStyle = 'smallBold';
+	$phpWord->addFontStyle($smallBoldStyle, array( 'bold' => true, 'size' => 11, 'name' => 'Calibri'));
 
 	if($proposal->type == "Add a New Course"){
 		//DEBUG
 		$msg = "Reached interior of Add a New Course if statement";
 		error_log(print_r($msg, TRUE)); 
 
+		//DEBUG: DOES NOT WORK
+		$user = new $user($dbc);
+		$msg = "user id: ".$proposal->user_id;
+		error_log(print_r($msg, TRUE));
+		$user = $user->fetchUserFromID($proposal->user_id); //try putting debug in fetchUserFromID to make sure it's being called
+		if($user == false){
+			//DEBUG
+			$msg = "Hit user abort condition in download_GEdocx.php";
+			error_log(print_r($msg, TRUE)); 
+			header("Location: home");
+			exit();
+		}
+		$instructor_name = htmlentities($user->first_name);
+		$instructor_name .= htmlentities(" ".$user->last_name);
+		$instructor_email = htmlentities($user->email);
+
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit courses for ";
 		$genEdDesc = array("No description set");
-		$curricularGoals = array("No curricular goals defined"); //each entry is a bullet point
-		$learningOutcomes = array("No learning outcomes defined"); //each entry is a bullet point
+		$curricularGoals = array("No curricular goals defined"); //each entry will be a bullet point
+		$learningOutcomes = array("No learning outcomes defined"); //each entry will be a bullet point
 		$learningOutcomesDesc = "As a result of taking a course in ".$perspectiveText." students will be able to:";
 		
 		//note: all newlines within the quotes "" will transfer to word doc, so that's why the code lines go waaaaay off to the right
+		
+		//DEBUG
+		// $msg = "switch case: ".$proposedCourseInfo["p_perspective"];
+		// error_log(print_r($msg, TRUE));
+
 		switch ($proposedCourseInfo["p_perspective"]) {
 			case "Analysis & Interpretation of Meaning":
-				$genEdDesc = "Analysis & Interpretation of Meaning description not transcribed.";
+				$genEdDesc = array("Analysis & Interpretation of Meaning description not transcribed.");
 				break;
 			case "Creative Process":
-				$genEdDesc = "Creative Process description not transcribed.";
+				$genEdDesc = array("Creative Process description not transcribed.");
 			  	break;
 			case "Equity & Power - Global":
 				$genEd1 = "Engaging questions of equity and power, in both U.S. and global contexts, ";
@@ -139,23 +152,22 @@
 					"Describe their own positionality with regard to one or more systems of inequality.");
 				break;
 			case "Equity & Power - U.S.":
-				$genEdDesc = "Equity & Power - U.S. description not transcribed.";
+				$genEdDesc = array("Equity & Power - U.S. description not transcribed.");
 				break;
 			case "Formal Reasoning & Logic":
-				$genEdDesc = "Formal Reasoning & Logic description not transcribed.";
+				$genEdDesc = array("Formal Reasoning & Logic description not transcribed.");
 				break;
 			case "Historical Perspectives":
-				$genEdDesc = "Historical Perspectives description not transcribed.";
+				$genEdDesc = array("Historical Perspectives description not transcribed.");
 				break;
 			case "Scientific Analysis":
-				$genEdDesc = "Scientific Analysis description not transcribed.";
+				$genEdDesc = array("Scientific Analysis description not transcribed.");
 				break;
 			case "Societies & Human Behaviors":
-				$genEdDesc = "Societies & Human Behaviors description not transcribed.";
+				$genEdDesc = array("Societies & Human Behaviors description not transcribed.");
 				break;
 			default:
-				$genEdDesc = "Default case. General Education requirement".$perspectiveText."does not match case labels.";
-				
+				$genEdDesc = array("Regrettably, General Education requirement ".$perspectiveText." does not match case labels.");
 		  }
 
 		//everything before "Submitter Information"
@@ -175,7 +187,6 @@
 		$section->addText('Curricular goals', $secHeaderStyle, $paragraphStyle);
 		foreach ($curricularGoals as $goal){
 			$section->addListItem($goal, 0, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(2);
 
@@ -184,11 +195,10 @@
 		$section->addTextBreak(1);
 		foreach ($learningOutcomes as $outcome){
 			$section->addListItem($outcome, 0, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-			//cut from after goal: 0, $TYPE_BULLET_FILLED, $paragraphStyle
 		}
 		$section->addTextBreak(3);
 
-		//Submitter information and onward (approximately the lower third of the first page)
+		//Submitter information and onward
 		$section->addText('Submitter information', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		
@@ -207,31 +217,76 @@
 		 	$standardStyle);
 		$section->addTextBreak(1);
 
-		//TODO: have the bullet style change from EMPTY to FILLED based on submission/approval status
+		//post array under id "course_status" - strings should be exactly what's below
+		$courseOptions = array('A new course not yet approved by COI', 'A new course approved by COI, not yet offered', 
+		'A current course undergoing major revisions', 'A current course undergoing minor revisions');
+		$selectedOption = $proposedCourseInfo['p_course_status'];
+
+		//DEBUG
+		$msg = "switch case for 1 of 4 course statuses: ".$selectedOption;
+		error_log(print_r($msg, TRUE));
+
 		$section->addText('This course is (select one):', $standardStyle);
-		$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		switch($selectedOption){
+			case $courseOptions[0]:
+				//new not yet approved
+				$section->addListItem('A new course not yet approved by COI X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			case $courseOptions[1]:
+				//new not yet offered
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			case $courseOptions[2]:
+				//major revisions
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			case $courseOptions[3]:
+				//minor revisions
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				break;
+			default:
+				//no option selected (or the code is broken...)
+				$section->addListItem('A new course not yet approved by COI', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A new course approved by COI, not yet offered', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing major revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+				$section->addListItem('A current course undergoing minor revisions', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+		}
 		$section->addTextBreak(1);
 
 		//TODO: have the bullet style change from EMPTY to FILLED based on p_designation_scope
 		$section->addText('This designation is being sought for:', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
-		$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-		$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
-			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
+		
 		if(is_null($proposedCourseInfo["p_designation_prof"] || $proposedCourseInfo["p_designation_prof"] == "None" || $proposedCourseInfo["p_designation_prof"] == "N/A")){
+			$section->addListItem('All sections of this course', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
+			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
 			$section->addTextBreak(2);
 		}
 		else{
-			$section->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
+			$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
+			1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addText(htmlentities('			'.$proposedCourseInfo["p_designation_prof"]), $standardStyle);
+			$section->addTextBreak(2);
 		}
 
 		$section->addText('Please provide the course description', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
-		$section->addTextBreak(2);
+		$section->addTextBreak(1);
 
 		if(is_null($proposedCourseInfo["p_course_units"])){
 			$proposedCourseInfo["p_course_units"] == "None specified";
@@ -240,23 +295,24 @@
 		if(is_null($proposedCourseInfo["p_limit"])){
 			$proposedCourseInfo["p_limit"] == "None specified";
 		}
-		$limitDesc = "Enrollment Limit: ".$proposedCourseInfo["p_limit"];
+		$limitDesc = "Enrolment Limit: ".$proposedCourseInfo["p_limit"];
+		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
 		$libImpactDesc = "Library Impact: ".$proposedCourseInfo["lib_impact"];
 		$techImpactDesc = "Technology Impact: ".$proposedCourseInfo["tech_impact"];
-		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
 		$section->addText($unitsDesc, $standardStyle);
 		$section->addText($limitDesc, $standardStyle);
+		$section->addText($prereqDesc, $standardStyle);
+		$section->addTextBreak(1);
 		$section->addText($libImpactDesc, $standardStyle);
 		$section->addText($techImpactDesc, $standardStyle);
-		$section->addText($prereqDesc, $standardStyle);
-		$section->addPageBreak();
+		$section->addTextBreak(20);
 
 		$rationaleTextRun = $section->createTextRun($paragraphStyle);
 		$rationaleTextRun->addText('Please provide a brief rationale addressing how the proposed course aligns with the description of the ', $boldStyle);
 		$rationaleTextRun->addText($perspectiveText, $secHeaderStyle);
 		$rationaleTextRun->addText(' category:', $boldStyle);
 		$section->addText(htmlentities($proposedCourseInfo["rationale"]), $standardStyle);
-		$section->addPageBreak();
+		$section->addTextBreak(20);
 		
 		$assignTextRun = $section->createTextRun($paragraphStyle);
 		$assignTextRun->addText('Courses in each General Education category need to include at least one assignment aligned ', $boldStyle);
@@ -264,7 +320,7 @@
 		$assignTextRun->addText($perspectiveText, $secHeaderStyle);
 		$assignTextRun->addText(' category?', $boldStyle);
 		$section->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
-		$section->addPageBreak();
+		$section->addTextBreak(20);
 
 		$section->addText('Submit to: Sub-Committee', $boldStyle);
 		$section->addListItem('Accepted (on to COI)', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
@@ -282,12 +338,6 @@
 
 	}
 	else if($proposal->type == "Change an Existing Course"){		
-		//DEBUG
-		$msg = "Reached interior of change an existing course if statement";
-		error_log(print_r($msg, TRUE)); 
-		/*
-		//TODO: make sure $criteria array gets loaded with changes to:
-			//first offering, aligned assignments, designation scope, and designation professor in indexes 7, 8, and 9
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($course_id);	
 		$criteria = $proposal->criteria;	//237
@@ -299,57 +349,46 @@
 		$titleTextRun->addText($a_2, $appHeaderStyle);
 		$formDesc = "The following form should be used by Colorado College departments and/or faculty to submit changes to existing courses.";
 		$section->addText($formDesc, $standardStyle);
-		$section->addTextBreak(2);
-		
+		$section->addTextBreak(1);
+
 		//identify criteria being changed
 		$headerString = "";
 		$critArray = str_split($criteria);
-		$individualCritArray = array(); //for figuring out what sections to include later
+		
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
 				case 'a':
 					$headerString.="Course ID-";
-					array_push($individualCritArray, "Course ID");
 					break;
 				case 'b':
 					$headerString.="Course Title-";
-					array_push($individualCritArray, "Course Title");
 					break;
 				case 'c':
 					$headerString.="Course Description-";
-					array_push($individualCritArray, "Course Description");
 					break;
 				case 'd':
 					$headerString.="Extra Details-";
-					array_push($individualCritArray, "Extra Details");
 					break;
 				case 'e':
-					$headerString.="Enrollment Limit-";
-					array_push($individualCritArray, "Enrollment Limit");
+					$headerString.="Enrolment Limit-";
 					break;
 				case 'f':
 					$headerString.="Prerequisites-";
-					array_push($individualCritArray, "Prerequisites");
 					break;
 				case 'g':
 					$headerString.="Units-";
-					array_push($individualCritArray, "Units");
 					break;
 				case 'h':
 					$headerString.="First Offering-";
-					array_push($individualCritArray, "First Offering");
 					break;
 				case 'i':
 					$headerString.="Aligned Assignments-";
-					array_push($individualCritArray, "Aligned Assignments");
 					break;
 				case 'j':
 					$headerString.="General Education Categorization Scope-";
-					array_push($individualCritArray, "General Education Categorization Scope");
 					break;
 				case 'k':
 					$headerString.="General Education Categorization Professors-";
-					array_push($individualCritArray, "General Education Categorization Professor(s)");
 					break;
 			}
 		}
@@ -363,28 +402,253 @@
 			for( $i = 0; $i<count($individual_criteria)-1; $i++ ) {
 				$individual_criteria[$i] .= ", ";
 			}
-			$individual_criteria[count($individual_criteria)-2].= " and ";
+			$individual_criteria[count($individual_criteria)-2].= "and ";
 		}
 		$criteriaInfoHeader = implode($individual_criteria);
-		$section->addText("The ".$department." proposes changes to the ".$individual_criteria." of ".htmlentities($course_title).".");
+		$section->addText("The department of ".$department." proposes changes to the ".$criteriaInfoHeader." of ".htmlentities($course_title).".", $standardStyle);
+		$section->addTextBreak(2);
+
 		//1: the existing criteria being changed
+		$section->addText('Current course information', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		foreach($critArray as $criteria){
+			//use $course 
+			switch($criteria){
+				case 'a':
+					$textRunA = $section->createTextRun();
+					$textRunA->addText("Course ID: ", $smallBoldStyle);
+					$textRunA->addText(htmlentities($course->id), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'b':
+					$textRunB = $section->createTextRun();
+					$textRunB->addText("Course Title: ", $smallBoldStyle);
+					$textRunB->addText(htmlentities($course->course_title), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'c':
+					$textRunC = $section->createTextRun();
+					$textRunC->addText("Course Description: ", $smallBoldStyle);
+					$textRunC->addText(htmlentities($course->course_desc), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'd':
+					$textRunD = $section->createTextRun();
+					$textRunD->addText("Extra Details: ", $smallBoldStyle);
+					$textRunD->addText(htmlentities($course->extra_details), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'e':
+					$textRunE = $section->createTextRun();
+					$textRunE->addText("Enrolment Limit: ", $smallBoldStyle);
+					$textRunE->addText(htmlentities($course->enrollment_limit), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'f':
+					$textRunF = $section->createTextRun();
+					$textRunF->addText("Prerequisites: ", $smallBoldStyle);
+					$textRunF->addText(htmlentities($course->prereqs), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'g':
+					$textRunG = $section->createTextRun();
+					$textRunG->addText("Units: ", $smallBoldStyle);
+					$textRunG->addText(htmlentities($course->units), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'h':
+					$textRunH = $section->createTextRun();
+					$textRunH->addText("First Offering: ", $smallBoldStyle);
+					$textRunH->addText(htmlentities($course->first_offering), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'i':
+					$textRunI = $section->createTextRun();
+					$textRunI->addText("Aligned Assignments: ", $smallBoldStyle);
+					$textRunI->addText(htmlentities($course->aligned_assignments), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'j':
+					$textRunJ = $section->createTextRun();
+					$textRunJ->addText("General Education Categorization Scope: ", $smallBoldStyle);
+					$textRunJ->addText(htmlentities($course->designation_scope), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'k':
+					$textRunK = $section->createTextRun();
+					$textRunK->addText("General Education Categorization Instructor(s): ", $smallBoldStyle);
+					$textRunK->addText(htmlentities($course->designation_prof), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+			}
+		}
+		$section->addTextBreak(2);
+
 		//2: the proposed changes
+		$section->addText('Proposed changes', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		foreach($critArray as $criteria){
+			//use $course 
+			switch($criteria){
+				case 'a':
+					$textRunA = $section->createTextRun();
+					$textRunA->addText("Course ID: ", $smallBoldStyle);
+					$textRunA->addText(htmlentities($course_id), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'b':
+					$textRunB = $section->createTextRun();
+					$textRunB->addText("Course Title: ", $smallBoldStyle);
+					$textRunB->addText(htmlentities($course_title), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'c':
+					$textRunC = $section->createTextRun();
+					$textRunC->addText("Course Description: ", $smallBoldStyle);
+					$textRunC->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'd':
+					$textRunD = $section->createTextRun();
+					$textRunD->addText("Extra Details: ", $smallBoldStyle);
+					$textRunD->addText(htmlentities($proposedCourseInfo["p_course_extra_desc"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'e':
+					$textRunE = $section->createTextRun();
+					$textRunE->addText("Enrolment Limit: ", $smallBoldStyle);
+					$textRunE->addText(htmlentities($proposedCourseInfo["p_limit"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'f':
+					$textRunF = $section->createTextRun();
+					$textRunF->addText("Prerequisites: ", $smallBoldStyle);
+					$textRunF->addText(htmlentities($proposedCourseInfo["p_course_prereqs"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'g':
+					$textRunG = $section->createTextRun();
+					$textRunG->addText("Units: ", $smallBoldStyle);
+					$textRunG->addText(htmlentities($proposedCourseInfo["p_course_units"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'h':
+					$textRunH = $section->createTextRun();
+					$textRunH->addText("First Offering: ", $smallBoldStyle);
+					$textRunH->addText(htmlentities($proposedCourseInfo["p_first_offering"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'i':
+					$textRunI = $section->createTextRun();
+					$textRunI->addText("Aligned Assignments: ", $smallBoldStyle);
+					$textRunI->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'j':
+					$textRunJ = $section->createTextRun();
+					$textRunJ->addText("General Education Categorization Scope: ", $smallBoldStyle);
+					$textRunJ->addText(htmlentities($proposedCourseInfo["p_designation_scope"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+				case 'k':
+					$textRunK = $section->createTextRun();
+					$textRunK->addText("General Education Categorization Instructor(s): ", $smallBoldStyle);
+					$textRunK->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
+					$section->addTextBreak(1);
+					break;
+			}
+		}
+		$section->addTextBreak(2);
 		//3: the rationale behind those changes
-			//CHECK IF IT'S ONE RATIONALE FOR EVERYTHING OR EACH ONE HAS ITS OWN
-			*/
+		$section->addText('Rationale', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+			//it's one rationale
+		$section->addText($proposedCourseInfo["rationale"]);
+			
 	}
 	else if($proposal->type == "Remove an Existing Course"){
 		//TODO
+		$course = new Course($dbc);
+		$course = $course->fetchCourseFromCourseID($course_id);	
+		$course_title = htmlentities("$course->subj_code $course->course_num: $course->course_title");
+		
+		//0: boilerplate
+		$titleTextRun = $section->createTextRun($paragraphStyle);
+		$a_2 = "Application to remove ".htmlentities($course_title);
+		$titleTextRun->addText($a_2, $appHeaderStyle);
+		$formDesc = "The following form should be used by Colorado College departments and/or faculty to remove existing courses.";
+		$section->addText($formDesc, $standardStyle);
+		$section->addTextBreak(1);
+		
+
+		$descTextRun = $section->createTextRun($paragraphStyle);
+		$descTextRun->addText("The department of ".htmlentities($department)." proposes to remove the existing course ", $standardStyle);
+		$descTextRun->addText(htmlentities($course_title), $smallBoldStyle);
+		$section->addTextBreak(1);
+		
+
+		//1: everything else
+		$section->addText('Course information', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		$infoTextRun = $section->createTextRun($paragraphStyle);
+		$infoTextRun->addText('Course description: ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->course_desc), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('Units: ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->units), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('Prerequisites: ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->prereqs), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('Crosslisting (if applicable): ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->crosslisting), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		$infoTextRun->addText('General Education Category (if applicable): ', $smallBoldStyle);
+		$infoTextRun->addText(htmlentities($course->perspective), $standardStyle);
+		$infoTextRun->addTextBreak(1);
+		
+
+		$section->addText('Rationale', $boldStyle, $noSpaceParagraphStyle);
+		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
+		$section->addText(htmlentities($proposedCourseInfo['rationale']), $standardStyle);
+		$section->addTextBreak(2);
+		
+
+		$bonusTextRun = $section->createTextRun($paragraphStyle);
+		$bonusTextRun->addText('Library Impact: ', $smallBoldStyle);
+		$bonusTextRun->addText(htmlentities($proposedCourseInfo['lib_impact']), $standardStyle);
+		$bonusTextRun->addTextBreak(1);
+		$bonusTextRun->addText('Technology Impact: ', $smallBoldStyle);
+		$bonusTextRun->addText(htmlentities($proposedCourseInfo['tech_impact']), $standardStyle);
+
 	}
 	else if($proposal->type == "Custom Submission"){
-		//TODO
+		//TODO - if you're reading this, it was iceboxed
 	}
 	else{
+		//DEBUG
+		$msg = "Reached else statement in download_GEdocx.php";
+		error_log(print_r($msg, TRUE)); 
 		header('Location: home');
 		exit;
 	}
-	preg_replace("/[^A-Za-z0-9 ]/", '', $p_course_name);
-	$file = $p_course_name.'.docx';
+	$file = 'no_name_specified.docx';
+	if($proposal->type == "Change an Existing Course"){
+		//something about just using $filename for change causes encoding errors
+		//possibly length; I don't have the time/motivation to nail it down
+		$filename = str_replace(' ', '_', $course_id.$p_course_name);
+		$filename = str_replace(',', '', $filename);
+		$filename = str_replace("'", '', $filename);
+		$file = htmlentities('Change_'.$filename.'.docx');
+	}
+	else{
+		$file = htmlentities($filename).'.docx';
+	}
+	//DEBUG
+	$msg = "file name: ".$file;
+	error_log(print_r($msg, TRUE)); 
+	
+	//note: $file MUST have .docx at the end
 	header("Content-Description: File Transfer");
 	header('Content-Disposition: attachment; filename="' . $file . '"');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.

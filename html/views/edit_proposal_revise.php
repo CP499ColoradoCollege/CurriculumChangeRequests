@@ -40,7 +40,7 @@ if($course == false){ //if the course doesn't exist
 		<?php if(isset($message)){ echo $message; } ?>
 		
 		<!-- the below HTML will dynamically display the info about the Course to be changed based on the Proposal's criteria-->
-		<div class="shift-down row">
+				<div class="shift-down row">
 			<p class="text-20 div-center"><strong>Course to be changed: <?php echo $course_id." ".$course->course_title; ?></strong></p>
 		</div>
 		
@@ -79,7 +79,7 @@ if($course == false){ //if the course doesn't exist
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[0] == '6'){ ?>
 				<div class="col-md-3">
@@ -94,6 +94,41 @@ if($course == false){ //if the course doesn't exist
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -126,7 +161,7 @@ if($course == false){ //if the course doesn't exist
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[1] == '6'){ ?>
 				<div class="col-md-3">
@@ -141,6 +176,41 @@ if($course == false){ //if the course doesn't exist
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -167,7 +237,7 @@ if($course == false){ //if the course doesn't exist
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[2] == '6'){ ?>
 				<div class="col-md-3">
@@ -182,6 +252,41 @@ if($course == false){ //if the course doesn't exist
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -201,7 +306,7 @@ if($course == false){ //if the course doesn't exist
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[3] == '6'){ ?>
 				<div class="col-md-3">
@@ -217,6 +322,41 @@ if($course == false){ //if the course doesn't exist
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[3] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -228,7 +368,7 @@ if($course == false){ //if the course doesn't exist
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
-					<p class="font-20"><?php echo $course->limit; ?></p>
+					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
 				<?php }else if($criteria_array[4] == '6'){ ?>
 				<div class="col-md-3">
@@ -243,6 +383,41 @@ if($course == false){ //if the course doesn't exist
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -264,6 +439,41 @@ if($course == false){ //if the course doesn't exist
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[5] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -277,9 +487,179 @@ if($course == false){ //if the course doesn't exist
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[6] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
 				<?php } ?>
 			</div>
-			<?php } ?>
+			<?php }
+			if($criteria_num > 7){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[0] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 8){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[8] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[8] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[8] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[8] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 9){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[9] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[9] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[9] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 10){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[10] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php }else if($criteria_array[10] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 11){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[11] == 'c'){ ?>
+				<div class="col-md-3">
+					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->perspective; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php } ?>	
 			
 			<!-- END existing course info HTML -->
 		
@@ -364,6 +744,65 @@ if($course == false){ //if the course doesn't exist
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[0] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[0] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[0] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[0] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[0] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -439,6 +878,65 @@ if($course == false){ //if the course doesn't exist
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[1] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[1] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[1] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[1] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[1] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -505,6 +1003,65 @@ if($course == false){ //if the course doesn't exist
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[2] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[2] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[2] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[2] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[2] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -561,6 +1118,65 @@ if($course == false){ //if the course doesn't exist
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[3] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[3] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[3] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[3] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[3] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -606,6 +1222,65 @@ if($course == false){ //if the course doesn't exist
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[4] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[4] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[4] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[4] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[4] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -641,6 +1316,65 @@ if($course == false){ //if the course doesn't exist
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[5] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[5] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[5] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[5] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[5] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -664,6 +1398,301 @@ if($course == false){ //if the course doesn't exist
 							<option value="0.5 Units"<?php if ($proposal->p_units == '0.5 Units'){ echo ' selected'; } ?>>0.5 Units</option>
 							<option value="1 Unit"<?php if ($proposal->p_units == '1 Unit'){ echo ' selected'; } ?>>1 Unit</option>
 							<option value="2 Units"<?php if ($proposal->p_units == '2 Units'){ echo ' selected'; } ?>>2 Units</option>
+						</select>
+					</div>
+					<?php }else if($criteria_array[6] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[6] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[6] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[6] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[6] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }
+			if($criteria_num > 7){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[7] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off" value="<?php echo $proposal->p_first_offering; ?>">
+					</div>
+					<?php }else if($criteria_array[7] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[7] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[7] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[7] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }if($criteria_num > 8){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[8] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off" value="<?php echo $proposal->p_aligned_assignments; ?>">
+					</div>
+					<?php }else if($criteria_array[8] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[8] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[8] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }if($criteria_num > 9){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[9] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off" value="<?php echo $proposal->p_designation_scope; ?>">
+					</div>
+					<?php }else if($criteria_array[9] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[9] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }if($criteria_num > 10){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[10] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off" value="<?php echo $proposal->p_designation_prof; ?>">
+					</div>
+					<?php }else if($criteria_array[10] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }if($criteria_num > 11){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[11] == 'c'){ ?>
+					<div class="col-md-4">
+						<label for="p_perspective" style="font-size: 20px; float: right; text-align: right;">Proposed Perspective 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed perspective for the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="p_perspective" id="p_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
 						</select>
 					</div>
 					<?php } ?>
