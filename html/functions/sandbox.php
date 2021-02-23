@@ -122,7 +122,7 @@ function convertSubmissionStatus($value){
 
 function convertApprovalStatus($value){
 	if($value == '0'){
-		return 'N/A';
+		return 'Nobody has approved this document.';
 	}else if($value == '1'){
 		return 'Awaiting approval from Head of Department';
 	}else if($value == '2'){

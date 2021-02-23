@@ -60,10 +60,10 @@ class Proposal{
 	public $status;
 
 	public $p_aligned_assignments; //"Courses in each GenEd category need to include >=1 assignment aligned to each learning outcome"
-	public $p_first_offering; //first semester and year course will be offered
-	public $p_course_status; //new not yet approved by COI, new approved but not yet offered, current under minor revision, current under major revision
-	public $p_designation_scope; //GenEd designation sought for all sections of course or instructor-specific
-	public $p_designation_prof; //addendum to above: list of professor(s) for instructor-specific sections
+	public $p_first_offering; //first semester and year course will be offered - format stored as varchar
+	public $p_course_status; //4 options: new not yet approved by COI, new approved but not yet offered, current under minor revision, current under major revision
+	public $p_designation_scope; //GenEd designation sought for all sections of course or instructor-specific section
+	public $p_designation_prof; //addendum to above: list of professor(s) for instructor-specific sections if applicable
 	public $p_feedback;
 	
 	public $edit_date;
@@ -72,6 +72,14 @@ class Proposal{
 		$this->dbc = $dbc;
 	}
 	
+
+	public function updateProposalField($id, $field, $value) {
+		$dbc = $this->dbc;
+
+		$statement = $dbc->prepare("UPDATE proposals SET ".$field." = ? WHERE id = ?");
+		$statement->bind_param("ss", $value, $id);
+		$bool = $statement->execute();
+	}
 	
 	public function fetchProposalFromID($id){
 		
@@ -83,6 +91,8 @@ class Proposal{
 		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
 		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $id);
+
+		//things being out of order might have something to do with above not having status when below does
 
 		$bool = $statement->execute();
 		$statement->store_result();
