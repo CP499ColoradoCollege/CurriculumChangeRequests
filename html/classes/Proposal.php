@@ -71,7 +71,6 @@ class Proposal{
 	public function __construct($dbc){
 		$this->dbc = $dbc;
 	}
-	
 
 	public function updateProposalField($id, $field, $value) {
 		$dbc = $this->dbc;
@@ -331,7 +330,6 @@ class Proposal{
 		}
 	}
 
-	
 	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){	
 		$dbc = $this->dbc;
 		
@@ -530,7 +528,6 @@ class Proposal{
 		return true;
 	}
 
-
 	public function editProposalReviseExistingCourse($pid, $date, $user_id, $related_course_id, $criteria, $post_array){		
 		
 		$dbc = $this->dbc;
@@ -695,8 +692,6 @@ class Proposal{
 		
 	}
 
-
-
 	public function createProposalDropExistingCourse($user_id, $course_id, $post_array){
 		
 		$dbc = $this->dbc;
@@ -795,7 +790,12 @@ class Proposal{
 		$dbc = $this->dbc;
 		$statement = $dbc->prepare("DELETE FROM proposals WHERE id = ?");
 		$statement->bind_param("s", $this->id);
-		$statement->execute();
+		$success = $statement->execute();
+		if($success) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 }

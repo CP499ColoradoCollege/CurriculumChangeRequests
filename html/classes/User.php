@@ -28,7 +28,6 @@ class User{
 	public function __construct($dbc){
 		$this->dbc = $dbc;
 	}
-	
 
 	public function fetchUserFromEmail($email){
 		$statement = $this->dbc->prepare("SELECT id, first_name, last_name, username, department, position, permission, status FROM users WHERE email = ?");
@@ -184,8 +183,6 @@ class User{
 		}
 		return $depts;
 	}
-	
-	
 	
 	public function getDivision($dept_desc){
 		$q = "SELECT divs_desc FROM departments WHERE dept_desc = '$dept_desc'";

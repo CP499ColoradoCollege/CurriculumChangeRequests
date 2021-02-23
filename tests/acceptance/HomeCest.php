@@ -4,6 +4,8 @@
  * This is a Test class for testing the site's Home page
  */
 
+use Codeception\Template\Acceptance;
+
 class HomeCest 
 {
 	/*
@@ -27,7 +29,7 @@ class HomeCest
     	}
 	
 	/*
-	 * Tests that the Edit button works for each Proposal on the Home page
+	 * Tests that buttons works for each Proposal on the Home page
 	 */
 	public function editProposalButtonWorks(AcceptanceTester $I)
     	{
@@ -58,6 +60,23 @@ class HomeCest
 		$I->see('Submit');
 		$I->click('Submit');
 		$I->canSeeInCurrentUrl('/submit');
+	}
+
+	public function viewFeedbackButtonWorks(AcceptanceTester $I)
+	{
+
+		$I->amOnPage('/home');
+		$I->see('View Feedback');
+		$I->click('View Feedback');
+		$I->canSeeInCurrentUrl('/view_feedback');
+	}	
+
+	public function deleteButtonWorks(AcceptanceTester $I)
+	{
+		$I->amOnPage('/home');
+		$I->see('Delete');
+		$I->click('Delete');
+		$I->canSeeInCurrentUrl('/delete');
 	}
 }
 

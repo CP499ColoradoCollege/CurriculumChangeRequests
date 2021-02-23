@@ -97,6 +97,15 @@
 		margin-bottom: 5px;
 	}
 	
+	.btn-history{
+		color: black;
+		background-color: #D19E21;
+		font-size: 15px;
+		border-radius: 10px;
+		float: none;
+		margin-bottom: 5px;
+	}
+	
 	.btn-new{
 		color: black;
 		background-color: #D19E21;
@@ -135,6 +144,14 @@
 	}
 	
 	.info-home{
+		font-size: 18px;
+	}
+	
+	.label-history{
+		font-size: 20px;
+	}
+	
+	.info-history{
 		font-size: 18px;
 	}
 	
@@ -218,7 +235,8 @@
 	}
 			
 		
-</style>	
+</style>
+	
 <!-- jQuery -->
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <!-- jQuery UI -->
@@ -352,13 +370,13 @@
 		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
 			<form class="form-inline" method="post" action="new_proposal">
 				<h1 style="float: left;"><strong>My Proposals</strong></h1>
-
+				
 				<!-- New Proposal Button -->
 				<button type="submit" class="btn btn-new"><strong>New Proposal</strong></button>
 			</form>
 		</div>
-
 		
+				
 		<!-- Set up columns to be displayed: -->
 		<div class="row" style="margin-top: 30px;">
 			<div class="col-md-3">
@@ -376,7 +394,2719 @@
 			<div class="col-md-2" style="margin-left: 40px;">
 				<span class="label-home"><strong>Options:</strong></span>
 			</div>
+			
+		</div>
+				
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
 
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="104">
+				</form>
+			</div>
+			
 		</div>
 
 		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="103">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="102">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="101">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="100">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="99">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="98">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="97">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="96">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="95">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="94">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="93">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="92">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="91">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="90">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="89">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="88">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>New Course: , </strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="87">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="86">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="85">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="84">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="83">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="82">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="81">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="80">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="79">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="78">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="77">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="76">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="75">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="74">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="73">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="72">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="71">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="70">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="69">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="68">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="67">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="66">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="65">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="64">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="63">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="62">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="61">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>New Course: , </strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="60">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>New Course: , </strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="59">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="58">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="57">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="56">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="55">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="54">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="53">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="52">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="51">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>New Course: , </strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="50">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="49">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="48">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>New Course: 1234, 1234</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="47">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="46">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Course ID, Title, Description, Extra Details, Limit, Prerequisites, Units of Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/23/2021</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Nobody has approved this document.</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Approve</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="45">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Remove Course: CP122, Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/11/2019</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Approved by Head of Department - awaiting approval from COI Divisional Rep</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Reject</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="44">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Change Title, Description, Extra Details, Limit of Course: CP122, 
+Computer Science I</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/11/2019</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Awaiting approval from Head of Department</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Reject</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="43">
+				</form>
+			</div>
+			
+		</div>
+
+		
+		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
+			
+			<!-- Proposal Title -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>New Course: CP999, Super Hard CS Class</strong></span>
+			</div>
+			<!-- Proposal Date -->
+			<div class="col-md-2">
+				<span class="info-home"><strong>02/11/2019</strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-home"><strong>Not Submitted</strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-home"><strong>Approved by Head of Department - awaiting approval from COI Divisional Rep</strong></span>
+			</div>
+
+			<div class="col-md-2" style="margin-left: 40px;">
+				<form method="post" action="home">
+					<!-- Download Button -->
+					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<!-- Edit Button -->
+					<button type="submit" class="btn btn-home" name="action" value="edit"><strong>Edit</strong></button><br>
+					<!-- View History Button -->	
+					<button type="submit" class="btn btn-home" name="action" value="history"><strong>History</strong></button><br>
+					<!-- Approve Button (IN PROGRESS) -->
+					<button type="submit" class="btn btn-home" name="action" value="approve_proposal"><strong>Reject</strong></button><br>
+					<!-- Email Button (NOT YET WORKING) -->
+					<!-- <span class="btn btn-home" name="action" value="email"><strong>Email</strong></span><br> -->
+					<!-- Add Feedback Button (NOT YET WORKING) -->
+					<button type="submit" class="btn btn-home" name="action" value="add_feedback"><strong>Add Feedback</strong></span>
+					<!-- Delete Button -->
+					<button type="submit" class="btn btn-home" name="action" value="delete_proposal"><strong>Delete</strong></span>
+					<!-- Specific Proposal's ID -->			
+					<input type="hidden" name="openedid" value="42">
+				</form>
+			</div>
+			
+		</div>
+
+				
+	</div>
+</div>

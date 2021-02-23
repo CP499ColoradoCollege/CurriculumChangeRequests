@@ -1,7 +1,6 @@
 <?php
 
-$user_filepath = __DIR__.'/../../html/classes/Course.php';
-require $user_filepath;
+require_once "dependencies.php";
 
 class CourseTest extends \Codeception\Test\Unit
 {
