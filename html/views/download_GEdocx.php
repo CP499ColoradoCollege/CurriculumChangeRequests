@@ -283,7 +283,7 @@
 			$section->addTextBreak(2);
 		}
 
-		$section->addText('Please provide the course description', $boldStyle);
+		$section->addText('Please provide the course description:', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
 		$section->addTextBreak(1);
@@ -494,13 +494,13 @@
 				case 'a':
 					$textRunA = $section->createTextRun();
 					$textRunA->addText("Course ID: ", $smallBoldStyle);
-					$textRunA->addText(htmlentities($course_id), $standardStyle);
+					$textRunA->addText(htmlentities($proposal->p_course_id), $standardStyle);
 					$section->addTextBreak(1);
 					break;
 				case 'b':
 					$textRunB = $section->createTextRun();
 					$textRunB->addText("Course Title: ", $smallBoldStyle);
-					$textRunB->addText(htmlentities($course_title), $standardStyle);
+					$textRunB->addText(htmlentities($proposal->p_course_title), $standardStyle);
 					$section->addTextBreak(1);
 					break;
 				case 'c':

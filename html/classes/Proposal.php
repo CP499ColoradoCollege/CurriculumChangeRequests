@@ -315,14 +315,14 @@ class Proposal{
 		*/
 
 		$changes = "";
-		if(in_array('1', $criteria)){
+		if(in_array('a', $criteria)){
 			$this->p_course_id = $post_array['p_course_id'];
 			$changes = $changes." Course ID";
 		}else{
 			$this->p_course_id = "";
 		}
 		
-		if(in_array('2', $criteria)){
+		if(in_array('b', $criteria)){
 			$this->p_course_title = $post_array['p_course_title'];
 			if($changes != ""){
 				$changes = $changes.", Title";
@@ -333,7 +333,7 @@ class Proposal{
 			$this->p_course_title = "";
 		}
 		
-		if(in_array('3', $criteria)){
+		if(in_array('c', $criteria)){
 			$this->p_course_desc = $post_array['p_course_desc'];
 			if($changes != ""){
 				$changes = $changes.", Description";
@@ -344,7 +344,7 @@ class Proposal{
 			$this->p_course_desc = "";
 		}
 		
-		if(in_array('4', $criteria)){
+		if(in_array('d', $criteria)){
 			$this->p_extra_details = $post_array['p_extra_details'];
 			if($changes != ""){
 				$changes = $changes.", Extra Details";
@@ -355,7 +355,7 @@ class Proposal{
 			$this->p_extra_details = "";
 		}
 		
-		if(in_array('5', $criteria)){
+		if(in_array('e', $criteria)){
 			$this->p_limit = $post_array['p_limit'];
 			if($changes != ""){
 				$changes = $changes.", Limit";
@@ -366,7 +366,7 @@ class Proposal{
 			$this->p_limit = "";
 		}
 		
-		if(in_array('6', $criteria)){
+		if(in_array('f', $criteria)){
 			$this->p_prereqs = $post_array['p_prereqs'];
 			if($changes != ""){
 				$changes = $changes.", Prerequisites";
@@ -377,7 +377,7 @@ class Proposal{
 			$this->p_prereqs = "";
 		}
 		
-		if(in_array('7', $criteria)){
+		if(in_array('g', $criteria)){
 			$this->p_units = $post_array['p_units'];
 			if($changes != ""){
 				$changes = $changes.", Units";
@@ -388,7 +388,7 @@ class Proposal{
 			$this->p_units = "";
 		}
 		
-		if(in_array('8', $criteria)){
+		if(in_array('h', $criteria)){
 			$this->p_first_offering = $post_array['p_first_offering'];
 			if($changes != ""){
 				$changes = $changes.", First Offering";
@@ -399,7 +399,7 @@ class Proposal{
 			$this->p_first_offering = "";
 		}
 		
-		if(in_array('9', $criteria)){
+		if(in_array('i', $criteria)){
 			$this->p_aligned_assignments = $post_array['p_aligned_assignments'];
 			if($changes != ""){
 				$changes = $changes.", Aligned Assignments";
@@ -410,7 +410,7 @@ class Proposal{
 			$this->p_aligned_assignments = "";
 		}
 		
-		if(in_array('a', $criteria)){
+		if(in_array('j', $criteria)){
 			$this->p_designation_scope = $post_array['p_designation_scope'];
 			if($changes != ""){
 				$changes = $changes.", Designation Scope";
@@ -421,7 +421,7 @@ class Proposal{
 			$this->p_designation_scope = "";
 		}
 		
-		if(in_array('b', $criteria)){
+		if(in_array('k', $criteria)){
 			$this->p_designation_prof = $post_array['p_designation_prof'];
 			if($changes != ""){
 				$changes = $changes.", Designation Professor(s)";
@@ -433,7 +433,7 @@ class Proposal{
 			$this->p_designation_prof = "";
 		}	
 		
-		if(in_array('c', $criteria)){
+		if(in_array('l', $criteria)){
 			$this->p_perspective = $post_array['p_perspective'];
 			if($changes != ""){
 				$changes = $changes.", Perspective";
