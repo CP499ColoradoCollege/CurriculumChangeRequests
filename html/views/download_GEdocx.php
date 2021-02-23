@@ -48,7 +48,7 @@
 					"p_aligned_assignments" => $proposal->p_aligned_assignments, "p_first_offering" => $proposal->p_first_offering, 
 					"p_course_status" => $proposal->p_course_status, "p_designation_scope" => $proposal->p_designation_scope, 
 					"p_designation_prof" => $proposal->p_designation_prof, "p_feedback" => $proposal->p_feedback, 
-					"department" => $department, "division" => $division, "p_perspective" => $proposal->p_perspective);
+					"department" => $department, "division" => $division, "p_perspective" => str_replace("&", "and", $proposal->p_perspective));
 
 	// //DEBUG
 	// $n = 1;
@@ -58,9 +58,12 @@
 	// 	$n ++;
 	// }
 	//end debug
-	if(is_null($proposedCourseInfo["p_perspective"])){
-		$proposedCourseInfo["p_perspective"] = "No Perspective Specified";
+	foreach($proposedCourseInfo as $info){
+		if(is_null($info)){
+			$info = 'None';
+		}
 	}
+
 	$perspectiveText = htmlentities($proposedCourseInfo["p_perspective"]); //needed bc "&" character breaks things
 
 	$languageEnGb = new PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB);
@@ -96,18 +99,15 @@
 
 	if($proposal->type == "Add a New Course"){
 		//DEBUG
-		$msg = "Reached interior of Add a New Course if statement";
-		error_log(print_r($msg, TRUE)); 
+		// $msg = "Reached interior of Add a New Course if statement";
+		// error_log(print_r($msg, TRUE)); 
 
-		//DEBUG: DOES NOT WORK
 		$user = new $user($dbc);
-		$msg = "user id: ".$proposal->user_id;
-		error_log(print_r($msg, TRUE));
-		$user = $user->fetchUserFromID($proposal->user_id); //try putting debug in fetchUserFromID to make sure it's being called
+		$user = $user->fetchUserFromID($proposal->user_id);
 		if($user == false){
 			//DEBUG
-			$msg = "Hit user abort condition in download_GEdocx.php";
-			error_log(print_r($msg, TRUE)); 
+			// $msg = "Hit user abort condition in download_GEdocx.php";
+			// error_log(print_r($msg, TRUE)); 
 			header("Location: home");
 			exit();
 		}
@@ -223,8 +223,8 @@
 		$selectedOption = $proposedCourseInfo['p_course_status'];
 
 		//DEBUG
-		$msg = "switch case for 1 of 4 course statuses: ".$selectedOption;
-		error_log(print_r($msg, TRUE));
+		// $msg = "switch case for 1 of 4 course statuses: ".$selectedOption;
+		// error_log(print_r($msg, TRUE));
 
 		$section->addText('This course is (select one):', $standardStyle);
 		switch($selectedOption){
@@ -270,14 +270,14 @@
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
 		
 		if(is_null($proposedCourseInfo["p_designation_prof"] || $proposedCourseInfo["p_designation_prof"] == "None" || $proposedCourseInfo["p_designation_prof"] == "N/A")){
-			$section->addListItem('All sections of this course', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
+			$section->addListItem('All sections of this course X', 1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 			$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
 			1, $standardStyle, $TYPE_BULLET_EMPTY, $paragraphStyle);
 			$section->addTextBreak(2);
 		}
 		else{
 			$section->addListItem('All sections of this course', 1, $standardStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
-			$section->addListItem('An instructor-specific section of this course (please list instructor(s))', 
+			$section->addListItem('An instructor-specific section of this course (please list instructor(s)) X', 
 			1, $smallBoldStyle, $TYPE_BULLET_EMPTY, $noSpaceParagraphStyle);
 			$section->addText(htmlentities('			'.$proposedCourseInfo["p_designation_prof"]), $standardStyle);
 			$section->addTextBreak(2);
@@ -285,20 +285,19 @@
 
 		$section->addText('Please provide the course description:', $boldStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
-		$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
+		//Need to do all this special stuff in order to get phpWord to process newlines inside a string
+		//DEBUG: this could be a HUGE source of headaches if there is bad input
+        $text = $proposedCourseInfo["p_course_desc"];
+        $text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+		$section->addText($text, $standardStyle);
+		//$section->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
 		$section->addTextBreak(1);
 
-		if(is_null($proposedCourseInfo["p_course_units"])){
-			$proposedCourseInfo["p_course_units"] == "None specified";
-		}
-		$unitsDesc = "Units: ".$proposedCourseInfo["p_course_units"];
-		if(is_null($proposedCourseInfo["p_limit"])){
-			$proposedCourseInfo["p_limit"] == "None specified";
-		}
-		$limitDesc = "Enrolment Limit: ".$proposedCourseInfo["p_limit"];
+		$unitsDesc = "Units: ".htmlentities($proposedCourseInfo["p_course_units"]);
+		$limitDesc = "Enrolment Limit: ".htmlentities($proposedCourseInfo["p_limit"]);
 		$prereqDesc = "Prerequisites: ".htmlentities($proposedCourseInfo["p_course_prereqs"]);
-		$libImpactDesc = "Library Impact: ".$proposedCourseInfo["lib_impact"];
-		$techImpactDesc = "Technology Impact: ".$proposedCourseInfo["tech_impact"];
+		$libImpactDesc = "Library Impact: ".htmlentities($proposedCourseInfo["lib_impact"]);
+		$techImpactDesc = "Technology Impact: ".htmlentities($proposedCourseInfo["tech_impact"]);
 		$section->addText($unitsDesc, $standardStyle);
 		$section->addText($limitDesc, $standardStyle);
 		$section->addText($prereqDesc, $standardStyle);
@@ -311,7 +310,11 @@
 		$rationaleTextRun->addText('Please provide a brief rationale addressing how the proposed course aligns with the description of the ', $boldStyle);
 		$rationaleTextRun->addText($perspectiveText, $secHeaderStyle);
 		$rationaleTextRun->addText(' category:', $boldStyle);
-		$section->addText(htmlentities($proposedCourseInfo["rationale"]), $standardStyle);
+		//DEBUG: this could be a HUGE source of headaches if there is bad input
+        $text = $proposedCourseInfo["rationale"];
+        $text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+		$section->addText($text, $standardStyle);
+		//$section->addText(htmlentities($proposedCourseInfo["rationale"]), $standardStyle);
 		$section->addTextBreak(20);
 		
 		$assignTextRun = $section->createTextRun($paragraphStyle);
@@ -319,7 +322,11 @@
 		$assignTextRun->addText('to each learning outcome. What assignment(s) would enable students to reach the learning outcomes for the ', $boldStyle);
 		$assignTextRun->addText($perspectiveText, $secHeaderStyle);
 		$assignTextRun->addText(' category?', $boldStyle);
-		$section->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
+		//DEBUG: this could be a HUGE source of headaches if there is bad input
+        $text = $proposedCourseInfo["p_aligned_assignments"];
+        $text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+		$section->addText($text, $standardStyle);
+		//$section->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
 		$section->addTextBreak(20);
 
 		$section->addText('Submit to: Sub-Committee', $boldStyle);
@@ -430,7 +437,11 @@
 				case 'c':
 					$textRunC = $section->createTextRun();
 					$textRunC->addText("Course Description: ", $smallBoldStyle);
-					$textRunC->addText(htmlentities($course->course_desc), $standardStyle);
+					//DEBUG: this could be a HUGE source of headaches if there is bad input
+					$text = $course->course_desc;
+					$text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+					$textRunC->addText($text, $standardStyle);
+					//$textRunC->addText(htmlentities($course->course_desc), $standardStyle);
 					$section->addTextBreak(1);
 					break;
 				case 'd':
@@ -466,7 +477,11 @@
 				case 'i':
 					$textRunI = $section->createTextRun();
 					$textRunI->addText("Aligned Assignments: ", $smallBoldStyle);
-					$textRunI->addText(htmlentities($course->aligned_assignments), $standardStyle);
+					//DEBUG: this could be a HUGE source of headaches if there is bad input
+					$text = $course->aligned_assignments;
+					$text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+					$textRunI->addText($text, $standardStyle);
+					//$textRunI->addText(htmlentities($course->aligned_assignments), $standardStyle);
 					$section->addTextBreak(1);
 					break;
 				case 'j':
@@ -506,7 +521,11 @@
 				case 'c':
 					$textRunC = $section->createTextRun();
 					$textRunC->addText("Course Description: ", $smallBoldStyle);
-					$textRunC->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
+					//DEBUG: this could be a HUGE source of headaches if there is bad input
+					$text = $proposedCourseInfo["p_course_desc"];
+					$text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+					$textRunC->addText($text, $standardStyle);
+					//$textRunC->addText(htmlentities($proposedCourseInfo["p_course_desc"]), $standardStyle);
 					$section->addTextBreak(1);
 					break;
 				case 'd':
@@ -542,7 +561,11 @@
 				case 'i':
 					$textRunI = $section->createTextRun();
 					$textRunI->addText("Aligned Assignments: ", $smallBoldStyle);
-					$textRunI->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
+					//DEBUG: this could be a HUGE source of headaches if there is bad input
+					$text = $proposedCourseInfo["p_aligned_assignments"];
+					$text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+					$textRunI->addText($text, $standardStyle);
+					//$textRunI->addText(htmlentities($proposedCourseInfo["p_aligned_assignments"]), $standardStyle);
 					$section->addTextBreak(1);
 					break;
 				case 'j':
@@ -563,8 +586,11 @@
 		//3: the rationale behind those changes
 		$section->addText('Rationale', $boldStyle, $noSpaceParagraphStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
-			//it's one rationale
-		$section->addText($proposedCourseInfo["rationale"]);
+		//DEBUG: this could be a HUGE source of headaches if there is bad input
+        $text = $proposedCourseInfo['rationale'];
+        $text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+		$section->addText($text, $standardStyle);
+		//$section->addText($proposedCourseInfo["rationale"]);
 			
 	}
 	else if($proposal->type == "Remove an Existing Course"){
@@ -611,7 +637,14 @@
 
 		$section->addText('Rationale', $boldStyle, $noSpaceParagraphStyle);
 		$section->addText('------------------------------------------------------------------------------------------------------------------------------------'); //solid black line...isn't working
-		$section->addText(htmlentities($proposedCourseInfo['rationale']), $standardStyle);
+		//DEBUG: this could be a HUGE source of headaches if there is bad input
+        $text = $proposedCourseInfo["rationale"];
+		if(is_null($text) || $text == ""){
+			$text = 'None';
+		}
+        $text = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $text);
+		$section->addText($text, $standardStyle);
+		//$section->addText(htmlentities($proposedCourseInfo['rationale']), $standardStyle);
 		$section->addTextBreak(2);
 		
 
@@ -637,13 +670,22 @@
 	if($proposal->type == "Change an Existing Course"){
 		//something about just using $filename for change causes encoding errors
 		//possibly length; I don't have the time/motivation to nail it down
-		$filename = str_replace(' ', '_', $course_id.$p_course_name);
+		$filename = str_replace(' ', '_', $course_id);
 		$filename = str_replace(',', '', $filename);
 		$filename = str_replace("'", '', $filename);
 		$file = htmlentities('Change_'.$filename.'.docx');
 	}
+	else if ($proposal->type == "Add a New Course"){
+		$filename = str_replace(' ', '_', $proposal->p_course_id);
+		$file = "New_Course_".htmlentities($filename).'.docx';
+	}
+	else if($proposal->type == "Remove an Existing Course"){
+		$filename = str_replace(' ', '_', $course_id);
+		$file = "Remove_Course_".htmlentities($filename).'.docx';
+	}
 	else{
-		$file = htmlentities($filename).'.docx';
+		$filename = str_replace(' ', '_', $course_id);
+		$file = htmlentities('Proposal_for_'.$filename.'.docx');
 	}
 	//DEBUG
 	$msg = "file name: ".$file;
