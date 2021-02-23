@@ -92,6 +92,34 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[0] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[0] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php if($criteria_num > 1){ ?>
@@ -139,6 +167,34 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[1] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[1] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -180,6 +236,34 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[2] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[2] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -214,6 +298,34 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[3] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[3] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -241,6 +353,34 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[4] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[4] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -261,6 +401,34 @@
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
+				<?php }else if($criteria_array[5] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[5] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
 				<?php } ?>
 			</div>
 			<?php }
@@ -273,6 +441,128 @@
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[6] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 7){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[0] == '8'){ ?>
+				<div class="col-md-3">
+					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->first_offering; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[7] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 8){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[8] == '9'){ ?>
+				<div class="col-md-3">
+					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
+				</div>
+				<?php }else if($criteria_array[8] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[8] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 9){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[9] == 'a'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_scope; ?></p>
+				</div>
+				<?php }else if($criteria_array[9] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
+				</div>
+				<?php } ?>
+			</div>
+			<?php }
+			if($criteria_num > 10){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="col-md-2"></div>
+				<?php if($criteria_array[10] == 'b'){ ?>
+				<div class="col-md-3">
+					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
+				</div>
+				<div class="col-md-3">
+					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -362,6 +652,46 @@
 							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[0] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[0] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[0] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[0] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -437,6 +767,46 @@
 							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[1] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[1] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[1] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[1] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -503,6 +873,46 @@
 							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[2] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[2] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[2] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[2] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -559,6 +969,46 @@
 							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[3] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[3] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[3] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[3] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -604,6 +1054,46 @@
 							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[4] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[4] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[4] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[4] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -639,6 +1129,46 @@
 							<option value="2 Units">2 Units</option>
 						</select>
 					</div>
+					<?php }else if($criteria_array[5] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[5] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[5] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[5] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -663,6 +1193,182 @@
 							<option value="1 Unit">1 Unit</option>
 							<option value="2 Units">2 Units</option>
 						</select>
+					</div>
+					<?php }else if($criteria_array[6] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[6] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[6] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[6] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }
+			if($criteria_num > 7){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[7] == '8'){ ?>
+					<div class="col-md-4">
+						<label for="p_first_offering" style="font-size: 20px; float: right; text-align: right;">Proposed First Offering 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed first offering of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_first_offering" id="p_first_offering" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[7] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[7] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[7] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }
+			if($criteria_num > 8){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[8] == '9'){ ?>
+					<div class="col-md-4">
+						<label for="p_aligned_assignments" style="font-size: 20px; float: right; text-align: right;">Proposed Aligned Assignments 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The aligned assignments of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_aligned_assignments" id="p_aligned_assignments" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[8] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[8] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }
+			if($criteria_num > 9){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[9] == 'a'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_scope" style="font-size: 20px; float: right; text-align: right;">Proposed Designation Scope 
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation scope of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_scope" id="p_designation_scope" autocomplete="off">
+					</div>
+					<?php }else if($criteria_array[9] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php }
+			if($criteria_num > 10){ ?>
+			<div class="row" style="margin-top: 25px;">
+				<div class="form-group">
+					<div class="col-md-1"></div>
+					
+					<?php if($criteria_array[10] == 'b'){ ?>
+					<div class="col-md-4">
+						<label for="p_designation_prof" style="font-size: 20px; float: right; text-align: right;">Proposed Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The proposed designation professor(s) of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="p_designation_prof" id="p_designation_prof" autocomplete="off">
 					</div>
 					<?php } ?>
 				</div>

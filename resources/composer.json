@@ -1,6 +1,6 @@
 {
     "require": {
-        "phpoffice/phpword": "^0.16.0",
+        "phpoffice/phpword": "v0.13.*",
         "phpunit/phpunit": "^7.0",
         "phpunit/dbunit": "^4.0",
         "zendframework/zend-stdlib": "^3.2",

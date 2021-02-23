@@ -6,14 +6,14 @@
 	switch ($page) {	//checks the value of the $page variable, which contains the label of the current view
 	
 		case 'login':
-			
+		
 			$_SESSION['user_email'] = 'admin@proposals.com';
 			$_SESSION['logged_in'] = true;
-						
+							
 			$statement = $dbc->prepare("SELECT * FROM users WHERE email = ? AND password = SHA1(?)");
 			$statement->bind_param("ss", $email, $password);
-						
-			
+				
+				
 			if($_SESSION['logged_in'] == true){	//check if the user is already logged in; if so, redirect them to the HOME page
 				header('Location: home');
 			}
@@ -29,8 +29,15 @@
 	
 		case 'home':
 						
-			if($_POST['action'] == 'download'){				
-				header("Location: download_docx_3?pid=".$_POST['openedid']);
+			if($_POST['action'] == 'download'){	
+				//DEBUG
+				$msg = "Reached query redirect to download page";
+				error_log(print_r($msg, TRUE)); 		
+				//header("Location: download_docx_3?pid=".$_POST['openedid']);
+				
+				header("Location: download_GEdocx?pid=".$_POST['openedid']); 
+				exit();
+				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
 				header("Location: edit_proposal?pid=".$_POST['openedid']);
@@ -38,7 +45,18 @@
 			if($_POST['action'] == 'history'){				
 				header("Location: history?pid=".$_POST['openedid']);
 			}
-			
+			if($_POST['action'] == 'submit_proposal') {
+				header("Location: submit_proposal?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'approve_proposal') {
+				header("Location: approve_proposal?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'view_feedback') {
+				header("Location: view_feedback?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'add_feedback') {
+				header("Location: add_feedback?pid=".$_POST['openedid']);
+			}
 			
 			break;
 			
@@ -140,31 +158,47 @@
 							$criteria = "";
 
 							if(isset($_POST['course_id'])){
-								$criteria = $criteria."1";
+								$criteria = $criteria."a";
 							}
 							
 							if(isset($_POST['course_title'])){
-								$criteria = $criteria."2";
+								$criteria = $criteria."b";
 							}
 							
 							if(isset($_POST['course_desc'])){
-								$criteria = $criteria."3";
+								$criteria = $criteria."c";
 							}
 							
 							if(isset($_POST['extra_details'])){
-								$criteria = $criteria."4";
+								$criteria = $criteria."d";
 							}
 							
 							if(isset($_POST['enrollment_limit'])){
-							    $criteria = $criteria."5";
+							    $criteria = $criteria."e";
 							}
 							
 							if(isset($_POST['prerequisites'])){
-								$criteria = $criteria."6";
+								$criteria = $criteria."f";
 							}
 							
 							if(isset($_POST['units'])){
-								$criteria = $criteria."7";
+								$criteria = $criteria."g";
+							}
+							
+							if(isset($_POST['first_offering'])){
+								$criteria = $criteria."h";
+							}
+							
+							if(isset($_POST['aligned_assignments'])){
+								$criteria = $criteria."i";
+							}
+							
+							if(isset($_POST['designation_scope'])){
+								$criteria = $criteria."j";
+							}
+							
+							if(isset($_POST['designation_prof'])){
+								$criteria = $criteria."k";
 							}
 							
 							
@@ -192,11 +226,11 @@
 		    
 		    if($_POST){
 		    	
-				$user_id = $user->id;
+			$user_id = $user->id;
 		        
 		        $course_id = mysqli_real_escape_string($dbc, $_POST['existing_course_id']);
 		        $course_id_array = str_split($course_id);
-		        
+		       
 		        if(count($course_id_array) == 5){
 		            
 		            //first, make sure the existing_course_id isn't blank
@@ -210,7 +244,7 @@
 		                
 		                $course = new Course($dbc);
 		                $course = $course->fetchCourseFromCourseID($course_id);
-		                
+		                header("Location: home");
 		                if($course != false){
 		                    
 		                    $remove_proposal = new Proposal($dbc);
@@ -242,17 +276,17 @@
 				
 				$pid = $_GET['pid'];
 				$user_id = $user->id;
-				$original_proposal = new Proposal($dbc);
-				$original_proposal = $original_proposal->fetchProposalFromID($pid);
+				//$original_proposal = new Proposal($dbc);
+				//$original_proposal = $original_proposal->fetchProposalFromID($pid);
 		
-				$new_proposalhistory = new Proposal($dbc);
-				$new_proposalhistory = $new_proposalhistory->addProposalhistory($pid, $user_id, $_POST, $original_proposal);
+				//$new_proposalhistory = new Proposal($dbc);
+				//$new_proposalhistory = $new_proposalhistory->addProposalhistory($pid, $user_id, $_POST, $original_proposal);
 				
 				$new_proposal = new Proposal($dbc);
 				$new_proposal = $new_proposal->editProposalAddNewCourse($user_id, $pid, $_POST);
 																						   
 				
-				if($new_proposalhistory != false && $new_proposal != false){
+				if($new_proposal != false){
 					$message = '<p class="bg-success">Your edits were successfully saved.</p>';
 				}else{
 					$message = '<p class="bg-danger">Error: proposal could not be saved. '.mysqli_error($dbc)."</p>";
@@ -347,7 +381,46 @@
 				header("Location: home");
 			}	
 			break;
-		    
+
+		case 'submit_proposal':
+			// TODO view feedback
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['confirm'])) {
+				$proposal->updateProposalField($pid, "sub_status", $_POST['confirm']);
+				header("Location: home");
+			}
+			break;
+
+		case 'approve_proposal':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['confirm'])) {
+				$proposal->updateProposalField($pid, "approval_status", $_POST['confirm']);
+				header("Location: home");
+			}
+			break;
+
+		case 'add_feedback':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['comment'])) {
+				$proposal->addFeedback($user->id, $pid, $_POST['comment']);
+				header("Location: home");
+			}
+			break;
 			
 		case 'demo':
 			

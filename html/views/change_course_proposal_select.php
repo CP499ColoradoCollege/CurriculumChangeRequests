@@ -85,6 +85,34 @@
 						<label class="form-check-label change-label" for="defaultCheck1">Units</label>
 					</div>
 				</div>
+				<!-- First Offering checkbox -->
+				<div class="row" style="margin-top: 25px;">
+					<div class="form-check div-left shift-right">
+						<input class="form-check-input" type="checkbox" id="first_offering" name="first_offering">
+						<label class="form-check-label change-label" for="defaultCheck1">First Offering</label>
+					</div>
+				</div>
+				<!-- Aligned Assignments checkbox -->
+				<div class="row" style="margin-top: 25px;">
+					<div class="form-check div-left shift-right">
+						<input class="form-check-input" type="checkbox" id="aligned_assignments" name="aligned_assignments">
+						<label class="form-check-label change-label" for="defaultCheck1">Aligned Assignments</label>
+					</div>
+				</div>
+				<!-- Designation Scope checkbox -->
+				<div class="row" style="margin-top: 25px;">
+					<div class="form-check div-left shift-right">
+						<input class="form-check-input" type="checkbox" id="designation_scope" name="designation_scope">
+						<label class="form-check-label change-label" for="defaultCheck1">Designation Scope</label>
+					</div>
+				</div>
+				<!-- Designation Professor(s) checkbox -->
+				<div class="row" style="margin-top: 25px;">
+					<div class="form-check div-left shift-right">
+						<input class="form-check-input" type="checkbox" id="designation_prof" name="designation_prof">
+						<label class="form-check-label change-label" for="defaultCheck1">Professor(s)</label>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-5"></div>
 					<div class="col-md-2">
