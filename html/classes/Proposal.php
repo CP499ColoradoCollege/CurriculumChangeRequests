@@ -208,18 +208,18 @@ class Proposal{
 		
 		$dbc = $this->dbc;
 		
-		$statement = $dbc->prepare("INSERT INTO proposalhistory (id, user_id, proposal_title, 
-			proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, 
-			p_extra_details, p_limit, p_prereqs, p_units, p_perspective, rationale, lib_impact, tech_impact, 
-			p_aligned_assignments, p_first_offering, p_course_status, p_designation_scope, 
-			p_designation_prof, p_feedback) 
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$statement = $dbc->prepare("INSERT INTO proposalhistory (id, user_id, related_course_id, proposal_title, 
+		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
+		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
+		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
+		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback) 
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		$statement->bind_param("ssssssssssssssssssssssss", $proposal->id, $proposal->user_id, $proposal->proposal_title, 
-			$this->proposal_date, $proposal->department, $proposal->type, $proposal->criteria, $proposal->p_course_id, 
+		$statement->bind_param("ssssssssssssssssssssssssssssss", $proposal->id, $proposal->user_id, $proposal->related_course_id, $proposal->proposal_title, 
+			$this->proposal_date, $proposal->sub_status, $proposal->approval_status, $proposal->department, $proposal->type, $proposal->criteria, $proposal->p_department, $proposal->p_course_id, 
 			$proposal->p_course_title, $proposal->p_course_desc, $proposal->p_extra_details, 
-			$proposal->p_limit, $proposal->p_prereqs, $proposal->p_units, $proposal->p_perspective, $proposal->rationale, 
-			$proposal->lib_impact, $proposal->tech_impact, $proposal->p_aligned_assignments, 
+			$proposal->p_limit, $proposal->p_prereqs, $proposal->p_units, $proposal->p_crosslisting, $proposal->p_perspective, $proposal->rationale, 
+			$proposal->lib_impact, $proposal->tech_impact, $proposal->status, $proposal->p_aligned_assignments, 
 			$proposal->p_first_offering, $proposal->p_course_status, $proposal->p_designation_scope,
 			$proposal->p_designation_prof, $proposal->p_feedback);
 			
@@ -303,7 +303,7 @@ class Proposal{
 		$p_course_title = $post_array['course_title'];
 		$p_course_desc = $post_array['course_desc'];
 		$p_extra_details = $post_array['extra_details'];
-		$p_limit = $post_array['p_limit'];
+		$p_limit = $post_array['limit'];
 		$p_prereqs = $post_array['course_prereqs'];
 		$p_units = $post_array['course_units'];
 		$p_perspective = $post_array['course_perspective'];
@@ -361,18 +361,18 @@ class Proposal{
 			
 		/* the $criteria array contains which criteria the user has selected to propose changes to. For example Course Id or Prerequisites.
 		   These criteria are numbered from 1 - 7
-		   1 : Course Id
-		   2 : Course Title
-		   3 : Course Description
-		   4 : Extra details (Additional costs, field trips, etc)
-		   5 : Enrollment Limit
-		   6 : Prerequisites
-		   7 : Units
-		   8 : First Offering
-		   9: Aligned Assignments
-		   a : Designation Scope
-		   b : Designation Professor(s)
-		   c: Perspective
+		   a : Course Id
+		   b : Course Title
+		   c : Course Description
+		   d : Extra details (Additional costs, field trips, etc)
+		   e : Enrollment Limit
+		   f : Prerequisites
+		   g : Units
+		   h : First Offering
+		   i: Aligned Assignments
+		   j : Designation Scope
+		   k : Designation Professor(s)
+		   l: Perspective
 		*/
 
 		$changes = "";
@@ -541,14 +541,14 @@ class Proposal{
 		$course = new Course($dbc);
 		$course = $course->fetchCourseFromCourseID($related_course_id);
 		
-		if(in_array('1', $criteria)){
+		if(in_array('a', $criteria)){
 			$p_course_id = $post_array['p_course_id'];
 			$changes = $changes." Course ID";
 		}else{
 			$p_course_id = "";
 		}
 		
-		if(in_array('2', $criteria)){
+		if(in_array('b', $criteria)){
 			$p_course_title = $post_array['p_course_title'];
 			if($changes != ""){
 				$changes = $changes.", Title";
@@ -559,7 +559,7 @@ class Proposal{
 			$p_course_title = "";
 		}
 		
-		if(in_array('3', $criteria)){
+		if(in_array('c', $criteria)){
 			$p_course_desc = $post_array['p_course_desc'];
 			if($changes != ""){
 				$changes = $changes.", Description";
@@ -570,7 +570,7 @@ class Proposal{
 			$p_course_desc = "";
 		}
 		
-		if(in_array('4', $criteria)){
+		if(in_array('d', $criteria)){
 			$p_extra_details = $post_array['p_extra_details'];
 			if($changes != ""){
 				$changes = $changes.", Extra Details";
@@ -581,7 +581,7 @@ class Proposal{
 			$p_extra_details = "";
 		}
 		
-		if(in_array('5', $criteria)){
+		if(in_array('e', $criteria)){
 			$p_limit = $post_array['p_limit'];
 			if($changes != ""){
 				$changes = $changes.", Limit";
@@ -592,7 +592,7 @@ class Proposal{
 			$p_limit = "";
 		}
 		
-		if(in_array('6', $criteria)){
+		if(in_array('f', $criteria)){
 			$p_prereqs = $post_array['p_prereqs'];
 			if($changes != ""){
 				$changes = $changes.", Prerequisites";
@@ -603,7 +603,7 @@ class Proposal{
 			$p_prereqs = "";
 		}
 		
-		if(in_array('7', $criteria)){
+		if(in_array('g', $criteria)){
 			$p_units = $post_array['p_units'];
 			if($changes != ""){
 				$changes = $changes.", Units";
@@ -614,7 +614,7 @@ class Proposal{
 			$p_units = "";
 		}
 		
-		if(in_array('8', $criteria)){
+		if(in_array('h', $criteria)){
 			$p_first_offering = $post_array['p_first_offering'];
 			if($changes != ""){
 				$changes = $changes.", First Offering";
@@ -625,7 +625,7 @@ class Proposal{
 			$p_first_offering = "";
 		}
 		
-		if(in_array('9', $criteria)){
+		if(in_array('i', $criteria)){
 			$p_aligned_assignments = $post_array['p_aligned_assignments'];
 			if($changes != ""){
 				$changes = $changes.", Aligned Assignments";
@@ -636,7 +636,7 @@ class Proposal{
 			$p_aligned_assignments = "";
 		}
 		
-		if(in_array('a', $criteria)){
+		if(in_array('j', $criteria)){
 			$p_designation_scope = $post_array['p_designation_scope'];
 			if($changes != ""){
 				$changes = $changes.", Designation Scope";
@@ -647,7 +647,7 @@ class Proposal{
 			$p_designation_scope = "";
 		}
 		
-		if(in_array('b', $criteria)){
+		if(in_array('k', $criteria)){
 			$p_designation_prof = $post_array['p_designation_prof'];
 			if($changes != ""){
 				$changes = $changes.", Designation Professor(s)";
@@ -658,7 +658,7 @@ class Proposal{
 			$p_designation_prof = "";
 		}
 		
-		if(in_array('c', $criteria)){
+		if(in_array('l', $criteria)){
 			$p_perspective = $post_array['p_perspective'];
 			if($changes != ""){
 				$changes = $changes.", Perspective";

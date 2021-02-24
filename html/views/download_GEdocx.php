@@ -15,11 +15,18 @@
 	
 	$proposal_id = $_GET['pid'];
 	$type = $_GET['type'];
+	//DEBUG
+	// $msg = "type: ".$type;
+	// error_log(print_r($msg, TRUE));
 	$proposal = new Proposal($dbc);
 	if($type == 'proposal'){
 		$proposal = $proposal->fetchProposalFromID($proposal_id);
 	}else if($type == 'proposalhistory'){
 		$proposal = $proposal->fetchProposalHistory($proposal_id);
+	}
+	else{
+		//$type is probably broken
+		$proposal = $proposal->fetchProposalFromID($proposal_id);
 	}
 	
 	
@@ -31,6 +38,7 @@
 		//header("Location: home");
 		exit;
 	}
+	
 
 	//everything from here to the if statement is just setup
 	
@@ -186,41 +194,41 @@
 		
 		for( $i = 0; $i<count($critArray); $i += 1){
 			switch($critArray[$i]){
-				case '1':
+				case 'a':
 					$headerString.="Course ID-";
 					break;
-				case '2':
+				case 'b':
 					$headerString.="Course Title-";
 					break;
-				case '3':
+				case 'c':
 					$headerString.="Course Description-";
 					break;
-				case '4':
+				case 'd':
 					$headerString.="Extra Details-";
 					break;
-				case '5':
+				case 'e':
 					$headerString.="Enrolment Limit-";
 					break;
-				case '6':
+				case 'f':
 					$headerString.="Prerequisites-";
 					break;
-				case '7':
+				case 'g':
 					$headerString.="Units-";
 					break;
-				case '8':
+				case 'h':
 					$headerString.="First Offering-";
 					break;
-				case '9':
+				case 'i':
 					$headerString.="Aligned Assignments-";
 					break;
-				case 'a':
+				case 'j':
 					$headerString.="General Education Categorization Scope-";
 					break;
-				case 'b':
+				case 'k':
 					$headerString.="General Education Categorization Professors-";
 					break;
-				case 'c':
-					$headerString.="General Education Perspective-";
+				case 'l':
+					$headerString.="General Education Category";
 					break;
 			}
 		}
@@ -409,6 +417,18 @@
 					$section->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
 					$section->addTextBreak(1);
 					break;
+				case 'l':
+					$section->addText("Current General Education Category", $smallBoldStyle);
+					$section->addTextBreak(1);
+					if(is_null($course->perspective)){
+						$course->perspective = "None";
+					}
+					$section->addText(htmlentities($course->perspective), $standardStyle);
+					$section->addTextBreak(1);
+					$section->addText("Proposed General Education Category", $smallBoldStyle);
+					$section->addTextBreak(1);
+					$section->addText(htmlentities($proposedCourseInfo["p_perspective"]), $standardStyle);
+					$section->addTextBreak(1);
 			}
 		}
 		if(!$printedPrereqs){
