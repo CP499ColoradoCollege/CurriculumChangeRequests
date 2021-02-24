@@ -27,6 +27,8 @@ sudo cp -r html/* html/.htaccess resources/banner.JPG resources/bootstrap.php /o
 
 #install composer from lock file
 composer install
+cd /opt/lampp/htdocs
+composer install
 
 #ensure correct permissions to application files  
 sudo chown -R $USER:USER /opt/lampp/htdocs
