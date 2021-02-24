@@ -214,6 +214,9 @@
 				case 'k':
 					$headerString.="General Education Categorization Professors-";
 					break;
+				case 'l':
+					$headerString.="General Education Category";
+					break;
 			}
 		}
 
@@ -402,6 +405,18 @@
 					$section->addText(htmlentities($proposedCourseInfo["p_designation_prof"]), $standardStyle);
 					$section->addTextBreak(1);
 					break;
+				case 'l':
+					$section->addText("Current General Education Category", $smallBoldStyle);
+					$section->addTextBreak(1);
+					if(is_null($course->perspective)){
+						$course->perspective = "None";
+					}
+					$section->addText(htmlentities($course->perspective), $standardStyle);
+					$section->addTextBreak(1);
+					$section->addText("Proposed General Education Category", $smallBoldStyle);
+					$section->addTextBreak(1);
+					$section->addText(htmlentities($proposedCourseInfo["p_perspective"]), $standardStyle);
+					$section->addTextBreak(1);
 			}
 		}
 		if(!$printedPrereqs){
