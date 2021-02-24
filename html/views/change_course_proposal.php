@@ -43,84 +43,84 @@
 		
 		<div class="shift-down row">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[0] == '1'){ ?>
+				<?php if($criteria_array[0] == 'a'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_id" style="font-size: 20px; float: right;">Course ID : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->subj_code.$course->course_num; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '2'){ ?>
+				<?php }else if($criteria_array[0] == 'b'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_title" style="font-size: 20px; float: right;">Course Title : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->course_title; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '3'){ ?>
+				<?php }else if($criteria_array[0] == 'c'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '4'){ ?>
+				<?php }else if($criteria_array[0] == 'd'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Extra Details : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->extra_details; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '5'){ ?>
+				<?php }else if($criteria_array[0] == 'e'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '6'){ ?>
+				<?php }else if($criteria_array[0] == 'f'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '7'){ ?>
+				<?php }else if($criteria_array[0] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '8'){ ?>
+				<?php }else if($criteria_array[0] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == '9'){ ?>
+				<?php }else if($criteria_array[0] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == 'a'){ ?>
+				<?php }else if($criteria_array[0] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == 'b'){ ?>
+				<?php }else if($criteria_array[0] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[0] == 'c'){ ?>
+				<?php }else if($criteria_array[0] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -132,77 +132,77 @@
 			<?php if($criteria_num > 1){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[1] == '2'){ ?>
+				<?php if($criteria_array[1] == 'b'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_title" style="font-size: 20px; float: right;">Course Title : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->course_title; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '3'){ ?>
+				<?php }else if($criteria_array[1] == 'c'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '4'){ ?>
+				<?php }else if($criteria_array[1] == 'd'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Extra Details : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->extra_details; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '5'){ ?>
+				<?php }else if($criteria_array[1] == 'e'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '6'){ ?>
+				<?php }else if($criteria_array[1] == 'f'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '7'){ ?>
+				<?php }else if($criteria_array[1] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '8'){ ?>
+				<?php }else if($criteria_array[1] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == '9'){ ?>
+				<?php }else if($criteria_array[1] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == 'a'){ ?>
+				<?php }else if($criteria_array[1] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == 'b'){ ?>
+				<?php }else if($criteria_array[1] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[1] == 'c'){ ?>
+				<?php }else if($criteria_array[1] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -215,70 +215,70 @@
 			if($criteria_num > 2){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[2] == '3'){ ?>
+				<?php if($criteria_array[2] == 'c'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Course Description : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->course_desc; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == '4'){ ?>
+				<?php }else if($criteria_array[2] == 'd'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Extra Details : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->extra_details; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == '5'){ ?>
+				<?php }else if($criteria_array[2] == 'e'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == '6'){ ?>
+				<?php }else if($criteria_array[2] == 'f'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == '7'){ ?>
+				<?php }else if($criteria_array[2] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == '8'){ ?>
+				<?php }else if($criteria_array[2] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == '9'){ ?>
+				<?php }else if($criteria_array[2] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == 'a'){ ?>
+				<?php }else if($criteria_array[2] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == 'b'){ ?>
+				<?php }else if($criteria_array[2] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[2] == 'c'){ ?>
+				<?php }else if($criteria_array[2] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -291,63 +291,63 @@
 			if($criteria_num > 3){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[3] == '4'){ ?>
+				<?php if($criteria_array[3] == 'd'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Extra Details : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->extra_details; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == '5'){ ?>
+				<?php }else if($criteria_array[3] == 'e'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == '6'){ ?>
+				<?php }else if($criteria_array[3] == 'f'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == '7'){ ?>
+				<?php }else if($criteria_array[3] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == '8'){ ?>
+				<?php }else if($criteria_array[3] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == '9'){ ?>
+				<?php }else if($criteria_array[3] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == 'a'){ ?>
+				<?php }else if($criteria_array[3] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == 'b'){ ?>
+				<?php }else if($criteria_array[3] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[3] == 'c'){ ?>
+				<?php }else if($criteria_array[3] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -360,56 +360,56 @@
 			if($criteria_num > 4){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[4] == '5'){ ?>
+				<?php if($criteria_array[4] == 'e'){ ?>
 				<div class="col-md-3">
 					<label for="p_course_desc" style="font-size: 20px; float: right;">Enrollment Limit : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->enrollment_limit; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == '6'){ ?>
+				<?php }else if($criteria_array[4] == 'f'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == '7'){ ?>
+				<?php }else if($criteria_array[4] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == '8'){ ?>
+				<?php }else if($criteria_array[4] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == '9'){ ?>
+				<?php }else if($criteria_array[4] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == 'a'){ ?>
+				<?php }else if($criteria_array[4] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == 'b'){ ?>
+				<?php }else if($criteria_array[4] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[4] == 'c'){ ?>
+				<?php }else if($criteria_array[4] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -422,49 +422,49 @@
 			if($criteria_num > 5){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[5] == '6'){ ?>
+				<?php if($criteria_array[5] == 'f'){ ?>
 				<div class="col-md-3">
 					<label for="p_prereqs" style="font-size: 20px; float: right;">Course Prerequisites : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->prereqs; ?></p>
 				</div>
-				<?php }else if($criteria_array[5] == '7'){ ?>
+				<?php }else if($criteria_array[5] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[5] == '8'){ ?>
+				<?php }else if($criteria_array[5] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[5] == '9'){ ?>
+				<?php }else if($criteria_array[5] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[5] == 'a'){ ?>
+				<?php }else if($criteria_array[5] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[5] == 'b'){ ?>
+				<?php }else if($criteria_array[5] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[5] == 'c'){ ?>
+				<?php }else if($criteria_array[5] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -477,42 +477,42 @@
 			if($criteria_num > 6){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[6] == '7'){ ?>
+				<?php if($criteria_array[6] == 'g'){ ?>
 				<div class="col-md-3">
 					<label for="p_units" style="font-size: 20px; float: right;">Units : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->units; ?></p>
 				</div>
-				<?php }else if($criteria_array[6] == '8'){ ?>
+				<?php }else if($criteria_array[6] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[6] == '9'){ ?>
+				<?php }else if($criteria_array[6] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[6] == 'a'){ ?>
+				<?php }else if($criteria_array[6] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[6] == 'b'){ ?>
+				<?php }else if($criteria_array[6] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[6] == 'c'){ ?>
+				<?php }else if($criteria_array[6] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -525,35 +525,35 @@
 			if($criteria_num > 7){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[0] == '8'){ ?>
+				<?php if($criteria_array[0] == 'h'){ ?>
 				<div class="col-md-3">
 					<label for="p_first_offering" style="font-size: 20px; float: right;">First Offering : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->first_offering; ?></p>
 				</div>
-				<?php }else if($criteria_array[7] == '9'){ ?>
+				<?php }else if($criteria_array[7] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[7] == 'a'){ ?>
+				<?php }else if($criteria_array[7] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[7] == 'b'){ ?>
+				<?php }else if($criteria_array[7] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[7] == 'c'){ ?>
+				<?php }else if($criteria_array[7] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -566,28 +566,28 @@
 			if($criteria_num > 8){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[8] == '9'){ ?>
+				<?php if($criteria_array[8] == 'i'){ ?>
 				<div class="col-md-3">
 					<label for="p_aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->aligned_assignments; ?></p>
 				</div>
-				<?php }else if($criteria_array[8] == 'a'){ ?>
+				<?php }else if($criteria_array[8] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[8] == 'b'){ ?>
+				<?php }else if($criteria_array[8] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[8] == 'c'){ ?>
+				<?php }else if($criteria_array[8] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -600,21 +600,21 @@
 			if($criteria_num > 9){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[9] == 'a'){ ?>
+				<?php if($criteria_array[9] == 'j'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_scope" style="font-size: 20px; float: right;">Designation Scope : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_scope; ?></p>
 				</div>
-				<?php }else if($criteria_array[9] == 'b'){ ?>
+				<?php }else if($criteria_array[9] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[9] == 'c'){ ?>
+				<?php }else if($criteria_array[9] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -627,14 +627,14 @@
 			if($criteria_num > 10){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[10] == 'b'){ ?>
+				<?php if($criteria_array[10] == 'k'){ ?>
 				<div class="col-md-3">
 					<label for="p_designation_prof" style="font-size: 20px; float: right;">Professor(s) : 
 				</div>
 				<div class="col-md-3">
 					<p class="font-20"><?php echo $course->designation_prof; ?></p>
 				</div>
-				<?php }else if($criteria_array[10] == 'c'){ ?>
+				<?php }else if($criteria_array[10] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>
@@ -647,7 +647,7 @@
 			if($criteria_num > 11){ ?>
 			<div class="row" style="margin-top: 25px;">
 				<div class="col-md-2"></div>
-				<?php if($criteria_array[11] == 'c'){ ?>
+				<?php if($criteria_array[11] == 'l'){ ?>
 				<div class="col-md-3">
 					<label for="p_perspective" style="font-size: 20px; float: right;">Perspective : 
 				</div>

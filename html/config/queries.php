@@ -166,47 +166,47 @@
 							$criteria = "";
 
 							if(isset($_POST['course_id'])){
-								$criteria = $criteria."1";
-							}
-							
-							if(isset($_POST['course_title'])){
-								$criteria = $criteria."2";
-							}
-							
-							if(isset($_POST['course_desc'])){
-								$criteria = $criteria."3";
-							}
-							
-							if(isset($_POST['extra_details'])){
-								$criteria = $criteria."4";
-							}
-							
-							if(isset($_POST['enrollment_limit'])){
-							    $criteria = $criteria."5";
-							}
-							
-							if(isset($_POST['prerequisites'])){
-								$criteria = $criteria."6";
-							}
-							
-							if(isset($_POST['units'])){
-								$criteria = $criteria."7";
-							}
-							
-							if(isset($_POST['first_offering'])){
-								$criteria = $criteria."8";
-							}
-							
-							if(isset($_POST['aligned_assignments'])){
-								$criteria = $criteria."9";
-							}
-							
-							if(isset($_POST['designation_scope'])){
 								$criteria = $criteria."a";
 							}
 							
-							if(isset($_POST['designation_prof'])){
+							if(isset($_POST['course_title'])){
 								$criteria = $criteria."b";
+							}
+							
+							if(isset($_POST['course_desc'])){
+								$criteria = $criteria."c";
+							}
+							
+							if(isset($_POST['extra_details'])){
+								$criteria = $criteria."d";
+							}
+							
+							if(isset($_POST['enrollment_limit'])){
+							    $criteria = $criteria."e";
+							}
+							
+							if(isset($_POST['prerequisites'])){
+								$criteria = $criteria."f";
+							}
+							
+							if(isset($_POST['units'])){
+								$criteria = $criteria."g";
+							}
+							
+							if(isset($_POST['first_offering'])){
+								$criteria = $criteria."h";
+							}
+							
+							if(isset($_POST['aligned_assignments'])){
+								$criteria = $criteria."i";
+							}
+							
+							if(isset($_POST['designation_scope'])){
+								$criteria = $criteria."j";
+							}
+							
+							if(isset($_POST['designation_prof'])){
+								$criteria = $criteria."k";
 							}
 							
 							if(isset($_POST['perspective'])){
