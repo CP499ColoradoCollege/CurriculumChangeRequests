@@ -62,7 +62,7 @@
 				}
 
 				$approval_status = $prop->approval_status;
-				if ($approval_status) {
+				if ($approval_status == 2) {
 					$approval_message = "Reject";
 				} else {
 					$approval_message = "Approve";
