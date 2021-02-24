@@ -14,7 +14,7 @@ Here is an explanation of each of the directories, as well as each file in the d
 ![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/presentation/Architecture.jpg)
 ### External Components:
 **Banner Course Database:**  
-  A database which holds records for all courses at CC. We receive an Excel spreadsheet that we must parse for this data. 
+  A database which holds records for all courses at CC. We should receive an Excel spreadsheet that we must parse for this data by putting it into the databaseConnection directory.
 ### Internal Components:
 **Linux OS**  
   A linux machine running Ubuntu 20.04 LTS  
@@ -25,7 +25,7 @@ Here is an explanation of each of the directories, as well as each file in the d
 **Webpages:**  
   Our webpages use HTML and CSS for front end UI. Backend functionality for the webpages is written in PHP. PHP also queries our proposal-tool SQL database to fill in relevant information in course proposal web forms, and course proposal documents.  
 **Java:**  
-  Java is used to continually update our database. Once a day, the ExtractExcelData program reads a .csv file containing the course catalog data, and pushes that information into our proposaltoolDB SQL database. In addition, Java is also used to produce a .csv file containing all accepted changes, which is sent to Banner.  
+  Java is used to continually update our database. The ExtractExcelData program reads a .csv file containing the course catalog data, and pushes that information into our proposaltoolDB SQL database. In addition, Java is also used to produce a .csv file containing all accepted changes, which can be sent to Banner.  
 **Cron:**  
 Cron or someother task scheduler should be used to run ExtractExcelData
 
