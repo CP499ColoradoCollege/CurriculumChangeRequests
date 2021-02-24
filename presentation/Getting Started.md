@@ -24,6 +24,7 @@ If all this works fine, then you should be able to open a browser in the VM and 
 If the above script doesn’t work, don’t panic and assume you are in dependency hell and start reinstalling things and moving things around like I did, because you will probably put yourself into dependency hell (like I did). First check why the install failed. Which step failed? Is the java path not getting set? Is the composer install giving you an error? Are files not copying to XAMPP? Is MySQL not starting? There is probably a simple fix for all of these, but pay attention to the error and check relevant logs. Logs for Apache and MySQL can be found easily through the GUI. 
 
 Make sure there are no duplicate programs running on the guest that should be running from the webstack. For example, mysql-server, mysql-common, mysql-client, or httpd. If the MySQL install is somehow corrupted, you can delete the mysql database from /opt/lampp/var/mysql/ and reinstall with ./opt/lampp/bin/mysql_upgrade -u root -p, or simply uninstall XAMPP with ./opt/lampp/uninstall and reinstall from the provided link in the install script. 
+
 Make sure the /opt/lampp/htdocs directory and all files in it is owned by your user, which is not set by default because XAMPP requires sudo to install. Set that with chown -R user:user /opt/lampp/htdocs.
 
 Run composer install from the root directory containing the lock file. This should create a vendor/ directory containing 3rd party resources. If for some reason the composer.lock file is giving you issues, you can delete or move the lock files and run composer upgrade to see if newer installations of dependencies will help. Composer documentation can be found here: 
@@ -31,7 +32,10 @@ Composer: https://getcomposer.org/
 
 ## IV. 	RUNNING TESTS
 Make sure the test database is set up with the name testproposaltoolDB, and that it is populated with the testproposaltoolDB.sql file found in tests/_data/. You can manually import the file into the database using phpmyadmin. 
+
 There are two kinds of tests: unit and acceptance. They are found in tests/unit and tests/acceptance. They are run using the Codeception package which should be installed by composer. Codeception is an extensible PHP testing tool, but for our purposes we use it for two features: the included php webdriver and framework for running acceptance tests that interact with the webpage, and for the PHPUnit wrapper for unit tests. (We aren’t using anything special about codeception for the unit tests, it just makes it easier to run PHPUnit tests and acceptance tests in one framework). Suite configuration is found in tests/unit.suite.yml and tests/acceptance.suite.yml. Here you can list any modules you would like included in the respective tests. The root directory should contain codeception.yml which contains the filepaths to tests.  Codeception documentation can be found here: https://codeception.com/
+
 !** Before running the tests **!, make sure to point your bash to the XAMPP version of PHP, not any pre-installed version. To do this, delete /usr/bin/php and run ln -s /opt/lampp/bin/php-<version>   /usr/bin/php to create a symlink from XAMPP’s php binary to the bash path to php which is used by Codeception.
 Now, run the tests using vendor/bin/codecept run unit and vendor/bin/codecept run acceptance. There might be some false negatives on the acceptance tests due to weird flaws with PhpBrowser, but the unit tests should all pass. 
+  
 Note that test dependencies for the unit tests are contained in tests/unit/dependencies.php. All the tests require this file. The imports are hardcoded paths to the Php classes, so if the classes get moved around, dependencies.php needs to reflect that. 
