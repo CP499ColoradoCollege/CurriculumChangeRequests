@@ -15,11 +15,18 @@
 	
 	$proposal_id = $_GET['pid'];
 	$type = $_GET['type'];
+	//DEBUG
+	// $msg = "type: ".$type;
+	// error_log(print_r($msg, TRUE));
 	$proposal = new Proposal($dbc);
 	if($type == 'proposal'){
 		$proposal = $proposal->fetchProposalFromID($proposal_id);
 	}else if($type == 'proposalhistory'){
 		$proposal = $proposal->fetchProposalHistory($proposal_id);
+	}
+	else{
+		//$type is probably broken
+		$proposal = $proposal->fetchProposalFromID($proposal_id);
 	}
 	
 	
@@ -31,6 +38,7 @@
 		//header("Location: home");
 		exit;
 	}
+	
 
 	//everything from here to the if statement is just setup
 	
