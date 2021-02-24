@@ -1,5 +1,5 @@
 ## FILESYSTEM
-
+![filesystem](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/presentation/filesystem.png)
 
 Here is an explanation of each of the directories, as well as each file in the directory:
 + **Views:** contains the HTML structure for our each of our web-application’s web pages.
