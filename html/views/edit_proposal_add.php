@@ -153,6 +153,28 @@ if($proposal == false){ //if the proposal doesn't exist/wasn't created by the cu
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
+				<!-- Current Course Perspective -->
+				<div class="form-group">
+					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Course Perspective</strong>
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The course perspective">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</p></div>
+					<div class="col-md-4">
+						<select class="input-sm" style="float: left;" name="course_perspective" id="course_perspective">
+							<option value="Analysis & Interpretation of Meaning"<?php if ($proposal->p_perspective == 'Analysis & Interpretation of Meaning'){ echo ' selected'; } ?>>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process"<?php if ($proposal->p_perspective == 'Creative Process'){ echo ' selected'; } ?>>Creative Process</option>
+							<option value="Equity & Power - Global"<?php if ($proposal->p_perspective == 'Equity & Power - Global'){ echo ' selected'; } ?>>Equity & Power - Global</option>
+							<option value="Equity & Power - U.S."<?php if ($proposal->p_perspective == 'Equity & Power - U.S.'){ echo ' selected'; } ?>>Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic"<?php if ($proposal->p_perspective == 'Formal Reasoning & Logic'){ echo ' selected'; } ?>>Formal Reasoning & Logic</option>
+							<option value="Historical Perspectives"<?php if ($proposal->p_perspective == 'Historical Perspectives'){ echo ' selected'; } ?>>Historical Perspectives</option>
+							<option value="Scientific Analysis"<?php if ($proposal->p_perspective == 'Scientific Analysis'){ echo ' selected'; } ?>>Scientific Analysis</option>
+							<option value="Societies & Human Behaviors"<?php if ($proposal->p_perspective == 'Societies & Human Behaviors'){ echo ' selected'; } ?>>Societies & Human Behaviors</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
 				<!-- Current Rationale -->
 				<div class="form-group">
 					<div class="col-md-4"><p style="font-size: 16px;"><strong>Current Rationale:</strong>
@@ -229,10 +251,10 @@ if($proposal == false){ //if the proposal doesn't exist/wasn't created by the cu
 					</p></div>
 					<div class="col-md-4">
 						<select class="input-sm" style="float: left;" name="course_status" id="course_status">
-							<option value="new not yet approved by COI"<?php if ($proposal->p_course_status == 'new not yet approved by COI'){ echo ' selected'; } ?>>new not yet approved by COI</option>
-							<option value="new approved but not yet offered Units"<?php if ($proposal->p_course_status == 'new approved but not yet offered'){ echo ' selected'; } ?>>0new approved but not yet offered</option>
-							<option value="current under minor revision"<?php if ($proposal->p_course_status == 'current under minor revision'){ echo ' selected'; } ?>>current under minor revision</option>
-							<option value="current under major revision"<?php if ($proposal->p_course_status == 'current under major revision'){ echo ' selected'; } ?>>current under major revision</option>
+							<option value="A new course not yet approved by COI"<?php if ($proposal->p_course_status == 'A new course not yet approved by COI'){ echo ' selected'; } ?>>A new course not yet approved by COI</option>
+							<option value="A new course approved by COI, not yet offered"<?php if ($proposal->p_course_status == 'A new course approved by COI, not yet offered'){ echo ' selected'; } ?>>A new course approved by COI, not yet offered</option>
+							<option value="A current course undergoing minor revisions"<?php if ($proposal->p_course_status == 'A current course undergoing minor revisions'){ echo ' selected'; } ?>>A current course undergoing minor revisions</option>
+							<option value="A current course undergoing major revisions"<?php if ($proposal->p_course_status == 'A current course undergoing major revisions'){ echo ' selected'; } ?>>A current course undergoing major revisions</option>
 						</select>
 					</div>
 				</div>

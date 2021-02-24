@@ -16,16 +16,22 @@
 			</form>
 		</div>
 				
-		<!-- Set up columns to be displayed: -->
+				<!-- Set up columns to be displayed: -->
 		<div class="row" style="margin-top: 30px;">
 			<div class="col-md-3">
-				<span class="label-home"><strong>Title:</strong></span>
+				<span class="label-history"><strong>Title:</strong></span>
 			</div>
 			<div class="col-md-2">
-				<span class="label-home"><strong>Date Edited:</strong></span>
+				<span class="label-history"><strong>Date Editted:</strong></span>
+			</div>
+			<div class="col-md-3">
+				<span class="label-history"><strong>Submission Status:</strong></span>
+			</div>
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="label-history"><strong>Approval Status:</strong></span>
 			</div>
 			<div class="col-md-2" style="margin-left: 40px;">
-				<span class="label-home"><strong>Options:</strong></span>
+				<span class="label-history"><strong>Options:</strong></span>
 			</div>
 			
 		</div>
@@ -34,28 +40,36 @@
 			//need to request the proposals that correspond to the current User from the database to display them on the page
 			//the following for-loop produces HTML for each of the User's related Proposals
 			$pid = $_GET['pid'];
-			$edits = $user->getProposalHistory($pid);
-			for($i = 0; $i < count($edits); $i += 1){
-				$edit = $edits[$i];
+			$proposals = $user->getProposalHistory($pid);
+			for($i = 0; $i < count($proposals); $i += 1){
+				$prop = $proposals[$i];
 		?>
 		
 		<div class="row" style="margin-top: 50px; padding-bottom: 20px; border-bottom: 3px dotted #D19E21">
 			
 			<!-- Proposal Title -->
 			<div class="col-md-3">
-				<span class="info-home"><strong><?php echo $edit->proposal_title; ?></strong></span>
+				<span class="info-history"><strong><?php echo $prop->proposal_title; ?></strong></span>
 			</div>
-			<!-- Edit Date -->
+			<!-- Proposal Date -->
 			<div class="col-md-2">
-				<span class="info-home"><strong><?php echo $edit->edit_date; ?></strong></span>
+				<span class="info-history"><strong><?php echo $prop->proposal_date; ?></strong></span>
+			</div>
+			<!-- Proposal Submission Status -->
+			<div class="col-md-3">
+				<span class="info-history"><strong><?php echo convertSubmissionStatus($prop->sub_status); ?></strong></span>
+			</div>
+			<!-- Proposal Approval Status -->
+			<div class="col-md-2" style="margin-left: -40px;">
+				<span class="info-history"><strong><?php echo convertApprovalStatus($prop->approval_status); ?></strong></span>
 			</div>
 			<div class="col-md-2" style="margin-left: 40px;">
-				<form method="post" action="home">
+				<form method="post" action="history">
 					<!-- Download Button -->
-					<button type="submit" class="btn btn-home" name="action" value="download"><strong>Download</strong></button><br>
+					<button type="submit" class="btn btn-history" name="action" value="download"><strong>Download</strong></button><br>
 					
 					<!-- Specific Proposal's ID -->			
-					<input type="hidden" name="openedid" value="<?php echo $prop->id; ?>">
+					<input type="hidden" name="openedid" value="<?php echo $prop->history_id; ?>">
 				</form>
 			</div>
 			

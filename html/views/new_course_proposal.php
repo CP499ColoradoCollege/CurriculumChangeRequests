@@ -147,6 +147,30 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 25px;">
+				<!-- Course Perspective -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_perspective" style="font-size: 20px; float: right;">Course Perspective
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Perspective of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="course_perspective" id="course_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
 				<!-- Rationale -->
 				<div class="form-group">
 					<div class="col-md-2"></div>
@@ -233,10 +257,10 @@
 					</div>
 					<div class="col-md-3">
 						<select class="input-sm" style="float: left;" name="course_status" id="course_status">
-							<option value="new not yet approved by COI" selected>new not yet approved by COI</option>
-							<option value="new approved but not yet offered">new approved but not yet offered</option>
-							<option value="current under minor revision">current under minor revision</option>
-							<option value="current under major revision">current under major revision</option>
+							<option value="A new course not yet approved by COI" selected>A new course not yet approved by COI</option>
+							<option value="A new course approved by COI, not yet offered">A new course approved by COI, not yet offered</option>
+							<option value="A current course undergoing minor revisions">A current course undergoing minor revisions</option>
+							<option value="A current course undergoing major revisions">A current course undergoing major revisions</option>
 						</select>
 					</div>
 				</div>
