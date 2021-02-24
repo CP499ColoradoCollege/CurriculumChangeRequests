@@ -18,7 +18,7 @@ working_dir=$(pwd)
 
 #download and install java and composer + other dependencies 
 sudo sudo apt install openjdk-8-jdk composer php-xml php-zip php-mbstring
-sudo cp html/databaseConnection/*.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext
+sudo cp databaseConnection/*.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export PATH="$PATH:$JAVA_HOME/bin"
 
