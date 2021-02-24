@@ -84,23 +84,42 @@ class ProposalTest extends \Codeception\Test\Unit
 
         $revision_proposal_created = $this->proposal->createProposalReviseExistingCourse(1, 'CP122', $criteria, $post_array);
         $this->assertTrue($revision_proposal_created);
-        
     }
     
-    // public function testEditProposalReviseExistingCourse()
-    // {
-        
-    // }
+    public function testEditProposalReviseExistingCourse()
+    {
+        $course = new Course($this->dbc);
+        $course = $course->fetchCourseFromCourseID('CP122');
+        $criteria = '1'.'2'.'3'.'4'.'5'.'6'.'7'.'8'.'9'.'a'.'b'.'c'; #change all criteria of existing course 
+        $post_keys = ['p_course_id', 'p_course_title', 'p_course_desc', 'p_designation_scope', 'p_extra_details', 'p_limit', 'p_prereqs', 'p_units', 'p_first_offering', 
+        'p_aligned_assignments', 'p_designation_scope', 'p_designation_prof', 'p_perspective', 'rationale', 'lib_impact', 'tech_impact'];
+        $post_values = ['1', 'New Title', "This class is gonna rock", "None", "Like, seriously, rock", "50", "None", 
+        "2", "2/22/2222", "Go to mars", "None", "Professor Yessir", "Formal Logic & Reasoning", "I wanna change it again", "Needs its own library", "Needs a quantum computer"];
+        $post_array = array_combine($post_keys, $post_values);
+
+        $revision_proposal_edited = $this->proposal->createProposalReviseExistingCourse(1, 'CP122', $criteria, $post_array);
+        $this->assertTrue($revision_proposal_edited);
+    }
     
-    // public function testCreateProposalDropExistingCourse()
-    // {
-        
-    // }
+    public function testCreateProposalDropExistingCourse()
+    {
+        $post_keys = ['rationale', 'lib_impact', 'tech_impact'];
+        $post_values = ["I wanna drop the course cause it sucks to teach.", "I will have to blow up the library.", "I will need a bomb to blow up the library"];
+        $post_array = array_combine($post_keys, $post_values);
+       
+        $drop_course_proposal_created = $this->proposal->createProposalDropExistingCourse(1, 'CP122', $post_array);
+        $this->assertTrue($drop_course_proposal_created);
+    }
     
-    // public function testEditProposalDropExistingCourse()
-    // {
+    public function testEditProposalDropExistingCourse()
+    {
+        $post_keys = ['existing_course_id', 'rationale', 'lib_impact', 'tech_impact'];
+        $post_values = ["CP122", "I wanna drop the course cause it sucks to teach.", "I will have to blow up the library.", "I will need a bomb to blow up the library"];
+        $post_array = array_combine($post_keys, $post_values);
         
-    // }
+        $drop_course_proposal_edited = $this->proposal->editProposalDropExistingCourse(1, 'CP122', $post_array);
+        $this->assertTrue($drop_course_proposal_edited);
+    }
 
     
 }
