@@ -303,7 +303,7 @@ class Proposal{
 		$p_course_title = $post_array['course_title'];
 		$p_course_desc = $post_array['course_desc'];
 		$p_extra_details = $post_array['extra_details'];
-		$p_limit = $post_array['limit'];
+		$p_limit = $post_array['p_limit'];
 		$p_prereqs = $post_array['course_prereqs'];
 		$p_units = $post_array['course_units'];
 		$p_perspective = $post_array['course_perspective'];

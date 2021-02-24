@@ -51,9 +51,11 @@ class NewCourseCest
 		$I->fillField('first_offering', 'Semester 2, 2022');
 		$I->selectOption('course_status', "A new course not yet approved by COI");
 		$I->fillField('designation_scope', 'All Sections');
-		// $I->fillField('designation_prof', 'None');
+		$I->fillField('designation_prof', 'None');
 		$I->click(['class' => 'btn']);
-		$I->canSeeInCurrentUrl('/home');		
+		$I->canSeeInCurrentUrl('/home');
+		
+		$I->see('New Course: TE111, Test Course 1');		
     	}
 	
 	

@@ -166,47 +166,47 @@
 							$criteria = "";
 
 							if(isset($_POST['course_id'])){
-								$criteria = $criteria."a";
+								$criteria = $criteria."1";
 							}
 							
 							if(isset($_POST['course_title'])){
-								$criteria = $criteria."b";
+								$criteria = $criteria."2";
 							}
 							
 							if(isset($_POST['course_desc'])){
-								$criteria = $criteria."c";
+								$criteria = $criteria."3";
 							}
 							
 							if(isset($_POST['extra_details'])){
-								$criteria = $criteria."d";
+								$criteria = $criteria."4";
 							}
 							
 							if(isset($_POST['enrollment_limit'])){
-							    $criteria = $criteria."e";
+							    $criteria = $criteria."5";
 							}
 							
 							if(isset($_POST['prerequisites'])){
-								$criteria = $criteria."f";
+								$criteria = $criteria."6";
 							}
 							
 							if(isset($_POST['units'])){
-								$criteria = $criteria."g";
+								$criteria = $criteria."7";
 							}
 							
 							if(isset($_POST['first_offering'])){
-								$criteria = $criteria."h";
+								$criteria = $criteria."8";
 							}
 							
 							if(isset($_POST['aligned_assignments'])){
-								$criteria = $criteria."i";
+								$criteria = $criteria."9";
 							}
 							
 							if(isset($_POST['designation_scope'])){
-								$criteria = $criteria."j";
+								$criteria = $criteria."a";
 							}
 							
 							if(isset($_POST['designation_prof'])){
-								$criteria = $criteria."k";
+								$criteria = $criteria."b";
 							}
 							
 							if(isset($_POST['perspective'])){

@@ -28,7 +28,8 @@ class EditHistoryTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
-        $this->dbc->query("TRUNCATE proposals"); #Clean up test proposal 
+        #Clean up test data
+        $this->dbc->query("TRUNCATE proposals"); 
         $this->dbc->query("TRUNCATE proposalhistory");
         
     }
