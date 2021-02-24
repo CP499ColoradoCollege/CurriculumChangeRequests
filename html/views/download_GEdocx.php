@@ -35,7 +35,7 @@
 		$msg = "Hit empty proposal abort condition in download_GEdocx.php";
 		error_log(print_r($msg, TRUE)); 
 
-		//header("Location: home");
+		header("Location: home");
 		exit;
 	}
 	
@@ -232,6 +232,7 @@
 					break;
 			}
 		}
+
 		$individual_criteria = array_filter(explode("-", $headerString)); 
 		if(count($individual_criteria) == 1){
 			//do nothing...?
