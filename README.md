@@ -1,5 +1,107 @@
 ## Filesystem
-![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/presentation/image1.png)
+├── build.sh
+├── codeception.yml
+├── composer.json
+├── composer.lock
+├── databaseConnection
+│   ├── commons-collections4-4.2.jar
+│   ├── commons-compress-1.18.jar
+│   ├── example.xlsx
+│   ├── ExtractExcelData.class
+│   ├── ExtractExcelData.java
+│   ├── mysql-connector-java-5.1.46-bin.jar
+│   ├── poi-4.0.1.jar
+│   ├── poi-ooxml-4.0.1.jar
+│   ├── poi-ooxml-schemas-4.0.1.jar
+│   └── xmlbeans-3.0.2.jar
+├── html
+│   ├── banner.JPG
+│   ├── classes
+│   │   ├── Course.php
+│   │   ├── Proposal.php
+│   │   └── User.php
+│   ├── config
+│   │   ├── connection.php
+│   │   ├── css.php
+│   │   ├── js.php
+│   │   ├── queries.php
+│   │   └── setup.php
+│   ├── functions
+│   │   └── helpers.php
+│   ├── index.php
+│   ├── template
+│   │   ├── header.php
+│   │   └── navigation.php
+│   └── views
+│       ├── add_feedback.php
+│       ├── approve_proposal.php
+│       ├── change_course_proposal.php
+│       ├── change_course_proposal_select.php
+│       ├── delete_proposal.php
+│       ├── download_CCdocx.php
+│       ├── download_docx_2.php
+│       ├── download_docx_3.php
+│       ├── download_docx.php
+│       ├── download_FancyGEdocx.php
+│       ├── download_GEdocx.php
+│       ├── download_genEddocx.php
+│       ├── download_proposals
+│       │   ├── download_docx_2.php
+│       │   └── download_docx.php
+│       ├── edit_proposal_add.php
+│       ├── edit_proposal_drop.php
+│       ├── edit_proposal.php
+│       ├── edit_proposal_revise.php
+│       ├── history.php
+│       ├── home.php
+│       ├── login.php
+│       ├── new_course_proposal.php
+│       ├── new_proposal.php
+│       ├── remove_course_proposal.php
+│       ├── submit_proposal.php
+│       └── view_feedback.php
+├── presentation
+│   ├── Architecture.jpg
+│   ├── Getting Started.md
+│   ├── image1.png
+│   ├── image2.png
+│   ├── image3.png
+│   └── image4.png
+├── README.md
+├── resources
+│   ├── bootstrap.php
+│   ├── deploy.md
+│   ├── proposal-toolDB.sql
+│   └── proposaltoolDB.sql
+├── script
+│   ├── build.sh
+│   ├── cp_files_to_xampp.sh
+│   ├── deploy_development.sh
+│   ├── deploy_server.sh
+│   ├── fetch_server_errors.sh
+│   ├── migratedb.sh
+│   └── open_xampp.sh
+└── tests
+    ├── acceptance
+    │   ├── EditCourseCest.php
+    │   ├── HomeCest.php
+    │   ├── NewCourseCest.php
+    │   ├── NewProposalCest.php
+    │   ├── RemoveCourseCest.php
+    │   ├── SubmitFeedbackCest.php
+    │   └── ViewFeedbackCest.php
+    ├── acceptance.suite.yml
+    ├── _data
+    │   └── testproposaltoolDB.sql
+    ├── unit
+    │   ├── CourseTest.php
+    │   ├── dependencies.php
+    │   ├── EditHistoryTest.php
+    │   ├── ProposalTest.php
+    │   ├── SandboxFunctionTests.php
+    │   ├── SubmitTest.php
+    │   └── UserTest.php
+    └── unit.suite.yml
 
 Here is an explanation of each of the directories, as well as each file in the directory:
 
@@ -7,9 +109,8 @@ Here is an explanation of each of the directories, as well as each file in the d
 + **Config**: contains the files needed to configure the system, such as the database connection (in connection.php), the setup of all important variables and importing of necessary files (in setup.php), all of our necessary Javascript code (in js.php), all of our CSS styling for HTML elements (in css.php), and the back-end functionality that is implemented whenever a form is submitted from a web-page (in queries.php).
 + **databaseConnection:** this contains all necessary JAR files for running the Java-related functions of our application (i.e. updating our database via a .csv file from the Banner database). ExtractExcelData.java and ExtractExcelData.class are used to read in a .csv file, and then write to the Courses table in our application’s MySQL database.
 + **Functions:** contains any functions that aren’t necessarily class related, such as reading the current web-page’s slug (i.e. the identifier for the web-page). These functions are contained inside the helpers.php file; originally this folder also contained our query-related functions, but that implementation was instead moved into the related Class for each function.
-+ **Scripts:** these files are bash scripts, some of which are run in order to keep our server’s code up-to-date with the code in our Git Repository, and the rest of which are used to configure the development environment we utilized during this project.
++ **Scripts:** these files are bash scripts, including a build script. Others can be used to keep a server’s code up-to-date with the code in our Git Repository, or for other utility named by file.
 + **Tests:** contains all of the test files for ensuring that the functionality of our web-application is as expected.
-+ **Vendor:** contains all of the PHP dependencies necessary for our web-application to function properly, such as PHPWord.
 + **Views:** contains the HTML structure for our each of our web-application’s web pages.
 ## System Architecture
 ![alt text](https://github.com/CP499ColoradoCollege/CurriculumChangeRequests/blob/master/presentation/Architecture.jpg)
