@@ -17,26 +17,25 @@ cd CurriculumChangeRequests
 working_dir=$(pwd)
 
 #download and install java and composer + other dependencies 
-sudo sudo apt install openjdk-8-jdk composer php-xml php-zip php-mbstring net-tools
+sudo sudo apt install openjdk-8-jdk composer php-xml php-zip php-mbstring
 sudo cp html/databaseConnection/*.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export PATH="$PATH:$JAVA_HOME/bin"
 
 #copy files to XAMPP
-sudo cp -r resources/composer.json /opt/lampp/htdocs/ 
 sudo cp -r html/* html/.htaccess resources/banner.JPG resources/bootstrap.php /opt/lampp/htdocs
 
 #install composer from lock file
-sudo cp resources/composer.json resources/composer.lock /opt/lampp/htdocs 
-cd /opt/lampp/htdocs 
 composer install
 
-
 #ensure correct permissions to application files  
+sudo chown -R $USER:USER /opt/lampp/htdocs
 sudo chmod 755 /opt/lampp/htdocs/
 
-#start xampp and create database.
+#start xampp and create databases.
 sudo /opt/lampp/xampp start
 /opt/lampp/bin/mysql -u root -e "CREATE DATABASE proposaltoolDB"
-/opt/lampp/bin/mysql -u root proposaltoolDB < $working_dir/resources/proposaltoolDB.sql
+/opt/lampp/bin/mysql -u root -e "CREATE DATABASE testproposaltoolDB"
 
+/opt/lampp/bin/mysql -u root proposaltoolDB < $working_dir/resources/proposaltoolDB.sql
+/opt/lampp/bin/mysql -u root proposaltoolDB < $working_dir/tests/_data/testproposaltoolDB.sql
