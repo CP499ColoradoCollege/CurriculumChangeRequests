@@ -11,16 +11,20 @@ if ($proposal == false) {
 $approval_status = $proposal->approval_status;
 
 if ($approval_status == 0) {
-	$sub_reversed = 1;
+	$approval_reversed = 2;
 	$approval_message = "Make sure you have reviewed this proposal and confirmed it is up to standards.";
 	$button_message = "Approve";
-} else {
-	$approval_reversed = 0;
+}else if($approval_status == 1){
+	$approval_reversed = 1;
+	$approval_message = "Make sure you have reviewed this proposal and confirmed it is up to standards.";
+	$button_message = "Approve";
+}else{
+	$approval_reversed = -1;
 	$approval_message = "If this proposal does not meet the standards for approval, please <a href='#'>provide appropriate feedback</a> for the submitter's benefit.";
 	$button_message = "Reject";
 }
 
-$next_approval_level = $user->permission + $approval_reversed;
+$next_approval_level = $approval_status + $approval_reversed;
 echo $next_approval_level;
 
 ?>
