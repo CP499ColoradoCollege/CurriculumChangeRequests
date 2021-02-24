@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+f#!/bin/bash
+=======
 #!/bin/bash
+>>>>>>> origin/case
 echo "Devkit installation in progress"
 echo "Welcome Stranger..."
 
@@ -57,3 +61,7 @@ echo "."
 echo "."
 echo "Setup Complete"
 echo "Have a nice day!"
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/case

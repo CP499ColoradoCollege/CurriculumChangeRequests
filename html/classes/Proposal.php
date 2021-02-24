@@ -9,6 +9,8 @@ class Proposal{
 	
 	public $dbc;
 	
+	public $history_id;
+	
 	public $id;
 	
 	public $user_id;
@@ -69,12 +71,11 @@ class Proposal{
 	public function __construct($dbc){
 		$this->dbc = $dbc;
 	}
-	
 
-	public function updateProposalField($id, $value) {
+	public function updateProposalField($id, $field, $value) {
 		$dbc = $this->dbc;
 
-		$statement = $dbc->prepare("UPDATE proposals SET sub_status = ? WHERE id = ?");
+		$statement = $dbc->prepare("UPDATE proposals SET ".$field." = ? WHERE id = ?");
 		$statement->bind_param("ss", $value, $id);
 		$bool = $statement->execute();
 	}
@@ -137,8 +138,6 @@ class Proposal{
 			return false;
 		}
 	}
-	
-
 	
 	public function createProposalAddNewCourse($user_id, $post_array){
 		
@@ -210,14 +209,14 @@ class Proposal{
 		$dbc = $this->dbc;
 		
 		$statement = $dbc->prepare("INSERT INTO proposalhistory (id, user_id, proposal_title, 
-			proposal_date, department, type, p_course_id, p_course_title, p_course_desc, 
+			proposal_date, department, type, criteria, p_course_id, p_course_title, p_course_desc, 
 			p_extra_details, p_limit, p_prereqs, p_units, p_perspective, rationale, lib_impact, tech_impact, 
 			p_aligned_assignments, p_first_offering, p_course_status, p_designation_scope, 
 			p_designation_prof, p_feedback) 
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		$statement->bind_param("sssssssssssssssssssssss", $proposal->id, $proposal->user_id, $proposal->proposal_title, 
-			$this->proposal_date, $proposal->department, $proposal->type, $proposal->p_course_id, 
+		$statement->bind_param("ssssssssssssssssssssssss", $proposal->id, $proposal->user_id, $proposal->proposal_title, 
+			$this->proposal_date, $proposal->department, $proposal->type, $proposal->criteria, $proposal->p_course_id, 
 			$proposal->p_course_title, $proposal->p_course_desc, $proposal->p_extra_details, 
 			$proposal->p_limit, $proposal->p_prereqs, $proposal->p_units, $proposal->p_perspective, $proposal->rationale, 
 			$proposal->lib_impact, $proposal->tech_impact, $proposal->p_aligned_assignments, 
@@ -235,6 +234,64 @@ class Proposal{
 		}
 	}
 	
+	public function fetchProposalHistory($history_id){
+		
+		$dbc = $this->dbc;
+		
+		$statement = $dbc->prepare("SELECT user_id, related_course_id, proposal_title, 
+		proposal_date, sub_status, approval_status, department, type, criteria, p_department, 
+		p_course_id, p_course_title, p_course_desc, p_extra_details, p_limit, p_prereqs, 
+		p_units, p_crosslisting, p_perspective, rationale, lib_impact, tech_impact, status,p_aligned_assignments, 
+		p_first_offering, p_course_status, p_designation_scope, p_designation_prof, p_feedback FROM proposalhistory WHERE history_id = ?");
+		$statement->bind_param("s", $history_id);
+
+		$bool = $statement->execute();
+		$statement->store_result();
+		$statement->bind_result($user_id, $related_course_id, $proposal_title, $proposal_date, 
+		$sub_status, $approval_status, $department, $type, $criteria, $p_department, $p_course_id, 
+		$p_course_title, $p_course_desc, $p_extra_details, $p_limit, $p_prereqs, $p_units, $p_crosslisting, 
+		$p_perspective, $rationale, $lib_impact, $tech_impact, $status, $p_aligned_assignments, 
+		$p_first_offering, $p_course_status, $p_designation_scope, $p_designation_prof, $p_feedback);
+
+		$statement->fetch();
+		if($bool && mysqli_stmt_num_rows($statement) == 1){
+			$this->user_id = $user_id;
+			$this->related_course_id = $related_course_id;
+			$this->proposal_title = $proposal_title;
+			$this->proposal_date = $proposal_date;
+			$this->sub_status = $sub_status;
+			$this->approval_status = $approval_status;
+			$this->department = $department;
+			$this->type = $type;
+			$this->criteria = $criteria;
+			$this->p_department = $p_department;
+			$this->p_course_id = $p_course_id;
+			$this->p_course_title = $p_course_title;
+			$this->p_course_desc = $p_course_desc;
+			$this->p_extra_details = $p_extra_details;
+			$this->p_limit = $p_limit;
+			$this->p_prereqs = $p_prereqs;
+			$this->p_units = $p_units;
+			$this->p_crosslisting = $p_crosslisting;
+			$this->p_perspective = $p_perspective;
+			$this->rationale = $rationale;
+			$this->lib_impact = $lib_impact;
+			$this->tech_impact = $tech_impact;
+			$this->status = $status;
+			$this->p_aligned_assignments = $p_aligned_assignments;
+			$this->p_first_offering = $p_first_offering;
+			$this->p_course_status = $p_course_status;
+			$this->p_designation_scope = $p_designation_scope;
+			$this->p_designation_prof = $p_designation_prof;
+			$this->p_feedback = $p_feedback;
+			
+			return $this;
+		}else{
+			echo "Error: Less than/Greater than 1 row returned, can not be saved as 1 Proposal.";
+			return false;
+		}
+	}
+	
 	public function editProposalAddNewCourse($user_id, $pid, $post_array){
 			
 		$dbc = $this->dbc;
@@ -246,7 +303,7 @@ class Proposal{
 		$p_course_title = $post_array['course_title'];
 		$p_course_desc = $post_array['course_desc'];
 		$p_extra_details = $post_array['extra_details'];
-		$p_limit = $post_array['limit'];
+		$p_limit = $post_array['p_limit'];
 		$p_prereqs = $post_array['course_prereqs'];
 		$p_units = $post_array['course_units'];
 		$p_perspective = $post_array['course_perspective'];
@@ -273,7 +330,6 @@ class Proposal{
 		}
 	}
 
-	
 	public function createProposalReviseExistingCourse($user_id, $related_course_id, $criteria, $post_array){	
 		$dbc = $this->dbc;
 		
@@ -312,6 +368,11 @@ class Proposal{
 		   5 : Enrollment Limit
 		   6 : Prerequisites
 		   7 : Units
+		   8 : First Offering
+		   9: Aligned Assignments
+		   a : Designation Scope
+		   b : Designation Professor(s)
+		   c: Perspective
 		*/
 
 		$changes = "";
@@ -466,7 +527,6 @@ class Proposal{
 		}
 		return true;
 	}
-
 
 	public function editProposalReviseExistingCourse($pid, $date, $user_id, $related_course_id, $criteria, $post_array){		
 		
@@ -632,8 +692,6 @@ class Proposal{
 		
 	}
 
-
-
 	public function createProposalDropExistingCourse($user_id, $course_id, $post_array){
 		
 		$dbc = $this->dbc;
@@ -697,8 +755,48 @@ class Proposal{
 			return false;
 		}
 	}
+
+	public function getAllFeedback() {
+		$dbc = $this->dbc;
+
+		$statement = $dbc->prepare("SELECT comments.comment_text, users.first_name, users.last_name FROM comments INNER JOIN users ON comments.uid = users.id WHERE comments.pid = ?");
+		$statement->bind_param("s", $this->id);
+		$statement->execute();
+
+		$statement->bind_result($comment, $fname, $lname);
+
+		$feedback = "<p align='left'>";
+
+		while ($statement->fetch()) {
+			$feedback .= $fname . " " . $lname . ": " . $comment . "<br>";
+		}
+
+		$feedback .= "</p>";
+
+		$statement->close();
+
+		return $feedback;
+	}
 	
-	
+	public function addFeedback($uid, $pid, $feedback) {
+		$dbc = $this->dbc;
+		$statement = $dbc->prepare("INSERT INTO comments (pid, uid, comment_text, tags) VALUES (?, ?, ?, '')");
+		$statement->bind_param("sss", $pid, $uid, $feedback);
+		$statement->execute();
+	}
+
+	public function deleteProposal()
+	{
+		$dbc = $this->dbc;
+		$statement = $dbc->prepare("DELETE FROM proposals WHERE id = ?");
+		$statement->bind_param("s", $this->id);
+		$success = $statement->execute();
+		if($success) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }
 

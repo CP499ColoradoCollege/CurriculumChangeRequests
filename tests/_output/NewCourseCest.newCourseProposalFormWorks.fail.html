@@ -1,0 +1,695 @@
+<!DOCTYPE  html>
+<html>
+<head>
+	<!-- Changes the page's title to the page title + the site title, dynamically changing -->
+	<title>New_course_proposal | Course Proposal System</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+<!-- jQuery CSS -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
+<!-- Dropzone CSS -->
+<!-- <link rel="stylesheet" href="css/dropzone.css"> -->
+
+
+<!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/bootstrap.min.css" /> -->
+<!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/font-awesome.min.css" /> -->
+<!-- <link rel="stylesheet" href="functions/phpwordsample/code/bootstrap/css/phpword.css" /> -->
+
+
+<style>
+
+
+	* {
+	 box-sizing: border-box;
+	}
+	
+	*:before,
+	*:after {
+	 box-sizing: border-box;
+	}
+	
+	html, body {
+	    font-family: 'Monda', Sans-Serif;
+		font-size: 14px;
+		color: black;
+	    background-size: 100%;
+	    background-color: white;
+	    height: 100vh;
+	    position: relative;
+	    overflow-x: hidden;
+	}
+	
+	.container{
+		min-height: calc(100vh - 120px); /* will cover the 100% of viewport */
+		display: block;
+		position: relative;
+		margin-bottom: 0px;
+	}
+	
+	.card{
+		height: 100%;
+		padding-bottom: 100px;
+	}
+	
+	.background-tint {
+	  /*background-color: rgba(22, 197, 46,.5);*/
+	  background-blend-mode: multiply;
+	}   
+	
+	/* The magic: */
+	.Site {
+	  display: flex;
+	  min-height: 100vh;
+	  flex-direction: column;
+	}
+	
+	.Site-content {
+	  flex: 1;
+	}
+	
+	.website-banner {
+		height: 60px;
+		width: 100%;
+		float: left;
+		margin-top: 0px;
+		padding-bottom: 1px;
+		overflow-x: hidden;
+	}
+	
+	.btn-home{
+		color: black;
+		background-color: #D19E21;
+		font-size: 15px;
+		border-radius: 10px;
+		float: none;
+		margin-bottom: 5px;
+	}
+	
+	.btn-history{
+		color: black;
+		background-color: #D19E21;
+		font-size: 15px;
+		border-radius: 10px;
+		float: none;
+		margin-bottom: 5px;
+	}
+	
+	.btn-new{
+		color: black;
+		background-color: #D19E21;
+		font-size: 15px;
+		border-radius: 10px;
+		float: center;
+		margin-top: 30px;
+		margin-left: 100px;
+	}
+	
+	.btn-tooltip{
+		text-align: center;	
+		opacity: 1;
+		padding: 0px;
+		background-color: transparent;
+		color: black;
+	}
+	
+	.change-label{
+		font-size: 18px;
+	}
+	
+	.div-center{
+		float: none;
+		text-align: center;
+	}
+	
+	.div-left{
+		float: none;
+		text-align: left;
+		
+	}
+	
+	.label-home{
+		font-size: 20px;
+	}
+	
+	.info-home{
+		font-size: 18px;
+	}
+	
+	.label-history{
+		font-size: 20px;
+	}
+	
+	.info-history{
+		font-size: 18px;
+	}
+	
+	.shift-down{
+		margin-top: 50px;
+	}
+	
+	.shift-left{
+		margin-left: -50px;
+	}
+	
+	.shift-right{
+		margin-left: 32%;
+	}
+	
+	.form-textbox {
+		width: 100%;
+		height: 500px;
+		border-radius: 4px;
+		font-size: 14px;
+		resize: none;
+	}
+	
+	.text-20{
+		font-size: 20px;
+	}
+	
+	.text-30{
+		font-size: 30px;
+	}
+
+	
+	/* Wrapper for page content to push down footer */
+	#wrap {
+		min-height: 100%;
+		height: auto;
+		/* Negative indent footer by its height */
+		margin: 0 auto -60px;
+		/* Pad bottom by footer height */
+		padding 0 0 60px;
+	}
+	
+	/* Set the fixed height of the footer here */
+	#footer {
+		height: 60px;
+		background-color: #f5f5f5;
+	}
+	
+	/* styling for debug button */
+	#btn-debug {
+		/*
+		position: absolute;
+		right: 5px;
+		*/
+	}
+	
+	/* styling for debug console */
+	#console-debug {
+		position: absolute;
+		top: 50px;
+		left: 0px;
+		width: 30%;
+		height:700px;
+		overflow-y:scroll;
+		background-color: #ffffff;
+		box-shadow: 2px 2px 5px #cccccc;
+	}
+	#console-debug pre {
+		height: 700px;
+	}
+		
+	/* styling for user avatar */
+	.avatar-container {
+		width: 100px;
+		height: 100px;
+		
+		border-radius: 3px;
+		
+		background-size: cover;
+		background-position: center center;
+	}
+			
+		
+</style>
+	
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<!-- jQuery UI -->
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+<!-- TinyMCE -->
+<!-- <script src="js/tinymce/tinymce.min.js"></script> -->
+
+<!-- Dropzone -->
+<!-- <script src="js/dropzone.js"></script> -->
+
+
+<script>
+
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+
+
+	$(document).ready(function() {
+		
+		$("#console-debug").hide();	/* hides debug window by default */
+		$("#btn-debug").click(function() {
+			$("#console-debug").toggle(); /* shows debug window when console button clicked */
+		});
+		
+		
+		$(".btn-delete").on("click", function(){ /* when delete post button is clicked, */
+			var selected = $(this).attr("id");	
+			var pageid = selected.split("del_").join("");
+			var confirmed = confirm("Are you sure you want to delete this page?");
+			if(confirmed == true){
+				$.get("ajax/pages.php?id="+pageid);
+				$("#page_"+pageid).remove();	/* deletes the specified post from the Pages view */
+			}
+		})
+		
+		
+		$("#sort-nav").sortable({	/* for drag-and-drop sorting of nav bar */
+			cursor: "move",	//IMPERFECT: doesn't display correctly, to be fixed
+			update: function() {
+				var order = $(this).sortable("serialize");
+				$.get("ajax/list-sort.php", order);
+			}
+		});
+		
+		
+		$(".nav-form").submit(function(event){	/* for auto-loading new label of pages on nav bar */
+			var navData = $(this).serializeArray();
+			var navLabel = $("input[name=label]").val();
+			var navID = $("input[name=id]").val();
+			$.ajax({
+				url: "ajax/navigation.php",
+				type: "POST",
+				data: navData
+			}).done(function(){
+				$("#label_"+navID).html(navLabel);
+			});
+			event.preventDefault(); /* prevents the label from performing the default behavior */
+			
+		});
+		
+	});	//END document.ready();
+	
+	//following chunk is for the TinyMCE widget, which applies to all divs with class "editor"
+	// tinymce.init({
+	// 	selector: ".editor",
+	// 	theme: "modern",
+	// 	plugins: [
+	// 		"advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+	// 		"searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+	// 		"save table contextmenu directionality emoticons template paste textcolor"
+	// 	]
+	// });
+	
+</script>
+
+</head>
+<body class="Site">
+	<main class="Site-content">
+		<div class="background-tint">
+			<!-- this document contains the code needed for the nav bar at the top of the Proposal Tool application; HTML and PHP -->
+
+<nav class="navbar navbar-default" role="navigation">
+	<img class="website-banner" src="banner.JPG"/>
+		
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+       <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+       </button>
+	
+		<div class="collapse navbar-collapse" style="text-align: center;">
+	
+		<div class="pull-left">
+			<ul class="nav navbar-nav" style="font-size = 50px;">
+				
+				<li><a class="nav-button" href="home">Home</a></li>
+			    			    
+			</ul>
+		</div>
+		
+		<span style="text-align: center; font-size: 25px;"><strong>Course Proposal System</strong></span>
+	
+		<div class="pull-right"><!-- for the right side buttons -->
+			<ul class="nav navbar-nav" style="font-size = 50px;">
+				
+				<li><a class="nav-button" href="logout">Log Out</a></li>
+				
+				<li>
+				
+				</li>
+			    			    
+			</ul>
+		</div>	<!-- END right side buttons -->
+		</div>
+	
+
+</nav><!-- END nav -->
+			<div id="wrap">	<!-- keeps column layout consistent -->
+
+<div class="container">
+	<div class="card">
+		
+		<!-- Page Header -->
+		<div class="row" style="padding-bottom: 25px; border-bottom: 3px solid #D19E21">
+			<h1 style="float: left;"><strong>Add New Course Proposal</strong></h1>
+		</div>
+		
+				
+		<!-- Add New Course Proposal form -->
+		<form method="post" role="form">
+			<div class="shift-down row">
+				<!-- Department -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="department" style="font-size: 20px; float: right;">Department : 
+					</div>
+					<div class="col-md-3">
+						<select class="form-control input-sm" name="department" id="department">
+														<option value="Art">Art</option>
+														<option value="Anthropology">Anthropology</option>
+														<option value="Biology">Biology</option>
+														<option value="Classics">Classics</option>
+														<option value="German, Russian & E Asian Lang">German, Russian & E Asian Lang</option>
+														<option value="Comparative Literature">Comparative Literature</option>
+														<option value="Mathematics & Computer Science">Mathematics & Computer Science</option>
+														<option value="Chemistry & Biochemistry">Chemistry & Biochemistry</option>
+														<option value="Education">Education</option>
+														<option value="Drama & Dance">Drama & Dance</option>
+														<option value="Environmental Science">Environmental Science</option>
+														<option value="English">English</option>
+														<option value="Non-Departmental Studies">Non-Departmental Studies</option>
+														<option value="Romance Languages">Romance Languages</option>
+														<option value="Feminist & Gender Studies">Feminist & Gender Studies</option>
+														<option value="History">History</option>
+														<option value="Geology">Geology</option>
+														<option value="Religion">Religion</option>
+														<option value="Music">Music</option>
+														<option value="Political Science">Political Science</option>
+														<option value="Philosophy">Philosophy</option>
+														<option value="Psychology">Psychology</option>
+														<option value="Physics">Physics</option>
+														<option value="Sociology">Sociology</option>
+														<option value="Southwest Studies">Southwest Studies</option>
+														<option value="Spanish">Spanish</option>
+														<option value="Film and New Media Studies">Film and New Media Studies</option>
+														<option value="Theatre and Dance">Theatre and Dance</option>
+														<option value="Human Biology and Kinesiology">Human Biology and Kinesiology</option>
+														<option value="French & Italian">French & Italian</option>
+														<option value="Asian Studies">Asian Studies</option>
+														<option value="Economics & Business">Economics & Business</option>
+														<option value="Molecular Biology">Molecular Biology</option>
+														<option value="French, Italian, and Arabic">French, Italian, and Arabic</option>
+														<option value="Organismal Biology & Ecology">Organismal Biology & Ecology</option>
+														<option value="Undeclared">Undeclared</option>
+														<option value="Race, Ethnicity, and Migration">Race, Ethnicity, and Migration</option>
+														<option value="Spanish & Portuguese">Spanish & Portuguese</option>
+													</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course ID -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_id" style="font-size: 20px; float: right;">Course ID
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The 5 character ID for the course, containing subject code and course number (i.e. CP112)">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="course_id" id="course_id" placeholder="i.e. 'CP112'" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Title -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_title" style="font-size: 20px; float: right;">Course Title : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="course_title" id="course_title" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Description -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_desc" style="font-size: 20px; float: right;">Course Description
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Describes what the class is about/what students will learn">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="course_desc" id="course_desc" placeholder="Describe the new course" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Extra Details -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="extra_details" style="font-size: 20px; float: right;">Extra Details
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Additional details about the course, such as a field trip to Baca or required fee to be paid">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="extra_details" id="extra_details" placeholder="i.e. Field trip, required fee, etc." autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Enrollment Limit -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="p_limit" style="font-size: 20px; float: right;">Enrollment Limit
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Maximum number of students that can sign up for a course (typically 25 or 32)">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-4">
+						<input class="form-control input-md" type="text" name="p_limit" id="p_limit" placeholder="typically 25 or 32" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Prerequisites -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_prereqs" style="font-size: 20px; float: right;">Course Prerequisites
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses required before students are eligible to take this one">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="course_prereqs" id="course_prereqs" placeholder="Course IDs of prerequisite courses" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Units -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_units" style="font-size: 20px; float: right;">Course Units
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Units of credit received for taking this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="course_units" id="course_units">
+							<option value="0 Units" selected>0 Units</option>
+							<option value="0.25 Units">0.25 Units</option>
+							<option value="0.5 Units">0.5 Units</option>
+							<option value="1 Unit">1 Unit</option>
+							<option value="2 Units">2 Units</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Perspective -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_perspective" style="font-size: 20px; float: right;">Course Perspective
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Perspective of the course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="course_perspective" id="course_perspective">
+							<option value="Analysis & Interpretation of Meaning" selected>Analysis & Interpretation of Meaning</option>
+							<option value="Creative Process">Creative Process</option>
+							<option value="Equity & Power - Global">Equity & Power - Global</option>
+							<option value="Equity & Power - U.S.">Equity & Power - U.S.</option>
+							<option value="Formal Reasoning & Logic">Formal Reasoning & Logic</option>		
+							<option value="Historical Perspectives">Historical Perspectives</option>
+							<option value="Scientific Analysis">Scientific Analysis</option>
+							<option value="Societies & Human Behaviors">Societies & Human Behaviors</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Rationale -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="rationale" style="font-size: 20px; float: right;">Rationale
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The rationale behind this new course proposal">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-4">
+						<textarea class="form-control input-md form-textbox" type="text" name="rationale" id="rationale" placeholder="Reason for new course proposal" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Library Impact -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="lib_impact" style="font-size: 20px; float: right;">Library Impact
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The impact on the library from this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="lib_impact" id="lib_impact" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Technology Impact -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="tech_impact" style="font-size: 20px; float: right;">Technology Impact
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="The technology impact of this course">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<input class="form-control input-md" type="text" name="tech_impact" id="tech_impact" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Aligned Assignments -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="aligned_assignments" style="font-size: 20px; float: right;">Aligned Assignments
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Courses in each GenEd category need to include >=1 assignment aligned to each learning outcome">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+					<textarea class="form-control input-md form-textbox" type="text" name="aligned_assignments" id="aligned_assignments" placeholder="" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- First Offering -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="first_offering" style="font-size: 20px; float: right;">First Offering
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="First semester and year course will be offered">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+					<textarea class="form-control input-md form-textbox" type="text" name="first_offering" id="first_offering" placeholder="" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Course Status -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="course_status" style="font-size: 20px; float: right;">Course Status
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="Course status">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<div class="col-md-3">
+						<select class="input-sm" style="float: left;" name="course_status" id="course_status">
+							<option value="A new course not yet approved by COI" selected>A new course not yet approved by COI</option>
+							<option value="A new course approved by COI, not yet offered">A new course approved by COI, not yet offered</option>
+							<option value="A current course undergoing minor revisions">A current course undergoing minor revisions</option>
+							<option value="A current course undergoing major revisions">A current course undergoing major revisions</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Designation Scope -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="designation_scope" style="font-size: 20px; float: right;">Designation Scope
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="GenEd designation sought for all sections of course or instructor-specific section">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<textarea class="form-control input-md form-textbox" type="text" name="designation_scope" id="designation_scope" placeholder="" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 25px;">
+				<!-- Designation Prof -->
+				<div class="form-group">
+					<div class="col-md-2"></div>
+					<div class="col-md-3">
+						<label for="designation_prof" style="font-size: 20px; float: right;">Designation Professor(s)
+						<button type="button" class="btn btn-tooltip" data-toggle="tooltip" data-placement="top" title="addendum to above: list of professor(s) for instructor-specific sections if applicable">
+							  <i class="fa fa-question-circle" aria-hidden="true"></i>
+						</button> : 
+					</div>
+					<textarea class="form-control input-md form-textbox" type="text" name="designation_prof" id="designation_prof" placeholder="List of professors" autocomplete="off"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5"></div>
+				<div class="col-md-2">
+					<!-- Save Proposal Button -->
+					<button type="submit" class="btn btn-home" style="float: center; margin-top: 50px; margin-bottom: 20px;"><strong>Save</strong></button>
+					<input type="hidden" name="submitted" value="1">
+				</div>
+			</div>
+		</form>
+										
+	</div>
+</div>

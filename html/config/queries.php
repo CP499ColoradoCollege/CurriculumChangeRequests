@@ -37,6 +37,12 @@
 				header("Location: download_GEdocx?pid=".$_POST['openedid']); 
 				exit();
 				//2021 group's incomplete download file specifically for CC100 and CC120 courses
+
+				//2021 group's download file	 FROM ANDY 
+				// header("Location: download_GEdocx?pid=".$_POST['openedid']."&type="."proposal"); 
+				// exit();
+				//2021 group's incomplete download file specifically for CC100 and CC120 courses
+				
 				//header("Location: download_CCdocx?pid=".$_POST['openedid']);
 			}
 			if($_POST['action'] == 'edit'){				
@@ -48,7 +54,18 @@
 			if($_POST['action'] == 'submit_proposal') {
 				header("Location: submit_proposal?pid=".$_POST['openedid']);
 			}
-			
+			if($_POST['action'] == 'approve_proposal') {
+				header("Location: approve_proposal?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'view_feedback') {
+				header("Location: view_feedback?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'add_feedback') {
+				header("Location: add_feedback?pid=".$_POST['openedid']);
+			}
+			if($_POST['action'] == 'delete_proposal') {
+				header("Location: delete_proposal?pid=".$_POST['openedid']);
+			}
 			
 			break;
 			
@@ -399,6 +416,20 @@
 			}	
 			break;
 
+		    
+		case 'history':
+						
+			if($_POST['action'] == 'download'){	
+				//2019 group's download file
+				//header("Location: download_docx_3?pid=".$_POST['openedid']);
+				
+				//2021 group's download file
+				// header("Location: download_GEdocx?pid=".$_POST['openedid']."&type="."proposalhistory"); 
+				// exit();
+				//2021 group's incomplete download file specifically for CC100 and CC120 courses
+				header("Location: download_CCdocx?pid=".$_POST['openedid']);
+			}
+
 		case 'submit_proposal':
 			// TODO view feedback
 			$pid = $_GET['pid'];
@@ -408,10 +439,50 @@
 				header("Location: home");
 			}
 			if (isset($_POST['confirm'])) {
-				$proposal->updateProposalField($pid, $_POST['confirm']);
+				$proposal->updateProposalField($pid, "sub_status", $_POST['confirm']);
 				header("Location: home");
 			}
 			break;
+
+		case 'approve_proposal':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['confirm'])) {
+				$proposal->updateProposalField($pid, "approval_status", $_POST['confirm']);
+				header("Location: home");
+			}
+			break;
+
+		case 'add_feedback':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}
+			if (isset($_POST['comment'])) {
+				$proposal->addFeedback($user->id, $pid, $_POST['comment']);
+				header("Location: home");
+			}
+			break;
+
+		case 'delete_proposal':
+			$pid = $_GET['pid'];
+			$proposal = new Proposal($dbc);
+			$proposal = $proposal->fetchProposalFromID($pid);
+			if($proposal == false) {
+				header("Location: home");
+			}	
+			if (isset($_POST['confirm'])) {
+				$proposal->deleteProposal();		
+				header("Location: home");
+			}
+			break;
+
 			
 		case 'demo':
 			

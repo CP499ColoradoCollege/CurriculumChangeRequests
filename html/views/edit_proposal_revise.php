@@ -27,7 +27,6 @@ $course = $course->fetchCourseFromCourseID($course_id);
 if($course == false){ //if the course doesn't exist
 	header("Location: home");
 }
-
 ?>
 
 <div class="container">

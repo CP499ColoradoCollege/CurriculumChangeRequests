@@ -53,7 +53,7 @@ if(!isset($path['call_parts'][0]) || $path['call_parts'][0] == '' ){
 
 #User Setup:
 
-if($_SESSION['logged_in'] == true){
+if($_SESSION['logged_in'] == true) {
 	$user = new User($dbc);
 	$user->fetchUserFromEmail($_SESSION['user_email']);
 }

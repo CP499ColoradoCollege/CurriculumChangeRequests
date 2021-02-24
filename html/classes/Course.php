@@ -90,7 +90,7 @@ class Course{
 			$this->units = $units;
 			$this->crosslisting = $crosslisting;
 			$this->perspective = $perspective;
-			$this->aligned_assignments = $aligned_asssignments;
+			$this->aligned_assignments = $aligned_assignments;
 			$this->first_offering = $first_offering;
 			$this->designation_scope = $designation_scope;
 			$this->designation_prof = $designation_prof;
@@ -99,7 +99,6 @@ class Course{
 			$this->status = $status;
 			return $this;
 		}else{
-			echo "afaeffa";
 			return false;
 		}
 	}
