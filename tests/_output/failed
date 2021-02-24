@@ -1,2 +1,0 @@
-tests/acceptance/HomeCest.php:deleteButtonWorks
-tests/acceptance/NewCourseCest.php:newCourseProposalFormWorks

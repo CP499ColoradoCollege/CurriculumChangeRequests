@@ -5,7 +5,7 @@ To serve our project locally, we installed XAMPP, which is an easy-to-use web st
 We developed on a VM using Ubuntu 20.04 LTS. 
 
 ## II.	PROJECT BUILD
-Look for the file build.sh in the root directory. Download this file into the directory you would like to contain the project directory and run it. NOTE: We recommend setting up a shared folder on your VM so you can write code on your host machine. https://oracle-virtualbox.net/faq/15-how-to-use-a-shared-folder-in-virtualbox.html.
+Look for the file build.sh in the root directory. Download this file into the directory you would like to contain the project directory and run it. NOTE: We recommend setting up a shared folder on your VM so you can write code on your host machine. How to use a shared folder in VirtualBox.
 On the VM, run the command ./build.sh, and theoretically this should:
 1. Resynchronize your APT package index and update packages to newest versions
 2. Clone the repo
