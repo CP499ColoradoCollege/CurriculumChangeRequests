@@ -210,7 +210,7 @@
 							}
 							
 							if(isset($_POST['perspective'])){
-								$criteria = $criteria."c";
+								$criteria = $criteria."l";
 							}
 							
 							if($criteria != ""){
